@@ -1,5 +1,6 @@
 """Imported code remains byte-exact; existing approval and execution are reused."""
 from copy import deepcopy
+from contextlib import ExitStack
 from io import BytesIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -175,9 +176,9 @@ class ImportTests(unittest.TestCase):
 class DockerImportTests(unittest.TestCase):
     def test_package_modules_assets_examples_and_reuse_in_real_docker(self):
         self.assertTrue(get_status()['available'],get_status())
-        with TemporaryDirectory() as directory:
-            service=SimpleNamespace(directory=Path(directory));service.files=MailFiles(service);self.addCleanup(service.files.close)
-            service.skills=SkillLibraryService(service);self.addCleanup(service.skills.close)
+        with TemporaryDirectory() as directory, ExitStack() as resources:
+            service=SimpleNamespace(directory=Path(directory));service.files=MailFiles(service);resources.callback(service.files.close)
+            service.skills=SkillLibraryService(service);resources.callback(service.skills.close)
             raw,files=package();source=service.files._save('existing.zip',raw,'local')
             skill=service.skills.import_package(source['id'],SCOPE)
             self.assertTrue(skill['canApprove'],skill['validation'])

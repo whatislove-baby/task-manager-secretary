@@ -37,6 +37,11 @@ def runtime_hash():
 def _docker():
     candidates = [shutil.which('docker')]
     if sys.platform == 'win32':
+        # Docker Desktop also supports a per-user installation; the running
+        # app may not yet have inherited its newly added PATH entry.
+        if os.environ.get('LOCALAPPDATA'):
+            candidates.append(str(Path(os.environ['LOCALAPPDATA']) / 'Programs' /
+                                  'DockerDesktop' / 'resources' / 'bin' / 'docker.exe'))
         candidates.append(str(Path(os.environ.get('ProgramFiles', r'C:\Program Files')) /
                               'Docker' / 'Docker' / 'resources' / 'bin' / 'docker.exe'))
     else:
@@ -77,29 +82,42 @@ def _local_endpoint(endpoint):
         ord(character) < 32 for character in endpoint)
 
 
-def get_status():
+def _local_daemon(command, endpoint=None):
+    """Resolve and check one local Linux daemon before setup or execution."""
+    if endpoint is None:
+        local = _control([command, 'context', 'inspect', '--format', '{{.Endpoints.docker.Host}}'])
+        endpoint = local.stdout.strip()
+        if local.returncode:
+            raise ValueError('无法读取本机 Docker 上下文，请启动 Docker Desktop 并选择本机 Linux containers。')
+    if not _local_endpoint(endpoint):
+        raise ValueError('技能执行仅允许本机 Docker（Windows 命名管道或 Unix socket）；当前上下文不是受支持的本机环境。')
+    daemon = _control([command, '--host', endpoint, 'info', '--format', '{{.OSType}}'])
+    if daemon.returncode:
+        raise ValueError('Docker 尚未启动或不可连接。请启动 Docker Desktop。')
+    if daemon.stdout.strip().lower() != 'linux':
+        raise ValueError('技能运行需要 Linux containers；请在 Docker Desktop 切换到 Linux containers 后重试。')
+    return endpoint
+
+
+def get_status(*, endpoint=None):
     command = _docker()
     result = dict(backend='docker', available=False, image=IMAGE, network=False,
                   arbitraryHostExecution=False, runtimeHash=runtime_hash())
     if not command:
         return dict(result, reason='未找到 Docker。请安装并启动 Docker Desktop，再准备技能运行时。')
     try:
-        local = _control([command, 'context', 'inspect', '--format', '{{.Endpoints.docker.Host}}'])
-        endpoint = local.stdout.strip()
-        if local.returncode or not _local_endpoint(endpoint):
-            return dict(result, reason='技能执行仅允许本机 Docker（Windows 命名管道或 Unix socket）；当前上下文不是受支持的本机环境。')
+        endpoint = _local_daemon(command, endpoint)
         prefix = [command, '--host', endpoint]
         inspected = _control(prefix + ['image', 'inspect', IMAGE, '--format',
                               '{{.Id}}|{{ index .Config.Labels "org.taskmanager.skill-runtime" }}'])
         if inspected.returncode:
-            daemon = _control(prefix + ['version', '--format', '{{.Server.Version}}'])
-            reason = ('Docker 尚未启动或不可连接。请启动 Docker Desktop。' if daemon.returncode
-                      else '技能运行镜像未准备。请运行 scripts/prepare-skill-runtime.py。')
-            return dict(result, reason=reason)
+            return dict(result, reason='技能运行镜像未准备。请运行 scripts/prepare-skill-runtime.py。')
         ident, _, label = inspected.stdout.strip().partition('|')
         if not ident.startswith('sha256:') or label != result['runtimeHash']:
             return dict(result, reason='技能运行镜像版本与本应用不一致，请重新准备运行时。')
         return dict(result, available=True, imageId=ident, localDockerHost=endpoint, reason='离线 Docker 脚本环境可用')
+    except ValueError as exc:
+        return dict(result, reason=str(exc))
     except (OSError, subprocess.TimeoutExpired):
         return dict(result, reason='Docker 响应超时或不可用；没有改为在宿主机执行。')
 

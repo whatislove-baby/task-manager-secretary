@@ -70,10 +70,15 @@ class SkillExecutionContractTests(unittest.TestCase):
         self.assertFalse(status['available']); self.assertEqual(call.call_count, 1)
 
     def test_runtime_version_mismatch_is_rejected(self):
-        replies = [subprocess.CompletedProcess([], 0, 'unix:///local.sock', ''),
+        endpoint = 'npipe:////./pipe/docker_engine' if os.name == 'nt' else 'unix:///local.sock'
+        replies = [subprocess.CompletedProcess([], 0, endpoint, ''),
+                   subprocess.CompletedProcess([], 0, 'linux', ''),
                    subprocess.CompletedProcess([], 0, 'sha256:abc|outdated', '')]
-        with patch.object(execution, '_docker', return_value='/bin/docker'), patch.object(execution, '_control', side_effect=replies):
-            self.assertFalse(execution.get_status()['available'])
+        with patch.object(execution, '_docker', return_value='/bin/docker'), patch.object(execution, '_control', side_effect=replies) as control:
+            status = execution.get_status()
+        self.assertFalse(status['available'])
+        self.assertIn('版本与本应用不一致', status['reason'])
+        self.assertEqual(control.call_count, 3)
 
     def test_business_exit_two_cannot_hide_partial_files_in_transport(self):
         response = dict(protocol=1, exitCode=2, stdout='', stderr='PRICE missing',

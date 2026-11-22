@@ -1,0 +1,97 @@
+name: Real Windows Docker Skill verification
+
+on:
+  push:
+    branches: [windows-docker-skill]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-docker-skill-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  native-windows-skill:
+    runs-on: windows-2025
+    timeout-minutes: 35
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      LANGSMITH_TRACING: 'false'
+      LANGCHAIN_TRACING_V2: 'false'
+      TM_RUN_SKILL_DOCKER_TESTS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Prepare official local Linux Docker engine
+        timeout-minutes: 15
+        shell: pwsh
+        run: ./scripts/prepare-windows-docker-ci.ps1
+      - name: Install native Windows Python dependencies
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          python -m venv .venv
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          .venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+          exit $LASTEXITCODE
+      - name: Build the actual fixed Skill runtime image
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          .venv\Scripts\python.exe scripts/prepare-skill-runtime.py 2>&1 | Tee-Object -FilePath handover/windows-docker-skill/runtime-build.log
+          exit $LASTEXITCODE
+      - name: Run all eleven real-container regression tests
+        id: regression
+        continue-on-error: true
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "$((Get-Location).Path)\backend;$((Get-Location).Path)\backend\tests"
+          @'
+          import json, pathlib, unittest
+          names = [
+              'test_skill_execution.SkillExecutionDockerTests',
+              'test_skill_library_docker.DockerSkillLibrary',
+              'test_skill_import.DockerImportTests',
+              'test_deepagents_skill_docker.DeepAgentsSkillDockerTests',
+          ]
+          result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromNames(names))
+          report = dict(testsRun=result.testsRun, failures=len(result.failures), errors=len(result.errors), skipped=len(result.skipped), passed=result.wasSuccessful() and result.testsRun == 11 and not result.skipped)
+          pathlib.Path('handover/windows-docker-skill/regression.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+          print(json.dumps(report))
+          raise SystemExit(0 if report['passed'] else 1)
+          '@ | .venv\Scripts\python.exe - 2>&1 | Tee-Object -FilePath handover/windows-docker-skill/regression.log
+          exit $LASTEXITCODE
+      - name: Run import, approval, new conversation and reply-draft workflow
+        id: workflow
+        continue-on-error: true
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          .venv\Scripts\python.exe scripts/verify-windows-skill-workflow.py --backend-dir backend --allow-source-runtime --output handover/windows-docker-skill/workflow
+          exit $LASTEXITCODE
+      - name: Require both real Skill checks to pass
+        if: always() && steps.regression.outcome != ''
+        shell: pwsh
+        env:
+          RESULTS: ${{ steps.regression.outcome }} ${{ steps.workflow.outcome }}
+        run: |
+          if (($env:RESULTS -split ' ' | Where-Object { $_ -ne 'success' }).Count -gt 0) {
+            throw "Real Windows Skill verification failed: $env:RESULTS"
+          }
+      - name: Upload actual Windows Docker evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-docker-skill-${{ github.run_number }}
+          path: handover/windows-docker-skill/
+          if-no-files-found: error
+          retention-days: 30

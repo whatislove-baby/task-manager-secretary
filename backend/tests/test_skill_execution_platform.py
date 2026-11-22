@@ -1,13 +1,50 @@
 """Native subprocess tests run on Windows too; Docker itself is optional here."""
 import os
+from pathlib import Path
 import subprocess
 import sys
+from tempfile import TemporaryDirectory
 import threading
 import time
 import unittest
 from unittest.mock import patch
 
 from task_backend import skill_execution as execution
+
+
+class WindowsDockerDiscoveryTests(unittest.TestCase):
+    def test_user_install_is_found_without_refreshed_path(self):
+        with TemporaryDirectory(prefix='docker user 课程 ') as temporary:
+            root = Path(temporary)
+            binary = root/'local'/'Programs'/'DockerDesktop'/'resources'/'bin'/'docker.exe'
+            binary.parent.mkdir(parents=True); binary.write_bytes(b'fixture'); binary.chmod(0o755)
+            with patch.object(execution.sys, 'platform', 'win32'), \
+                 patch.object(execution.shutil, 'which', return_value=None), \
+                 patch.dict(os.environ, {'LOCALAPPDATA':str(root/'local'),
+                                         'ProgramFiles':str(root/'system')}, clear=True):
+                self.assertEqual(execution._docker(), str(binary))
+
+    def test_system_install_remains_available_without_localappdata(self):
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            binary = root/'Docker'/'Docker'/'resources'/'bin'/'docker.exe'
+            binary.parent.mkdir(parents=True); binary.write_bytes(b'fixture'); binary.chmod(0o755)
+            with patch.object(execution.sys, 'platform', 'win32'), \
+                 patch.object(execution.shutil, 'which', return_value=None), \
+                 patch.dict(os.environ, {'ProgramFiles':str(root)}, clear=True):
+                self.assertEqual(execution._docker(), str(binary))
+
+    def test_existing_path_selection_keeps_priority(self):
+        with TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            binary = root/'docker.exe'
+            binary.write_bytes(b'fixture'); binary.chmod(0o755)
+            user_binary = root/'Programs'/'DockerDesktop'/'resources'/'bin'/'docker.exe'
+            user_binary.parent.mkdir(parents=True); user_binary.write_bytes(b'fixture'); user_binary.chmod(0o755)
+            with patch.object(execution.sys, 'platform', 'win32'), \
+                 patch.object(execution.shutil, 'which', return_value=str(binary)), \
+                 patch.dict(os.environ, {'LOCALAPPDATA':str(root)}, clear=True):
+                self.assertEqual(execution._docker(), str(binary))
 
 
 class LocalDockerEndpointTests(unittest.TestCase):
@@ -38,6 +75,7 @@ class LocalDockerEndpointTests(unittest.TestCase):
     def test_status_pins_the_checked_local_pipe_for_image_inspection(self):
         host = 'npipe:////./pipe/dockerDesktopLinuxEngine'
         replies = [subprocess.CompletedProcess([], 0, host+'\r\n', ''),
+                   subprocess.CompletedProcess([], 0, 'linux\r\n', ''),
                    subprocess.CompletedProcess([], 0, 'sha256:abc|'+execution.runtime_hash(), '')]
         with patch.object(execution.sys, 'platform', 'win32'), \
              patch.object(execution, '_docker', return_value='docker.exe'), \
@@ -46,6 +84,25 @@ class LocalDockerEndpointTests(unittest.TestCase):
         self.assertTrue(status['available'])
         self.assertEqual(status['localDockerHost'], host)
         self.assertEqual(control.call_args.args[0][:3], ['docker.exe', '--host', host])
+
+    def test_windows_container_daemon_is_rejected_before_image_inspection(self):
+        host = 'npipe:////./pipe/docker_engine'
+        replies = [subprocess.CompletedProcess([], 0, host, ''),
+                   subprocess.CompletedProcess([], 0, 'windows\r\n', '')]
+        with patch.object(execution.sys, 'platform', 'win32'), \
+             patch.object(execution, '_docker', return_value='docker.exe'), \
+             patch.object(execution, '_control', side_effect=replies) as control:
+            status = execution.get_status()
+        self.assertFalse(status['available'])
+        self.assertIn('Linux containers', status['reason'])
+        self.assertEqual(control.call_count, 2)
+
+    def test_supplied_endpoint_is_still_checked_as_local(self):
+        with patch.object(execution, '_docker', return_value='docker'), \
+             patch.object(execution, '_control') as control:
+            status = execution.get_status(endpoint='tcp://remote:2375')
+        self.assertFalse(status['available'])
+        control.assert_not_called()
 
     def test_windows_user_context_environment_without_secret_or_remote_override(self):
         environment = {'Path':'C:\\Windows', 'USERPROFILE':'C:\\Users\\Student',

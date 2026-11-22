@@ -22,6 +22,7 @@ jobs:
       PYTHONDONTWRITEBYTECODE: '1'
       LANGSMITH_TRACING: 'false'
       LANGCHAIN_TRACING_V2: 'false'
+      TM_RUN_SKILL_DOCKER_TESTS: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -96,6 +97,30 @@ jobs:
         id: app
         continue-on-error: true
         run: node scripts/verify-windows-app.cjs --app-dir "$env:TM_WINDOWS_APP" --output handover/windows-release/app
+      - name: Prepare real local Linux Docker for Windows Skill acceptance
+        id: docker_engine
+        continue-on-error: true
+        timeout-minutes: 15
+        shell: pwsh
+        run: ./scripts/prepare-windows-docker-ci.ps1 -Output handover/windows-release/docker-environment
+      - name: Prepare fixed Skill image with the packaged Python
+        id: skill_runtime
+        if: steps.docker_engine.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          & "$env:TM_WINDOWS_APP\resources\python\python.exe" scripts/prepare-skill-runtime.py 2>&1 | Tee-Object -FilePath handover/windows-release/skill-runtime-build.log
+          exit $LASTEXITCODE
+      - name: Verify packaged Skill import, approval, new conversation and reply draft
+        id: skill_workflow
+        if: steps.skill_runtime.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          & "$env:TM_WINDOWS_APP\resources\python\python.exe" scripts/verify-windows-skill-workflow.py --backend-dir "$env:TM_WINDOWS_APP\resources\backend" --output handover/windows-release/skill-workflow
+          exit $LASTEXITCODE
       - name: Upload native acceptance evidence
         uses: actions/upload-artifact@v4
         if: always()
@@ -115,7 +140,7 @@ jobs:
       - name: Require every acceptance check to pass
         shell: pwsh
         env:
-          RESULTS: ${{ steps.renderer.outcome }} ${{ steps.regression.outcome }} ${{ steps.bridge.outcome }} ${{ steps.scheduler.outcome }} ${{ steps.workflow.outcome }} ${{ steps.app.outcome }}
+          RESULTS: ${{ steps.renderer.outcome }} ${{ steps.regression.outcome }} ${{ steps.bridge.outcome }} ${{ steps.scheduler.outcome }} ${{ steps.workflow.outcome }} ${{ steps.app.outcome }} ${{ steps.docker_engine.outcome }} ${{ steps.skill_runtime.outcome }} ${{ steps.skill_workflow.outcome }}
         run: |
           if (($env:RESULTS -split ' ' | Where-Object { $_ -ne 'success' }).Count -gt 0) {
             Write-Error "One or more Windows checks did not pass: $env:RESULTS"
