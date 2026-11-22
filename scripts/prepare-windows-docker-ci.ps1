@@ -18,26 +18,47 @@ $url = "https://github.com/rancher-sandbox/rancher-desktop/releases/download/v$v
 $result = [ordered]@{passed=$false; provider='Rancher Desktop'; version=$version; engine='Moby'; windowsHost=$os.Caption; imageVersion=$env:ImageVersion; installerUrl=$url; expectedInstallerSha256=$sha256; dockerDesktopVerified=$false; reason='Setup did not finish'; commands=@()}
 
 function Invoke-Native([string]$Name, [string]$File, [string[]]$Arguments, [int]$Seconds = 30) {
-  # rdctl deliberately passes its stdout/stderr to the persistent Desktop app.
-  # Redirect directly to files; reading a pipe to EOF would wait for that app to
-  # quit even after rdctl --wait has reported a ready engine and exited.
-  $stdoutPath = Join-Path $Output "$Name.stdout.log"
-  $stderrPath = Join-Path $Output "$Name.stderr.log"
-  $quoted = foreach ($argument in $Arguments) {
-    $escaped = [regex]::Replace($argument, '(\\*)"', '$1$1\"')
-    '"' + [regex]::Replace($escaped, '(\\+)$', '$1$1') + '"'
-  }
+  Write-Host ("Starting {0}: {1} {2}" -f $Name, $File, ($Arguments | ConvertTo-Json -Compress))
+  @{name=$Name; file=$File; arguments=@($Arguments)} | ConvertTo-Json -Depth 4 | Set-Content -Encoding utf8 (Join-Path $Output "$Name.command.json")
   $process = $null
   $started = [DateTime]::UtcNow
   try {
-    $process = Start-Process -FilePath $File -ArgumentList ($quoted -join ' ') -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
+    if ($Name -eq 'rancher-start') {
+      # rdctl passes its output to the persistent Desktop app. Files avoid waiting
+      # for that app's EOF after rdctl --wait reports a ready engine and exits.
+      $stdoutPath = Join-Path $Output "$Name.stdout.log"
+      $stderrPath = Join-Path $Output "$Name.stderr.log"
+      # These fixed rdctl flags contain no whitespace or quotes. Do not add a
+      # general-purpose Windows quoting layer to this single launcher call.
+      if ($Arguments | Where-Object { $_ -match '[\s"]' }) { throw 'Unexpected whitespace or quote in the fixed rdctl startup flags.' }
+      $process = Start-Process -FilePath $File -ArgumentList $Arguments -PassThru -WindowStyle Hidden -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
+    } else {
+      # Same literal argument mechanism verified by the successful WSL2 probe.
+      $info = [Diagnostics.ProcessStartInfo]::new()
+      $info.FileName = $File
+      $info.UseShellExecute = $false
+      $info.RedirectStandardOutput = $true
+      $info.RedirectStandardError = $true
+      $info.CreateNoWindow = $true
+      foreach ($argument in $Arguments) { $info.ArgumentList.Add($argument) }
+      $process = [Diagnostics.Process]::new()
+      $process.StartInfo = $info
+      if (-not $process.Start()) { throw "Could not start $File" }
+      $stdout = $process.StandardOutput.ReadToEndAsync()
+      $stderr = $process.StandardError.ReadToEndAsync()
+    }
     $timedOut = -not $process.WaitForExit($Seconds * 1000)
     if ($timedOut) {
       $process.Kill($true)
       if (-not $process.WaitForExit(5000)) { throw "$Name could not be stopped" }
     }
-    $out = [string](Get-Content -Raw -Path $stdoutPath -ErrorAction SilentlyContinue)
-    $err = [string](Get-Content -Raw -Path $stderrPath -ErrorAction SilentlyContinue)
+    if ($Name -eq 'rancher-start') {
+      $out = [IO.File]::ReadAllText($stdoutPath)
+      $err = [IO.File]::ReadAllText($stderrPath)
+    } else {
+      $out = $stdout.GetAwaiter().GetResult()
+      $err = $stderr.GetAwaiter().GetResult()
+    }
     $out = $out.Replace([string][char]0, '')
     $err = $err.Replace([string][char]0, '')
     $record = @{name=$Name; exitCode=$process.ExitCode; timedOut=$timedOut; elapsedSeconds=[Math]::Round(([DateTime]::UtcNow-$started).TotalSeconds, 3)}
@@ -95,7 +116,11 @@ try {
   $result.reason = 'Official Rancher Desktop Moby Linux engine is reachable through the real Windows Docker CLI and local named pipe. Skill tests run separately.'
 } catch {
   $result.reason = $_.Exception.Message
+  $result.failurePosition = $_.InvocationInfo.PositionMessage
+  $result.failureStack = $_.ScriptStackTrace
   Write-Host "WINDOWS_DOCKER_SETUP_FAILED: $($result.reason)"
+  Write-Host $result.failurePosition
+  Write-Host $result.failureStack
 } finally {
   # No settings or rd-engine.json are copied: those can contain local API credentials.
   $result | ConvertTo-Json -Depth 8 | Set-Content -Encoding utf8 (Join-Path $Output 'environment.json')
