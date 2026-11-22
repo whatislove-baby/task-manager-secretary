@@ -1,0 +1,12 @@
+Task Manager · 完整产品说明书与流程图
+
+1. user-manual.pdf：完整图文说明书，包含全部 24 张真实操作截图。
+2. user-manual.html：可放大截图和隐藏标注的完整手册，双击用浏览器打开。
+3. workflow.html：完整流程图，可缩放、拖动与聚焦，双击打开。
+4. workflow-complete.svg：矢量流程图，可放大或导入演示材料。
+5. workflow-complete.png：高清流程图图片。
+6. product-introduction.pdf / .html：两页产品概览与浏览器版概览。
+
+先解压再打开 HTML。图像资源离线可用；GitHub 链接需要网络。
+仓库：https://github.com/whatislove-baby/task-manager-secretary
+产品能力依据：公开源码提交 e32b9b1，2026-11-22。

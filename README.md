@@ -10,6 +10,8 @@ Apple Silicon 构建输出（成品未放入源码仓库）：`release-secretary
 
 从[图文手册与演示入口](handover/final-guide/index.html)开始；[完整可缩放流程图](handover/final-guide/workflow.html)和[源码说明](docs/workflow-complete.md)展示当前实现。
 
+**产品说明书与流程图：** [完整图文说明书 PDF](docs/product-kit/user-manual.pdf) · [SVG 流程图](docs/product-kit/workflow-complete.svg) · [整套资料 ZIP](docs/task-manager-product-kit.zip?raw=true)；[资料目录](docs/product-kit/README.md)另有离线 HTML 与两页概览。
+
 ## 配置与运行
 
 **组员第一次运行：先看[组员上手与交接指南](docs/TEAM-START.md)**，包含配置、样例练习、协作方式和交接记录模板。
