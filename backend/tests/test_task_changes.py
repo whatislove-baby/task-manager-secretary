@@ -10,11 +10,11 @@ from task_backend.agent_tools import AgentTools
 class TaskChangeTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name)
+        self.addCleanup(self.tmp.cleanup)
         self.s=BackendService(self.root,worker=True)
+        self.addCleanup(lambda:self.s.close())
         self.task=self.s.repo.call('createTodo',{'title':'STAT4102 final','due':{'mode':'value','value':{'kind':'minute','at':'2026-12-03T09:00:00+08:00','timeZone':'Asia/Hong_Kong'}}})['value']
         self.mail=self.s.mail.store.put('a','i','student@example.invalid',dict(id='1',subject='STAT4102 time correction',sender='teacher@example.invalid',body='Final exam moves to 4 December at 14:00 HKT.',receivedAt='2026-11-21T00:00:00Z',attachments=[]))
-
-    def tearDown(self):self.s.close();self.tmp.cleanup()
 
     def proposal(self,action='update'):
         return self.s.task_changes.propose(dict(action=action,taskId=self.task['id'],expectedRevision=self.task['revision'],reason='Latest teacher correction',

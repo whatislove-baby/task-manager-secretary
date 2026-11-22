@@ -44,6 +44,13 @@ function windowsCommand(payload: Record<string, unknown>): string[] {
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 $p = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('${encoded}')) | ConvertFrom-Json
 $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+# Task Scheduler can return account names even when registered with a SID.
+# Resolve both forms before enforcing ownership; unresolved identities fail closed.
+function Resolve-TaskUserSid([string]$identity) {
+  if ([string]::IsNullOrWhiteSpace($identity)) { return '' }
+  try { return ([Security.Principal.SecurityIdentifier]::new($identity)).Value } catch {}
+  try { return ([Security.Principal.NTAccount]::new($identity)).Translate([Security.Principal.SecurityIdentifier]).Value } catch { return '' }
+}
 $name = [string]$p.label + '.' + $sid
 $service = New-Object -ComObject 'Schedule.Service'
 $service.Connect()
@@ -56,7 +63,8 @@ try { $task = $folder.GetTask($name) } catch {
 }
 $marker = 'Task Manager mail automation v1: ' + [string]$p.label
 if ($null -ne $task) {
-  if ($task.Definition.Principal.UserId -ne $sid -or $task.Definition.RegistrationInfo.Description -ne $marker) {
+  $ownerSid = Resolve-TaskUserSid ([string]$task.Definition.Principal.UserId)
+  if ($ownerSid -ne $sid -or $task.Definition.RegistrationInfo.Description -ne $marker) {
     throw 'Existing task does not belong to this Task Manager user and data directory.'
   }
 }
@@ -72,7 +80,8 @@ if ($null -ne $task) {
     $a = $d.Actions.Item(1)
     $repeat = $d.Triggers.Item(1)
     $atLogon = $d.Triggers.Item(2)
-    $definitionMatches = $a.Type -eq 0 -and $a.Path -eq $p.python -and $a.Arguments -ceq $p.arguments -and $a.WorkingDirectory -eq $p.cwd -and $d.Principal.LogonType -eq 3 -and $d.Principal.RunLevel -eq 0 -and $d.Settings.MultipleInstances -eq 2 -and $d.Settings.StartWhenAvailable -and $repeat.Type -eq 1 -and $repeat.Enabled -and $repeat.Repetition.Interval -eq 'PT1M' -and [string]::IsNullOrEmpty($repeat.Repetition.Duration) -and $atLogon.Type -eq 9 -and $atLogon.Enabled -and $atLogon.UserId -eq $sid
+    $logonSid = Resolve-TaskUserSid ([string]$atLogon.UserId)
+    $definitionMatches = $a.Type -eq 0 -and $a.Path -eq $p.python -and $a.Arguments -ceq $p.arguments -and $a.WorkingDirectory -eq $p.cwd -and $d.Principal.LogonType -eq 3 -and $d.Principal.RunLevel -eq 0 -and $d.Settings.MultipleInstances -eq 2 -and $d.Settings.StartWhenAvailable -and $repeat.Type -eq 1 -and $repeat.Enabled -and $repeat.Repetition.Interval -eq 'PT1M' -and [string]::IsNullOrEmpty($repeat.Repetition.Duration) -and $atLogon.Type -eq 9 -and $atLogon.Enabled -and $logonSid -eq $sid
   }
 }
 $active = $null -ne $task -and $task.Enabled -and $task.State -ge 2 -and $definitionMatches

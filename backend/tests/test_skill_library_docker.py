@@ -4,6 +4,7 @@ The fixture code is intentionally deterministic. Full model-authoring acceptance
 is separate; this test proves the real execution/storage/review integration.
 """
 from copy import deepcopy
+from contextlib import ExitStack
 import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -41,16 +42,16 @@ with (out/'result.csv').open('w',newline='') as f:
 class DockerSkillLibrary(unittest.TestCase):
     def test_teach_three_cases_review_fresh_conversation_reuse_and_revoke(self):
         self.assertTrue(get_status()['available'],get_status())
-        with TemporaryDirectory() as temp:
+        with TemporaryDirectory() as temp, ExitStack() as resources:
             service=SimpleNamespace(directory=Path(temp))
-            service.files=MailFiles(service);self.addCleanup(service.files.close)
-            service.skills=SkillLibraryService(service);self.addCleanup(service.skills.close)
+            service.files=MailFiles(service);resources.callback(service.files.close)
+            service.skills=SkillLibraryService(service);resources.callback(service.skills.close)
             conversation=dict(turns=[dict(id='teaching-message',runId='teach-run',role='user',createdAt='2026-11-21T00:00:00Z',content='Double each price using exact decimal arithmetic. Reject missing values before making output. Save this reusable procedure.')])
             service.agent=SimpleNamespace(_conversation=lambda id:deepcopy(conversation))
             def file(name,body):return service.files._save(name,body.encode(),'local')['id']
             a=file('first.csv','price\n2\n3.25\n');b=file('second.csv','price\n4.50\n');bad=file('missing.csv','price\n""\n')
             x=file('first-completed.csv','amount\n4\n6.50\n');y=file('second-completed.csv','amount\n9.00\n')
-            teacher=AgentTools(service,'teach-run','teaching-chat');self.addCleanup(teacher.close)
+            teacher=AgentTools(service,'teach-run','teaching-chat');resources.callback(teacher.close)
             proposal=dict(title='Double exact price',kind='script',scope=dict(kind='personal',label='Price exercise',emails=[],contextKey='price-double'),rationale='Repeated exact decimal calculation benefits from tested code.',instruction='Double every price, preserving row count. Ask for missing values; never substitute zero.',code=CODE,inputs=[dict(name='order.csv',description='CSV price column')],outputs=[dict(name='result.csv',description='CSV amount column',comparison='table')],examples=[
                 dict(name='multiple rows',kind='success',inputFiles={'order.csv':a},expectedFiles={'result.csv':x}),
                 dict(name='trailing decimal zeros',kind='success',inputFiles={'order.csv':b},expectedFiles={'result.csv':y}),
@@ -62,7 +63,7 @@ class DockerSkillLibrary(unittest.TestCase):
             approved=service.skills.approve(dict(id=draft['id'],expectedHash=draft['versionHash']))
             self.assertTrue(approved['canRun'])
             # Fresh AgentTools and conversation, with no old transcript needed.
-            events=[];user=AgentTools(service,'fresh-run','fresh-chat',events.append);self.addCleanup(user.close)
+            events=[];user=AgentTools(service,'fresh-run','fresh-chat',events.append);resources.callback(user.close)
             found=user.search_skills(scope_id=approved['scopeId']);self.assertEqual(found['skills'][0]['id'],approved['id'])
             user.get_skill(approved['id'])
             fresh=file('new-order.csv','price\n7.25\n0.50\n')

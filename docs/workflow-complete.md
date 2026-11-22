@@ -36,7 +36,7 @@
 
 ## 三条收信入口，共用原件与业务状态
 
-手动收件箱按钮经 `mail-operations:startInboxSync` 启动收信 job，范围为最近七天的已连接收件箱；自动跳过已导入记录。定时整理通过 Mac LaunchAgent 启动短任务 `automation_worker`，按已批准的 IMAP 账号/范围收取，独立调用模型分类，并对需要行动的邮件提取待办草稿。它不启动对话 Agent 的工具循环，不自动执行任意 Skill，也不发送或删除邮件。
+手动收件箱按钮经 `mail-operations:startInboxSync` 启动收信 job，范围为最近七天的已连接收件箱；自动跳过已导入记录。定时整理通过 Mac LaunchAgent 或 Windows 任务计划程序启动短任务 `automation_worker`，按已批准的 IMAP 账号/范围收取，独立调用模型分类，并对需要行动的邮件提取待办草稿。它不启动对话 Agent 的工具循环，不自动执行任意 Skill，也不发送或删除邮件。
 
 秘书的 `refresh_inbox` 复用实际分页导入引擎，初次覆盖最近七天，后续按账号与邮箱身份保存导入进度并留一天重叠。每轮最多分类 20 封；剩余数量、分类失败、未连接账号和导入失败明确返回，未分类不会被当成垃圾隐藏。同一执行 ID 可重放已有结果；进程锁避免两次刷新并发重复分类，中断的导入/分类记录可继续。
 
@@ -82,7 +82,7 @@
 | 邮件草稿和SMTP批准 | [backend/task_backend/mail_compose.py](../backend/task_backend/mail_compose.py) |
 | 手动收信job | [backend/task_backend/operations.py](../backend/task_backend/operations.py) |
 | 自动整理和分类状态 | [backend/task_backend/mail_automation.py](../backend/task_backend/mail_automation.py) |
-| LaunchAgent后台宿主 | [src/main/mail-automation-host.ts](../src/main/mail-automation-host.ts) |
+| 系统定时后台宿主（Mac / Windows） | [src/main/mail-automation-host.ts](../src/main/mail-automation-host.ts) |
 | 后台worker入口 | [backend/task_backend/automation_worker.py](../backend/task_backend/automation_worker.py) |
 | IMAP/Graph只读收信适配 | [backend/task_backend/mail_readers.py](../backend/task_backend/mail_readers.py) |
 | 本地邮件与分析状态 | [backend/task_backend/mail_store.py](../backend/task_backend/mail_store.py) |

@@ -13,6 +13,7 @@ from pypdf import PdfReader, PdfWriter
 
 from task_backend.agent_tools import AgentTools, build_tools
 from task_backend.service import BackendService
+from task_backend.document_render import soffice_path
 
 
 def rich_word():
@@ -95,9 +96,11 @@ class WordPdfConversionTests(unittest.TestCase):
         self.assertEqual(set(schema['properties']),{'file_id','name'})
         self.assertIn('convert_to_pdf',tools['create_document'].description)
 
-    @unittest.skipUnless((Path(__file__).resolve().parents[2]/'.libreoffice-runtime-mac/LibreOffice.app/Contents/MacOS/soffice').is_file(),'Requires product-bundled LibreOffice')
     def test_native_export_matches_word_render_for_every_page(self):
-        executable=Path(__file__).resolve().parents[2]/'.libreoffice-runtime-mac/LibreOffice.app/Contents/MacOS/soffice'
+        try:
+            executable=soffice_path()
+        except ValueError:
+            self.skipTest('Requires configured or bundled LibreOffice')
         original=self.service.files.bytes(self.source['id'])
         with patch.dict('os.environ',{'TM_SOFFICE':str(executable)}):
             # Use actual production render path, no converter mocks. The PDF

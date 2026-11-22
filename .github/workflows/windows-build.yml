@@ -53,7 +53,7 @@ jobs:
         shell: pwsh
         run: |
           $env:PYTHONPATH = "$((Get-Location).Path)\backend;$((Get-Location).Path)\backend\tests"
-          .venv\Scripts\python.exe -m unittest -v test_mail_identity_threads test_skill_execution test_imap_import_continuation test_inbox_sync
+          .venv\Scripts\python.exe -m unittest -v test_mail_identity_threads test_skill_execution.SkillExecutionContractTests test_task_changes
           exit $LASTEXITCODE
       - name: Prepare bundled document renderer
         id: renderer

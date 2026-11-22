@@ -74,6 +74,11 @@ test('Windows task payload preserves Unicode and shell metacharacters as data, u
   assert.match(script, /Repetition.Interval = 'PT1M'/);
   assert.match(script, /MultipleInstances = 2/);
   assert.match(script, /WindowsIdentity\]::GetCurrent\(\).User.Value/);
+  assert.match(script, /\[Security\.Principal\.NTAccount\]::new\(\$identity\)\)\.Translate\(\[Security\.Principal\.SecurityIdentifier\]\)/);
+  assert.match(script, /\$ownerSid = Resolve-TaskUserSid \(\[string\]\$task\.Definition\.Principal\.UserId\)/);
+  assert.match(script, /\$ownerSid -ne \$sid -or \$task\.Definition\.RegistrationInfo\.Description -ne \$marker/);
+  assert.match(script, /\$logonSid = Resolve-TaskUserSid \(\[string\]\$atLogon\.UserId\)/);
+  assert.match(script, /\$logonSid -eq \$sid/);
   assert.match(script, /\$p.label \+ '\.' \+ \$sid/);
   assert.doesNotMatch(script, /Invoke-Expression|cmd\.exe|ExecutionPolicy|RunLevel = 1|Credential|Password/);
 });

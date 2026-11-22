@@ -1,6 +1,6 @@
 {
   "mode": "maintained-public-source-and-synthetic-evidence",
-  "sourceCommit": "working-tree-final-source",
+  "sourceCommit": "maintained-public-repository-after-mac-export",
   "coreFiles": 163,
   "coreByteIdentical": false,
   "files": [
@@ -13,8 +13,15 @@
     },
     {
       "path": ".github/workflows/windows-build.yml",
-      "bytes": 4937,
-      "sha256": "2ec129f847287fb2e4907022185e4fbbc6dc967b52a53a32caf4b8c58082b013",
+      "bytes": 6764,
+      "sha256": "f30936b0df1dc5807eb1f72f44dba66f9e02160b7374c90b115ba0564cf95715",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": ".github/workflows/windows-scheduler-probe.yml",
+      "bytes": 959,
+      "sha256": "d13637846436faaa0f30e125c9b7df67a816e46b6c60995f3c7f5403d1291573",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -34,8 +41,8 @@
     },
     {
       "path": "PUBLICATION.md",
-      "bytes": 2729,
-      "sha256": "949a0499cc3ed2e2511e9c21c711a91a5b64002eeebf128d3d2662646f94d060",
+      "bytes": 2859,
+      "sha256": "c46511195e0545b137296b8d0f05c5dd3e315db1dd76144bc32bb40f69b91464",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -335,10 +342,10 @@
     },
     {
       "path": "backend/task_backend/file_archive.py",
-      "bytes": 9363,
-      "sha256": "9e8241d9a9cc318fbc5159510297b702ab3f3aa1ad7f1e04472f4222c05736e2",
+      "bytes": 9538,
+      "sha256": "600d4127b72b6207ded094d7bb36efc0939a683742c62ea826f56765a5fb7a27",
       "sourceSha256": "9e8241d9a9cc318fbc5159510297b702ab3f3aa1ad7f1e04472f4222c05736e2",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/task_backend/learning.py",
@@ -489,10 +496,10 @@
     },
     {
       "path": "backend/task_backend/skill_execution.py",
-      "bytes": 14604,
-      "sha256": "52bb0c6cdf90e6d20c3a7ee7df6011ab631549557e4ef4c75f3d59f7c2b1af7f",
+      "bytes": 17009,
+      "sha256": "af330fe8067a85d97f64585f520c742bbcd64c81683d085d54816898f448bcb0",
       "sourceSha256": "52bb0c6cdf90e6d20c3a7ee7df6011ab631549557e4ef4c75f3d59f7c2b1af7f",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/task_backend/skill_import.py",
@@ -572,25 +579,32 @@
       "unchanged": true
     },
     {
+      "path": "backend/tests/network_guard.py",
+      "bytes": 1013,
+      "sha256": "2b6ccd1d6eed37992260a275722936aca58df0d65db917dbec839051a55beae9",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "backend/tests/test_agent_business_policy.py",
-      "bytes": 6647,
-      "sha256": "a7cc7f9ca38df47fdb70865c9f01b82765beaac83d4ba5ba102bf72f4d93db9f",
+      "bytes": 6539,
+      "sha256": "28673af97180b707f167acc376c83419e437a76efbf9e205b3ac2312d182b598",
       "sourceSha256": "a7cc7f9ca38df47fdb70865c9f01b82765beaac83d4ba5ba102bf72f4d93db9f",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_delivery.py",
-      "bytes": 5208,
-      "sha256": "4eb64d06118af1a0d798a99a86e04081c19871dd49f386a487269a003605274e",
+      "bytes": 5196,
+      "sha256": "27e114ad80fe7f81ad6d5e4c8cab5d848528fd391a8ef9636c8ea004d65c75de",
       "sourceSha256": "4eb64d06118af1a0d798a99a86e04081c19871dd49f386a487269a003605274e",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_delivery_boundaries.py",
-      "bytes": 5356,
-      "sha256": "992aeded4227d8ee11c6024ba2bda141806b0a646c078df3439e6e688d516115",
+      "bytes": 5248,
+      "sha256": "078b8cc513fc20757cd77635487475e70d06706aa149bbd3f4448f2e48b77c1b",
       "sourceSha256": "992aeded4227d8ee11c6024ba2bda141806b0a646c078df3439e6e688d516115",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_evidence.py",
@@ -601,10 +615,10 @@
     },
     {
       "path": "backend/tests/test_agent_fresh_context.py",
-      "bytes": 23179,
-      "sha256": "64c09638da2a14a4774c21201bea81476f37d3c6c568d19cd7c8042d66394611",
+      "bytes": 23168,
+      "sha256": "003d27984b0e66b89928b7aed80e0409bdb232350612b61c7daf728b89feb951",
       "sourceSha256": "64c09638da2a14a4774c21201bea81476f37d3c6c568d19cd7c8042d66394611",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_graph_budget.py",
@@ -622,24 +636,24 @@
     },
     {
       "path": "backend/tests/test_agent_runtime.py",
-      "bytes": 34389,
-      "sha256": "366bd00d13955655f32e683fdd13561d635f911aef79a7a058d7013ee09b703e",
+      "bytes": 34267,
+      "sha256": "8d94eddff0ba2fe32eeb5e74a246241167041aea47a1053270608f1b70d1a95c",
       "sourceSha256": "366bd00d13955655f32e683fdd13561d635f911aef79a7a058d7013ee09b703e",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_task_history.py",
-      "bytes": 5744,
-      "sha256": "357b3a4d31c51f149873fb3183c4b55f405c81eab42cd4f42ea591f1ad05daa9",
+      "bytes": 5740,
+      "sha256": "d2bd70c6124a0a7b6d9f659e5bdf9f24957a6c0dcc0231e4aee31f8bc0c7a91c",
       "sourceSha256": "357b3a4d31c51f149873fb3183c4b55f405c81eab42cd4f42ea591f1ad05daa9",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_tools.py",
-      "bytes": 22278,
-      "sha256": "dd8967167d6621f23e06bb9703cf81af7f1236d71cd3c17cf165481abecdd752",
+      "bytes": 22266,
+      "sha256": "2b1cd9f7bb5172825d41e07740234a1e7e757dce0bb1fe29befa9f3ab0fd056d",
       "sourceSha256": "dd8967167d6621f23e06bb9703cf81af7f1236d71cd3c17cf165481abecdd752",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_agent_worker_queues.py",
@@ -650,17 +664,17 @@
     },
     {
       "path": "backend/tests/test_bundle_files.py",
-      "bytes": 12853,
-      "sha256": "6b05f97ad8a875c36c1b913e14cc8ddf96da33ae1aeca264b122d03fbb38b796",
+      "bytes": 13359,
+      "sha256": "01770a936abf76a9cb745b203586b2274781c19972e6c72c221c7eb935d5404e",
       "sourceSha256": "6b05f97ad8a875c36c1b913e14cc8ddf96da33ae1aeca264b122d03fbb38b796",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_business_documents.py",
-      "bytes": 12836,
-      "sha256": "14c2806388d5c729fec6906715c6dd1f31667ed501e6e654b7d6413cc64c7c01",
+      "bytes": 12832,
+      "sha256": "c7917e02b4533fc1a41f86d18e61c4879a557ea366ecc562112d6ac483c94a67",
       "sourceSha256": "14c2806388d5c729fec6906715c6dd1f31667ed501e6e654b7d6413cc64c7c01",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_canvas.py",
@@ -699,10 +713,10 @@
     },
     {
       "path": "backend/tests/test_deepagents_runtime.py",
-      "bytes": 19398,
-      "sha256": "ba3cbb6100a0c65180e3abbbd4b8db86904664c8708d05908f676dee8ec96593",
+      "bytes": 19276,
+      "sha256": "ad3dd386048c6a82fae5a2940c3a7eddec41d0a9a06ccb39124940c194ec7d13",
       "sourceSha256": "ba3cbb6100a0c65180e3abbbd4b8db86904664c8708d05908f676dee8ec96593",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_deepagents_skill_docker.py",
@@ -713,10 +727,10 @@
     },
     {
       "path": "backend/tests/test_document_agent.py",
-      "bytes": 10364,
-      "sha256": "10415c04d61a538d0c492f4bd7e6f7d978111306c02cc2951eccbad8c7de3254",
+      "bytes": 10360,
+      "sha256": "a8f701f462db2de2fa02945e1ae7c3e6b4d19f0db7c5ec482d5b13b8de0af670",
       "sourceSha256": "10415c04d61a538d0c492f4bd7e6f7d978111306c02cc2951eccbad8c7de3254",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_document_assistant.py",
@@ -727,10 +741,10 @@
     },
     {
       "path": "backend/tests/test_document_completion.py",
-      "bytes": 13727,
-      "sha256": "c4efbf45594359cca9aca3483919c04bdc9bc6253ab0b84adca62b339db3513b",
+      "bytes": 13716,
+      "sha256": "09b2d7a421cbaab1a386e16d44d67dd8eaca8ed94e5bb85eb6745b70e9db3583",
       "sourceSha256": "c4efbf45594359cca9aca3483919c04bdc9bc6253ab0b84adca62b339db3513b",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_document_formats.py",
@@ -755,10 +769,10 @@
     },
     {
       "path": "backend/tests/test_document_review_coverage.py",
-      "bytes": 5056,
-      "sha256": "76f95b418496b0b1d52e8eda8d6ef10d04bd12d01e966335fa0618d94677beae",
+      "bytes": 5052,
+      "sha256": "2f39152b94de04504ec546b665c4bcfaa6656f32edbb6bedb449c38c1079d6d1",
       "sourceSha256": "76f95b418496b0b1d52e8eda8d6ef10d04bd12d01e966335fa0618d94677beae",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_document_runtime_paths.py",
@@ -790,17 +804,17 @@
     },
     {
       "path": "backend/tests/test_file_archive.py",
-      "bytes": 12450,
-      "sha256": "1e0ec8f7ffd27c65087ecf5bf5050ffee50c7f90142d0a71df69bbdbb9e6ff37",
+      "bytes": 12968,
+      "sha256": "5ea6a3085c376e11009e99664c5c9ef23718998fc41e92a1172fd5bea5269ed9",
       "sourceSha256": "1e0ec8f7ffd27c65087ecf5bf5050ffee50c7f90142d0a71df69bbdbb9e6ff37",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_imap_import_continuation.py",
-      "bytes": 10694,
-      "sha256": "d2332cda15d5dbbf011f0d43a54f5e3032ac8b668e4fc49fccf19fe654cc319b",
+      "bytes": 11399,
+      "sha256": "67e5df23ddd53bda2e329a4e8fa76604072519c0ef24dd8fc5ede5df7889d2f3",
       "sourceSha256": "d2332cda15d5dbbf011f0d43a54f5e3032ac8b668e4fc49fccf19fe654cc319b",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_imap_nil_eof.py",
@@ -811,17 +825,17 @@
     },
     {
       "path": "backend/tests/test_inbox_sync.py",
-      "bytes": 13227,
-      "sha256": "fbc77de2d2af19364be5d8d5978a1d8eeafbcd63c84113c8f90c07193430a0bd",
+      "bytes": 13923,
+      "sha256": "f9a0b29f62a02ddba113e93862ee2cfbf8502b83ebd02ae65d788d37321ba3be",
       "sourceSha256": "fbc77de2d2af19364be5d8d5978a1d8eeafbcd63c84113c8f90c07193430a0bd",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_learning.py",
-      "bytes": 35163,
-      "sha256": "560e87a57d779604525249ec22dbedd2603fde49880a76ecfe46e1627791bff7",
+      "bytes": 35099,
+      "sha256": "57721c8546b3953e0c2f3e67141db39d107a37da65cfdc0828237acb698cb794",
       "sourceSha256": "560e87a57d779604525249ec22dbedd2603fde49880a76ecfe46e1627791bff7",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_learning_schema.py",
@@ -853,10 +867,10 @@
     },
     {
       "path": "backend/tests/test_mail_compose.py",
-      "bytes": 18599,
-      "sha256": "a6df242a816c56afa5fec9537bf45b920e42abbe3de8e2b1a9d9882456bf7aa6",
+      "bytes": 18678,
+      "sha256": "8475cf8d239bed770c81ea76327a1b32ed11f956bd8d5590ef03b3d30aa211b3",
       "sourceSha256": "a6df242a816c56afa5fec9537bf45b920e42abbe3de8e2b1a9d9882456bf7aa6",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_mail_files.py",
@@ -874,10 +888,10 @@
     },
     {
       "path": "backend/tests/test_mail_identity_threads.py",
-      "bytes": 18247,
-      "sha256": "203112c5fd3dda7128fcaa9e9a78c4eaa40a5dd94df829354780055f6bd47d9d",
+      "bytes": 18222,
+      "sha256": "6eb461cbbecdbdfe391b77e24502199e459793a5a43f5b361557340e864f64e0",
       "sourceSha256": "203112c5fd3dda7128fcaa9e9a78c4eaa40a5dd94df829354780055f6bd47d9d",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_mail_readers.py",
@@ -895,10 +909,10 @@
     },
     {
       "path": "backend/tests/test_mail_workspace.py",
-      "bytes": 2476,
-      "sha256": "1bb993c943299812d6c379c4e7070911aeb4d476dbff01be5a292e11e93109b8",
+      "bytes": 2465,
+      "sha256": "3e297484a9143b119c59fc5941b1cd68130a5a118b390cc70a49265011557c97",
       "sourceSha256": "1bb993c943299812d6c379c4e7070911aeb4d476dbff01be5a292e11e93109b8",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_migrations.py",
@@ -906,6 +920,13 @@
       "sha256": "bc19df9f51cfc056b6481d3ba4c7bead531039fbfb74195eb7b4b325dd5ff8ee",
       "sourceSha256": "bc19df9f51cfc056b6481d3ba4c7bead531039fbfb74195eb7b4b325dd5ff8ee",
       "unchanged": true
+    },
+    {
+      "path": "backend/tests/test_network_guard.py",
+      "bytes": 1896,
+      "sha256": "47e49350d010cc0710e79f06dfe9afa23405180765cfe857e0eaa4e6a6c58c2e",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_operations.py",
@@ -916,24 +937,24 @@
     },
     {
       "path": "backend/tests/test_pdf_page_selection.py",
-      "bytes": 6093,
-      "sha256": "f4dec8987c358cf6cc3b2b5f3d7eff32d720ab8bd5ee9e16d334deeae8c21b30",
+      "bytes": 6089,
+      "sha256": "8ddef337207b9c33de1992b415d254e42477e9e602d7f8af73991eac5d4feb0c",
       "sourceSha256": "f4dec8987c358cf6cc3b2b5f3d7eff32d720ab8bd5ee9e16d334deeae8c21b30",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_proposal_availability.py",
-      "bytes": 11041,
-      "sha256": "b4e27d46649c8d395b9844882291a30e87a16c4136646509e156ed311eae9c28",
+      "bytes": 10919,
+      "sha256": "74f2390cdb09484fa9441149893567b72578a9f37aa19b0d80eae7359bfd00c2",
       "sourceSha256": "b4e27d46649c8d395b9844882291a30e87a16c4136646509e156ed311eae9c28",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_proposal_tool_arguments.py",
-      "bytes": 6755,
-      "sha256": "c250ef607f86d1f2ee4b718effb82d559fb04c358ec63bec62cf85311f2c7182",
+      "bytes": 6744,
+      "sha256": "f97f65f1e20989d2beacddf6b5724e71621b325dee1b200790bff3be7ebed6a8",
       "sourceSha256": "c250ef607f86d1f2ee4b718effb82d559fb04c358ec63bec62cf85311f2c7182",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_repository.py",
@@ -951,17 +972,17 @@
     },
     {
       "path": "backend/tests/test_scenario_mail_fixtures.py",
-      "bytes": 7072,
-      "sha256": "b0ebe49cd925b1cd9d769166adeaaf8a34f24ae68b2ba482173ff0ad6ebc1be6",
+      "bytes": 6982,
+      "sha256": "ec25bbca495cf9f30f1b28cce48285079a1b93596b646fff9395dd7dd5e43f9d",
       "sourceSha256": "b0ebe49cd925b1cd9d769166adeaaf8a34f24ae68b2ba482173ff0ad6ebc1be6",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_secretary.py",
-      "bytes": 17379,
-      "sha256": "70476e11ffe0b88405642389f8399d8fe5584b84a985aebcf59340cf1c55a88f",
+      "bytes": 17365,
+      "sha256": "294bfc001eaadf630bb194568954becea73b0579e94ff1b861ee047692aee145",
       "sourceSha256": "70476e11ffe0b88405642389f8399d8fe5584b84a985aebcf59340cf1c55a88f",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_secretary_agent.py",
@@ -979,10 +1000,17 @@
     },
     {
       "path": "backend/tests/test_skill_execution.py",
-      "bytes": 14211,
-      "sha256": "08fa65c185db24c98ec5614bd4fcbd84db313476ee568991f0c64ecbe9099b8f",
+      "bytes": 14625,
+      "sha256": "0a7af60a5a3837e1a5e0bd83b7e19d2f69a0c25ed4a2217bfa89045f1ee2673e",
       "sourceSha256": "08fa65c185db24c98ec5614bd4fcbd84db313476ee568991f0c64ecbe9099b8f",
-      "unchanged": true
+      "unchanged": false
+    },
+    {
+      "path": "backend/tests/test_skill_execution_platform.py",
+      "bytes": 6251,
+      "sha256": "9d87b0b0706128cc3141d403f8d707a0247f744c9e0247311018d9ba68157b38",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_skill_import.py",
@@ -993,31 +1021,31 @@
     },
     {
       "path": "backend/tests/test_skill_library.py",
-      "bytes": 29404,
-      "sha256": "d72361e2ff24b4e2e706e8408f0c63c6680e83c758fa09e3e04b184638aadc1d",
+      "bytes": 29663,
+      "sha256": "80217d5f157f7b31a9b8f905831fdb36193c7f851886f385fc31a91fea24bcd7",
       "sourceSha256": "d72361e2ff24b4e2e706e8408f0c63c6680e83c758fa09e3e04b184638aadc1d",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_skill_library_docker.py",
-      "bytes": 5471,
-      "sha256": "a87aa0dfe9711f22731735e326927bb64ccdbbe0aa12f2b52fb14a3ff9c7f20f",
+      "bytes": 5542,
+      "sha256": "8fa1eb9a03372bb0a43d4929f89fc67f434c95560b3915b4597ac42ab6054df0",
       "sourceSha256": "a87aa0dfe9711f22731735e326927bb64ccdbbe0aa12f2b52fb14a3ff9c7f20f",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_task_changes.py",
-      "bytes": 5224,
-      "sha256": "bca1463b074bb3b927c8df10719440cbaf4525ca11ea05fed94f0c9a43ddff34",
+      "bytes": 5255,
+      "sha256": "7ba53e4823cdc0e7e8ca1328f80b1beb70f755001ef190e279415d3e94c256c5",
       "sourceSha256": "bca1463b074bb3b927c8df10719440cbaf4525ca11ea05fed94f0c9a43ddff34",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_task_draft_projection.py",
-      "bytes": 13379,
-      "sha256": "4c7ee309fbb08c247ad0f2a5b5c99eae5ddb16f168871f8515f7f99ed04c1a62",
+      "bytes": 13367,
+      "sha256": "9c9afbadbb6a2a11df49de3d9c9bc8d8582ac7ccd1732b4cc4104638953c0f2a",
       "sourceSha256": "4c7ee309fbb08c247ad0f2a5b5c99eae5ddb16f168871f8515f7f99ed04c1a62",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_tree.py",
@@ -1027,18 +1055,25 @@
       "unchanged": true
     },
     {
+      "path": "backend/tests/test_windows_crt_bundle.py",
+      "bytes": 7239,
+      "sha256": "7f3eb3f801caf575b6eae09d6ba149a1249a400308a5f2373334daa14341314e",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "backend/tests/test_word_format_patch.py",
-      "bytes": 6133,
-      "sha256": "dd8575c9c5bb79ed3cbf1db92f934e81d197d5c3fb1bd931f0b9cbf95d3105ba",
+      "bytes": 6129,
+      "sha256": "1ea2fa5f0810f6ac3295d515a6c4f5a12899702046693de0955b63e798db1b6d",
       "sourceSha256": "dd8575c9c5bb79ed3cbf1db92f934e81d197d5c3fb1bd931f0b9cbf95d3105ba",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_word_pdf_conversion.py",
-      "bytes": 8535,
-      "sha256": "8456d0ca0b5a07807f4a2b6ef23869ed854c4cd13243f394ef6a54d1a0f163c2",
+      "bytes": 8435,
+      "sha256": "58305ecf88c17eed3cebb66ae93833d930e862cb2d8d87162fe63d071ef5f9d5",
       "sourceSha256": "8456d0ca0b5a07807f4a2b6ef23869ed854c4cd13243f394ef6a54d1a0f163c2",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_workbook_files.py",
@@ -1049,15 +1084,15 @@
     },
     {
       "path": "docs/TEAM-START.md",
-      "bytes": 10974,
-      "sha256": "471e0537cb1ae43e5bfdd029a847d1f21e9b926dda0c1fe2fd1ce214eda1f72f",
+      "bytes": 11339,
+      "sha256": "a4b1e8cb109cac6b3db7ec16955157f9ebf9ea77c2506e10e057a00876a934a4",
       "sourceSha256": "471e0537cb1ae43e5bfdd029a847d1f21e9b926dda0c1fe2fd1ce214eda1f72f",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "docs/WINDOWS.md",
-      "bytes": 5902,
-      "sha256": "0502e0d3fb5a579525d42d9529eb636d8ac34ed964b2115dd58949bf58145e2e",
+      "bytes": 7940,
+      "sha256": "49380f066e386e69e8e11b65a9a4830f6ce2159c485f81ba37c6f332df406ce9",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -1294,10 +1329,10 @@
     },
     {
       "path": "docs/workflow-complete.md",
-      "bytes": 12442,
-      "sha256": "01f12dcabd66f781767c461e3bca1debed92088c7e0446ea4090c79bd46aef4c",
+      "bytes": 12492,
+      "sha256": "784a2ba7da81a62bdec9eddd0e02aea6ad00d779324bbd51199357f05997b4d1",
       "sourceSha256": "01f12dcabd66f781767c461e3bca1debed92088c7e0446ea4090c79bd46aef4c",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "docs/workflow-deepagents.md",
@@ -5908,14 +5943,14 @@
     {
       "path": "package-lock.json",
       "bytes": 282109,
-      "sha256": "d09e09bb4031dcaef87b0d53a6eccac5f6eb5cc4cfacb033b269fab7e90ac8eb",
+      "sha256": "812df813c3bde4d7dcb8e0bc16fb0b712bd5cead0981f700bac231e6e13acb40",
       "sourceSha256": "d09e09bb4031dcaef87b0d53a6eccac5f6eb5cc4cfacb033b269fab7e90ac8eb",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "package.json",
       "bytes": 4315,
-      "sha256": "40d75ed4f8e6218e1fedb641e4f2a74606d92e7e2a432952fa6be9f385f09506",
+      "sha256": "e2d33066194e7d22bcbb71c0061c97e552cf649a1665b9195753c3340c0306c1",
       "sourceSha256": "aba6e098b9a3f9218d0462ca8700c461f800c6f2200ffc3d4fca90b2b366bfda",
       "unchanged": false
     },
@@ -5925,6 +5960,13 @@
       "sha256": "cd3c5f729338eb53ca99adb02ce802be64e32c77bf68d29685af9c0ddfb053ec",
       "sourceSha256": "cd3c5f729338eb53ca99adb02ce802be64e32c77bf68d29685af9c0ddfb053ec",
       "unchanged": true
+    },
+    {
+      "path": "scripts/electron-builder-windows.cjs",
+      "bytes": 990,
+      "sha256": "09062e9eb151f5d91f641ad8904e61c47a1764f0e837bc060f2238869f029c8f",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "scripts/electron-smoke.cjs",
@@ -5949,8 +5991,8 @@
     },
     {
       "path": "scripts/package-app-windows.cjs",
-      "bytes": 2557,
-      "sha256": "749b261263fa1fc53705a9fb88e1d8f628af6cb7071489ab24ea3e6839c5c869",
+      "bytes": 4571,
+      "sha256": "806cf8d13a21f51eae73f46ce3b2f8791219c14e1e2a23f2567b76e3fcdec93a",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -5984,8 +6026,8 @@
     },
     {
       "path": "scripts/prepare-document-runtime-windows.py",
-      "bytes": 4550,
-      "sha256": "8561a57703f9a0f10c73307d61b248eb5ce9a7260a0af337e8d48fe08461e521",
+      "bytes": 15654,
+      "sha256": "1fb37ed9105447d7f1d19c23a6370eb827a9a02b3050b8cabd5e52c810b009c2",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -6005,8 +6047,8 @@
     },
     {
       "path": "scripts/prepare-python-runtime.py",
-      "bytes": 3643,
-      "sha256": "b5a3dc6ce73a395579477e81d6750ef1cf2927398ba6b99ad4cff442f39b65b4",
+      "bytes": 4929,
+      "sha256": "837b01ff968efad7e89071f4f5c636704633735474c3bf32c5704855bba33808",
       "sourceSha256": "b53cd4e5c1d9d2208d09f6da6f802c918772405a1eed37dcae18e6f2350f6ae7",
       "unchanged": false
     },
@@ -6103,8 +6145,8 @@
     },
     {
       "path": "scripts/verify-mail-automation-windows.cjs",
-      "bytes": 4870,
-      "sha256": "6d946c14113e4530aa651322f10c99f31cf1a7f0183ec7a055c4b2ab7d793a79",
+      "bytes": 8306,
+      "sha256": "923d55a54e9da3bd9f605e99b183392fe993674c494c5283070987b7197ceb36",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -6124,22 +6166,22 @@
     },
     {
       "path": "scripts/verify-runtime-deps.py",
-      "bytes": 11427,
-      "sha256": "7936e94105d1a47f565bbc7743b2c8399c9fa9170e3823d6fc20e42ca00fbd47",
+      "bytes": 11400,
+      "sha256": "df47b5444c243a8c2873b13181c8778dd74290242a7a1fafbd8c1bac1bfea7ec",
       "sourceSha256": "b2314c8b86c617a5d2bfc4c44855284d149be01ecbc3b477e6a2f84f868894cd",
       "unchanged": false
     },
     {
       "path": "scripts/verify-windows-app.cjs",
-      "bytes": 8463,
-      "sha256": "0dd0cbf8ec4259422cd17b712c7534c7700ddb2a367f9d286295602621491978",
+      "bytes": 9813,
+      "sha256": "8b0cecad16ccde39ad0adf162864f53c546c02e35f2ab9d762ed2459662f6f22",
       "sourceSha256": null,
       "unchanged": false
     },
     {
       "path": "scripts/verify-windows-workflow.py",
-      "bytes": 14005,
-      "sha256": "4794a25482f26fc1fd0ced3b18bd0363f82e09169ea79f4151c0c7a6013c4278",
+      "bytes": 13862,
+      "sha256": "07dd42838e9f850af1ed924e62f40aca059f8df5303686d4e72d09e52bb62816",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -6222,8 +6264,8 @@
     },
     {
       "path": "src/main/mail-automation-host.ts",
-      "bytes": 13575,
-      "sha256": "e60b19c4100bf2363e19f23455808c6b88f1c034576ebf2a49052100fa8632a0",
+      "bytes": 14190,
+      "sha256": "24fa51504c18a46c960b5c6601a97205097f546dec7db6f7d05fd5294b54a448",
       "sourceSha256": "5d7346c6d82b8d89cdd487e5b95a396b2812eab46b29af35dea805425e149f5a",
       "unchanged": false
     },
@@ -6936,8 +6978,8 @@
     },
     {
       "path": "tests/mail-automation-windows.test.ts",
-      "bytes": 7557,
-      "sha256": "f7a10a56946e775e599a772c74add0ebef7c5b791efa16d8269d0873b840c102",
+      "bytes": 8065,
+      "sha256": "2fec35babd23bd903e18ce7eed07996591fdfc553683bf1e78567326f5786830",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -7219,15 +7261,58 @@
   "maintenanceNote": "Windows runtime, document renderer, Task Scheduler, packaging and acceptance added after the original Mac export.",
   "windowsAdaptationFiles": [
     ".github/workflows/windows-build.yml",
+    ".github/workflows/windows-scheduler-probe.yml",
     ".gitignore",
     "PUBLICATION.md",
     "README.md",
     "backend/requirements-mac.txt",
     "backend/requirements.txt",
     "backend/task_backend/document_render.py",
+    "backend/task_backend/file_archive.py",
+    "backend/task_backend/skill_execution.py",
+    "backend/tests/network_guard.py",
+    "backend/tests/test_agent_business_policy.py",
+    "backend/tests/test_agent_delivery.py",
+    "backend/tests/test_agent_delivery_boundaries.py",
+    "backend/tests/test_agent_fresh_context.py",
+    "backend/tests/test_agent_runtime.py",
+    "backend/tests/test_agent_task_history.py",
+    "backend/tests/test_agent_tools.py",
+    "backend/tests/test_bundle_files.py",
+    "backend/tests/test_business_documents.py",
+    "backend/tests/test_deepagents_runtime.py",
+    "backend/tests/test_document_agent.py",
+    "backend/tests/test_document_completion.py",
+    "backend/tests/test_document_review_coverage.py",
     "backend/tests/test_document_runtime_paths.py",
+    "backend/tests/test_file_archive.py",
+    "backend/tests/test_imap_import_continuation.py",
+    "backend/tests/test_inbox_sync.py",
+    "backend/tests/test_learning.py",
+    "backend/tests/test_mail_compose.py",
+    "backend/tests/test_mail_identity_threads.py",
+    "backend/tests/test_mail_workspace.py",
+    "backend/tests/test_network_guard.py",
+    "backend/tests/test_pdf_page_selection.py",
+    "backend/tests/test_proposal_availability.py",
+    "backend/tests/test_proposal_tool_arguments.py",
+    "backend/tests/test_scenario_mail_fixtures.py",
+    "backend/tests/test_secretary.py",
+    "backend/tests/test_skill_execution.py",
+    "backend/tests/test_skill_execution_platform.py",
+    "backend/tests/test_skill_library.py",
+    "backend/tests/test_skill_library_docker.py",
+    "backend/tests/test_task_changes.py",
+    "backend/tests/test_task_draft_projection.py",
+    "backend/tests/test_windows_crt_bundle.py",
+    "backend/tests/test_word_format_patch.py",
+    "backend/tests/test_word_pdf_conversion.py",
+    "docs/TEAM-START.md",
     "docs/WINDOWS.md",
+    "docs/workflow-complete.md",
+    "package-lock.json",
     "package.json",
+    "scripts/electron-builder-windows.cjs",
     "scripts/package-app-windows.cjs",
     "scripts/prepare-document-runtime-windows.cjs",
     "scripts/prepare-document-runtime-windows.py",
