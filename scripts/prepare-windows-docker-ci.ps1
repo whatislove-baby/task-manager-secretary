@@ -26,8 +26,8 @@ function Invoke-Native([string]$Name, [string]$File, [string[]]$Arguments, [int]
     if ($Name -eq 'rancher-start') {
       # rdctl passes its output to the persistent Desktop app. Files avoid waiting
       # for that app's EOF after rdctl --wait reports a ready engine and exits.
-      $stdoutPath = Join-Path $Output "$Name.stdout.log"
-      $stderrPath = Join-Path $Output "$Name.stderr.log"
+      $stdoutPath = Join-Path $env:RUNNER_TEMP 'task-manager-rancher-start.stdout.log'
+      $stderrPath = Join-Path $env:RUNNER_TEMP 'task-manager-rancher-start.stderr.log'
       # These fixed rdctl flags contain no whitespace or quotes. Do not add a
       # general-purpose Windows quoting layer to this single launcher call.
       if ($Arguments | Where-Object { $_ -match '[\s"]' }) { throw 'Unexpected whitespace or quote in the fixed rdctl startup flags.' }
@@ -53,8 +53,27 @@ function Invoke-Native([string]$Name, [string]$File, [string[]]$Arguments, [int]
       if (-not $process.WaitForExit(5000)) { throw "$Name could not be stopped" }
     }
     if ($Name -eq 'rancher-start') {
-      $out = [IO.File]::ReadAllText($stdoutPath)
-      $err = [IO.File]::ReadAllText($stderrPath)
+      $snapshots = foreach ($path in @($stdoutPath, $stderrPath)) {
+        $stream = $null
+        $reader = $null
+        try {
+          $stream = [IO.FileStream]::new($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, ([IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete))
+          $reader = [IO.StreamReader]::new($stream, [Text.Encoding]::UTF8, $true)
+          $text = $reader.ReadToEnd()
+          # Keep raw Desktop output in RUNNER_TEMP. Publish only diagnostic lines
+          # without authentication fields, never its local engine API settings.
+          $safe = @($text -split "`r?`n" | Where-Object { $_ -notmatch '(?i)(authorization|password|passwd|token|secret|api.?key)' }) -join "`n"
+          $safe
+        } catch {
+          Write-Host "Could not read optional $Name log snapshot: $($_.Exception.GetType().Name)"
+          ''
+        } finally {
+          if ($reader) { $reader.Dispose() }
+          elseif ($stream) { $stream.Dispose() }
+        }
+      }
+      $out = [string]$snapshots[0]
+      $err = [string]$snapshots[1]
     } else {
       $out = $stdout.GetAwaiter().GetResult()
       $err = $stderr.GetAwaiter().GetResult()
