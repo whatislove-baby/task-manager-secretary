@@ -13,8 +13,22 @@
     },
     {
       "path": ".github/workflows/windows-build.yml",
-      "bytes": 6764,
-      "sha256": "f30936b0df1dc5807eb1f72f44dba66f9e02160b7374c90b115ba0564cf95715",
+      "bytes": 8129,
+      "sha256": "e6d71d1df30be811d7c6130969609b14d768257d95382e197b44123c8ee9c2ad",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": ".github/workflows/windows-docker-probe.yml",
+      "bytes": 7211,
+      "sha256": "6c4e0618f97fe403841b0b50494716e2f7b068fc2788215e3ca6f89e27e6f767",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": ".github/workflows/windows-docker-skill.yml",
+      "bytes": 3885,
+      "sha256": "7e42aa3ddee8ea301ea45ab56133a4e8e7dc79e4dbd717e1c96341755164edb1",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -496,8 +510,8 @@
     },
     {
       "path": "backend/task_backend/skill_execution.py",
-      "bytes": 17009,
-      "sha256": "af330fe8067a85d97f64585f520c742bbcd64c81683d085d54816898f448bcb0",
+      "bytes": 17953,
+      "sha256": "118e832fe24afef61028263908788dcf56f856b493821f0dc83d97984179a056",
       "sourceSha256": "52bb0c6cdf90e6d20c3a7ee7df6011ab631549557e4ef4c75f3d59f7c2b1af7f",
       "unchanged": false
     },
@@ -1000,24 +1014,24 @@
     },
     {
       "path": "backend/tests/test_skill_execution.py",
-      "bytes": 14625,
-      "sha256": "0a7af60a5a3837e1a5e0bd83b7e19d2f69a0c25ed4a2217bfa89045f1ee2673e",
+      "bytes": 14932,
+      "sha256": "edc0cd8c97b3d595cd2df5c0fbd004eb74e72262137361027cc23e2a7b564a3c",
       "sourceSha256": "08fa65c185db24c98ec5614bd4fcbd84db313476ee568991f0c64ecbe9099b8f",
       "unchanged": false
     },
     {
       "path": "backend/tests/test_skill_execution_platform.py",
-      "bytes": 6251,
-      "sha256": "9d87b0b0706128cc3141d403f8d707a0247f744c9e0247311018d9ba68157b38",
+      "bytes": 9617,
+      "sha256": "e8aa33eeff2581196881fbf3ebaa3c61af47d5ddc59b7b4c7a093a75fe7c11d5",
       "sourceSha256": null,
       "unchanged": false
     },
     {
       "path": "backend/tests/test_skill_import.py",
-      "bytes": 13787,
-      "sha256": "77d25e26940af878d01ba06f69dac916b84ca032faed4e3870f9f8dd2fc005e3",
+      "bytes": 13852,
+      "sha256": "f820b513a5c9737c6824a0728b5366a5f134db532e12394164e66035e0191955",
       "sourceSha256": "77d25e26940af878d01ba06f69dac916b84ca032faed4e3870f9f8dd2fc005e3",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/tests/test_skill_library.py",
@@ -1031,6 +1045,13 @@
       "bytes": 5542,
       "sha256": "8fa1eb9a03372bb0a43d4929f89fc67f434c95560b3915b4597ac42ab6054df0",
       "sourceSha256": "a87aa0dfe9711f22731735e326927bb64ccdbbe0aa12f2b52fb14a3ff9c7f20f",
+      "unchanged": false
+    },
+    {
+      "path": "backend/tests/test_skill_runtime_setup.py",
+      "bytes": 4040,
+      "sha256": "01b5b14010a5938227aec4fdaee467d7be94034fc4c707da035fb384c3952aaa",
+      "sourceSha256": null,
       "unchanged": false
     },
     {
@@ -1098,8 +1119,8 @@
     },
     {
       "path": "docs/WINDOWS.md",
-      "bytes": 8466,
-      "sha256": "e73500025325d63b0d9782c13c81cd61cd24cc393a32b57effdeab6ac32f6d5c",
+      "bytes": 8851,
+      "sha256": "ae1cf6d33325a5bbd1c6652a7cc89294197f20b3b835378fe9010f6207713aed",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -5990,6 +6011,34 @@
       "unchanged": true
     },
     {
+      "path": "scripts/fixtures/windows-skill-workflow/README.md",
+      "bytes": 1443,
+      "sha256": "e8099bf9d4aa0e31c87732387704215cbe75377af8655f84a38dbb9b96f45306",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/fixtures/windows-skill-workflow/SKILL.md",
+      "bytes": 1147,
+      "sha256": "a269369915b77bfa19582582f7ea39def0e3f7f3d0dcf8ff12f2db04773ed749",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/fixtures/windows-skill-workflow/app/allocate.py",
+      "bytes": 2767,
+      "sha256": "97b05e51da5f0676de79053234b47a96f990974f2a2fbb55f41fb36d1823e3e2",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/fixtures/windows-skill-workflow/main.py",
+      "bytes": 408,
+      "sha256": "9a4e1ba6f952d39890bf833aa2676b443a6b865f2567293d5bd7e9a7ac869dc6",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "scripts/install-python-deps.py",
       "bytes": 2760,
       "sha256": "98f1f434c5ca489b861e78406bb63ffadc84f1cabb216cb62d44c81ea845c7e4",
@@ -6068,10 +6117,17 @@
     },
     {
       "path": "scripts/prepare-skill-runtime.py",
-      "bytes": 1053,
-      "sha256": "caca3ada9f8dd5d172078e4e07cc9a045eb190b27dce7a4a68a366f74f4e41d3",
+      "bytes": 1573,
+      "sha256": "606d53665b1143d75c2a369f9322848b040bcf1e87159e694df1cbabf20116d7",
       "sourceSha256": "caca3ada9f8dd5d172078e4e07cc9a045eb190b27dce7a4a68a366f74f4e41d3",
-      "unchanged": true
+      "unchanged": false
+    },
+    {
+      "path": "scripts/prepare-windows-docker-ci.ps1",
+      "bytes": 9425,
+      "sha256": "3c1dfc9bb1f2f03cef9dfad181464b128a5b4991de0b6ec37f66a66ec5f3e6f1",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "scripts/python-credentials-smoke.cjs",
@@ -6189,6 +6245,13 @@
       "path": "scripts/verify-windows-app.cjs",
       "bytes": 9813,
       "sha256": "8b0cecad16ccde39ad0adf162864f53c546c02e35f2ab9d762ed2459662f6f22",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/verify-windows-skill-workflow.py",
+      "bytes": 25174,
+      "sha256": "58078913fd3efacc73a8ff1e945f327b6bd4dc439217d7fb21ae059c164d3df5",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -7275,6 +7338,8 @@
   "maintenanceNote": "Windows runtime, document renderer, Task Scheduler, packaging and acceptance added after the original Mac export.",
   "windowsAdaptationFiles": [
     ".github/workflows/windows-build.yml",
+    ".github/workflows/windows-docker-probe.yml",
+    ".github/workflows/windows-docker-skill.yml",
     ".github/workflows/windows-scheduler-probe.yml",
     ".gitignore",
     "PUBLICATION.md",
@@ -7314,8 +7379,10 @@
     "backend/tests/test_secretary.py",
     "backend/tests/test_skill_execution.py",
     "backend/tests/test_skill_execution_platform.py",
+    "backend/tests/test_skill_import.py",
     "backend/tests/test_skill_library.py",
     "backend/tests/test_skill_library_docker.py",
+    "backend/tests/test_skill_runtime_setup.py",
     "backend/tests/test_task_changes.py",
     "backend/tests/test_task_draft_projection.py",
     "backend/tests/test_windows_crt_bundle.py",
@@ -7329,14 +7396,21 @@
     "package-lock.json",
     "package.json",
     "scripts/electron-builder-windows.cjs",
+    "scripts/fixtures/windows-skill-workflow/README.md",
+    "scripts/fixtures/windows-skill-workflow/SKILL.md",
+    "scripts/fixtures/windows-skill-workflow/app/allocate.py",
+    "scripts/fixtures/windows-skill-workflow/main.py",
     "scripts/package-app-windows.cjs",
     "scripts/prepare-document-runtime-windows.cjs",
     "scripts/prepare-document-runtime-windows.py",
     "scripts/prepare-python-runtime.py",
+    "scripts/prepare-skill-runtime.py",
+    "scripts/prepare-windows-docker-ci.ps1",
     "scripts/verify-mail-automation-windows.cjs",
     "scripts/verify-python-package.cjs",
     "scripts/verify-runtime-deps.py",
     "scripts/verify-windows-app.cjs",
+    "scripts/verify-windows-skill-workflow.py",
     "scripts/verify-windows-workflow.py",
     "src/main/mail-automation-host.ts",
     "tests/mail-automation-host.test.ts",
