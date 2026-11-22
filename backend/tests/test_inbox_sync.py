@@ -3,6 +3,7 @@ import base64
 from datetime import datetime
 import importlib.util
 import json
+import ssl
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -27,6 +28,13 @@ class InboxSyncTests(unittest.TestCase):
                         ('decrypt',lambda v:cipher.decrypt(base64.b64decode(v)).decode())]:
             p=patch('task_backend.vault.'+name,fn);p.start();self.addCleanup(p.stop)
         p=patch('socket.create_connection',side_effect=AssertionError('No external connection allowed'));p.start();self.addCleanup(p.stop)
+        # This class tests synthetic mailbox paging, not OS certificate loading.
+        # Keep genuine verified TLS options without reloading the Windows trust
+        # store for every one of the 401 simulated connections.
+        self.tls_context=ssl.create_default_context()
+        self.assertEqual(self.tls_context.verify_mode,ssl.CERT_REQUIRED)
+        self.assertTrue(self.tls_context.check_hostname)
+        self.enterContext(patch('task_backend.mail_readers.ssl.create_default_context',return_value=self.tls_context))
         self.mailboxes={};self.reads=[];self.fail_ids=set();self.misbehaving=set();self.on_read=None
         self.open_service();self.addCleanup(lambda:self.service.close())
 
@@ -34,7 +42,11 @@ class InboxSyncTests(unittest.TestCase):
         self.service=BackendService(self.directory,request=lambda *a:self.fail('No model calls expected'),worker=True)
         self.service.clock=lambda:datetime(2026,11,21,1,0,tzinfo=ZoneInfo('Asia/Hong_Kong'))
         def factory(manager,binding):
-            reader=ImapReader(manager,binding,client_factory=lambda *a,**kw:self.mailboxes[binding])
+            def client(*a,**kw):
+                self.assertIs(kw['ssl_context'],self.tls_context)
+                self.assertTrue(kw['ssl'])
+                return self.mailboxes[binding]
+            reader=ImapReader(manager,binding,client_factory=client)
             original=reader.get_message
             def get(id,*args):
                 self.reads.append((binding,id))

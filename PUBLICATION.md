@@ -13,7 +13,7 @@ This repository started as a source export of the Mac application, whose runtime
 
 ## Reproducibility
 
-Create `.venv` with Python 3.12, install `backend/requirements-mac.txt`, run `npm ci`, then use the commands in README. `npm run test:python` runs the exported backend suite. PDF/Word rendering uses LibreOffice; Docker Skill integration tests require the prepared local runtime and may skip when unavailable. No live-model quality claim follows from these offline tests.
+Create `.venv` with Python 3.12, install the platform requirements, run `npm ci`, then use the commands in README. Windows build and native acceptance commands are in `docs/WINDOWS.md`; Windows preview releases include their generated test evidence. `npm run test:python` runs the exported backend suite. PDF/Word rendering uses LibreOffice; Docker Skill integration tests require the prepared local runtime and may skip when unavailable. No live-model quality claim follows from these offline tests.
 
 `PUBLICATION-MANIFEST.json` lists the allowlisted source files and their hashes. Export verification is recorded separately from product data.
 

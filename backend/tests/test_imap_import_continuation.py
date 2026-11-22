@@ -2,6 +2,7 @@
 import base64
 import importlib.util
 import json
+import ssl
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -57,6 +58,13 @@ class ImapImportContinuationTests(unittest.TestCase):
             patcher.start();self.addCleanup(patcher.stop)
         guard = patch('socket.create_connection', side_effect=AssertionError('No real network allowed'))
         guard.start();self.addCleanup(guard.stop)
+        # Real TLS policy, reused only inside this synthetic transport test.
+        # Loading the Windows certificate store 800+ times obscures the paging
+        # assertions without exercising any additional TLS connection.
+        self.tls_context=ssl.create_default_context()
+        self.assertEqual(self.tls_context.verify_mode,ssl.CERT_REQUIRED)
+        self.assertTrue(self.tls_context.check_hostname)
+        self.enterContext(patch('task_backend.mail_readers.ssl.create_default_context',return_value=self.tls_context))
         self.mailboxes = {}
         self.legacy_readers = set()
         self.service = None
@@ -66,7 +74,11 @@ class ImapImportContinuationTests(unittest.TestCase):
     def open_service(self):
         self.service = BackendService(self.directory, request=lambda *args:self.fail('No HTTP or model calls expected'), worker=True)
         def factory(manager, binding):
-            reader = ImapReader(manager, binding, client_factory=lambda *args, **kwargs:self.mailboxes[binding])
+            def client(*args,**kwargs):
+                self.assertIs(kwargs['ssl_context'],self.tls_context)
+                self.assertTrue(kwargs['ssl'])
+                return self.mailboxes[binding]
+            reader = ImapReader(manager, binding, client_factory=client)
             if binding in self.legacy_readers:
                 return SimpleNamespace(read=reader.read, get_message=reader.get_message, test_connection=reader.test_connection)
             return reader

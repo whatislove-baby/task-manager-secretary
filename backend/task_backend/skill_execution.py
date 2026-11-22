@@ -286,7 +286,9 @@ def run_python(source: str, inputs: dict[str, bytes], *, timeout_seconds=30, pac
             work.mkdir(mode=0o755); input_dir.mkdir(mode=0o755)
             work.chmod(0o755); input_dir.chmod(0o755)
             if ',' in str(root): raise ValueError('临时目录含 Docker 挂载不支持的字符')
-            (work / 'main.py').write_text(source, encoding='utf-8')
+            # Preserve the reviewed source exactly; Windows text-mode output
+            # would turn an existing CRLF into CRCRLF before Docker sees it.
+            (work / 'main.py').write_bytes(source.encode('utf-8'))
             (work / 'runner.py').write_bytes((RUNTIME / 'runner.py').read_bytes())
             for path in work.iterdir(): path.chmod(0o444)
             if package_files:

@@ -49,6 +49,12 @@ jobs:
       - name: Verify Windows Python and Agent dependencies
         shell: pwsh
         run: .venv\Scripts\python.exe scripts/verify-runtime-deps.py --requirements backend/requirements.txt --smoke --output handover/windows-release/dependencies.json
+      - name: Verify Windows mailbox persistence and Skill staging
+        shell: pwsh
+        run: |
+          $env:PYTHONPATH = "$((Get-Location).Path)\backend;$((Get-Location).Path)\backend\tests"
+          .venv\Scripts\python.exe -m unittest -v test_mail_identity_threads test_skill_execution test_imap_import_continuation test_inbox_sync
+          exit $LASTEXITCODE
       - name: Prepare bundled document renderer
         id: renderer
         continue-on-error: true
@@ -90,10 +96,18 @@ jobs:
         id: app
         continue-on-error: true
         run: node scripts/verify-windows-app.cjs --app-dir "$env:TM_WINDOWS_APP" --output handover/windows-release/app
+      - name: Upload native acceptance evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-native-${{ github.run_number }}
+          path: handover/windows-release/
+          retention-days: 30
+          if-no-files-found: warn
       - name: Run regression checks and build frontend
         id: regression
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 30
         shell: pwsh
         run: |
           npm run check 2>&1 | Tee-Object -FilePath handover/windows-release/regression.log

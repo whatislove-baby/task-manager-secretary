@@ -5,6 +5,7 @@ sender authentication or live delivery. A second real account is still needed
 to accept genuine independent-sender behaviour at the provider boundary.
 """
 from copy import deepcopy
+from contextlib import closing
 from datetime import datetime,timezone
 from email import policy
 from email.message import EmailMessage
@@ -129,8 +130,7 @@ class IdentityReaderStoreTests(unittest.TestCase):
                 with self.assertRaises(ValueError):reply_context(value)
         with self.assertRaises(ValueError):reply_context(dict(sender='iris@example.invalid',messageId='<id@example.invalid>\r\nBcc: bad@example.invalid'))
     def test_legacy_records_safe_fallback_exact_address_and_account_search(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            store=MailStore(tmp);self.addCleanup(store.close)
+        with tempfile.TemporaryDirectory() as tmp, closing(MailStore(tmp)) as store:
             ids=[]
             for binding,remote,sender in [('binding-a','1','Amy <amy@client.example.invalid>'),('binding-a','2','Amy Purchasing <amy@client.example.invalid>'),
                                           ('binding-a','3','Amy <fakeamy@client.example.invalid>'),('binding-b','4','Amy <amy@client.example.invalid>')]:
@@ -148,8 +148,7 @@ class IdentityReaderStoreTests(unittest.TestCase):
             self.assertEqual(store.search_agent_mail(sender='amy@client.example.invalid',limit=1)['nextOffset'],1)
             self.assertEqual(store.get_local(ids[0])['fromAddress'],'amy@client.example.invalid')
     def test_refresh_summary_does_not_erase_full_reply_headers(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            store=MailStore(tmp);self.addCleanup(store.close)
+        with tempfile.TemporaryDirectory() as tmp, closing(MailStore(tmp)) as store:
             reader,client=self.reader();mail=reader.get_message(compact(['INBOX','34',7]))
             local=store.put('binding-a','identity-a','lin@campus.example.invalid',mail)['localId']
             summary=reader.summary(7,client.fetch([7],['ENVELOPE'])[7],'INBOX',34)

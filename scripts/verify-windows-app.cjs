@@ -19,7 +19,16 @@ const dataDir = path.join(profile,'学生 data with spaces');
 const report = {startedAt:new Date().toISOString(),platform:process.platform,architecture:process.arch,executable:exe,checks:[],externalAccounts:0,externalMessagesSent:0,scope:'Real packaged EXE, renderer/preload IPC, local SQLite and restart. No live model/mail provider.'};
 const delay = ms => new Promise(resolve => setTimeout(resolve,ms));
 let current, socket;
-function check(name, condition) { report.checks.push({name,passed:Boolean(condition)}); assert.ok(condition,name); }
+function check(name, condition, details) {
+  report.checks.push({name,passed:Boolean(condition),...(details===undefined?{}:{details})});
+  assert.ok(condition,name+(details===undefined?'':': '+JSON.stringify(details)));
+}
+function existingDirectory(directory) {
+  if(typeof directory!=='string'||!fs.existsSync(directory)||!fs.statSync(directory).isDirectory())return null;
+  // Python Path.resolve() expands junctions and Windows short (8.3) paths.
+  // Compare the same existing filesystem targets, not their lexical spelling.
+  return fs.realpathSync.native(directory);
+}
 function freePort() { return new Promise((resolve,reject)=>{const s=net.createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const port=s.address().port;s.close(()=>resolve(port));});}); }
 async function connect(url) {
   const ws = new WebSocket(url);
@@ -83,7 +92,10 @@ async function stop() {
     await launch(1);
     const home=await evaluate('window.agent.getSecretary()');check('fixed_secretary_ipc',home.ok&&home.data.kind==='secretary');
     const settings=await evaluate('window.desktop.getSettings()');
-    check('isolated_empty_profile',settings.ok&&!settings.data.hasApiKey&&path.resolve(settings.data.dataDirectory).toLowerCase()===path.resolve(dataDir).toLowerCase());
+    const actualDirectory=existingDirectory(settings.data?.dataDirectory),expectedDirectory=existingDirectory(dataDir);
+    check('isolated_empty_profile',settings.ok&&!settings.data.hasApiKey&&!!actualDirectory&&!!expectedDirectory&&actualDirectory.toLowerCase()===expectedDirectory.toLowerCase(),
+      {ok:settings.ok,hasApiKey:settings.data?.hasApiKey,actualDataDirectory:settings.data?.dataDirectory,expectedDataDirectory:dataDir,
+       actualCanonicalDirectory:actualDirectory,expectedCanonicalDirectory:expectedDirectory,error:settings.error});
     const accounts=await evaluate('window.mailWorkspace.getAccounts()');check('no_mailbox_in_distribution',accounts.ok&&accounts.data.length===0);
     const pending=await evaluate('window.agent.listPending()');check('fresh_pending_empty',pending.ok&&pending.data.length===0);
     const created=await evaluate(`window.desktop.createTodo({title:'Windows packaged restart check'})`);check('packaged_python_write',created.ok&&!!created.data.value.id);
@@ -100,11 +112,15 @@ async function stop() {
     const reopenedHome=await evaluate('window.agent.getSecretary()');check('same_secretary_after_process_restart',reopenedHome.ok&&reopenedHome.data.id===home.data.id);
     const reopenedTasks=await evaluate('window.desktop.listTodos()');check('same_task_after_process_restart',reopenedTasks.ok&&reopenedTasks.data.length===1&&reopenedTasks.data[0].id===taskId);
     report.passed=true;
-  }catch(error){report.passed=false;report.error=error.stack||String(error);process.exitCode=1;}
+  }catch(error){
+    report.passed=false;report.error=error.stack||String(error);process.exitCode=1;
+    console.error('WINDOWS_APP_ACCEPTANCE_FAILED:',report.error);
+  }
   finally{
     await stop();report.finishedAt=new Date().toISOString();fs.writeFileSync(path.join(output,'app.json'),JSON.stringify(report,null,2)+'\n');
     // Delete only this process's fresh synthetic profile, never product data.
     try{fs.rmSync(profile,{recursive:true,force:true});}catch(error){report.cleanupError=String(error);fs.writeFileSync(path.join(output,'app.json'),JSON.stringify(report,null,2)+'\n');}
   }
-  console.log(JSON.stringify({passed:report.passed,checks:report.checks.length,report:path.join(output,'app.json')}));
+  console.log(JSON.stringify({passed:report.passed,checks:report.checks.length,
+    failedChecks:report.checks.filter(check=>!check.passed),error:report.error,report:path.join(output,'app.json')}));
 })();

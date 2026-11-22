@@ -15,7 +15,8 @@ const archive = path.join(resources, 'app.asar');
 function packagedModule(name) {
   const filename = path.join(root, 'dist-backend', 'main', name + '.js');
   const loaded = new Module(filename, module); loaded.filename = filename;
-  loaded._compile(asar.extractFile(archive, 'dist-backend/main/' + name + '.js').toString('utf8'), filename);
+  // @electron/asar traverses names with the host's path.sep, including Windows.
+  loaded._compile(asar.extractFile(archive, path.join('dist-backend', 'main', name + '.js')).toString('utf8'), filename);
   return loaded.exports;
 }
 const {MailAutomationHost} = packagedModule('mail-automation-host');

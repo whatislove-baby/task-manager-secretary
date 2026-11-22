@@ -1,5 +1,7 @@
 # 组员上手与交接指南
 
+**Windows 用户：** 优先下载仓库 Releases 中的 Windows x64 便携 ZIP，全部解压后运行 `Task Manager.exe`。配置、备份与练习步骤见 [Windows 使用与交接](WINDOWS.md)。
+
 这份指南用于从公开源码启动应用、复测一个完整流程，再接手同学的模块。先完成“不接邮箱”的文件测试，就可以检查 API、Agent、文件与邮件草稿链路。
 
 仓库：[whatislove-baby/task-manager-secretary](https://github.com/whatislove-baby/task-manager-secretary)。这是源码与合成示例，**不含已安装依赖、Mac 成品及其 Python/LibreOffice 运行时、个人邮箱数据或私人业务资料**。每位成员使用自己的配置；不要复制别人的 `data/` 或密钥。
@@ -33,7 +35,7 @@ TM_SOFFICE='/Applications/LibreOffice.app/Contents/MacOS/soffice' npm run dev
 
 ### Windows 组员
 
-源码的开发启动和测试脚本有 Windows 分支，但**本轮端到端验收在 Mac 上执行，不能据此承诺 Windows 已跑通**。若已安装 Python Launcher，可在 PowerShell 中使用以下对应命令：
+Windows 成品和源码的启动、配置、打包与原生验收范围见 [Windows 使用与交接](WINDOWS.md)。每个预览发布都附有对应 Windows 构建的测试证据；本页下方的旧 Mac 记录单独保留。若已安装 Python Launcher，可在 PowerShell 中使用以下对应命令：
 
 ```powershell
 git clone https://github.com/whatislove-baby/task-manager-secretary.git
@@ -46,7 +48,7 @@ npm ci
 npm run dev
 ```
 
-Windows 的 Word 渲染没有 Mac 默认路径；若要复测转换，需要安装 LibreOffice，并通过 `TM_SOFFICE` 指向该机器实际的 `soffice.exe`。不要运行名称带 `:mac` 的打包脚本。将实际成功和失败写入交接记录，而非沿用 Mac 的结果。
+Windows ZIP 已附带 Word/PDF 渲染器。从源码运行时，可用 `npm run runtime:documents:win` 准备渲染器，也可安装 LibreOffice；应用会查找默认安装位置，特殊位置可通过 `TM_SOFFICE` 指向实际的 `soffice.com`。不要运行名称带 `:mac` 的打包脚本。将实际成功和失败写入交接记录。
 
 ## 2. 配置自己的 API；邮箱可以稍后接
 
@@ -106,8 +108,8 @@ npm run test:handover
 
 | 已有验证范围 | 已记录结果与边界 |
 | --- | --- |
-| 本次公开源码副本后端回归 | 650 项：**638 通过、12 跳过、0 失败**；在 Mac 普通权限环境复测。与原开发目录的统计范围不同，不混加。 |
-| 当前前端与桌面回归 | 400 项：**399 通过、1 个 Windows 平台项跳过、0 失败**。见[公开验收报告](../handover/final-guide/TEST-REPORT.md)。 |
+| 首次公开源码副本的 Mac 后端回归 | 650 项：**638 通过、12 跳过、0 失败**；在 Mac 普通权限环境复测。与后续 Windows 构建统计不混加。 |
+| 首次公开源码副本的 Mac 前端与桌面回归 | 400 项：**399 通过、1 个 Windows 平台项跳过、0 失败**。见[公开验收报告](../handover/final-guide/TEST-REPORT.md)。 |
 | 真实 API 秘书主线 | 9 次用户输入＋1 个后台任务；原完整断言 **72/73**，保留失败。不能写“全部通过”。见[逐轮记录](../handover/secretary-home/final-run/TEST-LOG.html)。 |
 | 真实并发补测 | 调度并行已证明；秘书答复慢于后台完成，仍复述旧状态，快速准确的口头进度未通过。[独立审计](../handover/secretary-home/concurrency-run/audit-concurrency.md)。当前任务卡读取最新状态，旧答复没有被改写。 |
 
