@@ -1,0 +1,114 @@
+name: Windows Linux-container environment probe
+
+on:
+  push:
+    branches: [windows-docker-probe]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    steps:
+      - name: Inspect Windows and start an official WSL 2 distribution
+        timeout-minutes: 9
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $output = Join-Path $env:GITHUB_WORKSPACE 'handover/windows-docker-probe'
+          New-Item -ItemType Directory -Force $output | Out-Null
+          $result = [ordered]@{
+            passed = $false
+            scope = 'Windows host inventory and actual WSL 2 startup only'
+            dockerDesktopInstalledByProbe = $false
+            windowsSkillEndToEndVerified = $false
+            distribution = 'Ubuntu-24.04'
+            reason = 'Probe did not finish'
+            commands = @()
+          }
+          function Invoke-Probe([string]$name, [string]$file, [string[]]$arguments, [int]$seconds = 20) {
+            $info = [Diagnostics.ProcessStartInfo]::new()
+            $info.FileName = $file
+            $info.UseShellExecute = $false
+            $info.RedirectStandardOutput = $true
+            $info.RedirectStandardError = $true
+            $info.CreateNoWindow = $true
+            foreach ($argument in $arguments) { $info.ArgumentList.Add($argument) }
+            $process = [Diagnostics.Process]::new()
+            $process.StartInfo = $info
+            $started = [DateTime]::UtcNow
+            try {
+              if (-not $process.Start()) { throw "Could not start $file" }
+              $stdout = $process.StandardOutput.ReadToEndAsync()
+              $stderr = $process.StandardError.ReadToEndAsync()
+              $timedOut = -not $process.WaitForExit($seconds * 1000)
+              if ($timedOut) {
+                $process.Kill($true)
+                if (-not $process.WaitForExit(5000)) { throw "$name could not be stopped after timeout" }
+              }
+              $out = $stdout.GetAwaiter().GetResult().Replace([string][char]0, '')
+              $err = $stderr.GetAwaiter().GetResult().Replace([string][char]0, '')
+              $record = [ordered]@{ name=$name; exitCode=$process.ExitCode; timedOut=$timedOut; elapsedSeconds=[Math]::Round(([DateTime]::UtcNow-$started).TotalSeconds, 3) }
+              $result.commands += $record
+              @("command: $file $($arguments -join ' ')", "exit: $($record.exitCode); timeout: $timedOut", 'stdout:', $out, 'stderr:', $err) | Set-Content -Encoding utf8 (Join-Path $output "$name.log")
+              Write-Host "$name exit=$($record.exitCode) timeout=$timedOut"
+              return [pscustomobject]@{ exitCode=$record.exitCode; timedOut=$timedOut; stdout=$out; stderr=$err }
+            } finally { $process.Dispose() }
+          }
+          try {
+            $facts = [ordered]@{
+              recordedAt = [DateTime]::UtcNow.ToString('o')
+              runnerImage = $env:ImageOS
+              runnerImageVersion = $env:ImageVersion
+              os = Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, BuildNumber, OSArchitecture
+              system = Get-CimInstance Win32_ComputerSystem | Select-Object Manufacturer, Model, HypervisorPresent, TotalPhysicalMemory
+              processor = @(Get-CimInstance Win32_Processor | Select-Object Name, AddressWidth, NumberOfCores, VirtualizationFirmwareEnabled, VMMonitorModeExtensions, SecondLevelAddressTranslationExtensions)
+              features = @()
+            }
+            foreach ($feature in @('Microsoft-Windows-Subsystem-Linux', 'VirtualMachinePlatform', 'Microsoft-Hyper-V-All')) {
+              try { $facts.features += Get-WindowsOptionalFeature -Online -FeatureName $feature | Select-Object FeatureName, State }
+              catch { $facts.features += @{ FeatureName=$feature; error=$_.Exception.Message } }
+            }
+            $facts | ConvertTo-Json -Depth 8 | Set-Content -Encoding utf8 (Join-Path $output 'machine.json')
+            $wsl = (Get-Command wsl.exe -ErrorAction Stop).Source
+            $null = Invoke-Probe 'wsl-version' $wsl @('--version')
+            $null = Invoke-Probe 'wsl-status' $wsl @('--status')
+            $null = Invoke-Probe 'wsl-before' $wsl @('--list', '--verbose')
+            $docker = Get-Command docker.exe -ErrorAction SilentlyContinue
+            if ($docker) {
+              $null = Invoke-Probe 'docker-version' $docker.Source @('version', '--format', '{{json .}}')
+              $null = Invoke-Probe 'docker-context' $docker.Source @('context', 'inspect')
+            }
+            $online = Invoke-Probe 'wsl-official-catalog' $wsl @('--list', '--online') 30
+            if ($online.exitCode -ne 0 -or $online.stdout -notmatch 'Ubuntu-24\.04') { throw 'The official WSL distribution catalog did not provide Ubuntu-24.04; inspect wsl-official-catalog.log.' }
+            # Microsoft-supported install command, using its official distribution catalog.
+            # No Docker Desktop installation, EULA automation, registry changes or policy changes.
+            $default = Invoke-Probe 'wsl-default-two' $wsl @('--set-default-version', '2')
+            if ($default.exitCode -ne 0 -or $default.timedOut) { throw 'WSL 2 could not be selected; inspect wsl-default-two.log.' }
+            $install = Invoke-Probe 'wsl-install' $wsl @('--install', '--distribution', 'Ubuntu-24.04', '--web-download', '--no-launch') 300
+            if ($install.exitCode -ne 0 -or $install.timedOut) { throw 'Official WSL distribution installation failed or timed out; inspect wsl-install.log for the actual host limitation.' }
+            $launch = Invoke-Probe 'wsl-startup' $wsl @('--distribution', 'Ubuntu-24.04', '--user', 'root', '--exec', '/bin/sh', '-lc', 'uname -a; cat /etc/os-release; printf "TM_WSL2_STARTUP_OK\n"') 60
+            $after = Invoke-Probe 'wsl-after' $wsl @('--list', '--verbose')
+            if ($launch.exitCode -ne 0 -or $launch.timedOut -or $launch.stdout -notmatch 'TM_WSL2_STARTUP_OK') { throw 'The distribution did not execute the Linux startup probe; inspect wsl-startup.log.' }
+            if ($after.exitCode -ne 0 -or $after.stdout -notmatch 'Ubuntu-24\.04\s+\S+\s+2\b') { throw 'WSL did not report this distribution as version 2; WSL 1 is not sufficient for Linux Docker.' }
+            $result.passed = $true
+            $result.reason = 'Actual WSL 2 Linux process executed on the Windows runner. Docker Desktop and the Windows Skill chain remain untested.'
+          } catch {
+            $result.reason = $_.Exception.Message
+            Write-Host "WINDOWS_DOCKER_ENVIRONMENT_UNAVAILABLE: $($result.reason)"
+          } finally {
+            $result | ConvertTo-Json -Depth 8 | Set-Content -Encoding utf8 (Join-Path $output 'result.json')
+            Write-Host ($result | ConvertTo-Json -Depth 8 -Compress)
+          }
+          if (-not $result.passed) { exit 1 }
+      - name: Upload actual environment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-docker-probe-${{ github.run_number }}
+          path: handover/windows-docker-probe/
+          if-no-files-found: error
+          retention-days: 14
