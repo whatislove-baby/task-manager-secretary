@@ -1,0 +1,143 @@
+{
+  "stage": 2,
+  "profile": "[local-project]/handover/final-guide/student-test/before-review-stage-02",
+  "sourceProfile": "[local-test-profile]",
+  "source": "actual completed API run before simulated user review",
+  "runId": "71aabd70-4432-4b6b-b91f-cd780fb3ec24",
+  "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+  "artifacts": [
+    {
+      "kind": "task_change",
+      "id": "ef3eeeb6-0833-5c39-9db6-2e50b67c515d",
+      "title": "更新：COMP5082 Project：小组调研报告上传 Canvas"
+    },
+    {
+      "kind": "task_change",
+      "id": "8c953c8d-9939-5189-85d9-f48f845711fa",
+      "title": "更新：COMP5082 Project 提纲小组讨论（421 室）"
+    }
+  ],
+  "taskIds": {
+    "report": "9c648b4f-5237-4fa5-a529-9a036bbc2e3e",
+    "discussion": "025ad431-3c5b-4227-b905-010d5c2a7c2c",
+    "club": "bd514406-37f4-4813-a031-f92ed11f7c55"
+  },
+  "pending": [
+    {
+      "kind": "task_change",
+      "id": "ef3eeeb6-0833-5c39-9db6-2e50b67c515d",
+      "title": "更新：COMP5082 Project：小组调研报告上传 Canvas",
+      "runId": "71aabd70-4432-4b6b-b91f-cd780fb3ec24",
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+      "createdAt": "2026-11-21T16:29:19.192Z"
+    },
+    {
+      "kind": "task_change",
+      "id": "8c953c8d-9939-5189-85d9-f48f845711fa",
+      "title": "更新：COMP5082 Project 提纲小组讨论（421 室）",
+      "runId": "71aabd70-4432-4b6b-b91f-cd780fb3ec24",
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+      "createdAt": "2026-11-21T16:29:19.192Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "9c648b4f-5237-4fa5-a529-9a036bbc2e3e",
+      "parentId": null,
+      "title": "COMP5082 Project：小组调研报告上传 Canvas",
+      "notes": "截止：2026年12月4日 23:59（香港时间）前上传 Canvas。\\n要求：每组提交一份 PDF（由组长上传），正文最多八页，封面列明组员姓名。\\n来源：林老师 2026-11-20 邮件。\n\n邮件分析来源：\nstudent@campus.example.invalid · COMP5082 Project：小组调研报告提交安排\n本地邮件：1421ecc0c923dbfe26b97b94e820edea5c845500165964a30d2575aaed7704f3\n收件时间：2026-11-20T01:00:00Z\n分析记录：75f1af35-f890-5830-9cda-65fea7aeca76\n原文依据：本次 Project 的小组调研报告请于 2026年12月4日 23:59（香港时间）前上传 Canvas。每组提交一份 PDF，由组长上传即可，正文最多八页。请在封面列明组员姓名。",
+      "completed": false,
+      "completedAt": null,
+      "due": {
+        "mode": "value",
+        "value": {
+          "kind": "minute",
+          "at": "2026-12-04T15:59:00.000Z",
+          "timeZone": "Asia/Hong_Kong"
+        }
+      },
+      "createdAt": "2026-11-21T16:28:51.325Z",
+      "updatedAt": "2026-11-21T16:28:51.325Z",
+      "revision": 1,
+      "deletedAt": null,
+      "trashBatchId": null
+    },
+    {
+      "id": "025ad431-3c5b-4227-b905-010d5c2a7c2c",
+      "parentId": null,
+      "title": "COMP5082 Project 提纲小组讨论（421 室）",
+      "notes": "时间：2026年11月25日 14:30–15:00（香港时间），已由林老师预留。\\n地点：421 室。\\n准备：带上目前的研究问题和两三篇核心参考文献。\\n来源：林老师 2026-11-20 邮件（Re: COMP5082 Project 小组讨论时间）。\n\n邮件分析来源：\nstudent@campus.example.invalid · Re: COMP5082 Project 小组讨论时间\n本地邮件：554c5ab9f9ec5358ca93abd8784be98f9ea8c1bbb4efeddcb53befa4e85d9ffd\n收件时间：2026-11-20T02:00:00Z\n分析记录：c7f8c5ed-829d-54bc-8a19-119f8d7a05d9\n原文依据：你们组约 2026年11月25日 14:30（香港时间）到 421 室讨论 Project 提纲，预留半小时。我已经把这个时段留给你们了，请带上目前的研究问题和两三篇核心参考文献。",
+      "completed": false,
+      "completedAt": null,
+      "due": {
+        "mode": "value",
+        "value": {
+          "kind": "minute",
+          "at": "2026-11-25T06:30:00.000Z",
+          "timeZone": "Asia/Hong_Kong"
+        }
+      },
+      "createdAt": "2026-11-21T16:28:51.327Z",
+      "updatedAt": "2026-11-21T16:28:51.327Z",
+      "revision": 1,
+      "deletedAt": null,
+      "trashBatchId": null
+    },
+    {
+      "id": "bd514406-37f4-4813-a031-f92ed11f7c55",
+      "parentId": null,
+      "title": "摄影社校园夜拍（图书馆正门集合）",
+      "notes": "时间：2026年11月28日（周六）17:00–19:00（香港时间）。\\n集合：图书馆正门。\\n备注：手机也可参加，无需专业设备；自愿活动、无考勤。需要在群里留名字报名，下雨会另行通知。\\n来源：校园摄影社 2026-11-20 邮件。\n\n邮件分析来源：\nstudent@campus.example.invalid · 摄影社｜周六校园夜拍，欢迎一起走走\n本地邮件：f9dc6b576b3b8e1147709f50d7db2f6527a1fa93f6c7eff6bbeba5dfd5193d77\n收件时间：2026-11-20T03:00:00Z\n分析记录：fac37ff3-f708-5270-926b-4f4c49cb3ad4\n原文依据：摄影社这周组织一次校园夜拍，2026年11月28日 17:00（香港时间）在图书馆正门集合，预计七点结束。手机也可以参加，不需要专业设备。活动自愿参加，没有考勤要求；想来的同学在群里留个名字即可。下雨会另行通知。",
+      "completed": false,
+      "completedAt": null,
+      "due": {
+        "mode": "value",
+        "value": {
+          "kind": "minute",
+          "at": "2026-11-28T09:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong"
+        }
+      },
+      "createdAt": "2026-11-21T16:28:51.329Z",
+      "updatedAt": "2026-11-21T16:28:51.329Z",
+      "revision": 1,
+      "deletedAt": null,
+      "trashBatchId": null
+    }
+  ],
+  "copied": [
+    {
+      "path": "tasks.sqlite",
+      "sha256": "cc35fa1fc8734f7c06d4e50f000d808b4635cdb086c15ad9a7a8df354405c461"
+    },
+    {
+      "path": "agent.sqlite",
+      "sha256": "6ddd12e9d5a1de518257216171a02adb320c58dff719fb98f5c7b795d3ad1083"
+    },
+    {
+      "path": "agent-tools.sqlite",
+      "sha256": "da4fa7f5c19468fe7f5b7090288a9d4fd1a9841a19a4e4c5285e618ea992dd29"
+    },
+    {
+      "path": "mail.sqlite",
+      "sha256": "3912e69d438d9c8445fd0d41760ca886dbc45228addca92dfe3ba59123c8bca1"
+    },
+    {
+      "path": "mail-files.sqlite",
+      "sha256": "011b14214807ee0d5f732bf7003afa8c0cfb191b8aee6c4ab9a90cc8563f5cbf"
+    },
+    {
+      "path": "task-changes.sqlite",
+      "sha256": "6b719778965d6eb4407492f57d2f4e67bf252216f1d9d7631ac54a09329f86da"
+    },
+    {
+      "path": "draft-lifecycle.sqlite",
+      "sha256": "02129d6a1a0d664ed004d381c2eee1fc3c4298caabc43caf18832c34ef7284a6"
+    }
+  ],
+  "credentialsCopied": false,
+  "settingsCopied": false,
+  "accountsCopied": false,
+  "originalModelAnswerUnchanged": true,
+  "simulatedReferenceTime": "2026-11-22T09:00:00+08:00"
+}

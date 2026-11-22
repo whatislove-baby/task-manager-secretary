@@ -1,0 +1,10 @@
+{
+  "clock": "2026-11-20T04:00:00Z",
+  "description": "Synthetic offline fixtures; the changed deadline is not a real course announcement.",
+  "steps": [
+    {"input": "canvas-01-assignment.ics", "added": 1, "updated": 0, "issues": 0, "dueAt": "2026-11-23T15:59:00.000Z"},
+    {"input": "canvas-02-updated.ics", "added": 0, "updated": 1, "issues": 0, "dueAt": "2026-11-25T15:59:00.000Z"},
+    {"input": "canvas-03-invalid-timezone.ics", "added": 0, "updated": 0, "issues": 1, "dueAt": "2026-11-25T15:59:00.000Z"}
+  ],
+  "invariants": ["same task ID", "one saved task", "personal notes and completion preserved", "no guessed deadline for unknown TZID"]
+}

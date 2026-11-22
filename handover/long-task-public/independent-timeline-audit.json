@@ -1,0 +1,841 @@
+{
+  "recordedStages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "crossChecksPassed": true,
+  "checks": [
+    {
+      "name": "01_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "01_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m01"
+      ]
+    },
+    {
+      "name": "02_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "02_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m02",
+        "m03"
+      ]
+    },
+    {
+      "name": "03_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "03_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m04"
+      ]
+    },
+    {
+      "name": "04_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m05"
+      ]
+    },
+    {
+      "name": "05_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m06"
+      ]
+    },
+    {
+      "name": "06_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06_no_future_mail_read",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "07_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m07"
+      ]
+    },
+    {
+      "name": "08_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m08"
+      ]
+    },
+    {
+      "name": "09_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "09_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m09"
+      ]
+    },
+    {
+      "name": "10_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "10_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m01",
+        "m10"
+      ]
+    },
+    {
+      "name": "11_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "11_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m11"
+      ]
+    },
+    {
+      "name": "12_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "12_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m12"
+      ]
+    },
+    {
+      "name": "13_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "13_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m05",
+        "m06",
+        "m07",
+        "m09",
+        "m10",
+        "m12",
+        "m13"
+      ]
+    },
+    {
+      "name": "13_fresh_conversation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "14_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m11",
+        "m14"
+      ]
+    },
+    {
+      "name": "14_fresh_conversation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_recorded_answer_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_actual_user_prompt_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_same_actual_run",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_no_sent_receipts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_model_did_not_apply_tasks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_no_auto_learning_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_source_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_task_state_continuity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "15_no_future_mail_read",
+      "passed": true,
+      "detail": [
+        "m01",
+        "m02",
+        "m03",
+        "m04",
+        "m05",
+        "m06",
+        "m07",
+        "m08",
+        "m09",
+        "m10",
+        "m12",
+        "m13"
+      ]
+    },
+    {
+      "name": "15_fresh_conversation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_source_version_across_recorded_stages",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_tasks_before_request_to_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_task_then_same_task_rescheduled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reschedule_exact_dates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reschedule_other_task_fields_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "before_user_approval_database_empty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "only_complete_version_approved_by_separate_review",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "incomplete_versions_preserved_as_superseded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_stage6_failure_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "outline_and_report_are_distinct",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "other_sender_draft_recipient_and_english_limit",
+      "passed": true,
+      "detail": {
+        "wordCountIncludingGreeting": 122
+      }
+    },
+    {
+      "name": "three_month_reference_time_explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_ui_baseline_evidence_unchanged",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "scope": "Only consistency, recorded actions, chronology and committed state. Separate semantic-review.json identifies model meaning/content defects; a true here does not override them.",
+  "evidenceSha256": {
+    "verification-01.json": "4125a5730c32e403d707c5d2859a0223a2f8ff1359b7162b4705544e85234fc0",
+    "verification-02.json": "b39c242a0a6ec1957844e6f7d251bb6444a4072211c8ed7b89b8bd41d1b70a82",
+    "verification-03.json": "693794a71eda1a2640a8de45c60d892fd35c8686ac4050d8e709672642071f2e",
+    "verification-04.json": "f46348534d9e5546f54df99e899ae8ffe913f4fe7352a09354af0e1cffc7dc5d",
+    "verification-05.json": "56435de1c10b40fa5a90b286f8967efff6bc3617f768dadbe5709f763cbcc423",
+    "verification-06.json": "a05f89598d155e2d900d52ec5f1855801bd2585991e34fbb3769bad7a5e2b667",
+    "verification-07.json": "bfb98c67d02f81bb632e110e22343d89f913f17dfafccbe46bbb1ba59e4a54ca",
+    "verification-08.json": "aa2f55e0753eabadbe9b29e1eb97d1ac9a2d82452f3fc76fef388824b8ffe35f",
+    "verification-09.json": "d807008dcc8019a3ff1c25694953e5ba82dc283367e7dd1aba5618c3ac4bcf11",
+    "verification-10.json": "f651c4144e9a38d379287c76dbda12f5c8dbf59e6a6bb523f504478f4cd4a0ca",
+    "verification-11.json": "89caaa4f88f5d65969b47346607b5768f8f887d774c37c0b428d2503d16461f7",
+    "verification-12.json": "e87618be5470de0757432c24b2e07d26f81a1ec2da5c578483f541f8de03c5ac",
+    "verification-13.json": "28643b6054fb52526537f3444d132cdb54d2c31800265e634b08bd047b279be3",
+    "verification-14.json": "0bb26d8a64c2b5374aa8c42fe48f59b1749949705ee211fd8687b4775aa57b72",
+    "verification-15.json": "7fca3c4736a11eae5c05651c23f241645f329b435eff40b898e26f2bd0d03419"
+  },
+  "noBusinessWrites": true
+}

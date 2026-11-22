@@ -1,0 +1,75 @@
+{
+  "baselineAppAsarSha256": "a1e181e352d7c633eb8a21761847552792e0f5c162f74af03b4c2011aa02d8d9",
+  "captures": {
+    "ui-stage-06": {
+      "files": {
+        "ui-stage-06/screenshots/stage-06-answer.png": "1e62ddc29a8cc0ee2e9372a3e296b41ded803a73f91cbb4321bcb753fbcb01be",
+        "ui-stage-06/screenshots/stage-06-method-rules.png": "10eeb6b6f1055f80479d90530da638153cb179117d867cd7fce06b49c3673b36",
+        "ui-stage-06/screenshots/stage-06-method-scope.png": "a150ef59b09f358c8e22c44b755e38f537c53d71f2aef3ea79e909f2b5460e6b",
+        "ui-stage-06/screenshots/stage-06-sources.png": "9aee8cf383af209d58e4d79a13552b17d0ccca12a64d800c2433d6f6fc439231",
+        "ui-stage-06/screenshots.json": "27ff42731063270e3d58d82105bc1152a8211ccd1a8a02d9189a19b41e887926",
+        "ui-stage-06/visible-turn.json": "b6f1e13851f3d4a6d6e332f3df32414ac8ee5290b3ba7752ca4e2f492eee8ea4"
+      },
+      "screenshotCount": 4
+    },
+    "ui-stage-12": {
+      "files": {
+        "ui-stage-12/mail-body-path-check.json": "1b26563027cbf606ae1ca39e48557f3e0285a2dc130f01ec8c45388df5577ea1",
+        "ui-stage-12/screenshots/stage-12-answer.png": "62013066c6f69268cccd1f0a35e62b4b42bb5ac3eae07f327eead82c0991756c",
+        "ui-stage-12/screenshots/stage-12-detail.png": "2e3149d0c62f26f1c93c8859586da696bcb4eef3cc8be6677707b46373c168e2",
+        "ui-stage-12/screenshots/stage-12-earlier-source-card.png": "9a0f86613aa623c04c02b44151f727fccecbf1734ef3c34586f05396f98408a4",
+        "ui-stage-12/screenshots/stage-12-original-mail.png": "62fb01b23fd6a9db6afdd30b34daf0005d00199b3f3ad20741d0d19774660125",
+        "ui-stage-12/screenshots/stage-12-sources.png": "503d3e8c60dc84273369b1b197a7c73aeb6ec1cf12e73bd93fe21975316285a7",
+        "ui-stage-12/screenshots.json": "1ed8bca8b84c6dc117034a1885c9a2ad94909b27932a28fb8d5f0c98abdd3014",
+        "ui-stage-12/visible-turn.json": "c93628cb7a5d1870c0610914c398f3f2441be24e645a41d3299accc97d572c2d"
+      },
+      "screenshotCount": 5
+    },
+    "ui-stage-13": {
+      "files": {
+        "ui-stage-13/screenshots/stage-13-answer.png": "2527c8d7c7c2d4a1cd4646ce1bc4ac8e1a524c0af453d134169cff2e2b40068e",
+        "ui-stage-13/screenshots/stage-13-draft.png": "deea70c6126307c779d8736be03a2f060a7619400ec6093bd8eeb9609b0d0bb8",
+        "ui-stage-13/screenshots/stage-13-source-open.png": "e1877606221959114b81213dfa36a6b0c15c2a146f33a1a0a0c9fb32dc43e0cb",
+        "ui-stage-13/screenshots/stage-13-sources.png": "dc1485e79f12a54d32350a344165cf6825248c7eb09778bf560a59cab8207bb5",
+        "ui-stage-13/screenshots/stage-13-tools.png": "f499222a0ba610a72937760d631b791c539ccaf51d70debdf31bab67c45f20e7",
+        "ui-stage-13/screenshots.json": "e1a90c481c9e8651eedfe75753e7929b1f3643525d7cdceb4e64647c21399954",
+        "ui-stage-13/visible-turn.json": "52e5b0aea788f19ac73e2dbd01707d1034188db56f69b0a5799de33fd7ac5f7d"
+      },
+      "screenshotCount": 5
+    },
+    "ui-stage-14": {
+      "files": {
+        "ui-stage-14/screenshots/stage-14-answer.png": "aa4932c702d98d9a580e93013220871b22f165f1ee517be13407543cb1a5447d",
+        "ui-stage-14/screenshots/stage-14-draft.png": "a18f8c3a604bd6716864df2dd967250959b33a20b6b62e8d6f9504bb85daa86a",
+        "ui-stage-14/screenshots/stage-14-sources.png": "d93a4a009957961731f982987d810af3a8bbf69b12fec9f10a2dcee7b265d70a",
+        "ui-stage-14/screenshots.json": "3b766df2f193ddb83f3138ed9e927d5a5bbd8b93284ea066d964a2f5286b8371",
+        "ui-stage-14/visible-turn.json": "a86c10ccf133e742df4ea6a439dfa1215ae9759bc59e0fa62cc980c92d468a82"
+      },
+      "screenshotCount": 3
+    },
+    "ui-stage-15": {
+      "files": {
+        "ui-stage-15/screenshots/stage-15-answer.png": "e4dd5c902e9231cb26f37dd8953992840e83a91e344346e2a705365af4f64dcf",
+        "ui-stage-15/screenshots/stage-15-sources.png": "a8ac2e24a309e0f536699b319048b8a73b0bf904fae8bfbd961d74c511f18221",
+        "ui-stage-15/screenshots/stage-15-tools.png": "8053efbbd0e48f27b0e380c7189208d96a434579651cddb5fadab3fefd4f33d5",
+        "ui-stage-15/screenshots.json": "25e833f417b1d6fdc13c34ab1eecfadb495b1296d9a958e48872f0a4d4bace60",
+        "ui-stage-15/visible-turn.json": "ba2621ef3b149e3c9c96acaa089a7e62ba188bf0ca327d8f79e90c6498a68196"
+      },
+      "screenshotCount": 3
+    },
+    "ui-stage-15-detail": {
+      "files": {
+        "ui-stage-15-detail/screenshots/stage-15-answer.png": "e4dd5c902e9231cb26f37dd8953992840e83a91e344346e2a705365af4f64dcf",
+        "ui-stage-15-detail/screenshots/stage-15-section-1.png": "559a54c274edcac5f1b9c5fee8508cee37d753496715f345c911b9a664d550ea",
+        "ui-stage-15-detail/screenshots/stage-15-section-2.png": "892f2b77b46587308ff8038ecf17d3b981aaa098827d6ce1dae318b3ef4a3c0e",
+        "ui-stage-15-detail/screenshots/stage-15-sources.png": "a8ac2e24a309e0f536699b319048b8a73b0bf904fae8bfbd961d74c511f18221",
+        "ui-stage-15-detail/screenshots.json": "9ff2d15aa5a83a3ed1a1f5afdf8f4f8b6ddd8a1ae79103ce329aca49d91d0e94",
+        "ui-stage-15-detail/visible-turn.json": "ba2621ef3b149e3c9c96acaa089a7e62ba188bf0ca327d8f79e90c6498a68196"
+      },
+      "screenshotCount": 4
+    }
+  },
+  "noModelRequests": true,
+  "noApprovalOrSend": true,
+  "totalImages": 24
+}

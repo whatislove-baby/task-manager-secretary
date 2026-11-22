@@ -1,0 +1,255 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "natural_child_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_frozen_during_parent_and_child",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "separate_persistent_child",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_request_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_current_child_reply_draft",
+      "passed": true,
+      "detail": [
+        "01ee88b0-0993-57b8-9144-dc3e2b33ce21"
+      ]
+    },
+    {
+      "name": "one_actual_imported_attachment:报名统计.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "stored_byte_hash:27b2bf48-8c64-5a4a-ac96-cb2a9da320e5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MIME_download_matches_original:报名统计.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_actual_imported_attachment:简报说明.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "stored_byte_hash:41a6936b-4edd-5608-8ede-d6e81ec1fae1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MIME_download_matches_original:简报说明.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "draft_unsent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recipient_is_original_mentor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "correct_reply_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exactly_one_word_and_one_pdf",
+      "passed": true,
+      "detail": [
+        "505efadb-1228-52a6-999e-c1206b27c25f",
+        "528d3020-25c1-5b69-bf50-6ffecf70d261"
+      ]
+    },
+    {
+      "name": "discarded_report_variants_not_active",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "stored_byte_hash:505efadb-1228-52a6-999e-c1206b27c25f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "attachment_snapshot_hash:505efadb-1228-52a6-999e-c1206b27c25f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current_attachment_lifecycle:505efadb-1228-52a6-999e-c1206b27c25f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_structural_render_check:505efadb-1228-52a6-999e-c1206b27c25f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_page:505efadb-1228-52a6-999e-c1206b27c25f",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "real_data_table",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "table_values:展厅讲解入门",
+      "passed": true,
+      "detail": [
+        "展厅讲解入门 40 31 9"
+      ]
+    },
+    {
+      "name": "table_values:文物故事写作",
+      "passed": true,
+      "detail": [
+        "文物故事写作 30 24 6"
+      ]
+    },
+    {
+      "name": "table_values:亲子导览演练",
+      "passed": true,
+      "detail": [
+        "亲子导览演练 28 18 10"
+      ]
+    },
+    {
+      "name": "stored_byte_hash:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "attachment_snapshot_hash:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current_attachment_lifecycle:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_structural_render_check:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_page:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "original_word_native_conversion",
+      "passed": true,
+      "detail": {
+        "sourceFileId": "505efadb-1228-52a6-999e-c1206b27c25f",
+        "sourceSha256": "18a9c9551a5862a904f0347e5c1c1825d8a4d65cbbe00a4b0b8fbf1ca68fe1cf",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      }
+    },
+    {
+      "name": "stored_byte_hash:528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "converted_pdf_bytes_equal_original_render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "independent_word_pdf_render_pixels_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "correct_totals_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "person_visits_not_unique_people",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "registration_cutoff_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_timestamp_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "department_signature_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "business_data_read_only",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "renders": {
+    "505efadb-1228-52a6-999e-c1206b27c25f": {
+      "name": "教育志愿者培训报名进度.docx",
+      "pages": 1,
+      "pixelHashes": [
+        "6240148b46aa4caa54bdc3e99904a629acc12ff29fc8352c7f025534795cb3c3"
+      ],
+      "text": "教育志愿者培训报名进度\n本简报汇总三场教育志愿者培训的报名情况：合计名额 98 个，已报名 73 人次，剩余名额 25 个。\n场次 名额 已报名 剩余名额\n展厅讲解入门 40 31 9\n文物故事写作 30 24 6\n亲子导览演练 28 18 10\n统计截至 2026 年 11 月 22 日上午 9 点；报名截止 2026 年 11 月 25 日 18:00（香港时间）。报\n名数为报名人次，不能当作去重人数。\n教育活动组",
+      "directory": "[local-project]/handover/secretary-home/concurrency-run/independent-child-audit/505efadb-1228-52a6-999e-c1206b27c25f"
+    },
+    "528d3020-25c1-5b69-bf50-6ffecf70d261": {
+      "name": "教育志愿者培训报名进度.pdf",
+      "pages": 1,
+      "pixelHashes": [
+        "6240148b46aa4caa54bdc3e99904a629acc12ff29fc8352c7f025534795cb3c3"
+      ],
+      "text": "教育志愿者培训报名进度\n本简报汇总三场教育志愿者培训的报名情况：合计名额 98 个，已报名 73 人次，剩余名额 25 个。\n场次 名额 已报名 剩余名额\n展厅讲解入门 40 31 9\n文物故事写作 30 24 6\n亲子导览演练 28 18 10\n统计截至 2026 年 11 月 22 日上午 9 点；报名截止 2026 年 11 月 25 日 18:00（香港时间）。报\n名数为报名人次，不能当作去重人数。\n教育活动组",
+      "directory": "[local-project]/handover/secretary-home/concurrency-run/independent-child-audit/528d3020-25c1-5b69-bf50-6ffecf70d261"
+    }
+  },
+  "conversationId": "636cd339-2151-514a-a7cd-68ae72a6e2e9",
+  "parentConversationId": "a893bf38-9215-5796-aa5a-81be4e830816",
+  "runId": "036ca159-6c7b-4eea-b301-4400896fab07",
+  "wordId": "505efadb-1228-52a6-999e-c1206b27c25f",
+  "pdfId": "528d3020-25c1-5b69-bf50-6ffecf70d261",
+  "draftId": "01ee88b0-0993-57b8-9144-dc3e2b33ce21",
+  "scope": "Read-only actual bytes, source arithmetic, persistent draft and independent rendering. Human still checks wording/layout; no model or repair."
+}

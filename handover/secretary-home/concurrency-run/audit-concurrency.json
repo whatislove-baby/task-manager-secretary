@@ -1,0 +1,162 @@
+{
+  "auditVersion": 1,
+  "auditedAt": "2026-11-22T05:34:13.437645+00:00",
+  "method": "只读核对已完成的生产 worker 日志、真实模型工具调用与阶段05 SQLite 快照；无新 API、无重跑、无原记录或产品修改。",
+  "verdicts": {
+    "schedulingConcurrency": "pass",
+    "promptClaimWithoutWaitingForChild": "pass",
+    "parentFinishedBeforeChildStarted": "pass",
+    "fastAndCurrentVerbalProgress": "fail",
+    "originalStrictHomeFinishedBeforeChild": false,
+    "draftAndVisualChecksActuallyPersisted": "pass",
+    "smtpNotAttempted": "pass"
+  },
+  "runIds": {
+    "parent": "b7dde8af-9194-4a61-8360-75f1e67657e4",
+    "child": "036ca159-6c7b-4eea-b301-4400896fab07",
+    "secretary": "e629e903-c88d-406e-82e5-d9a879d4b1e6"
+  },
+  "timingSeconds": {
+    "pollResolution": 0.15,
+    "parentCompletedToChildObservedRunning": 0.216613,
+    "secretarySubmitToObservedRunning": 0.160521,
+    "childObservedRunningToCompleted": 63.650196,
+    "secretarySubmitToCompleted": 85.246822,
+    "secretaryCompletedAfterChild": 21.598537
+  },
+  "threads": {
+    "child": [
+      "agent-background"
+    ],
+    "secretary": [
+      "agent-secretary"
+    ]
+  },
+  "secretaryToolEventsUtc": [
+    {
+      "tool": "get_child_tasks",
+      "status": "running",
+      "createdAt": "2026-11-22T05:24:13.441Z"
+    },
+    {
+      "tool": "get_child_tasks",
+      "status": "completed",
+      "createdAt": "2026-11-22T05:24:13.442Z"
+    },
+    {
+      "tool": "list_drafts",
+      "status": "running",
+      "createdAt": "2026-11-22T05:24:13.442Z"
+    },
+    {
+      "tool": "list_drafts",
+      "status": "completed",
+      "createdAt": "2026-11-22T05:24:13.443Z"
+    },
+    {
+      "tool": "search_files",
+      "status": "running",
+      "createdAt": "2026-11-22T05:24:52.925Z"
+    },
+    {
+      "tool": "search_files",
+      "status": "completed",
+      "createdAt": "2026-11-22T05:24:52.926Z"
+    }
+  ],
+  "actualChildCompletedAtUtc": "2026-11-22T05:24:53.587Z",
+  "actualSecretaryCompletedAtUtc": "2026-11-22T05:25:15.178Z",
+  "snapshots": {
+    "initialChildToolResult": "running，当时真实；之后未再次查询",
+    "initialDraftToolResult": "items=[]，当时尚未创建；之后未再次查询",
+    "lastSearchFilesAtUtc": "2026-11-22T05:24:52.926Z",
+    "searchFilesStoredVisualReviewed": [
+      {
+        "fileId": "528d3020-25c1-5b69-bf50-6ffecf70d261",
+        "visualReviewed": false
+      },
+      {
+        "fileId": "505efadb-1228-52a6-999e-c1206b27c25f",
+        "visualReviewed": false
+      }
+    ]
+  },
+  "actualDraftAtSecretaryCompletion": {
+    "id": "01ee88b0-0993-57b8-9144-dc3e2b33ce21",
+    "createdAtUtc": "2026-11-22T05:24:43.720Z",
+    "status": "draft",
+    "lifecycleStatus": "active",
+    "attachmentIds": [
+      "505efadb-1228-52a6-999e-c1206b27c25f",
+      "528d3020-25c1-5b69-bf50-6ffecf70d261"
+    ],
+    "source": "snapshots/05/agent-tools.sqlite:agent_tool_results"
+  },
+  "actualVisualCoverage": [
+    {
+      "fileId": "505efadb-1228-52a6-999e-c1206b27c25f",
+      "sha256": "18a9c9551a5862a904f0347e5c1c1825d8a4d65cbbe00a4b0b8fbf1ca68fe1cf",
+      "pageCount": 1,
+      "reviewedPages": [
+        1
+      ],
+      "complete": true,
+      "allPassed": true,
+      "evidence": [
+        {
+          "evidenceId": "vision:79eeb327984df966c81d33ac9885be53a25cb8bc8ac4a746fd932a223ae27c6f",
+          "reviewedAt": "2026-11-22T05:24:20.972Z",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "fileId": "528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "sha256": "b00b489bedddcf891f53659401082f3c8c7d4ad0e649968810335fc01fa5c02f",
+      "pageCount": 1,
+      "reviewedPages": [
+        1
+      ],
+      "complete": true,
+      "allPassed": true,
+      "evidence": [
+        {
+          "evidenceId": "vision:b409abf31a8e5d81ea85e3e2bcada34c77e7768fd3843ed38b46d341022a6702",
+          "reviewedAt": "2026-11-22T05:24:39.312Z",
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "causalAssessment": [
+    "生产两条执行线程实际重叠；本次失败不能归因于秘书排在子任务之后才运行。",
+    "秘书最终答复沿用首次状态快照，未再次查询子任务或草稿，因此在子任务完成后仍陈述 running / 无草稿。",
+    "搜索文件返回的 validation.visualReviewed=false 是结构检查缓存；当前文件哈希的真实视觉检查另存工具 journal。本次回复把缓存当成视觉检查缺失。",
+    "延迟包含真实模型等待与推理；现有记录不足以进一步分离提供方排队、网络传输和模型计算耗时。"
+  ],
+  "scopeNotes": [
+    "仅一次补测；复用第03阶段业务快照，两个原始输入连续自然执行，未人为暂停 child。",
+    "真实 OpenRouter 模型与生产 run_queues；IMAP 为合成协议 fixture，未接真实邮箱，SMTP 次数为0。",
+    "turn-05.mailDrafts 仅收集本轮 artifacts 中的邮件草稿，空数组不表示数据库没有子任务草稿。",
+    "完整页面观察与通过只对应这些不可变文件哈希；不能因此推断所有业务措辞正确。",
+    "原 concurrency-verification.json 的严格失败保持原样；之后的 UI 实时卡属于单独修补，不追改本次语言验收。",
+    "源码哈希在这三轮记录与 live-completed 一致；结论不扩张到之后 UI 修改。"
+  ],
+  "evidenceSha256": {
+    "worker-timeline.jsonl": "5b314ae54259219a95f565d8643963b316a45f12a3332f52f55e06e46aaf3b54",
+    "concurrency-verification.json": "7a63f3aea67f87e4a7f88dcf180b0e282069b78bac7add59e156b15b274ec082",
+    "driver-at-start.py": "dd5f3b553a4785fa614fd255c90347a743ffcead28afb290da35da1db7b89a4e",
+    "driver-at-start.json": "30a6524e5c36fb9ef6c37d6ac54610fc204950f91b89e0c8dd39a2d03fa3e430",
+    "turn-04.json": "6729fc8115f3d583c2325ce39d1f0da95d06694757c178d697f36f44f98eedee",
+    "turn-04-child.json": "75788ad0a65b6a5a6637d33c6b701fddaca6690525ae1a292d90259257cddb3d",
+    "turn-05.json": "91b62bbe01fb7786e0e3c8342c90d4ee3a4c3fb65f2e68107676d8406191ff18",
+    "tools-04-child.jsonl": "5bc2eb45d07067511e1b0755cc04a3e877c5ab5c2a23a55145b2f3b1c3289a37",
+    "tools-05.jsonl": "5b530ef240ba481112d35413aba002487da0e9b0bc024a62eff2ba70a4568e7b",
+    "transport-04.json": "eb0b553f9884057e9d2f801b7adca64a01e8d113005fe610ce7ccaf6a5cf11bc",
+    "transport-04-child.json": "eb0b553f9884057e9d2f801b7adca64a01e8d113005fe610ce7ccaf6a5cf11bc",
+    "transport-05.json": "eb0b553f9884057e9d2f801b7adca64a01e8d113005fe610ce7ccaf6a5cf11bc",
+    "live-completed.json": "3b3d083d7a3343db587b5ca2dfe17b2e1971070255a3d79961f1431ac3e1c65c",
+    "snapshots/05/agent-tools.sqlite": "323064c6b0a3ce0913ea05430694a1a23d137255f0aad53b6ed1315228cc26b7",
+    "independent-child-audit/verification.json": "e28d78d3753f5e63c051e46354a4edabee96b4c9c162f9ea3864f3b3cd2568b4"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "target": "../TEST-LOG.html",
+  "checkedAt": "2026-11-22T01:35:01.961Z",
+  "sourceSha256": "fe8ea40bfac153cf7ccdf830e6834d285c187ab61d6e890ec791dfada4bfdc25",
+  "renderer": {
+    "node": "24.22.1",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.9",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.2",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "150",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "0.0.0",
+    "simdjson": "4.6.11",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026e",
+    "undici": "7.30.1",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "15.6.75.19-electron.0",
+    "zlib": "1.3.2.1-motley",
+    "zstd": "1.6.0",
+    "electron": "45.1.0",
+    "chrome": "156.0.8078.49"
+  },
+  "screenshots": [
+    {
+      "name": "timeline-desktop.png",
+      "sha256": "7e6ace85e7b7d6efb084ebd5e3fec22cd8328ecf5a7517bda2311a18e8691990"
+    }
+  ],
+  "blockedRequests": [],
+  "checks": {
+    "document": {
+      "title": "15轮真实任务过程记录",
+      "stages": [
+        {
+          "id": "stage-1",
+          "status": "passed"
+        },
+        {
+          "id": "stage-2",
+          "status": "passed"
+        },
+        {
+          "id": "stage-3",
+          "status": "passed"
+        },
+        {
+          "id": "stage-4",
+          "status": "passed"
+        },
+        {
+          "id": "stage-5",
+          "status": "partial"
+        },
+        {
+          "id": "stage-6",
+          "status": "partial"
+        },
+        {
+          "id": "stage-7",
+          "status": "partial"
+        },
+        {
+          "id": "stage-8",
+          "status": "passed"
+        },
+        {
+          "id": "stage-9",
+          "status": "passed"
+        },
+        {
+          "id": "stage-10",
+          "status": "passed"
+        },
+        {
+          "id": "stage-11",
+          "status": "partial"
+        },
+        {
+          "id": "stage-12",
+          "status": "partial"
+        },
+        {
+          "id": "stage-13",
+          "status": "partial"
+        },
+        {
+          "id": "stage-14",
+          "status": "passed"
+        },
+        {
+          "id": "stage-15",
+          "status": "passed"
+        }
+      ],
+      "postfix": true,
+      "images": [
+        {
+          "src": "ui-stage-06/screenshots/stage-06-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-06/screenshots/stage-06-method-rules.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-06/screenshots/stage-06-method-scope.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-06/screenshots/stage-06-sources.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-12/screenshots/stage-12-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-12/screenshots/stage-12-detail.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-12/screenshots/stage-12-earlier-source-card.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-12/screenshots/stage-12-original-mail.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-12/screenshots/stage-12-sources.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-13/screenshots/stage-13-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-13/screenshots/stage-13-draft.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-13/screenshots/stage-13-source-open.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-13/screenshots/stage-13-sources.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-13/screenshots/stage-13-tools.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-14/screenshots/stage-14-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-14/screenshots/stage-14-draft.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-14/screenshots/stage-14-sources.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-15/screenshots/stage-15-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-15/screenshots/stage-15-sources.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-15/screenshots/stage-15-tools.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-15-detail/screenshots/stage-15-section-1.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "ui-stage-15-detail/screenshots/stage-15-section-2.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "fixes/ui-stage-16/screenshots/stage-16-answer.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "fixes/ui-stage-16/screenshots/stage-16-inline-source-open.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "fixes/ui-stage-16/screenshots/stage-16-original-mail.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "fixes/ui-stage-16/screenshots/stage-16-sources.png",
+          "width": 1320,
+          "height": 900
+        }
+      ],
+      "anchors": true
+    },
+    "desktopClosed": {
+      "width": 1440,
+      "height": 978,
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "overflow": []
+    },
+    "filter_issues": [
+      5,
+      6,
+      7,
+      11,
+      12,
+      13
+    ],
+    "filter_fresh": [
+      13,
+      14,
+      15
+    ],
+    "filter_pending": [],
+    "filter_all": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "search": true,
+    "expandCollapse": true,
+    "desktopExpanded": {
+      "width": 1440,
+      "height": 978,
+      "scrollWidth": 1440,
+      "bodyWidth": 1440,
+      "overflow": []
+    },
+    "narrowExpanded": {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 457,
+      "bodyWidth": 457,
+      "overflow": [
+        {
+          "tag": "DIV",
+          "class": "",
+          "text": "预期行为在新对话和三个月后参考时间下查回邮件、原安排与最终改期、页数摘要和分工；明确未发送草稿与未完成任务不能证明外部从未提交。",
+          "right": 457.34375
+        },
+        {
+          "tag": "H3",
+          "class": "",
+          "text": "预期行为",
+          "right": 441.34375
+        },
+        {
+          "tag": "P",
+          "class": "",
+          "text": "在新对话和三个月后参考时间下查回邮件、原安排与最终改期、页数摘要和分工；明确未发送草稿与未完成任务不能证明外部从未提交。",
+          "right": 441.34375
+        },
+        {
+          "tag": "DIV",
+          "class": "",
+          "text": "实际观察通过search_mail/read_mail/list_tasks/list_drafts/read_draft查询持久记录，找回全部原/新日期、8页",
+          "right": 457.34375
+        },
+        {
+          "tag": "H3",
+          "class": "",
+          "text": "实际观察",
+          "right": 441.34375
+        },
+        {
+          "tag": "P",
+          "class": "",
+          "text": "通过search_mail/read_mail/list_tasks/list_drafts/read_draft查询持久记录，找回全部原/新日期、8页与180",
+          "right": 441.34375
+        }
+      ]
+    }
+  },
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: narrowExpanded: horizontal overflow\n    at dimensions ([local-project]/handover/long-task-public/visual-audit/verify-timeline.cjs:24:10)\n    at async [local-project]/handover/long-task-public/visual-audit/verify-timeline.cjs:63:5"
+}

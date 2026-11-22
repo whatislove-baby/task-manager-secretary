@@ -1,0 +1,10 @@
+请把本轮附带的三份合成课程资料处理成可供审核的回复材料。请实际使用工具完成，不要只写操作建议。
+
+1. course-chart-scan.pdf 是扫描图表，请实际查看第1页图片，读出 January、February、March 的数值并计算 January 到 March 的增加量。不能仅根据文字提取或文件名推测。
+2. course-hours.csv：按 record_id 去重，保留 status 为 active 的记录，将空的 hours 填为 0，保留 record_id 的前导零。保存 course-hours-cleaned.csv；再按 team 汇总 hours 总和，保存 course-hours-summary.csv。数值计算请用表格工具执行。
+3. course-progress.docx：先检查文档结构，把完整段落“Analysis is pending.”替换为“Analysis is complete. Total eligible hours are 30.”；把表格中 Data review 这一行的 Status 从 Pending 改为 Reviewed。保留其余文字、图片、页眉页脚及表格，保存新版本 course-progress-reviewed.docx，不覆盖原件。如果实际 CSV 计算结果不是 30，请停止并说明不一致。
+4. 生成简短的 course-analysis.pdf，包含图表读数、增长量、CSV 清洗说明及各组汇总表，并说明它们都是合成测试数据。
+5. 检查全部四个输出文件；实际查看新 PDF 与 Word 的页面，确认内容可读、没有明显重叠或截断。检查失败先修正，无法确认的地方请明确说明。
+6. 起草一封收件人为 training@example.invalid、主题为“合成课程资料处理结果”的邮件，简要说明修改与检查结果，把四个输出都加入草稿附件。发件账号留空供我以后选择，不创建待办，不预览发送，不发送邮件。
+
+完成后给我文件和草稿链接，并明确哪些检查已经实际执行。

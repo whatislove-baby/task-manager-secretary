@@ -1,0 +1,32 @@
+{
+  "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+  "turnId": "e4b80f8c-d5cb-46f2-a7cf-41caa9bf9c6f:assistant",
+  "contentSha256": "598d2d601bafda31a92f7df32d0767425fe26bcfb1fe617a0c10e4ab14b4bcb3",
+  "sources": [
+    {
+      "kind": "mail",
+      "id": "0dea545137fab523aec751875a187749f17d43420976c3d341591ba1529e0074",
+      "title": "COMP5051：请把最新目录和分工发我",
+      "excerpt": "许同学，\r\n\r\n请把你们目前的目录和分工简短发我，数据还没有核完就如实说明。上一轮说的图书馆与教学楼两个停车点可以继续保留。\r\n\r\n周言\r\n"
+    },
+    {
+      "kind": "mail",
+      "id": "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+      "title": "Re: COMP5051最终稿页数",
+      "excerpt": "许同学，\r\n\r\n页数和中文摘要长度仍按第一次发的Project通知来。不要为了赶提交把尚未验证的问卷结果写成已经确认的结论；如果有疑问，在发我前再核一下。\r\n\r\n周言\r\n"
+    },
+    {
+      "kind": "mail",
+      "id": "780675946baa936e848fb236df46b78c09855d843cc2eb3731d658f62fd67bbd",
+      "title": "COMP5051：展示改到周六",
+      "excerpt": "你们组的展示调整到12月5日15:10（香港时间），地点仍在教学楼B203。原定12月2日的安排取消。陈述和问答时长沿用最初邮件，不变。\r\n\r\n周言\r\n"
+    },
+    {
+      "kind": "mail",
+      "id": "3b150ad55c70043e78315c376e5a6143c9e4e80331e01c841d2fb9e592b2a3d9",
+      "title": "COMP5051 Project 2：选题与提交安排",
+      "excerpt": "各位同学好，\r\n\r\nProject 2 请选一个校园中的具体问题做小组调研。正文最多8页，参考文献不计入页数；附一段不超过180字的中文摘要。报告暂定11月30日23:59（香港时间）交Canvas，展示暂定12月2日，每组6分钟陈述、2分钟问答。每组交一份即可。正式要求以课程邮件为准。\r\n\r\n周言\r\n"
+    }
+  ],
+  "artifacts": []
+}

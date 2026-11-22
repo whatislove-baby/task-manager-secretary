@@ -1,0 +1,23 @@
+{
+  "title": "基线之后的第16轮定向修复复测",
+  "status": "navigation_pass_semantics_partial",
+  "seconds": 84.35,
+  "purpose": "只验证历史邮件来源恢复与收件箱读取正文；不回填或改判15轮基线。",
+  "environment": "从15轮后的完整profile克隆，继续之前停在第12轮的主会话，逐字重问第12轮问题；此时本地已有14封邮件、模拟参考日为11/30，因此不是除代码外完全相同的A/B环境。模型还自然读取了最新目录邮件。",
+  "observed": "84.35秒自然完成。独立检查发现本轮只读最新目录邮件，首封通知、展示改期、页数确认三封旧邮件没有重读，但三个64位ID的原始来源对象均恢复到run.sources，且逐字段匹配本会话此前授权来源。全部原15轮请求、回答、状态文件哈希保持不变。",
+  "issues": [
+    "页数推理仍未修好：答复保留“正文可能实际是7页或9页”，在总9页含1页参考文献前提下正文不可能是9页；“你既然有目录”也是未经用户确认的推断。",
+    "这次修复只关闭具体取数/导航代码缺口，不证明模型不会加条件、不再遗忘审核状态或自动修正草稿中的不确定性。"
+  ],
+  "evidence": [
+    "fixes/followup/request-16.json",
+    "fixes/followup/turn-16.json",
+    "fixes/followup/independent-followup-audit.json",
+    "fixes/followup/provenance.json",
+    "fixes/ui-stage-16/screenshots.json"
+  ],
+  "uiStatus": "修后实际应用验证通过：从第16轮回答中的原通知按钮，以及从收件箱列表点击同一封邮件，均打开完整152字正文。审计者另行目视了两张真实截图；原24个基线截图文件和其元数据哈希仍保持不变。",
+  "uiFolders": [
+    "fixes/ui-stage-16"
+  ]
+}

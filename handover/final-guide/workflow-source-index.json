@@ -1,0 +1,167 @@
+{
+  "canvas": {
+    "width": 4520,
+    "height": 4050
+  },
+  "sources": [
+    {
+      "role": "聊天入口、轮询run和结果卡",
+      "path": "src/renderer/AgentApp.tsx"
+    },
+    {
+      "role": "手动收取新邮件界面",
+      "path": "src/renderer/AgentPages.tsx"
+    },
+    {
+      "role": "IPC白名单",
+      "path": "src/main/python-channels.ts"
+    },
+    {
+      "role": "Electron至Python JSON line RPC",
+      "path": "src/main/python-backend.ts"
+    },
+    {
+      "role": "业务RPC分派",
+      "path": "backend/task_backend/service.py"
+    },
+    {
+      "role": "运行图、澄清、子助手与检查点",
+      "path": "backend/task_backend/agent_runtime.py"
+    },
+    {
+      "role": "秘书专用与后台执行线程",
+      "path": "backend/task_backend/agent_worker.py"
+    },
+    {
+      "role": "ChatOpenRouter流式兼容层",
+      "path": "backend/task_backend/agent_openrouter.py"
+    },
+    {
+      "role": "LangChain业务工具注册表",
+      "path": "backend/task_backend/agent_tools.py"
+    },
+    {
+      "role": "原文读取证据",
+      "path": "backend/task_backend/agent_evidence.py"
+    },
+    {
+      "role": "补入当前本地状态",
+      "path": "backend/task_backend/agent_fresh_context.py"
+    },
+    {
+      "role": "正式交付前核对",
+      "path": "backend/task_backend/agent_delivery.py"
+    },
+    {
+      "role": "官方Backend与只读挂载",
+      "path": "backend/task_backend/deepagents_backend.py"
+    },
+    {
+      "role": "文档业务工具",
+      "path": "backend/task_backend/document_agent.py"
+    },
+    {
+      "role": "Word/图表排版",
+      "path": "backend/task_backend/document_formats.py"
+    },
+    {
+      "role": "LibreOffice/PDFium渲染",
+      "path": "backend/task_backend/document_render.py"
+    },
+    {
+      "role": "文件检查记录",
+      "path": "backend/task_backend/document_review.py"
+    },
+    {
+      "role": "子任务收尾机制",
+      "path": "backend/task_backend/document_completion.py"
+    },
+    {
+      "role": "文件版本与实际内容",
+      "path": "backend/task_backend/mail_files.py"
+    },
+    {
+      "role": "技能包导入契约",
+      "path": "backend/task_backend/skill_import.py"
+    },
+    {
+      "role": "技能版本与审批",
+      "path": "backend/task_backend/skill_library.py"
+    },
+    {
+      "role": "Docker隔离执行",
+      "path": "backend/task_backend/skill_execution.py"
+    },
+    {
+      "role": "经验记录",
+      "path": "backend/task_backend/learning.py"
+    },
+    {
+      "role": "待办变更审批",
+      "path": "backend/task_backend/task_changes.py"
+    },
+    {
+      "role": "待办草稿状态",
+      "path": "backend/task_backend/task_draft_state.py"
+    },
+    {
+      "role": "邮件草稿和SMTP批准",
+      "path": "backend/task_backend/mail_compose.py"
+    },
+    {
+      "role": "手动收信job",
+      "path": "backend/task_backend/operations.py"
+    },
+    {
+      "role": "自动整理和分类状态",
+      "path": "backend/task_backend/mail_automation.py"
+    },
+    {
+      "role": "LaunchAgent后台宿主",
+      "path": "src/main/mail-automation-host.ts"
+    },
+    {
+      "role": "后台worker入口",
+      "path": "backend/task_backend/automation_worker.py"
+    },
+    {
+      "role": "IMAP/Graph只读收信适配",
+      "path": "backend/task_backend/mail_readers.py"
+    },
+    {
+      "role": "本地邮件与分析状态",
+      "path": "backend/task_backend/mail_store.py"
+    },
+    {
+      "role": "固定秘书与父子会话结构",
+      "path": "src/shared/agent.ts"
+    },
+    {
+      "role": "秘书收信、分类与版本汇报",
+      "path": "backend/task_backend/secretary.py"
+    },
+    {
+      "role": "秘书对话工具与任务路由",
+      "path": "backend/task_backend/secretary_tools.py"
+    },
+    {
+      "role": "折叠分类摘要卡",
+      "path": "src/renderer/SecretaryBriefing.tsx"
+    },
+    {
+      "role": "整理结果侧页",
+      "path": "src/renderer/MailAutomationPanel.tsx"
+    },
+    {
+      "role": "本地日历与Canvas订阅",
+      "path": "backend/task_backend/canvas.py"
+    }
+  ],
+  "framework": [
+    "Deep Agents",
+    "LangChain",
+    "LangGraph",
+    "ChatOpenRouter"
+  ],
+  "status": "current source including fixed secretary, real inbox refresh tools, versioned briefing and user-visible child conversations; color does not imply test pass"
+}

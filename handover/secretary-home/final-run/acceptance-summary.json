@@ -1,0 +1,50 @@
+{
+  "overall": "partial",
+  "allOriginalAssertionsPassed": false,
+  "mainBusinessWorkflow": {
+    "passed": true,
+    "checks": 72,
+    "scope": "Only named business and state checks; excludes original concurrency timing check transparently"
+  },
+  "originalE2E": {
+    "passed": false,
+    "passedChecks": 72,
+    "totalChecks": 73,
+    "unchangedSourceEpochs": 1
+  },
+  "supplementaryConcurrency": {
+    "passed": false,
+    "productionThreadsActuallyOverlap": true,
+    "homeFinishesBeforeChild": false,
+    "staleFinalAnswer": true,
+    "homeSeconds": 85.25,
+    "childSeconds": 63.65,
+    "homeFinishedAfterChildSeconds": 21.6,
+    "independentAudit": "../concurrency-run/audit-concurrency.json",
+    "scope": "Scheduler overlap passed; fast/current verbal status failed. UI current-state display is a separately verified follow-up, not a rerun or changed model result."
+  },
+  "documentAudits": {
+    "finalMain": true,
+    "concurrencyChild": true,
+    "checksEach": 41
+  },
+  "smtpReceipts": 0,
+  "userInputs": {
+    "main": 9,
+    "supplement": 2
+  },
+  "childExecutions": {
+    "main": 1,
+    "supplement": 1
+  },
+  "semanticReview": "semantic-review.json",
+  "limitationsRetained": true,
+  "uiCurrentStateFollowup": {
+    "scope": "frontend display only",
+    "observedCurrentStatus": "completed",
+    "originalAnswerPreserved": true,
+    "newModelCalls": 0,
+    "evidence": "ui-status-review.json",
+    "repairsVerbalLatencyOrStaleness": false
+  }
+}

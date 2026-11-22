@@ -1,0 +1,288 @@
+{
+  "boundary": "synthetic IMAP protocol; real product ImapReader and persistence",
+  "source": [
+    {
+      "uid": 101,
+      "key": "course-project",
+      "subject": "COMP6280 小组项目提交安排",
+      "sha256": "10fd178cf1a743e9a93ba9283c9267375748673c7fd0721c268fbc19346749c5"
+    },
+    {
+      "uid": 102,
+      "key": "club-weekly",
+      "subject": "读书会本周书单与上次活动照片",
+      "sha256": "554cceebbccccac9961fd830be5a7a2254a571b687931b9af091a776b1821267"
+    },
+    {
+      "uid": 103,
+      "key": "photo-workshop",
+      "subject": "周末摄影工作坊开放报名｜新朋友可免费参加",
+      "sha256": "a9b3568dc22b4d4dec8a0cbb062236b316eb01682a260d0e2f938465b5ae79c8"
+    },
+    {
+      "uid": 104,
+      "key": "shopping-ad",
+      "subject": "仅限今天！收纳用品会员专属优惠",
+      "sha256": "f18d3e136d7d6d731c4aa472cb73465132de0c042aa3aac10fe7c5dd2df4f873"
+    },
+    {
+      "uid": 105,
+      "key": "intern-brief",
+      "subject": "帮忙整理教育志愿者培训的报名简报",
+      "sha256": "360400f6995bde39f45b87abc94eb33563e89c6db653d1958c252a7f1c663a3d"
+    }
+  ],
+  "logins": 7,
+  "events": [
+    {
+      "operation": "login",
+      "number": 1,
+      "failed": false
+    },
+    {
+      "operation": "login",
+      "number": 2,
+      "failed": false
+    },
+    {
+      "operation": "search",
+      "criteria": [
+        "SINCE",
+        "2026-11-15",
+        "BEFORE",
+        "2026-11-24"
+      ],
+      "uids": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ]
+    },
+    {
+      "operation": "login",
+      "number": 3,
+      "failed": false
+    },
+    {
+      "operation": "login",
+      "number": 4,
+      "failed": false
+    },
+    {
+      "operation": "login",
+      "number": 5,
+      "failed": false
+    },
+    {
+      "operation": "login",
+      "number": 6,
+      "failed": false
+    },
+    {
+      "operation": "login",
+      "number": 7,
+      "failed": false
+    }
+  ],
+  "fetches": [
+    {
+      "uids": [
+        105,
+        104,
+        103,
+        102,
+        101
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE"
+      ]
+    },
+    {
+      "uids": [
+        105
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE",
+        "BODYSTRUCTURE"
+      ]
+    },
+    {
+      "uids": [
+        105
+      ],
+      "fields": [
+        "BODY.PEEK[]<0.262144>"
+      ]
+    },
+    {
+      "uids": [
+        105
+      ],
+      "fields": [
+        "BODY.PEEK[]<2594.262144>"
+      ]
+    },
+    {
+      "uids": [
+        105
+      ],
+      "fields": [
+        "UID"
+      ]
+    },
+    {
+      "uids": [
+        104
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE",
+        "BODYSTRUCTURE"
+      ]
+    },
+    {
+      "uids": [
+        104
+      ],
+      "fields": [
+        "BODY.PEEK[]<0.262144>"
+      ]
+    },
+    {
+      "uids": [
+        104
+      ],
+      "fields": [
+        "BODY.PEEK[]<806.262144>"
+      ]
+    },
+    {
+      "uids": [
+        104
+      ],
+      "fields": [
+        "UID"
+      ]
+    },
+    {
+      "uids": [
+        103
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE",
+        "BODYSTRUCTURE"
+      ]
+    },
+    {
+      "uids": [
+        103
+      ],
+      "fields": [
+        "BODY.PEEK[]<0.262144>"
+      ]
+    },
+    {
+      "uids": [
+        103
+      ],
+      "fields": [
+        "BODY.PEEK[]<984.262144>"
+      ]
+    },
+    {
+      "uids": [
+        103
+      ],
+      "fields": [
+        "UID"
+      ]
+    },
+    {
+      "uids": [
+        102
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE",
+        "BODYSTRUCTURE"
+      ]
+    },
+    {
+      "uids": [
+        102
+      ],
+      "fields": [
+        "BODY.PEEK[]<0.262144>"
+      ]
+    },
+    {
+      "uids": [
+        102
+      ],
+      "fields": [
+        "BODY.PEEK[]<731.262144>"
+      ]
+    },
+    {
+      "uids": [
+        102
+      ],
+      "fields": [
+        "UID"
+      ]
+    },
+    {
+      "uids": [
+        101
+      ],
+      "fields": [
+        "ENVELOPE",
+        "INTERNALDATE",
+        "FLAGS",
+        "RFC822.SIZE",
+        "BODYSTRUCTURE"
+      ]
+    },
+    {
+      "uids": [
+        101
+      ],
+      "fields": [
+        "BODY.PEEK[]<0.262144>"
+      ]
+    },
+    {
+      "uids": [
+        101
+      ],
+      "fields": [
+        "BODY.PEEK[]<964.262144>"
+      ]
+    },
+    {
+      "uids": [
+        101
+      ],
+      "fields": [
+        "UID"
+      ]
+    }
+  ],
+  "realMailboxConnections": 0,
+  "smtpAttempts": 0
+}

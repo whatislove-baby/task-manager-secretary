@@ -1,0 +1,502 @@
+{
+  "actor": "test user review through actual learning:approve RPC",
+  "reviewed": {
+    "kind": "learning_draft",
+    "id": "a1a7f1eb-50b5-5ec9-8835-a1705dc4fac2",
+    "title": "回复周老师（COMP5051）的邮件写法",
+    "scopeId": "customer-789e6c5a84585012bca355c6036b19ea",
+    "scope": {
+      "contextKey": "",
+      "emails": [
+        "zhou.yan@comp5051.example.invalid"
+      ],
+      "kind": "customer",
+      "label": "周老师（COMP5051 课程）"
+    },
+    "version": 3,
+    "versionHash": "bba43819f36eff4b6cb24acc42f04a6bb7b5df44deeab208a7bd92a7a1b603b2",
+    "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+    "status": "draft",
+    "createdAt": "2026-11-22T01:09:43.529Z",
+    "reviewedAt": null,
+    "proposal": {
+      "instruction": "适用范围：仅用于给周老师 zhou.yan@comp5051.example.invalid（COMP5051 课程）写回复邮件时；其他老师、其他课程、同学（如佳宁）一律不套用。若用户当轮明确要求别的格式，以用户当轮要求为准。写法：1) 中文，尽量简短，正文控制在几句话内。2) 第一句先给结论或当前状态，不要先铺垫背景。3) 结论之后用编号列出 2 至 3 条需要周老师确认的问题。4) 进度口径：未完成、未安排、未确认的事项只能写“待确认”“尚未安排”“还需核实”，不得写成已完成、已安排、已提交、已发送。5) 不替用户承诺交付时间，也不替组员承诺行动；没有邮件或文件依据的进度不写。",
+      "kind": "note",
+      "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "reviewBase": {
+        "activeId": null,
+        "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "scope": {
+        "contextKey": "",
+        "emails": [
+          "zhou.yan@comp5051.example.invalid"
+        ],
+        "kind": "customer",
+        "label": "周老师（COMP5051 课程）"
+      },
+      "sources": [
+        {
+          "contentHash": "9304bc0f4d33954c32310fd51dbf4f12a618a09c8074709661eecba9b0f30877",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "79ece9dcfb5fb78ecf244d7674a6f25fc29334e7f539c502aaf53369f2a249ec",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        },
+        {
+          "contentHash": "9555140a2a5bf903ec65a4bac29302aadf2887c7e85428e198e1cac2558a24ae",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "7f68d81a2bc4d78d5b58b2037252141087a7997f84f060102ae574a728af5089",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        },
+        {
+          "contentHash": "fdee975019b90b0af0a014b4d12f7ed1c3a175f2b7c8f27d16854923a8e7494a",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "8b08eba35940d5550c741a4fcbd1b2e7c89d72e8f3ece64609654f00bf23f495",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        }
+      ],
+      "teaching": {
+        "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+        "omittedUserTurns": 2,
+        "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+        "source": "conversation",
+        "sourceHash": "aa4f4be3b6c05882aa735a4d71bfcae28a5094f76c59f47c45ca29d4f1c6d798",
+        "turns": [
+          {
+            "content": "先交提纲这件事怕我忘了，帮我记到待确认。",
+            "createdAt": "2026-11-22T01:07:35.858Z",
+            "id": "77f89e67-57bb-4ac6-9a17-0532ba173abf:user",
+            "runId": "77f89e67-57bb-4ac6-9a17-0532ba173abf",
+            "textSha256": "e3bd172c8b0c8f4b6d036d0cb7e865dcf055d9d36837207fde2730ae20fe56bb"
+          },
+          {
+            "content": "他又把提纲改期了，原来那条改一下就行，不要多出来一份。",
+            "createdAt": "2026-11-22T01:07:46.779Z",
+            "id": "5909acdc-587b-47d4-9f7b-e0cb5754efea:user",
+            "runId": "5909acdc-587b-47d4-9f7b-e0cb5754efea",
+            "textSha256": "603ef8d2f00a91590bc32c9c42b1cca68ff8860adc4625d05295ba64dcf04c5e"
+          },
+          {
+            "content": "那现在是不是还不用赶完整PPT？还有我和佳宁分别要做什么来着？",
+            "createdAt": "2026-11-22T01:07:55.966Z",
+            "id": "1df996d9-9b65-4f83-a4a1-1559d81c870b:user",
+            "runId": "1df996d9-9b65-4f83-a4a1-1559d81c870b",
+            "textSha256": "04490583799464a3456b207588fc0b476a5d02bb1c8e66c81605afde5c8819b4"
+          },
+          {
+            "content": "以后给这位COMP5051周老师的回复，帮我记住：中文简短，先说结论，再列两三条需要他确认的问题；没做完的不能替我承诺已经完成。只对这个邮箱的周老师用，别套到别的老师。把这个偏好保存下来让我检查。",
+            "createdAt": "2026-11-22T01:08:05.613Z",
+            "id": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+            "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+            "textSha256": "da2a701a31ec372a54efb5111e98df521066a0a6d8b502afef95623d84bd6b74"
+          }
+        ]
+      },
+      "title": "回复周老师（COMP5051）的邮件写法"
+    },
+    "preview": null
+  },
+  "approved": {
+    "kind": "learning",
+    "id": "a1a7f1eb-50b5-5ec9-8835-a1705dc4fac2",
+    "title": "回复周老师（COMP5051）的邮件写法",
+    "scopeId": "customer-789e6c5a84585012bca355c6036b19ea",
+    "scope": {
+      "contextKey": "",
+      "emails": [
+        "zhou.yan@comp5051.example.invalid"
+      ],
+      "kind": "customer",
+      "label": "周老师（COMP5051 课程）"
+    },
+    "version": 3,
+    "versionHash": "bba43819f36eff4b6cb24acc42f04a6bb7b5df44deeab208a7bd92a7a1b603b2",
+    "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+    "status": "approved",
+    "createdAt": "2026-11-22T01:09:43.529Z",
+    "reviewedAt": "2026-11-22T01:11:17.483Z",
+    "proposal": {
+      "instruction": "适用范围：仅用于给周老师 zhou.yan@comp5051.example.invalid（COMP5051 课程）写回复邮件时；其他老师、其他课程、同学（如佳宁）一律不套用。若用户当轮明确要求别的格式，以用户当轮要求为准。写法：1) 中文，尽量简短，正文控制在几句话内。2) 第一句先给结论或当前状态，不要先铺垫背景。3) 结论之后用编号列出 2 至 3 条需要周老师确认的问题。4) 进度口径：未完成、未安排、未确认的事项只能写“待确认”“尚未安排”“还需核实”，不得写成已完成、已安排、已提交、已发送。5) 不替用户承诺交付时间，也不替组员承诺行动；没有邮件或文件依据的进度不写。",
+      "kind": "note",
+      "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "reviewBase": {
+        "activeId": null,
+        "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "scope": {
+        "contextKey": "",
+        "emails": [
+          "zhou.yan@comp5051.example.invalid"
+        ],
+        "kind": "customer",
+        "label": "周老师（COMP5051 课程）"
+      },
+      "sources": [
+        {
+          "contentHash": "9304bc0f4d33954c32310fd51dbf4f12a618a09c8074709661eecba9b0f30877",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "79ece9dcfb5fb78ecf244d7674a6f25fc29334e7f539c502aaf53369f2a249ec",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        },
+        {
+          "contentHash": "9555140a2a5bf903ec65a4bac29302aadf2887c7e85428e198e1cac2558a24ae",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "7f68d81a2bc4d78d5b58b2037252141087a7997f84f060102ae574a728af5089",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        },
+        {
+          "contentHash": "fdee975019b90b0af0a014b4d12f7ed1c3a175f2b7c8f27d16854923a8e7494a",
+          "fromAddress": "zhou.yan@comp5051.example.invalid",
+          "id": "8b08eba35940d5550c741a4fcbd1b2e7c89d72e8f3ece64609654f00bf23f495",
+          "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+          "kind": "mail"
+        }
+      ],
+      "teaching": {
+        "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+        "omittedUserTurns": 2,
+        "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+        "source": "conversation",
+        "sourceHash": "aa4f4be3b6c05882aa735a4d71bfcae28a5094f76c59f47c45ca29d4f1c6d798",
+        "turns": [
+          {
+            "content": "先交提纲这件事怕我忘了，帮我记到待确认。",
+            "createdAt": "2026-11-22T01:07:35.858Z",
+            "id": "77f89e67-57bb-4ac6-9a17-0532ba173abf:user",
+            "runId": "77f89e67-57bb-4ac6-9a17-0532ba173abf",
+            "textSha256": "e3bd172c8b0c8f4b6d036d0cb7e865dcf055d9d36837207fde2730ae20fe56bb"
+          },
+          {
+            "content": "他又把提纲改期了，原来那条改一下就行，不要多出来一份。",
+            "createdAt": "2026-11-22T01:07:46.779Z",
+            "id": "5909acdc-587b-47d4-9f7b-e0cb5754efea:user",
+            "runId": "5909acdc-587b-47d4-9f7b-e0cb5754efea",
+            "textSha256": "603ef8d2f00a91590bc32c9c42b1cca68ff8860adc4625d05295ba64dcf04c5e"
+          },
+          {
+            "content": "那现在是不是还不用赶完整PPT？还有我和佳宁分别要做什么来着？",
+            "createdAt": "2026-11-22T01:07:55.966Z",
+            "id": "1df996d9-9b65-4f83-a4a1-1559d81c870b:user",
+            "runId": "1df996d9-9b65-4f83-a4a1-1559d81c870b",
+            "textSha256": "04490583799464a3456b207588fc0b476a5d02bb1c8e66c81605afde5c8819b4"
+          },
+          {
+            "content": "以后给这位COMP5051周老师的回复，帮我记住：中文简短，先说结论，再列两三条需要他确认的问题；没做完的不能替我承诺已经完成。只对这个邮箱的周老师用，别套到别的老师。把这个偏好保存下来让我检查。",
+            "createdAt": "2026-11-22T01:08:05.613Z",
+            "id": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+            "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+            "textSha256": "da2a701a31ec372a54efb5111e98df521066a0a6d8b502afef95623d84bd6b74"
+          }
+        ]
+      },
+      "title": "回复周老师（COMP5051）的邮件写法"
+    },
+    "preview": null
+  },
+  "beforeSnapshot": "[local-project]/handover/long-task-public/snapshots/06-before-memory-review",
+  "afterVersions": [
+    {
+      "kind": "learning",
+      "id": "a1a7f1eb-50b5-5ec9-8835-a1705dc4fac2",
+      "title": "回复周老师（COMP5051）的邮件写法",
+      "scopeId": "customer-789e6c5a84585012bca355c6036b19ea",
+      "scope": {
+        "contextKey": "",
+        "emails": [
+          "zhou.yan@comp5051.example.invalid"
+        ],
+        "kind": "customer",
+        "label": "周老师（COMP5051 课程）"
+      },
+      "version": 3,
+      "versionHash": "bba43819f36eff4b6cb24acc42f04a6bb7b5df44deeab208a7bd92a7a1b603b2",
+      "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "status": "approved",
+      "createdAt": "2026-11-22T01:09:43.529Z",
+      "reviewedAt": "2026-11-22T01:11:17.483Z",
+      "proposal": {
+        "instruction": "适用范围：仅用于给周老师 zhou.yan@comp5051.example.invalid（COMP5051 课程）写回复邮件时；其他老师、其他课程、同学（如佳宁）一律不套用。若用户当轮明确要求别的格式，以用户当轮要求为准。写法：1) 中文，尽量简短，正文控制在几句话内。2) 第一句先给结论或当前状态，不要先铺垫背景。3) 结论之后用编号列出 2 至 3 条需要周老师确认的问题。4) 进度口径：未完成、未安排、未确认的事项只能写“待确认”“尚未安排”“还需核实”，不得写成已完成、已安排、已提交、已发送。5) 不替用户承诺交付时间，也不替组员承诺行动；没有邮件或文件依据的进度不写。",
+        "kind": "note",
+        "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+        "reviewBase": {
+          "activeId": null,
+          "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scope": {
+          "contextKey": "",
+          "emails": [
+            "zhou.yan@comp5051.example.invalid"
+          ],
+          "kind": "customer",
+          "label": "周老师（COMP5051 课程）"
+        },
+        "sources": [
+          {
+            "contentHash": "9304bc0f4d33954c32310fd51dbf4f12a618a09c8074709661eecba9b0f30877",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "79ece9dcfb5fb78ecf244d7674a6f25fc29334e7f539c502aaf53369f2a249ec",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "9555140a2a5bf903ec65a4bac29302aadf2887c7e85428e198e1cac2558a24ae",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "7f68d81a2bc4d78d5b58b2037252141087a7997f84f060102ae574a728af5089",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "fdee975019b90b0af0a014b4d12f7ed1c3a175f2b7c8f27d16854923a8e7494a",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "8b08eba35940d5550c741a4fcbd1b2e7c89d72e8f3ece64609654f00bf23f495",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          }
+        ],
+        "teaching": {
+          "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+          "omittedUserTurns": 2,
+          "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+          "source": "conversation",
+          "sourceHash": "aa4f4be3b6c05882aa735a4d71bfcae28a5094f76c59f47c45ca29d4f1c6d798",
+          "turns": [
+            {
+              "content": "先交提纲这件事怕我忘了，帮我记到待确认。",
+              "createdAt": "2026-11-22T01:07:35.858Z",
+              "id": "77f89e67-57bb-4ac6-9a17-0532ba173abf:user",
+              "runId": "77f89e67-57bb-4ac6-9a17-0532ba173abf",
+              "textSha256": "e3bd172c8b0c8f4b6d036d0cb7e865dcf055d9d36837207fde2730ae20fe56bb"
+            },
+            {
+              "content": "他又把提纲改期了，原来那条改一下就行，不要多出来一份。",
+              "createdAt": "2026-11-22T01:07:46.779Z",
+              "id": "5909acdc-587b-47d4-9f7b-e0cb5754efea:user",
+              "runId": "5909acdc-587b-47d4-9f7b-e0cb5754efea",
+              "textSha256": "603ef8d2f00a91590bc32c9c42b1cca68ff8860adc4625d05295ba64dcf04c5e"
+            },
+            {
+              "content": "那现在是不是还不用赶完整PPT？还有我和佳宁分别要做什么来着？",
+              "createdAt": "2026-11-22T01:07:55.966Z",
+              "id": "1df996d9-9b65-4f83-a4a1-1559d81c870b:user",
+              "runId": "1df996d9-9b65-4f83-a4a1-1559d81c870b",
+              "textSha256": "04490583799464a3456b207588fc0b476a5d02bb1c8e66c81605afde5c8819b4"
+            },
+            {
+              "content": "以后给这位COMP5051周老师的回复，帮我记住：中文简短，先说结论，再列两三条需要他确认的问题；没做完的不能替我承诺已经完成。只对这个邮箱的周老师用，别套到别的老师。把这个偏好保存下来让我检查。",
+              "createdAt": "2026-11-22T01:08:05.613Z",
+              "id": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+              "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+              "textSha256": "da2a701a31ec372a54efb5111e98df521066a0a6d8b502afef95623d84bd6b74"
+            }
+          ]
+        },
+        "title": "回复周老师（COMP5051）的邮件写法"
+      },
+      "preview": null
+    },
+    {
+      "kind": "learning_draft",
+      "id": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "title": "回复周老师（COMP5051）的邮件写法",
+      "scopeId": "customer-789e6c5a84585012bca355c6036b19ea",
+      "scope": {
+        "contextKey": "",
+        "emails": [
+          "zhou.yan@comp5051.example.invalid"
+        ],
+        "kind": "customer",
+        "label": "周老师（COMP5051 课程）"
+      },
+      "version": 2,
+      "versionHash": "59958933b8f8164622b6227ac652ce20bb3db56816e21d65b3204966a11a5b81",
+      "parentId": "5078a216-71fd-5177-8616-d9801d1ef13f",
+      "status": "superseded",
+      "createdAt": "2026-11-22T01:09:17.139Z",
+      "reviewedAt": null,
+      "proposal": {
+        "instruction": "## 触发场景与适用范围＃＃ 触发场景与适用范围【重要】",
+        "kind": "note",
+        "parentId": "5078a216-71fd-5177-8616-d9801d1ef13f",
+        "reviewBase": {
+          "activeId": null,
+          "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scope": {
+          "contextKey": "",
+          "emails": [
+            "zhou.yan@comp5051.example.invalid"
+          ],
+          "kind": "customer",
+          "label": "周老师（COMP5051 课程）"
+        },
+        "sources": [
+          {
+            "contentHash": "9304bc0f4d33954c32310fd51dbf4f12a618a09c8074709661eecba9b0f30877",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "79ece9dcfb5fb78ecf244d7674a6f25fc29334e7f539c502aaf53369f2a249ec",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "9555140a2a5bf903ec65a4bac29302aadf2887c7e85428e198e1cac2558a24ae",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "7f68d81a2bc4d78d5b58b2037252141087a7997f84f060102ae574a728af5089",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "fdee975019b90b0af0a014b4d12f7ed1c3a175f2b7c8f27d16854923a8e7494a",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "8b08eba35940d5550c741a4fcbd1b2e7c89d72e8f3ece64609654f00bf23f495",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          }
+        ],
+        "teaching": {
+          "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+          "omittedUserTurns": 2,
+          "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+          "source": "conversation",
+          "sourceHash": "aa4f4be3b6c05882aa735a4d71bfcae28a5094f76c59f47c45ca29d4f1c6d798",
+          "turns": [
+            {
+              "content": "先交提纲这件事怕我忘了，帮我记到待确认。",
+              "createdAt": "2026-11-22T01:07:35.858Z",
+              "id": "77f89e67-57bb-4ac6-9a17-0532ba173abf:user",
+              "runId": "77f89e67-57bb-4ac6-9a17-0532ba173abf",
+              "textSha256": "e3bd172c8b0c8f4b6d036d0cb7e865dcf055d9d36837207fde2730ae20fe56bb"
+            },
+            {
+              "content": "他又把提纲改期了，原来那条改一下就行，不要多出来一份。",
+              "createdAt": "2026-11-22T01:07:46.779Z",
+              "id": "5909acdc-587b-47d4-9f7b-e0cb5754efea:user",
+              "runId": "5909acdc-587b-47d4-9f7b-e0cb5754efea",
+              "textSha256": "603ef8d2f00a91590bc32c9c42b1cca68ff8860adc4625d05295ba64dcf04c5e"
+            },
+            {
+              "content": "那现在是不是还不用赶完整PPT？还有我和佳宁分别要做什么来着？",
+              "createdAt": "2026-11-22T01:07:55.966Z",
+              "id": "1df996d9-9b65-4f83-a4a1-1559d81c870b:user",
+              "runId": "1df996d9-9b65-4f83-a4a1-1559d81c870b",
+              "textSha256": "04490583799464a3456b207588fc0b476a5d02bb1c8e66c81605afde5c8819b4"
+            },
+            {
+              "content": "以后给这位COMP5051周老师的回复，帮我记住：中文简短，先说结论，再列两三条需要他确认的问题；没做完的不能替我承诺已经完成。只对这个邮箱的周老师用，别套到别的老师。把这个偏好保存下来让我检查。",
+              "createdAt": "2026-11-22T01:08:05.613Z",
+              "id": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+              "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+              "textSha256": "da2a701a31ec372a54efb5111e98df521066a0a6d8b502afef95623d84bd6b74"
+            }
+          ]
+        },
+        "title": "回复周老师（COMP5051）的邮件写法"
+      },
+      "preview": null
+    },
+    {
+      "kind": "learning_draft",
+      "id": "5078a216-71fd-5177-8616-d9801d1ef13f",
+      "title": "回复周老师（COMP5051）的邮件写法",
+      "scopeId": "customer-789e6c5a84585012bca355c6036b19ea",
+      "scope": {
+        "contextKey": "",
+        "emails": [
+          "zhou.yan@comp5051.example.invalid"
+        ],
+        "kind": "customer",
+        "label": "周老师（COMP5051 课程）"
+      },
+      "version": 1,
+      "versionHash": "0c91e073f31bdcf5756e7d1e24e868dce3d743419cb101eaa5276bf9ebcc6aca",
+      "parentId": null,
+      "status": "superseded",
+      "createdAt": "2026-11-22T01:09:07.934Z",
+      "reviewedAt": null,
+      "proposal": {
+        "instruction": "## 触发场景与适用范围【重要】",
+        "kind": "note",
+        "reviewBase": {
+          "activeId": null,
+          "stateHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "scope": {
+          "contextKey": "",
+          "emails": [
+            "zhou.yan@comp5051.example.invalid"
+          ],
+          "kind": "customer",
+          "label": "周老师（COMP5051 课程）"
+        },
+        "sources": [
+          {
+            "contentHash": "9304bc0f4d33954c32310fd51dbf4f12a618a09c8074709661eecba9b0f30877",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "79ece9dcfb5fb78ecf244d7674a6f25fc29334e7f539c502aaf53369f2a249ec",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "9555140a2a5bf903ec65a4bac29302aadf2887c7e85428e198e1cac2558a24ae",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "7f68d81a2bc4d78d5b58b2037252141087a7997f84f060102ae574a728af5089",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          },
+          {
+            "contentHash": "fdee975019b90b0af0a014b4d12f7ed1c3a175f2b7c8f27d16854923a8e7494a",
+            "fromAddress": "zhou.yan@comp5051.example.invalid",
+            "id": "8b08eba35940d5550c741a4fcbd1b2e7c89d72e8f3ece64609654f00bf23f495",
+            "identityNotice": "From 是邮件声明地址，不代表身份认证通过",
+            "kind": "mail"
+          }
+        ],
+        "teaching": {
+          "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+          "omittedUserTurns": 2,
+          "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+          "source": "conversation",
+          "sourceHash": "aa4f4be3b6c05882aa735a4d71bfcae28a5094f76c59f47c45ca29d4f1c6d798",
+          "turns": [
+            {
+              "content": "先交提纲这件事怕我忘了，帮我记到待确认。",
+              "createdAt": "2026-11-22T01:07:35.858Z",
+              "id": "77f89e67-57bb-4ac6-9a17-0532ba173abf:user",
+              "runId": "77f89e67-57bb-4ac6-9a17-0532ba173abf",
+              "textSha256": "e3bd172c8b0c8f4b6d036d0cb7e865dcf055d9d36837207fde2730ae20fe56bb"
+            },
+            {
+              "content": "他又把提纲改期了，原来那条改一下就行，不要多出来一份。",
+              "createdAt": "2026-11-22T01:07:46.779Z",
+              "id": "5909acdc-587b-47d4-9f7b-e0cb5754efea:user",
+              "runId": "5909acdc-587b-47d4-9f7b-e0cb5754efea",
+              "textSha256": "603ef8d2f00a91590bc32c9c42b1cca68ff8860adc4625d05295ba64dcf04c5e"
+            },
+            {
+              "content": "那现在是不是还不用赶完整PPT？还有我和佳宁分别要做什么来着？",
+              "createdAt": "2026-11-22T01:07:55.966Z",
+              "id": "1df996d9-9b65-4f83-a4a1-1559d81c870b:user",
+              "runId": "1df996d9-9b65-4f83-a4a1-1559d81c870b",
+              "textSha256": "04490583799464a3456b207588fc0b476a5d02bb1c8e66c81605afde5c8819b4"
+            },
+            {
+              "content": "以后给这位COMP5051周老师的回复，帮我记住：中文简短，先说结论，再列两三条需要他确认的问题；没做完的不能替我承诺已经完成。只对这个邮箱的周老师用，别套到别的老师。把这个偏好保存下来让我检查。",
+              "createdAt": "2026-11-22T01:08:05.613Z",
+              "id": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+              "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+              "textSha256": "da2a701a31ec372a54efb5111e98df521066a0a6d8b502afef95623d84bd6b74"
+            }
+          ]
+        },
+        "title": "回复周老师（COMP5051）的邮件写法"
+      },
+      "preview": null
+    }
+  ],
+  "originalStructuralCheckPreserved": true,
+  "explanation": "Original test expected one draft artifact; model produced two incomplete drafts and then a complete third version in the same parent chain. Only actual complete version 3 was reviewed and approved. Old run and check were not changed."
+}

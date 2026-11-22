@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "public-campus-career-week-20261122",
+  "metadata": {
+    "fictional": true,
+    "allContentSynthetic": true,
+    "provenance": "Created independently for this demonstration; no real project source files, business rules, templates, or data reused."
+  },
+  "messages": [
+    {
+      "messageKey": "career_update",
+      "sentAt": "2026-11-22T10:15:00+08:00",
+      "from": {
+        "name": "周宁",
+        "address": "zhou.ning@career.example.invalid"
+      },
+      "to": [
+        {
+          "name": "阿乔",
+          "address": "a.qiao@career.example.invalid"
+        }
+      ],
+      "subject": "职业分享周的报名情况，帮我整理一下",
+      "body": "阿乔，早上好！\n\n报名表和活动安排放附件了，麻烦整理个简短进度给我，下午碰头时用。主要看各场报了多少、还有多少名额，接下来宣传上有没有要注意的地方。\n\n注意报名表按场次计，同一个同学可能报不止一场，合计别写成参加人数。先给我看一版，暂时不用通知报名同学。\n\n谢谢！\n周宁",
+      "messageId": "<career.week.update.20261122@career.example.invalid>",
+      "attachments": [
+        {
+          "name": "分享周报名.csv",
+          "fixturePath": "分享周报名.csv"
+        },
+        {
+          "name": "活动安排.md",
+          "fixturePath": "活动安排.md"
+        }
+      ]
+    }
+  ]
+}

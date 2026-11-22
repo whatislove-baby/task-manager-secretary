@@ -1,0 +1,1 @@
+{"scope":"Fixture harness development, before any secretary/model acceptance","status":"failed","error":"AttributeError: MailStore has no attribute get","cause":"Evaluator used an incorrect internal accessor after actual sync had completed","resolution":"Use the product mail-workspace:getLocal API. No product code or source mail changed."}

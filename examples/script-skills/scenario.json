@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "script-skill-learning",
+  "metadata": {
+    "fictional": true,
+    "containsRealPersonalData": false,
+    "oracleVisibility": "held-out-oracle.csv is evaluator-only; completed-a/b are independent user-provided teaching examples."
+  },
+  "messages": [
+    {
+      "messageKey": "k01",
+      "sentAt": "2026-11-21T10:00:00+08:00",
+      "from": {
+        "name": "Alex Chen",
+        "address": "orders@harbor-instruments.example.invalid"
+      },
+      "to": [
+        {
+          "name": "Elaine Wu",
+          "address": "elaine.wu@westhaven-components.example.invalid"
+        }
+      ],
+      "subject": "Inventory allocation procedure for our releases",
+      "body": "Hi Elaine,\n\nCould we use the same allocation report for our future releases? Please keep our line numbers and item codes unchanged. Let me know if you need a completed example from our previous orders.\n\nBest,\nAlex Chen\nHarbor Instruments",
+      "messageId": "<k01.skill-acceptance@example.invalid>",
+      "inReplyTo": null,
+      "references": [],
+      "attachments": []
+    },
+    {
+      "messageKey": "k02",
+      "sentAt": "2026-11-21T10:00:00+08:00",
+      "from": {
+        "name": "Alex Chen",
+        "address": "orders@harbor-instruments.example.invalid"
+      },
+      "to": [
+        {
+          "name": "Elaine Wu",
+          "address": "elaine.wu@westhaven-components.example.invalid"
+        }
+      ],
+      "subject": "PO 1004 - availability check",
+      "body": "Hi Elaine,\n\nPlease check the attached release against your latest stock and send us the allocation report. There are two lines for 0007; please allocate stock in the order shown rather than treating them as separate stock balances. We will confirm delivery after reviewing the shortage.\n\nMany thanks,\nAlex",
+      "messageId": "<k02.skill-acceptance@example.invalid>",
+      "inReplyTo": null,
+      "references": [],
+      "attachments": [
+        {
+          "name": "orders-new.csv",
+          "fixturePath": "attachments/orders-new.csv"
+        }
+      ]
+    }
+  ]
+}

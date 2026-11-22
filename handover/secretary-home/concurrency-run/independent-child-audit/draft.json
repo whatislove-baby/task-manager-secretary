@@ -1,0 +1,98 @@
+{
+  "kind": "mail_draft",
+  "id": "01ee88b0-0993-57b8-9144-dc3e2b33ce21",
+  "subject": "回复：帮忙整理教育志愿者培训的报名简报",
+  "body": "顾老师：\n\n教育志愿者培训报名进度简报已整理好，Word（可编辑）与内容相同的 PDF 都放在附件里，请您查看后再决定转发给谁。\n\n林然",
+  "to": "guyao@museum.example.invalid",
+  "bindingId": "1d798150-12ea-4bdb-bb22-35046bea59d9",
+  "replyToLocalId": "304ab3cc9cad43d2146b4561eae191d9884e8595bbe865c5d413a938a77a7d8c",
+  "attachmentIds": [
+    "505efadb-1228-52a6-999e-c1206b27c25f",
+    "528d3020-25c1-5b69-bf50-6ffecf70d261"
+  ],
+  "attachments": [
+    {
+      "id": "505efadb-1228-52a6-999e-c1206b27c25f",
+      "name": "教育志愿者培训报名进度.docx",
+      "extension": "docx",
+      "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "byteSize": 20149,
+      "source": "generated",
+      "parentIds": [
+        "27b2bf48-8c64-5a4a-ac96-cb2a9da320e5",
+        "41a6936b-4edd-5608-8ede-d6e81ec1fae1"
+      ],
+      "createdAt": "2026-11-22T05:24:12.466Z",
+      "sha256": "18a9c9551a5862a904f0347e5c1c1825d8a4d65cbbe00a4b0b8fbf1ca68fe1cf",
+      "warnings": [
+        "文本索引包含正文及表格文字；结构工具提供段落和单元格定位，图片及版式请查看页面。批注和修订语义未完整解析。"
+      ],
+      "validation": {
+        "sha256": "18a9c9551a5862a904f0347e5c1c1825d8a4d65cbbe00a4b0b8fbf1ca68fe1cf",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "Word 可重新打开",
+          "段落、表格和图片关系可读取",
+          "所有页面可渲染"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "paragraphCount": 4,
+        "tableCount": 1,
+        "imageCount": 0,
+        "pageCount": 1
+      }
+    },
+    {
+      "id": "528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "name": "教育志愿者培训报名进度.pdf",
+      "extension": "pdf",
+      "mediaType": "application/pdf",
+      "byteSize": 42572,
+      "source": "generated",
+      "parentIds": [
+        "505efadb-1228-52a6-999e-c1206b27c25f"
+      ],
+      "createdAt": "2026-11-22T05:24:17.022Z",
+      "sha256": "b00b489bedddcf891f53659401082f3c8c7d4ad0e649968810335fc01fa5c02f",
+      "warnings": [
+        "文本索引不包含图片、手写内容和复杂表格布局；请按页查看原图后判断。"
+      ],
+      "validation": {
+        "sha256": "b00b489bedddcf891f53659401082f3c8c7d4ad0e649968810335fc01fa5c02f",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "输出格式可重新解析",
+          "所有页面可渲染"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "pageCount": 1
+      },
+      "conversion": {
+        "sourceFileId": "505efadb-1228-52a6-999e-c1206b27c25f",
+        "sourceSha256": "18a9c9551a5862a904f0347e5c1c1825d8a4d65cbbe00a4b0b8fbf1ca68fe1cf",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      },
+      "familyId": "528d3020-25c1-5b69-bf50-6ffecf70d261",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    }
+  ],
+  "conversationId": "636cd339-2151-514a-a7cd-68ae72a6e2e9",
+  "createdAt": "2026-11-22T05:24:43.720Z",
+  "status": "draft",
+  "detail": "仅保存可编辑草稿；用户预览确认后才会发送。"
+}

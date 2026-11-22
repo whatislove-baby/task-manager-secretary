@@ -1,0 +1,12 @@
+{
+  "runId": "7188f121-c26f-4c81-96e3-be789e4c36b9",
+  "conversationId": "59898143-1d28-436a-a408-6154950f6e28",
+  "request": {
+    "chat": "intern-brief",
+    "mailkeys": [
+      "career_update"
+    ],
+    "prompt": "帮我把周宁这封邮件的附件整理成一页报名简报，用个小表列出各场报名和剩余名额，最后写两句接下来要注意的事。留 Word 和 PDF，检查一下排版，再把两个文件放进给周宁的回复草稿，我看过再发。"
+  },
+  "model": "deepseek/deepseek-v4.1-flash-1017"
+}

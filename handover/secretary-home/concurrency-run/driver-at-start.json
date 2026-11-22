@@ -1,0 +1,5 @@
+{
+  "source": "handover/secretary-home/concurrent_live.py",
+  "sha256": "dd5f3b553a4785fa614fd255c90347a743ffcead28afb290da35da1db7b89a4e",
+  "scope": "2 unchanged prompts, cloned stage03 business state, production two-lane worker, no manual pause before progress question"
+}

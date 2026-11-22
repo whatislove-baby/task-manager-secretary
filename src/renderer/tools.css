@@ -1,0 +1,59 @@
+.tools-backdrop{position:fixed;inset:0;z-index:100;display:flex;justify-content:flex-end;background:rgb(37 40 42 / 37%);backdrop-filter:blur(5px);padding:18px}
+.tools-panel{position:relative;width:min(760px,100%);max-height:100%;overflow:auto;background:#ECEDE8;border:1px solid rgb(64 88 108 / 20%);border-radius:22px;box-shadow:0 20px 70px rgb(37 40 42 / 22%);color:#25282A;outline:none;overscroll-behavior:contain}
+.tools-content{padding:30px;display:grid;gap:18px}
+.tools-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:5px}
+.tools-header h2{display:flex;align-items:center;gap:12px;margin:7px 0 0;font-size:25px;font-weight:600;letter-spacing:-.6px;color:#40586C}
+.tools-eyebrow{font-size:10px;letter-spacing:2.3px;color:#706074}
+.tools-panel button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:9px 15px;border:1px solid rgb(64 88 108 / 23%);border-radius:11px;background:#D3D6D2;color:#25282A;font:inherit;font-size:13px;cursor:pointer;transition:background .15s,border-color .15s}
+.tools-panel button:hover:not(:disabled){background:#C4CBCB;border-color:#40586C}
+.tools-panel button:disabled{opacity:.5;cursor:not-allowed}
+.tools-panel button.tools-primary{background:#40586C;border-color:#40586C;color:#F3F2EC}
+.tools-panel button.tools-primary:hover:not(:disabled){background:#30495E}
+.tools-panel button.tools-icon-button{width:40px;min-width:40px;padding:7px;background:transparent;border-color:transparent;border-radius:50%}
+.tools-panel button:focus-visible,.tools-panel input:focus-visible,.tools-panel textarea:focus-visible,.tools-panel select:focus-visible,.tools-panel summary:focus-visible{outline:2px solid #706074;outline-offset:3px}
+.tools-card{padding:23px;border-radius:16px;border:1px solid rgb(64 88 108 / 17%);background:rgb(255 255 255 / 27%);min-width:0}
+.tools-card h3{font-size:16px;font-weight:600;margin:0 0 13px;color:#40586C}
+.tools-card p{line-height:1.65;font-size:13px}
+.tools-muted{font-size:12px!important;color:#626A70;line-height:1.65;margin:8px 0}
+.tools-fields{padding:0;margin:0;border:0;min-width:0;display:grid;gap:15px}
+.tools-fields>button{justify-self:start}
+.tools-fields label,.tools-draft>label{display:grid;gap:7px;font-size:12px;color:#40586C;font-weight:500;min-width:0}
+.tools-panel input:not([type=checkbox]),.tools-panel textarea,.tools-panel select{width:100%;min-height:41px;box-sizing:border-box;padding:10px 12px;border:1px solid rgb(64 88 108 / 24%);border-radius:9px;background:#F2F2ED;font:inherit;font-size:14px;color:#25282A;outline:none}
+.tools-panel input:focus,.tools-panel textarea:focus,.tools-panel select:focus{border-color:#706074}
+.tools-panel textarea{resize:vertical;line-height:1.6;min-height:70px}
+.tools-panel input:disabled,.tools-panel textarea:disabled,.tools-panel select:disabled{opacity:.65}
+.tools-check{display:flex!important;align-items:flex-start;gap:10px!important;line-height:1.6;font-size:13px!important;color:#25282A!important;font-weight:400!important}
+.tools-check input{accent-color:#40586C;flex:0 0 auto;margin:3px 0 0;width:16px;height:16px}
+.tools-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tools-path{overflow-wrap:anywhere;padding:12px 14px;border-radius:8px;background:#D3D6D2;font-size:12px!important;font-family:ui-monospace,monospace}
+.tools-error{padding:13px 16px;border:1px solid #C6A39D;border-radius:12px;background:#F3D8D0;color:#713D3B;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.tools-privacy{display:flex;gap:10px;padding:14px;border-radius:12px;background:#D9DFDF;color:#40586C;font-size:12px;min-width:0}
+.tools-privacy>svg{flex:0 0 auto;margin-top:3px}
+.tools-privacy p{margin:5px 0 0;font-size:12px;overflow-wrap:anywhere}
+.tools-draft{display:grid;gap:13px;padding:18px;border:1px solid rgb(64 88 108 / 16%);border-radius:12px;opacity:.7;min-width:0}
+.tools-draft-selected{opacity:1;background:rgb(236 237 232 / 70%);border-color:#AAB7C3}
+.tools-draft-select{font-weight:600!important;color:#706074!important}
+.tools-draft-invalid{border-color:#B96F66;background:#F6E4DF;opacity:1;box-shadow:0 0 0 2px rgb(185 111 102 / 22%)}
+.tools-draft-added{border-style:dashed;background:rgb(219 227 217 / 45%)}
+.tools-added-badge{margin-left:auto;padding:1px 7px;border-radius:999px;background:#DBE3D9;color:#405D50;font-size:11px;font-weight:500}
+.tools-draft-select{display:flex;align-items:center;gap:8px}
+.tools-source{font-size:12px;color:#626A70;line-height:1.6}
+.tools-source summary,.tools-batch summary{cursor:pointer;color:#706074}
+.tools-source p{white-space:pre-wrap;overflow-wrap:anywhere;border-left:2px solid #AAB7C3;padding-left:10px}
+.tools-ai-notes{padding:12px;background:#E0D8DF;border-radius:10px;color:#615167;white-space:pre-wrap;overflow-wrap:anywhere}
+.tools-success{color:#405D50;background:#DBE3D9;border-radius:9px;padding:12px}
+.tools-empty{padding:40px 20px;text-align:center;color:#706074}
+.tools-batches{display:grid;gap:12px}
+.tools-batch{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid rgb(64 88 108 / 18%);padding:18px 0 0}
+.tools-batch>div{min-width:0}.tools-batch>button{flex-shrink:0}
+.tools-batch h4{font-size:15px;font-weight:500;margin:0;overflow-wrap:anywhere}
+.tools-batch p{margin:5px 0;color:#626A70;font-size:12px}
+.tools-batch details{font-size:12px;line-height:1.6}.tools-batch li{overflow-wrap:anywhere}
+.tools-confirm-backdrop{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;padding:24px;background:rgb(37 40 42 / 35%);backdrop-filter:blur(3px);min-height:100%;box-sizing:border-box}
+.tools-confirm{position:sticky;top:30px;align-self:flex-start;margin-top:min(20vh,150px);padding:25px;border:1px solid #AAB7C3;border-radius:16px;box-shadow:0 14px 40px rgb(37 40 42 / 20%);background:#ECEDE8;max-width:380px;outline:none}
+.tools-confirm h3{margin:0;color:#40586C;font-size:18px}.tools-confirm p{color:#626A70;line-height:1.7;font-size:14px}
+@media(max-width:650px){.tools-backdrop{padding:6px}.tools-panel{border-radius:15px}.tools-content{padding:20px 14px;gap:13px}.tools-card{padding:17px 13px}.tools-header h2{font-size:21px}.tools-batch{align-items:flex-start;gap:10px}.tools-batch>button{padding:8px;font-size:12px}.tools-draft{padding:13px}.tools-confirm-backdrop{padding:15px}}
+@media(prefers-reduced-motion:reduce){.tools-panel button{transition:none}}
+/* Confirmation stays visible even when the draft list is scrolled. */
+.tools-confirm-backdrop{position:fixed;inset:0;min-height:0}
+.tools-confirm{position:relative;top:auto;align-self:auto;margin:0}

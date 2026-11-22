@@ -1,0 +1,20 @@
+import React,{useEffect,useRef,useState} from 'react';
+import type {AgentSource,TaskChange} from '../shared/agent';
+import type {Due} from '../shared/todo';
+import type {Result} from '../shared/contracts';
+const unwrap=<T,>(value:Result<T>):T=>{if(!value.ok)throw Error(value.error);return value.data;};
+function deadline(due:Due){if(due.mode==='none')return '无截止时间';if(due.mode==='inherit')return '继承父事项';if(due.value.kind==='date')return due.value.date;return new Intl.DateTimeFormat('zh-CN',{timeZone:due.value.timeZone,dateStyle:'medium',timeStyle:'short',hour12:false}).format(new Date(due.value.at))+' · '+due.value.timeZone;}
+
+export function TaskChangeReview({id,onChanged,onSource,onBusy}:{id:string;onChanged?():void|Promise<void>;onSource?(source:AgentSource):void;onBusy?(busy:boolean):void}){
+ const [change,setChange]=useState<TaskChange|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState('');const generation=useRef(0),locked=useRef(false);
+ useEffect(()=>{const current=++generation.current;setChange(null);setError('');setNotice('');setBusy(false);locked.current=false;if(!window.taskChanges){setError('待办变更接口尚未加载，请重新打开应用。');return;}void window.taskChanges.get(id).then(result=>{if(current===generation.current){const value=unwrap(result);if(value.id!==id)throw Error('待办变更与所选内容不一致，请重新打开。');setChange(value);}}).catch(e=>{if(current===generation.current)setError(e instanceof Error?e.message:'读取变更失败');});return()=>{generation.current++;};},[id]);
+ useEffect(()=>{onBusy?.(busy);return()=>onBusy?.(false);},[busy,onBusy]);
+ async function review(action:'approve'|'reject'){if(!change||!window.taskChanges||locked.current)return;const current=generation.current;locked.current=true;setBusy(true);setError('');try{const value=unwrap(await window.taskChanges[action]({id:change.id,expectedHash:change.hash}));if(current!==generation.current)return;setChange(value);setNotice(action==='approve'?'变更已保存。':'已拒绝此建议，原待办保持不变。');await onChanged?.();}catch(e){if(current===generation.current)setError(e instanceof Error?e.message:'变更未完成');}finally{if(current===generation.current){locked.current=false;setBusy(false);}}}
+ const after=change?change.after??{...change.before,...change.patch}:null;
+ return <section className="ag-review" aria-label="待办变更审核" aria-busy={busy}>{error&&<p className="ag-error" role="alert">{error}</p>}{notice&&<p role="status">{notice}</p>}{!change&&!error&&<p role="status">正在读取变更建议…</p>}{change&&after&&<><h2>{change.title}</h2><p>{{pending:'待确认',approved:'已批准',rejected:'已拒绝',stale:'待办已变化，请重新提议'}[change.status]} · 原待办版本 {change.expectedRevision}</p><p className="ag-review-prose">{change.reason}</p>
+  <div className="ag-review-table"><table aria-label="变更前后对比"><thead><tr><th>内容</th><th>变更前</th><th>{change.status==='approved'?'保存后':'拟变更为'}</th></tr></thead><tbody><tr><th>标题</th><td>{change.before.title}</td><td>{after.title}</td></tr><tr><th>截止时间</th><td>{deadline(change.before.due)}</td><td>{change.action==='cancel'?'取消此待办':deadline(after.due)}</td></tr><tr><th>说明</th><td>{change.before.notes||'无'}</td><td>{after.notes||'无'}</td></tr><tr><th>状态</th><td>未完成</td><td>{change.action==='cancel'?'移入回收站':'保持未完成'}</td></tr></tbody></table></div>
+  <section><h3>变更依据</h3>{change.evidence.map((evidence,i)=><div key={i}><blockquote>{evidence.quote}</blockquote><button disabled={busy||!onSource} onClick={()=>onSource?.({kind:'mail',id:evidence.mailId,title:evidence.subject})}>{evidence.subject||'查看来源邮件'}</button></div>)}{!change.evidence.length&&<p>没有附加邮件原文；请根据本次对话核对。</p>}</section>
+  {change.status==='pending'&&<footer className="ag-review-actions"><p>只修改这条已有待办。若待办在预览后发生变化，本次批准会被拒绝，不覆盖新内容。</p><button className="ag-primary" disabled={busy} onClick={()=>void review('approve')}>{change.action==='cancel'?'批准取消此待办':'批准更新此待办'}</button><button disabled={busy} onClick={()=>void review('reject')}>拒绝此变更</button></footer>}
+  {change.status==='stale'&&<footer><p>原待办的内容或状态已改变，此建议不能再批准。可以关闭窗口，回到对话让助手根据最新待办重新提议。</p></footer>}
+ </>}</section>;
+}

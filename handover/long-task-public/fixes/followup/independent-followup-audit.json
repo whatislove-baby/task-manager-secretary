@@ -1,0 +1,103 @@
+{
+  "navigationEvidencePassed": true,
+  "checks": [
+    {
+      "name": "baseline_request_output_state_hashes_unchanged",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "natural_completion",
+      "passed": true,
+      "detail": 84.35
+    },
+    {
+      "name": "same_original_question",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "same_main_conversation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_new_selected_mail_or_correction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "run_and_verification_answer_match",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_unchanged_during_followup",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_task_changes_or_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_cited_mail_ids_have_actual_navigation_sources",
+      "passed": true,
+      "detail": {
+        "cited": [
+          "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+          "0dea545137fab523aec751875a187749f17d43420976c3d341591ba1529e0074",
+          "3b150ad55c70043e78315c376e5a6143c9e4e80331e01c841d2fb9e592b2a3d9",
+          "780675946baa936e848fb236df46b78c09855d843cc2eb3731d658f62fd67bbd"
+        ],
+        "surfaced": [
+          "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+          "0dea545137fab523aec751875a187749f17d43420976c3d341591ba1529e0074",
+          "3b150ad55c70043e78315c376e5a6143c9e4e80331e01c841d2fb9e592b2a3d9",
+          "780675946baa936e848fb236df46b78c09855d843cc2eb3731d658f62fd67bbd"
+        ]
+      }
+    },
+    {
+      "name": "three_historical_sources_restored_without_reread",
+      "passed": true,
+      "detail": [
+        "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+        "3b150ad55c70043e78315c376e5a6143c9e4e80331e01c841d2fb9e592b2a3d9",
+        "780675946baa936e848fb236df46b78c09855d843cc2eb3731d658f62fd67bbd"
+      ]
+    },
+    {
+      "name": "restored_sources_equal_original_authorized_sources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_extra_source_outside_read_or_prior_authorization",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "first_mail_previously_missing_now_restored",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "baselineStageCount": 15,
+  "followupStage": 16,
+  "elapsedSeconds": 84.35,
+  "runId": "e4b80f8c-d5cb-46f2-a7cf-41caa9bf9c6f",
+  "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+  "restoredHistoricalMailIds": [
+    "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+    "3b150ad55c70043e78315c376e5a6143c9e4e80331e01c841d2fb9e592b2a3d9",
+    "780675946baa936e848fb236df46b78c09855d843cc2eb3731d658f62fd67bbd"
+  ],
+  "readMailIds": [
+    "0dea545137fab523aec751875a187749f17d43420976c3d341591ba1529e0074"
+  ],
+  "semanticConclusion": "Core 8 pages / 180 Chinese characters / 6+2 minutes retrieved, but the extra 7-or-9-body-pages inference remains wrong; no semantic full-pass claim.",
+  "environmentDifference": "Clone of the profile after baseline stage 15, same main conversation previously ending at stage 12; all 14 messages now exist and reference date is Nov 30. Same question, but not an otherwise identical A/B environment; model also reads the newer directory mail.",
+  "scope": "No API calls, no changes to baseline, artifacts or business state. Actual UI click/open proof is recorded separately."
+}

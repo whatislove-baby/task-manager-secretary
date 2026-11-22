@@ -1,0 +1,5 @@
+{
+  "sha256": "44159fdf189875d698af0881ea903ac097f6f0dd659c8def257b23db58798991",
+  "file": "driver-at-start.py",
+  "note": "Exact loaded final driver source preserved before any future harness edit. Product source freeze tracked separately."
+}

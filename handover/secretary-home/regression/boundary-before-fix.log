@@ -1,0 +1,36 @@
+FFE
+======================================================================
+ERROR: test_new_child_round_does_not_present_old_answer_as_current_result (test_secretary_agent.SecretaryAgentTests.test_new_child_round_does_not_present_old_answer_as_current_result)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[local-project]/backend/tests/test_secretary_agent.py", line 184, in test_new_child_round_does_not_present_old_answer_as_current_result
+    self.assertEqual(item['currentRunId'], second['id'])
+                     ~~~~^^^^^^^^^^^^^^^^
+KeyError: 'currentRunId'
+
+======================================================================
+FAIL: test_canceled_queued_job_cannot_be_resurrected_while_worker_claims_it (test_secretary_agent.SecretaryAgentTests.test_canceled_queued_job_cannot_be_resurrected_while_worker_claims_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[local-project]/backend/tests/test_secretary_agent.py", line 156, in test_canceled_queued_job_cannot_be_resurrected_while_worker_claims_it
+    self.assertEqual(self.service.call('agent:getRun', run['id'])['status'], 'canceled')
+AssertionError: 'completed' != 'canceled'
+- completed
++ canceled
+
+
+======================================================================
+FAIL: test_same_turn_identical_delegation_with_different_call_ids_has_one_child (test_secretary_agent.SecretaryAgentTests.test_same_turn_identical_delegation_with_different_call_ids_has_one_child)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[local-project]/backend/tests/test_secretary_agent.py", line 168, in test_same_turn_identical_delegation_with_different_call_ids_has_one_child
+    self.assertEqual(first['id'], second['id'])
+AssertionError: '24418e78-c2c3-507c-b36e-98f8e350bf82' != '07c91145-a461-509d-a0df-fcc93ed57229'
+- 24418e78-c2c3-507c-b36e-98f8e350bf82
++ 07c91145-a461-509d-a0df-fcc93ed57229
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.490s
+
+FAILED (failures=2, errors=1)

@@ -1,0 +1,82 @@
+{
+  "app": "[local-project]/release-document-repair/mac-arm64/Task Manager.app",
+  "profile": "[local-test-profile]",
+  "proof": {
+    "profile": "[local-test-profile]",
+    "sourceProfile": "[local-project]/handover/long-task-public/snapshots/12-after-run",
+    "copiedDatabases": [
+      "tasks.sqlite",
+      "agent.sqlite",
+      "agent-tools.sqlite",
+      "mail.sqlite",
+      "mail-files.sqlite",
+      "task-changes.sqlite",
+      "draft-lifecycle.sqlite",
+      "learning.sqlite"
+    ],
+    "settingsCopied": false,
+    "accountsCopied": false,
+    "credentialsAccessed": false,
+    "purpose": "Actual committed model state, copied unchanged before read-only UI navigation"
+  },
+  "shots": [
+    {
+      "id": "stage-12-answer",
+      "title": "本轮实际回答",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 64.9140625,
+          "width": 736,
+          "height": 954.0703125,
+          "label": "真实回答与来源"
+        }
+      ]
+    },
+    {
+      "id": "stage-12-sources",
+      "title": "本轮来源和产物",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 555.984375,
+          "width": 736,
+          "height": 26,
+          "label": "打开原始依据"
+        }
+      ]
+    },
+    {
+      "id": "stage-12-detail",
+      "title": "保留本轮推理与限制",
+      "width": 1320,
+      "height": 900,
+      "boxes": []
+    },
+    {
+      "id": "stage-12-original-mail",
+      "title": "从收件箱独立核对首封原文",
+      "width": 1320,
+      "height": 900,
+      "boxes": []
+    },
+    {
+      "id": "stage-12-earlier-source-card",
+      "title": "从较早轮次来源卡查看完整原文",
+      "width": 1320,
+      "height": 900,
+      "boxes": []
+    }
+  ],
+  "checks": [
+    "No API key or mailbox accounts",
+    "Read-only navigation of actual stage 12; no model request, approval or send",
+    "No send or SMTP preparation"
+  ],
+  "errors": [],
+  "appAsarSha256": "a1e181e352d7c633eb8a21761847552792e0f5c162f74af03b4c2011aa02d8d9"
+}

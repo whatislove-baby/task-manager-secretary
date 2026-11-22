@@ -1,0 +1,4 @@
+
+> task-manager-python@0.1.0 typecheck
+> tsc -p tsconfig.json && tsc -p tsconfig.renderer.json
+

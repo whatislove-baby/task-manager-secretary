@@ -1,0 +1,220 @@
+{
+  "app": "[local-project]/release-secretary-home/mac-arm64/Task Manager.app",
+  "profile": "[local-test-profile]",
+  "proof": {
+    "profile": "[local-test-profile]",
+    "sourceProfile": "[local-project]/handover/final-guide/student-test/before-review-stage-01",
+    "copiedDatabases": [
+      "tasks.sqlite",
+      "agent.sqlite",
+      "agent-tools.sqlite",
+      "mail.sqlite",
+      "mail-files.sqlite",
+      "task-changes.sqlite",
+      "draft-lifecycle.sqlite"
+    ],
+    "settingsCopied": false,
+    "accountsCopied": false,
+    "credentialsAccessed": false,
+    "studentConversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+    "studentMailId": "554c5ab9f9ec5358ca93abd8784be98f9ea8c1bbb4efeddcb53befa4e85d9ffd",
+    "studentDraftId": "c7f8c5ed-829d-54bc-8a19-119f8d7a05d9",
+    "studentSubject": "Re: COMP5082 Project 小组讨论时间",
+    "studentTaskTitle": "COMP5082 Project 提纲小组讨论（421 室）",
+    "studentOrigin": "Actual model run in synthetic-mail test profile; pending before UI approval"
+  },
+  "shots": [
+    {
+      "id": "07-inbox",
+      "title": "学生示例：收到课程通知",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 296,
+          "y": 338.7890625,
+          "width": 976,
+          "height": 413.375,
+          "label": "点邮件读原文，右侧箭头带入对话"
+        },
+        {
+          "x": 296,
+          "y": 198.59375,
+          "width": 976,
+          "height": 36.5,
+          "label": "一键收取新邮件"
+        }
+      ]
+    },
+    {
+      "id": "08-course-input",
+      "title": "邮件随问题一起交给助手",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 433,
+          "y": 479,
+          "width": 702,
+          "height": 30,
+          "label": "已选课程邮件"
+        },
+        {
+          "x": 416,
+          "y": 462,
+          "width": 736,
+          "height": 166,
+          "label": "说明要记入日历的事项"
+        }
+      ]
+    },
+    {
+      "id": "09-course-chat",
+      "title": "核对来源与待办卡片",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": -265.609375,
+          "width": 736,
+          "height": 886.953125,
+          "label": "查看解释与来源链接"
+        },
+        {
+          "x": 416,
+          "y": 363.84375,
+          "width": 736,
+          "height": 66.5,
+          "label": "打开待确认卡片"
+        }
+      ]
+    },
+    {
+      "id": "10-pending",
+      "title": "待确认统一审核",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 296,
+          "y": 198.59375,
+          "width": 976,
+          "height": 357.5,
+          "label": "生成草稿不等于已经保存"
+        }
+      ]
+    },
+    {
+      "id": "11-task-review",
+      "title": "确认日期和标题后保存",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 597,
+          "y": 212.875,
+          "width": 644,
+          "height": 508.4921875,
+          "label": "检查标题、日期与来源"
+        },
+        {
+          "x": 597,
+          "y": 736.3671875,
+          "width": 644,
+          "height": 40,
+          "label": "确认后加入日历"
+        }
+      ]
+    },
+    {
+      "id": "12-calendar",
+      "title": "真正写入本地日历",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 273,
+          "y": 135,
+          "width": 1022,
+          "height": 144,
+          "label": "截止日与任务"
+        },
+        {
+          "x": 569,
+          "y": 295,
+          "width": 726,
+          "height": 580,
+          "label": "选中后核对保存的时间"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "No API key or mailbox accounts",
+    "Student task saved through actual review UI",
+    "No send or SMTP preparation"
+  ],
+  "errors": [],
+  "backendSourceSha256": {
+    "__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "__main__.py": "e73b5dc6a3af039138a773dfa6bd66e1fa8f5276c8c2b9b7e5476458d3608864",
+    "agent_business_policy.py": "594fc00bff74638f99c7e300004c7b9860b8c97c5134518e64e464a14d7a7891",
+    "agent_delivery.py": "660c6906babd0d4e255465823c75f97afe2171dba6a35639cd7bbec8b0d591e0",
+    "agent_evidence.py": "cacfd181d350fce269e9f45261acb230de19f04303d87150b1981bbd2e22b636",
+    "agent_fresh_context.py": "f730fb42a51f4a3c01050a8e983b244766f1e854cf71f0d09dbbd9a3220d9efc",
+    "agent_openrouter.py": "b3120292b4223552c8359a4d7c87db86d9ab18d3710aa8acbee01e4d8bff61ef",
+    "agent_runtime.py": "4e7a46652101dbecdd7baa04fdaecf9e14f5f0fbc993ce4c893bef58d6b3a861",
+    "agent_tools.py": "7a1ece757aad7b322c282f21f88bc80a89c46890a92e8fd5f787d362293f91c5",
+    "agent_worker.py": "e8ab45366d4e8f452176151fee84c1055c5f6f634b8cc81baa242a58d2ffaedd",
+    "archive.py": "43be498da6a0d67b372540187391a22b8eaae84ba7f735580dc46a1094013649",
+    "automation_worker.py": "36b50ce2d7e647cd475339981c1f3a3d1795ad7fd286279a874014cc13800fae",
+    "bundle_files.py": "4e86e4c0e41f0e8c3183a1a91db6384a2451672e197246723eb89976316bf3f8",
+    "business_documents.py": "4fc339c6eefd987b6a51fc4ff307506e1d3282f159104e4a2bd8a63d977abfec",
+    "canvas.py": "dc8c173ac47eee6427144f292bf7467b8586eea05492af7e22b9041e11fa4d6e",
+    "csv_documents.py": "c709eb20936b18dc12d3fd63df2db755d05e1d5c83de375a5f82e0f3ac32470c",
+    "deepagents_backend.py": "c293c34946a5c0b1a0209fdcd25152e9c46b0b28b99dd50d580a036ad55a0b6f",
+    "document_agent.py": "148c943b3d8a5be97a7d25e565594ee6731c721460a8dc826b851a6761a3ec75",
+    "document_assistant.py": "c663a13ace079cfd6fec1a75d959e4d36f9f15f0ad559ac50654761db11cedcc",
+    "document_completion.py": "96734a2349aca716cf9e7e422b9d62fe1a1f5744cf2e50a8c574e21367bdb517",
+    "document_formats.py": "cd43a651516d0f3090c7cba5892cf3252a40047c2b80b762b859d76912f6a02e",
+    "document_render.py": "e74a6adca2e0b4562e6596b590d6bb0c0695fa7ab9bd29d7ff26bbfb7e9747fc",
+    "document_review.py": "7e219a820034b2280e50cf2872ad97dcc87cccfd308bae9fdc3ef10b94ab8f5f",
+    "draft_lifecycle.py": "f456c435cbabc464334532b1127ee7cf8663ee7aca71ce61f884ce3e6567d288",
+    "file_archive.py": "9e8241d9a9cc318fbc5159510297b702ab3f3aa1ad7f1e04472f4222c05736e2",
+    "learning.py": "9d5c42b0ae6f2547e1df354156ac10db108bb2f4489691f78794505f0ab409e5",
+    "learning_schema.py": "14aa083f33dd1bf4ce7f4585c88b6290a709e5d5607409c2ceacc3a7c4ca9bf5",
+    "learning_tools.py": "a6aafedd45482d0d57684b55818ed5d32fe50814e41552b7353b023b23ea2e5b",
+    "legacy_mail.py": "a684ac5291bc66e3dcb5d171fd88e5f7f2da05aed3ae714bcaf7acf278acf60e",
+    "locks.py": "2f1f3f847586a8e91e36cae7baf46ce5da24f7a0c26cad0e7a6d5b8ab6d4c6ae",
+    "mac_keychain.py": "019052a1313f8dbff64d877d9c67ecae6cc52b0fddabbf5f50380d5a87cf5044",
+    "mail_accounts.py": "ef77217f2d15c95822a4e324c427dc5e8d021717c84f5eb45db5fa85ba6d2d75",
+    "mail_automation.py": "5e6d01b0cf0e036497031a7837b89b0998bbebf994fbb1817ed52d426e01427c",
+    "mail_compose.py": "0cafda7723d9fbdf5346cafccfe8ab37a24e5cfc7821009bb718fdf4fd9ec88a",
+    "mail_files.py": "03796e0025500433f051f56b01c52fcfb9e02ad1c3d8645c9c7a4ecc2348ca64",
+    "mail_identity.py": "1b7322cf3d5069a5890ddae395e626bfbd5939b10131068bd78753a7100b5f31",
+    "mail_readers.py": "20f93d53dfc098c0930d72d0c7d6bc67158f11e01cda4b968681576d5fd055a8",
+    "mail_store.py": "b3647411dadcc3b7ded327fd1b2201e43e8ab5754ad1c927ce41524adcc9a7d9",
+    "mail_types.py": "ee4b4382c5db9d4daec5a4d72f9abd0f65ea1d4f04ca0232b1b9eb33f0706629",
+    "mail_workspace.py": "87bb0c6aa2c7acc3656cfa648a639f78bd789e209c8835774dbf682389d45d26",
+    "operations.py": "718ebf5047a42de42992934314601131c1b2bc316cee32d1af4d208e6168ec38",
+    "repository.py": "5c8e6730f9c7d41546443c18dc212e8470c19ae5bdc821a968bc4242009fae07",
+    "secretary.py": "976088d7920e6408520d8815a2e0d6d74eabde4b04037e1155a33292c38cf223",
+    "secretary_tools.py": "4e86ed725ef251a1d6764f2f8733c39d4396c139cd65a7682a02965b4f862a11",
+    "service.py": "7b3e2e446d58dc4e2d382aecc4d6efe7112868bedd9daae2ca73afb3369fc493",
+    "settings.py": "6a9dc348de3212b46800be238e2abaf650385b2893eccb2b565746fd4238930d",
+    "skill_execution.py": "52bb0c6cdf90e6d20c3a7ee7df6011ab631549557e4ef4c75f3d59f7c2b1af7f",
+    "skill_import.py": "b7b1a1144507ac136f3dff62a7ccfb0657a01c75a4774f3757cbd8d61cd92ad8",
+    "skill_library.py": "568af849e14273a659c72ceb761e359339ffa8cd512a274c1e2da7c29d6e3aa2",
+    "skill_schema.py": "66f1821f33e46e0441f488348c6460f3f718eda83036a9b40f42d54ff755d714",
+    "skill_tools.py": "401b1f7cc74592fc37d4c915d300a81fcd6bad451e1124b5047a9cf76d94a67b",
+    "spreadsheet_files.py": "8323ba8eac7369583eeaa1d17f57a38e785f6f2803497d80df365826bf20da19",
+    "task_changes.py": "68c94997cbc347f0cd929623352f398351656b23059107e47165e3571b2dd35c",
+    "task_draft_state.py": "f2d51887d5d2672fff816f080b73841c3a140b46916d619c54a84d22f3cf7143",
+    "transport.py": "cb6f5c744ee384c4ada601a55ab632db03e2843d1149ff7a6b46cff525f3aca7",
+    "tree.py": "babf238e9e6c43d204e3330be68a50ce38019f4abe0b4b43f85fbb88352d61b8",
+    "vault.py": "3d3f54ec74ded7fb356890954615cfb0290ac2c6f354af0b81134b916f8d3b65",
+    "worker.py": "1f98299ae09e2b038989ecfef9464b4c43aeb9d83c6385e540bbc97d362957c3"
+  },
+  "appAsarSha256": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02"
+}

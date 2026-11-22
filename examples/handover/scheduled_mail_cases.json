@@ -1,0 +1,127 @@
+{
+  "purpose": "本机定时收取、分类与待办建议的交接输入和预期；不是已执行的真实 QQ/OpenRouter 验收结果。",
+  "scope": "A/B 是代表输入；C 是使用测试时钟与受控通信错误的失败及补跑场景。model_response_fixture 仅用于替换模型响应，不能作为真实模型输出记录。",
+  "credentials": "不含真实邮箱地址、授权码、API Key 或账号绑定 ID。",
+  "config_example": {
+    "enabled": true,
+    "bindingIds": ["REPLACE_WITH_CONNECTED_TEST_IMAP_BINDING"],
+    "times": ["09:00", "18:00"],
+    "timeZone": "Asia/Hong_Kong",
+    "lookbackDays": 7,
+    "maxMessagesPerRun": 20,
+    "importantSenders": ["teacher@example.invalid"],
+    "mutedSenders": ["newsletter@example.invalid"]
+  },
+  "cases": [
+    {
+      "id": "A",
+      "name": "课程任务：仅日期截止，先建议后确认",
+      "input": {
+        "sender": "Course TA <ta@example.invalid>",
+        "subject": "TM-AUTO-A 合成项目提交提醒",
+        "receivedAt": "2026-11-20T00:40:00Z",
+        "bodyStatus": "complete",
+        "body": "这是一封合成测试通知，不是真实课程安排。\n\n请完成【自动整理A】提交 project2.zip，截止日期为2026年11月23日，未指定具体时刻。ZIP中包含源代码、README、示例输入和演示幻灯片。"
+      },
+      "model_response_fixture": {
+        "classification": {
+          "category": "action",
+          "summary": "请在2026年11月23日提交包含代码、README、示例和幻灯片的项目ZIP。",
+          "reason": "邮件明确要求用户完成提交，只有日期，没有具体时刻。"
+        },
+        "extraction": {
+          "drafts": [
+            {
+              "tempId": "project_zip",
+              "parentTempId": null,
+              "title": "【自动整理A】提交 project2.zip",
+              "notes": "包含源代码、README、示例输入和演示幻灯片；原文未指定时刻。",
+              "due": {"mode": "value", "value": {"kind": "date", "date": "2026-11-23"}},
+              "source": "请完成【自动整理A】提交 project2.zip，截止日期为2026年11月23日，未指定具体时刻。"
+            }
+          ],
+          "notes": "先供用户审核，不自动写入待办。"
+        }
+      },
+      "expected": {
+        "category": "action",
+        "category_label": "待处理",
+        "reviewable_analysis": true,
+        "draft_count": 1,
+        "new_todos_before_confirmation": 0,
+        "new_todos_after_confirming_this_analysis_once": 1,
+        "repeat_confirmation_new_todos": 0,
+        "must_not_invent_clock_time": true,
+        "mail_sent_or_deleted": false
+      }
+    },
+    {
+      "id": "B",
+      "name": "重要发件人的纯知会，不制造待办",
+      "input": {
+        "sender": "Course Teacher <teacher@example.invalid>",
+        "subject": "TM-AUTO-B 合成课程系统状态知会",
+        "receivedAt": "2026-11-20T00:45:00Z",
+        "bodyStatus": "complete",
+        "body": "这是一封合成测试通知，不是真实课程安排。\n\n课程网站维护已经结束，原有资料恢复可见。本邮件仅同步状态，无需回复、提交材料或采取其他行动。"
+      },
+      "model_response_fixture": {
+        "classification": {"category": "normal", "summary": "课程网站维护结束，资料已恢复；无需行动。", "reason": "只有状态通知，没有新增任务。"},
+        "extraction": {"drafts": [], "notes": "原文明确无需采取行动。"}
+      },
+      "expected": {
+        "category": "important",
+        "category_label": "重要知会",
+        "reason": "精确匹配重要发件人规则，提高关注度；提取无待办时仍不制造任务。",
+        "reviewable_analysis": false,
+        "new_todos": 0,
+        "correct_to_normal_allowed": true,
+        "correct_to_action_without_analysis_rejected": true,
+        "mail_sent_or_deleted": false
+      }
+    },
+    {
+      "id": "C",
+      "name": "已启用计划错过时点，补跑遇到通信失败后有限重试",
+      "input": {
+        "sender": "Course TA <ta@example.invalid>",
+        "subject": "TM-AUTO-C 合成排练登记",
+        "receivedAt": "2026-11-20T00:50:00Z",
+        "bodyStatus": "complete",
+        "body": "这是一封合成测试通知。请完成【自动整理C】填写排练登记表，截止日期为2026年11月22日，未指定具体时刻。"
+      },
+      "test_clock_and_fault": {
+        "enable_at": "2026-11-20T08:30:00+08:00",
+        "sleep_at": "2026-11-20T08:55:00+08:00",
+        "resume_tick_at": "2026-11-20T10:05:00+08:00",
+        "first_classification_attempt": "受控 HTTP 响应替身抛出通信异常；不真的修改用户凭据或断开学校/个人网络。",
+        "before_retry_tick": "2026-11-20T10:09:00+08:00",
+        "retry_tick": "2026-11-20T10:10:00+08:00",
+        "repeated_success_tick": "2026-11-20T10:11:00+08:00"
+      },
+      "model_response_fixture_after_recovery": {
+        "classification": {"category": "action", "summary": "11月22日前填写排练登记表。", "reason": "有明确行动及仅日期截止。"},
+        "extraction": {
+          "drafts": [{"tempId": "rehearsal", "parentTempId": null, "title": "【自动整理C】填写排练登记表", "due": {"mode": "value", "value": {"kind": "date", "date": "2026-11-22"}}, "source": "请完成【自动整理C】填写排练登记表，截止日期为2026年11月22日，未指定具体时刻。"}],
+          "notes": "待用户审核确认。"
+        }
+      },
+      "expected": {
+        "resume": "补跑已启用后的09:00计划；不为每个错过时点无限创建新批次。",
+        "after_failure": {"category": "review", "category_label": "待核实", "new_todos": 0, "visible_error": true, "source_preserved": true},
+        "before_retry_due": "不再次调用模型，不扩大原批次预算。",
+        "after_retry_success": {"category": "action", "reviewable_analysis": true, "draft_count": 1, "new_todos_before_confirmation": 0},
+        "repeated_success_tick": "不重复分类成功邮件，不生成重复待办分析。",
+        "if_all_attempts_fail": "最多3次处理尝试后保留失败/待核实，停止自动重试；手动运行可重新发起有限批次。",
+        "mail_sent_or_deleted": false
+      }
+    }
+  ],
+  "additional_boundaries": [
+    "首次19:00启用09:00/18:00计划，不补跑启用前的两个时点；可立即整理一次。",
+    "忽略规则按完整邮箱地址匹配并归为疑似垃圾，保留原邮件，不调用模型处理该忽略项。",
+    "正文不完整或超出单封自动处理范围时留待核实，不静默截断。",
+    "每次20封是分析预算；超出预算的候选留到下一计划或手动下一批，不因每分钟后台检查而不断扩张。",
+    "这些预期不证明真实服务可靠性；同学须独立执行并记录真实观察。"
+  ]
+}

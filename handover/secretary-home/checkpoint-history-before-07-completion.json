@@ -1,0 +1,4 @@
+{
+  "scope": "Snapshot after stage6 completed, while stage7 was already starting. Contains historical LangGraph checkpoints and may include initial stage7 writes; not a per-stage frozen snapshot.",
+  "futureSnapshotsIncludeCheckpoints": true
+}

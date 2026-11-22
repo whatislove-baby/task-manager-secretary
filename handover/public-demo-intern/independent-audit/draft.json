@@ -1,0 +1,135 @@
+{
+  "kind": "mail_draft",
+  "id": "52569089-d0ee-5dac-8d50-532a2fd1ad2d",
+  "subject": "回复：职业分享周的报名情况，帮我整理一下",
+  "body": "周宁，早上好！\n\n报名简报整理好了，Word 和 PDF 两个版本都在附件里，一页，下午碰头可以直接用。\n\n三场的情况：行业探索 60 个名额、已报 42、剩 18（70%）；产品经理面对面 40 个名额、已报 34、剩 6（85%）；科研转型交流 50 个名额、已报 30、剩 20（60%）。合计 150 个名额、106 报名人次、44 个剩余名额——按你说的口径，合计写的是报名人次，没有当成去重参加人数，也不含候补。\n\n接下来宣传上我写了两点：产品经理面对面只剩 6 个名额，建议优先控量宣传并准备满员预案；科研转型交流报名率 60%、可补的空间最大，是这三天的重点。报名 11 月 25 日 18:00 截止，节奏要围着这个时间安排。\n\n这版先给你看，报名同学那边我没有通知。\n\n谢谢！\n阿乔",
+  "to": "zhou.ning@career.example.invalid",
+  "bindingId": "3b25745a-3efd-430a-86a4-b95fe4517b5d",
+  "replyToLocalId": "861b382542ab3ccca90c8dd77d626f099d90ecadb30885d8157583955227d651",
+  "attachmentIds": [
+    "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+    "aba95a8a-5d48-58cc-8b13-7a3ba386bba3"
+  ],
+  "attachments": [
+    {
+      "id": "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+      "name": "职业分享周报名简报_20261122.docx",
+      "extension": "docx",
+      "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "byteSize": 33269,
+      "source": "generated",
+      "parentIds": [],
+      "createdAt": "2026-11-22T01:04:39.544Z",
+      "sha256": "954d76f2ed36c6baf42bdd2caea14b58ed4e932f3b4ef14857dfd2ff2cdebcb1",
+      "warnings": [
+        "文本索引包含正文及表格文字；结构工具提供段落和单元格定位，图片及版式请查看页面。批注和修订语义未完整解析。"
+      ],
+      "validation": {
+        "sha256": "954d76f2ed36c6baf42bdd2caea14b58ed4e932f3b4ef14857dfd2ff2cdebcb1",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "Word 可重新打开",
+          "段落、表格和图片关系可读取",
+          "所有页面可渲染",
+          "保存的结构化数据经 Decimal 重新计算一致；不代表已验证资料语义或视觉外观"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "paragraphCount": 8,
+        "tableCount": 2,
+        "imageCount": 0,
+        "pageCount": 1,
+        "businessCalculation": {
+          "calculated": false,
+          "layout": "structured-document-v1",
+          "originalLayoutPreserved": false
+        },
+        "templateLayout": {
+          "page": "A4",
+          "landscape": false,
+          "headerColor": "#263B4A",
+          "headerTextColor": "#FFFFFF",
+          "tableHeaderColor": "#E8EEF1",
+          "summaryColor": "#F0F3F5",
+          "textColor": "#263640",
+          "fontSize": 10.0,
+          "headerBand": true,
+          "summaryLayout": "cards"
+        }
+      },
+      "familyId": "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    },
+    {
+      "id": "aba95a8a-5d48-58cc-8b13-7a3ba386bba3",
+      "name": "职业分享周报名简报_20261122.pdf",
+      "extension": "pdf",
+      "mediaType": "application/pdf",
+      "byteSize": 66742,
+      "source": "generated",
+      "parentIds": [
+        "95bd3cfa-7f60-5d92-9c40-73eb0392b491"
+      ],
+      "createdAt": "2026-11-22T01:04:55.188Z",
+      "sha256": "5ac98b6b667eb5c46e8ccfcadb102c6162201472199669fb616ddecb21f9a2c0",
+      "warnings": [
+        "文本索引不包含图片、手写内容和复杂表格布局；请按页查看原图后判断。"
+      ],
+      "validation": {
+        "sha256": "5ac98b6b667eb5c46e8ccfcadb102c6162201472199669fb616ddecb21f9a2c0",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "输出格式可重新解析",
+          "所有页面可渲染",
+          "保存的结构化数据经 Decimal 重新计算一致；不代表已验证资料语义或视觉外观"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "pageCount": 1,
+        "businessCalculation": {
+          "calculated": false,
+          "layout": "structured-document-v1",
+          "originalLayoutPreserved": false
+        },
+        "templateLayout": {
+          "page": "A4",
+          "landscape": false,
+          "headerColor": "#263B4A",
+          "headerTextColor": "#FFFFFF",
+          "tableHeaderColor": "#E8EEF1",
+          "summaryColor": "#F0F3F5",
+          "textColor": "#263640",
+          "fontSize": 10.0,
+          "headerBand": true,
+          "summaryLayout": "cards"
+        }
+      },
+      "conversion": {
+        "sourceFileId": "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+        "sourceSha256": "954d76f2ed36c6baf42bdd2caea14b58ed4e932f3b4ef14857dfd2ff2cdebcb1",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      },
+      "familyId": "aba95a8a-5d48-58cc-8b13-7a3ba386bba3",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    }
+  ],
+  "conversationId": "59898143-1d28-436a-a408-6154950f6e28",
+  "createdAt": "2026-11-22T01:05:34.004Z",
+  "status": "draft",
+  "detail": "仅保存可编辑草稿；用户预览确认后才会发送。"
+}

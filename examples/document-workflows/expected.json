@@ -1,0 +1,82 @@
+{
+  "synthetic": true,
+  "pdf": {
+    "file": "course-chart-scan.pdf",
+    "pages": 1,
+    "textLayerCharacters": 0,
+    "values": {
+      "January": 18,
+      "February": 27,
+      "March": 39
+    },
+    "increaseJanuaryToMarch": 21,
+    "requiresActualImageInput": true
+  },
+  "csv": {
+    "file": "course-hours.csv",
+    "sourceRows": 7,
+    "cleanedRows": 5,
+    "remainingIds": [
+      "001",
+      "002",
+      "003",
+      "004",
+      "005"
+    ],
+    "totalHours": 30,
+    "teamHours": {
+      "A": 10,
+      "B": 20
+    },
+    "missingFill": {
+      "005": "0"
+    }
+  },
+  "docx": {
+    "file": "course-progress.docx",
+    "replaceFrom": "Analysis is pending.",
+    "replaceTo": "Analysis is complete. Total eligible hours are 30.",
+    "table": {
+      "tableIndex": 0,
+      "row": 1,
+      "column": 2,
+      "from": "Pending",
+      "to": "Reviewed"
+    },
+    "preserveText": [
+      "Keep this sentence exactly unchanged. The chart below and the review table must remain present.",
+      "Reference identifier TM-DOC-03 must remain unchanged.",
+      "Presentation",
+      "Scheduled"
+    ],
+    "preserveImages": true,
+    "preserveHeadersFooters": true
+  },
+  "failures": [
+    {
+      "file": "corrupt.pdf",
+      "expected": "Reject unreadable PDF without fabricated content"
+    },
+    {
+      "case": "conflicting-docx-expected-text",
+      "expected": "Reject stale target, original bytes unchanged"
+    }
+  ],
+  "draft": {
+    "to": "training@example.invalid",
+    "send": false,
+    "attachments": [
+      "course-analysis.pdf",
+      "course-hours-cleaned.csv",
+      "course-hours-summary.csv",
+      "course-progress-reviewed.docx"
+    ]
+  },
+  "sha256": {
+    "chart-source.png": "e7c64ecbdef7db3c3beb4dfc266199f59e278a6372453c6e32b7c84b5b69883f",
+    "corrupt.pdf": "7f659424061bb8b44f3b0c4d07fa9f57008b1021f4204ff8924d4a80957f252f",
+    "course-chart-scan.pdf": "dd68e4afc584e27f10a9a15d285c1f16c9673a1a0c66611e1379d1e143303177",
+    "course-hours.csv": "056cd24249464f5f28e35b17687af62a1f2d87e246103f31bd4c852dc7df02ef",
+    "course-progress.docx": "382d7b7534dc9e50f03ea1f67d243898024dbfbf3537a545d8153093b6c8982d"
+  }
+}

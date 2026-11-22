@@ -1,0 +1,31 @@
+{
+  "stage": 5,
+  "user": "上学期林老师那门 COMP5082 的 Project，我现在有点记混了：作业最后到底哪天交，原来约的小组讨论后来怎么处理的？帮我找一下当时的邮件，再看看本地待办现在记的是什么。我可能实际已经交过，只是不记得有没有在软件里勾完成。",
+  "simulatedReferenceTime": "2027-02-21T09:00:00+08:00",
+  "newConversation": true,
+  "serviceReopened": true,
+  "visibleMailKeys": [
+    "report",
+    "discussion",
+    "club",
+    "lecture",
+    "reschedule",
+    "cancel"
+  ],
+  "independentExpectations": {
+    "initialDue": {
+      "report": "2026-12-04T15:59:00.000Z",
+      "discussion": "2026-11-25T06:30:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "finalDue": {
+      "report": "2026-12-07T15:59:00.000Z",
+      "discussion": "2026-11-26T07:00:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "cancelled": "discussion",
+    "explicitlyOptedIn": "club",
+    "notOptedIn": "lecture"
+  },
+  "note": "Only user text and local RFC mail reach model; oracle stays in evaluator. Simulated time, not three months of actual elapsed execution."
+}

@@ -1,0 +1,17 @@
+{
+  "sourceProfile": "[local-test-profile]",
+  "stage": 14,
+  "businessDatabasesOnly": [
+    "tasks.sqlite",
+    "agent.sqlite",
+    "agent-tools.sqlite",
+    "mail.sqlite",
+    "mail-files.sqlite",
+    "task-changes.sqlite",
+    "draft-lifecycle.sqlite",
+    "learning.sqlite",
+    "mail-compose.sqlite"
+  ],
+  "credentialsCopied": false,
+  "purpose": "Actual committed stage snapshot; never a synthetic UI answer"
+}

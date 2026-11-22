@@ -1,0 +1,21 @@
+{
+  "observed": "后续只改前端展示：同一条秘书回答下增加直接读取当前子任务状态的卡片。真实应用在原第5轮快照上显示“实时状态：本轮完成”，带查询时间与“查看结果”入口；原回答中的running、无草稿和未检查文字完整保留。",
+  "boundary": "这是展示层补充，不是重跑模型或修正原答复。85.25秒口头答复慢且过时的限制依然存在，原严格失败记录不变。API验收后端源码没有变化。",
+  "screenshots": [
+    {
+      "path": "../live-status-ui/screenshots/24-live-status-contrast.png",
+      "caption": "同屏对照：上方原回答仍是旧running，下方实时任务卡读到本轮完成。截图来自无凭据快照副本，未调用模型或改写数据库。"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "../live-status-ui/screenshots.json",
+      "title": "实际截图、包版本与来源清单"
+    },
+    {
+      "path": "../live-status-ui/visible-contrast.json",
+      "title": "实际可见文字及原答复未改检查"
+    }
+  ],
+  "statePreservationEvidence": "../live-status-ui/state-preservation.json"
+}

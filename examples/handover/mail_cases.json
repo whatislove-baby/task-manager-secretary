@@ -1,0 +1,37 @@
+{
+  "description": "Synthetic handover inputs and expected results. No real mailbox, credentials or model calls.",
+  "distinct_tasks": {
+    "subject": "两门课程的作业通知",
+    "body": "课程A需在2026-11-23提交实验报告；课程B需在同一天提交阅读报告。",
+    "instructions": "请分别提取每门课程的任务，保留依据。",
+    "model_result": {
+      "drafts": [
+        {"tempId": "a", "parentTempId": null, "title": "提交作业", "notes": "课程A：实验报告", "source": "课程A需在2026-11-23提交实验报告", "due": {"mode": "value", "value": {"kind": "date", "date": "2026-11-23"}}},
+        {"tempId": "b", "parentTempId": null, "title": "提交作业", "notes": "课程B：阅读报告", "source": "课程B需在同一天提交阅读报告", "due": {"mode": "value", "value": {"kind": "date", "date": "2026-11-23"}}}
+      ],
+      "notes": "两门课分别需要提交报告。"
+    },
+    "expected": {"draft_count": 2, "todos_before_confirmation": 0, "first_confirmation_count": 2, "repeat_confirmation_count": 0}
+  },
+  "follow_up": {
+    "subject": "研讨会准备",
+    "body": "研讨会将在ROOM-42进行。请在2026-11-23准备两张幻灯片。",
+    "instructions": "提取准备事项，保留两张幻灯片的要求。",
+    "model_result": {
+      "drafts": [{"tempId": "slides", "parentTempId": null, "title": "准备幻灯片", "notes": "两张幻灯片", "source": "请在2026-11-23准备两张幻灯片", "due": {"mode": "value", "value": {"kind": "date", "date": "2026-11-23"}}}],
+      "notes": "需要准备幻灯片。"
+    },
+    "question": "邮件里的教室是什么？需要几张幻灯片，哪天前完成？",
+    "follow_up_result": {"drafts": [], "notes": "原邮件写明教室为ROOM-42；准备两张幻灯片，截止日期为2026-11-23。"},
+    "expected_request_contains": ["ROOM-42", "两张幻灯片", "2026-11-23", "提取准备事项，保留两张幻灯片的要求。"],
+    "expected": {"state": "completed", "todos_before_confirmation": 0}
+  },
+  "truncated_response": {
+    "subject": "不完整的模型响应",
+    "body": "请准备课程报告。",
+    "instructions": "提取任务。",
+    "finish_reason": "length",
+    "model_result": {"drafts": [{"tempId": "a", "parentTempId": null, "title": "准备报告"}], "notes": "这是看似合法但服务端标记截断的结果。"},
+    "expected": {"state": "failed", "saved_todo_count": 0, "mail_status": "unanalyzed", "error_contains": "截断"}
+  }
+}

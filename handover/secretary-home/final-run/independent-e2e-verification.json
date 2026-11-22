@@ -1,0 +1,386 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "1:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "2:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "3:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "3:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "3:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "3:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "4:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "4:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "4:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "4:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "5:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "5:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "5:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "5:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "6:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "6:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "6:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "6:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "7:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "7:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "7:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "7:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "8:natural_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "8:source_unchanged_during_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "8:same_fixed_secretary_across_process_restart",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "8:no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "child_ran_same_source_as_its_parent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_frozen_source_for_entire_final_replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "extra_completion_query_same_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "extra_completion_query_actual_readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "production_worker_home_answers_before_child_finishes",
+      "passed": false,
+      "detail": {
+        "childRunId": "2c5cd9f7-1f24-4c6f-bc5a-dbc0ce6beb1a",
+        "homeRunId": "ca48c914-a99a-4280-9d02-f25938341cb5",
+        "childStatusAtQuestion": "running",
+        "childStatusWhenHomeFinished": "completed",
+        "homeFinishedBeforeChild": false,
+        "actualProductionWorker": true,
+        "toolsFromThreads": [
+          "agent-secretary"
+        ]
+      }
+    },
+    {
+      "name": "1:actual_refresh_called",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "empty_local_before_first_real_import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "first_five_bodies_imported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "first_five_classified_no_pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "course_requires_action",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mentor_requires_action",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "obvious_ad_folded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_saved_original:intern-brief",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_saved_original:shopping-ad",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_saved_original:photo-workshop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_saved_original:club-weekly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_saved_original:course-project",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_protocol_body_requests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "proposal_did_not_write_task_before_review",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_independently_approved_task",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_user_visible_child",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "child_has_actual_original_request",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "child_distinct_thread_and_correct_parent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "child_file_and_draft_independent_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "return_to_secretary_reads_child_progress",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "6:actual_refresh_called",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "repeat_refresh_no_new_or_redownloaded_bodies",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "7:actual_refresh_called",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "later_message_actually_imported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reschedule_targets_original_task",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reschedule_waits_for_separate_approval",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "same_task_id_new_due_and_revision",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "8:actual_refresh_called",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "second_natural_entry_actually_refreshes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "final_one_task_not_duplicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "final_one_child_not_duplicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "04-child:single_same_unsent_draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "05-completed:single_same_unsent_draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "06:single_same_unsent_draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "07:single_same_unsent_draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "08:single_same_unsent_draft",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "sourceEpochs": 1,
+  "finalUnchangedSourceReplay": true,
+  "userTurns": 9,
+  "backgroundChildExecutions": 1,
+  "activitySeconds": 576.3,
+  "scope": "Actual states and transport; semantic wording, visual UI and performance separately reviewed."
+}

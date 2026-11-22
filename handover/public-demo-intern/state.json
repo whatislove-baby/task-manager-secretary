@@ -1,0 +1,20 @@
+{
+  "turns": [
+    "[local-project]/handover/public-demo-intern/turn-01.json"
+  ],
+  "chats": {
+    "intern-brief": {
+      "runId": "7188f121-c26f-4c81-96e3-be789e4c36b9",
+      "conversationId": "59898143-1d28-436a-a408-6154950f6e28"
+    }
+  },
+  "visible": [
+    "career_update"
+  ],
+  "copied": [
+    "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+    "aba95a8a-5d48-58cc-8b13-7a3ba386bba3"
+  ],
+  "bindingId": "3b25745a-3efd-430a-86a4-b95fe4517b5d",
+  "profile": "[local-test-profile]"
+}

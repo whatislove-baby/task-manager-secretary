@@ -1,0 +1,119 @@
+{
+  "stage": 6,
+  "runId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a",
+  "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+  "modelRunStatus": "completed",
+  "elapsedSeconds": 144.0,
+  "inspectionMode": "Read-only existing tool logs and model AIMessage entries in LangGraph checkpoint; no new provider calls or approvals.",
+  "evidence": {
+    "toolTrace": "tools-06.jsonl",
+    "turnRecord": "turn-06.json",
+    "originalVerification": "verification-06.json",
+    "checkpointSource": "Existing isolated acceptance profile: agent-checkpoints.sqlite / writes[channel=messages]. Only tool-call metadata and instruction hashes summarized here; no database or raw reasoning copied."
+  },
+  "proposals": [
+    {
+      "traceLine": 3,
+      "version": 1,
+      "draftId": "5078a216-71fd-5177-8616-d9801d1ef13f",
+      "parentId": null,
+      "argumentCharacters": 16,
+      "savedCharacters": 16,
+      "argumentEqualsSaved": true,
+      "instructionSha256": "65ca26c980f9b2e54c5b89bebd496aea05943160f30c9efa57a947e8db9ff2ff",
+      "instructionExcerpt": "## 触发场景与适用范围【重要】",
+      "statusAtToolReturn": "draft"
+    },
+    {
+      "traceLine": 4,
+      "version": 2,
+      "draftId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "parentId": "5078a216-71fd-5177-8616-d9801d1ef13f",
+      "argumentCharacters": 28,
+      "savedCharacters": 28,
+      "argumentEqualsSaved": true,
+      "instructionSha256": "2286c12dfc64952d9d9d0b7a415ef3d762563a87e45ba6d747ff86a37d5c23b7",
+      "instructionExcerpt": "## 触发场景与适用范围＃＃ 触发场景与适用范围【重要】",
+      "statusAtToolReturn": "draft"
+    },
+    {
+      "traceLine": 5,
+      "version": 3,
+      "draftId": "a1a7f1eb-50b5-5ec9-8835-a1705dc4fac2",
+      "parentId": "4363ae92-68d5-5caa-8fcd-0143dd47019c",
+      "argumentCharacters": 294,
+      "savedCharacters": 294,
+      "argumentEqualsSaved": true,
+      "instructionSha256": "c025e322c2d75921f3621e8bf6da45fd72b12337385b487a2d4c0c0ef5088978",
+      "instructionExcerpt": "适用范围：仅用于给周老师 zhou.yan@comp5051.example.invalid（COMP5051…",
+      "statusAtToolReturn": "draft"
+    }
+  ],
+  "checkpointComparisons": [
+    {
+      "messageClass": "AIMessage",
+      "toolCallId": "call_resp_01a200cc-a2ef-77f3-bc34-45533d5bcbf4_0",
+      "version": 1,
+      "instructionCharacters": 16,
+      "instructionSha256": "65ca26c980f9b2e54c5b89bebd496aea05943160f30c9efa57a947e8db9ff2ff",
+      "matchesBusinessToolArgument": true,
+      "finishReason": "tool_calls",
+      "rawSseRecorded": false
+    },
+    {
+      "messageClass": "AIMessage",
+      "toolCallId": "call_resp_01a200cc-c2bf-7965-ab77-4aec84230533_0",
+      "version": 2,
+      "instructionCharacters": 28,
+      "instructionSha256": "2286c12dfc64952d9d9d0b7a415ef3d762563a87e45ba6d747ff86a37d5c23b7",
+      "matchesBusinessToolArgument": true,
+      "finishReason": "tool_calls",
+      "rawSseRecorded": false
+    },
+    {
+      "messageClass": "AIMessage",
+      "toolCallId": "chatcmpl-tool-a79e019c0b1537b9",
+      "version": 3,
+      "instructionCharacters": 294,
+      "instructionSha256": "c025e322c2d75921f3621e8bf6da45fd72b12337385b487a2d4c0c0ef5088978",
+      "matchesBusinessToolArgument": true,
+      "finishReason": "tool_calls",
+      "rawSseRecorded": false
+    }
+  ],
+  "readbacks": [
+    {
+      "traceLine": 6,
+      "version": 3,
+      "draftId": "a1a7f1eb-50b5-5ec9-8835-a1705dc4fac2",
+      "instructionCharacters": 294,
+      "instructionSha256": "c025e322c2d75921f3621e8bf6da45fd72b12337385b487a2d4c0c0ef5088978"
+    }
+  ],
+  "conclusions": {
+    "learningPersistenceTruncatedInstruction": false,
+    "schemaTruncatedInstruction": false,
+    "firstTwoAlreadyShortBeforeToolValidation": true,
+    "firstTwoMeaningfulPreferenceBodiesMissing": true,
+    "noteQualityGateAllowsHeadingOnly": true,
+    "thirdVersionNaturallyRepairedAndReadBack": true,
+    "specificUpstreamCauseProven": false,
+    "uncertainBoundary": "Provider/model-generated tool arguments versus upstream stream assembly/parsing cannot be distinguished without raw SSE arguments; this run did not record them.",
+    "compatibilityShim": "Local shim changes reasoning_details.format metadata only; no tool-argument rewrite found."
+  },
+  "originalChecksPreserved": {
+    "sourceUnchanged": true,
+    "noAutomaticApproval": true,
+    "structuralPassed": false,
+    "failedChecks": [
+      "one_sender_scoped_note"
+    ]
+  },
+  "outOfScope": [
+    "No production or test source changes",
+    "No edits to model answers or old verification",
+    "No manual memory insertion or approval",
+    "No additional provider retest",
+    "No credentials, raw stream blobs or reasoning text included"
+  ]
+}

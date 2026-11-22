@@ -1,0 +1,83 @@
+{
+  "app": "[local-project]/release-document-repair/mac-arm64/Task Manager.app",
+  "profile": "[local-test-profile]",
+  "proof": {
+    "profile": "[local-test-profile]",
+    "sourceProfile": "[local-project]/handover/long-task-public/snapshots/14-after-run",
+    "copiedDatabases": [
+      "tasks.sqlite",
+      "agent.sqlite",
+      "agent-tools.sqlite",
+      "mail.sqlite",
+      "mail-files.sqlite",
+      "task-changes.sqlite",
+      "draft-lifecycle.sqlite",
+      "learning.sqlite"
+    ],
+    "settingsCopied": false,
+    "accountsCopied": false,
+    "credentialsAccessed": false,
+    "purpose": "Actual committed model state, copied unchanged before read-only UI navigation"
+  },
+  "shots": [
+    {
+      "id": "stage-14-answer",
+      "title": "本轮实际回答",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 65.1953125,
+          "width": 736,
+          "height": 845.84375,
+          "label": "真实回答与来源"
+        }
+      ]
+    },
+    {
+      "id": "stage-14-sources",
+      "title": "本轮来源和产物",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 441.5390625,
+          "width": 736,
+          "height": 58,
+          "label": "打开原始依据"
+        },
+        {
+          "x": 416,
+          "y": 514.5390625,
+          "width": 736,
+          "height": 66.5,
+          "label": "实际保存的产物"
+        }
+      ]
+    },
+    {
+      "id": "stage-14-draft",
+      "title": "核对回复邮箱与实际正文",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 160,
+          "y": -212.7109375,
+          "width": 573.1796875,
+          "height": 1115.8203125,
+          "label": "实际草稿内容，没有发送"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "No API key or mailbox accounts",
+    "Read-only navigation of actual stage 14; no model request, approval or send",
+    "No send or SMTP preparation"
+  ],
+  "errors": [],
+  "appAsarSha256": "a1e181e352d7c633eb8a21761847552792e0f5c162f74af03b4c2011aa02d8d9"
+}

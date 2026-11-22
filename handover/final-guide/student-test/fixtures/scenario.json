@@ -1,0 +1,124 @@
+{
+  "scenarioId": "student-calendar-business-aligned",
+  "metadata": {
+    "fictional": true
+  },
+  "messages": [
+    {
+      "messageKey": "report",
+      "messageId": "<student-calendar-report@fixtures.example.invalid>",
+      "subject": "COMP5082 Project：小组调研报告提交安排",
+      "body": "各位同学，\n\n本次 Project 的小组调研报告请于 2026年12月4日 23:59（香港时间）前上传 Canvas。每组提交一份 PDF，由组长上传即可，正文最多八页。请在封面列明组员姓名。\n\n下周讨论时我们会看各组目前的提纲，有问题可以回复这封邮件。\n\n林老师",
+      "sentAt": "2026-11-20T09:00:00+08:00",
+      "from": {
+        "name": "林老师",
+        "address": "lin@comp5082.faculty.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "discussion",
+      "messageId": "<student-calendar-discussion@fixtures.example.invalid>",
+      "subject": "Re: COMP5082 Project 小组讨论时间",
+      "body": "陈同学，\n\n你们组约 2026年11月25日 14:30（香港时间）到 421 室讨论 Project 提纲，预留半小时。我已经把这个时段留给你们了，请带上目前的研究问题和两三篇核心参考文献。\n\n林老师",
+      "sentAt": "2026-11-20T10:00:00+08:00",
+      "from": {
+        "name": "林老师",
+        "address": "lin@comp5082.faculty.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "club",
+      "messageId": "<student-calendar-club@fixtures.example.invalid>",
+      "subject": "摄影社｜周六校园夜拍，欢迎一起走走",
+      "body": "同学们好，\n\n摄影社这周组织一次校园夜拍，2026年11月28日 17:00（香港时间）在图书馆正门集合，预计七点结束。手机也可以参加，不需要专业设备。活动自愿参加，没有考勤要求；想来的同学在群里留个名字即可。下雨会另行通知。\n\n摄影社活动组",
+      "sentAt": "2026-11-20T11:00:00+08:00",
+      "from": {
+        "name": "校园摄影社",
+        "address": "photo@clubs.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "lecture",
+      "messageId": "<student-calendar-lecture@fixtures.example.invalid>",
+      "subject": "转发给 COMP5082 同学：研究院开放讲座",
+      "body": "同学们好，\n\n研究院将在 2026年11月27日 18:30（香港时间）举办“AI 与城市观察”开放讲座，地点为大礼堂。这是自愿参加的学术活动，不计入 COMP5082 成绩，也不需要课程同学提交心得。有兴趣的同学可自行报名。\n\n研究院办公室",
+      "sentAt": "2026-11-20T12:00:00+08:00",
+      "from": {
+        "name": "研究院办公室",
+        "address": "seminars@research.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "reschedule",
+      "messageId": "<student-calendar-reschedule@fixtures.example.invalid>",
+      "subject": "Re: COMP5082 Project 两项时间调整",
+      "body": "陈同学及各位组员，\n\n考虑到这周资料收集的进度，小组调研报告的截止时间由原来的 2026年12月4日 23:59 延至 2026年12月7日 23:59（香港时间）。原截止时间不再适用。\n\n另外，我周三临时有院务会议。你们组原约的 11月25日14:30 讨论改到 2026年11月26日 15:00（香港时间），仍在421室，预留半小时。请按新的时间安排。报告要求其余部分不变。\n\n林老师",
+      "sentAt": "2026-11-22T08:15:00+08:00",
+      "from": {
+        "name": "林老师",
+        "address": "lin@comp5082.faculty.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<student-calendar-report@fixtures.example.invalid>",
+      "references": [
+        "<student-calendar-report@fixtures.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "cancel",
+      "messageId": "<student-calendar-cancel@fixtures.example.invalid>",
+      "subject": "Re: COMP5082 Project：取消这次线下讨论",
+      "body": "陈同学，\n\n你们刚发来的提纲已经很清楚，2026年11月26日15:00 那次线下小组讨论取消，不再另约。我的意见会直接批注在你们的文档里，这次不需要来421室。\n\n小组调研报告仍按 2026年12月7日23:59（香港时间）提交，没有再次延期。\n\n林老师",
+      "sentAt": "2026-11-23T08:10:00+08:00",
+      "from": {
+        "name": "林老师",
+        "address": "lin@comp5082.faculty.example.invalid"
+      },
+      "to": [
+        {
+          "name": "陈同学",
+          "address": "student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<student-calendar-reschedule@fixtures.example.invalid>",
+      "references": [
+        "<student-calendar-reschedule@fixtures.example.invalid>"
+      ]
+    }
+  ]
+}

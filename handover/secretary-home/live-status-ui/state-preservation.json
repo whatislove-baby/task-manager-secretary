@@ -1,0 +1,17 @@
+{
+  "source": "../concurrency-run/snapshots/05",
+  "sourceStateCopiedWithoutCredentials": true,
+  "modelAnswersAndRunRecords": {
+    "agent_conversations": {
+      "rows": 2,
+      "allOriginalPayloadsUnchanged": true,
+      "newRows": 0
+    },
+    "agent_runs": {
+      "rows": 6,
+      "allOriginalPayloadsUnchanged": true,
+      "newRows": 0
+    }
+  },
+  "passed": true
+}

@@ -1,0 +1,1937 @@
+{
+  "width": 4520,
+  "height": 4050,
+  "nodes": [
+    {
+      "id": "home",
+      "x": 100,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "打开秘书",
+      "lines": [
+        "固定主会话"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "request",
+      "x": 650,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "输入任务",
+      "lines": [
+        "刷新 / 批量交办"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "attach",
+      "x": 1200,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "附加资料",
+      "lines": [
+        "邮件 / 本地文件"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "followup",
+      "x": 1750,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "继续跟进",
+      "lines": [
+        "沿用当前对话"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "clarify",
+      "x": 2300,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "补充信息",
+      "lines": [
+        "回答澄清"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "open-child",
+      "x": 2850,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "打开任务",
+      "lines": [
+        "查看 / 继续子对话"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "correct",
+      "x": 3400,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "纠正分类",
+      "lines": [
+        "重设邮件类别"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "configure",
+      "x": 3950,
+      "y": 290,
+      "w": 430,
+      "h": 126,
+      "title": "配置服务",
+      "lines": [
+        "邮箱 / API / 定时"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "ipc",
+      "x": 100,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "IPC / RPC",
+      "lines": [
+        "preload 白名单",
+        "JSON line → Python"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "persist",
+      "x": 650,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "保存用户轮次",
+      "lines": [
+        "conversation / run",
+        "AgentService._start"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "queue",
+      "x": 1200,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "领取排队任务",
+      "lines": [
+        "原子检查 queued",
+        "run_next(queue)"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "home-lane",
+      "x": 1750,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "秘书专用线程",
+      "lines": [
+        "BackendService / SQLite",
+        "独立 asyncio loop"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "work-lane",
+      "x": 2300,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "普通与任务线程",
+      "lines": [
+        "后台串行",
+        "独立 service / loop"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "checkpoint",
+      "x": 2850,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "LangGraph 检查点",
+      "lines": [
+        "AsyncSqliteSaver",
+        "conversationId → thread_id"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "events",
+      "x": 3400,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "保存进度与产物",
+      "lines": [
+        "events / sources / artifacts",
+        "轮次与回答"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "ui",
+      "x": 3950,
+      "y": 655,
+      "w": 430,
+      "h": 126,
+      "title": "界面持续更新",
+      "lines": [
+        "文字流 / 工具状态",
+        "来源 / 结果卡"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "parent-gate",
+      "x": 1200,
+      "y": 855,
+      "w": 430,
+      "h": 126,
+      "title": "模型分派任务",
+      "lines": [
+        "父轮结束 → 子任务领取"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "resume-host",
+      "x": 100,
+      "y": 855,
+      "w": 430,
+      "h": 126,
+      "title": "暂停 / 恢复 / 取消",
+      "lines": [
+        "保存状态 → 检查点续跑"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "child-store",
+      "x": 2300,
+      "y": 855,
+      "w": 430,
+      "h": 126,
+      "title": "保存任务交接",
+      "lines": [
+        "原请求 / 来源 ID",
+        "parentConversationId"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "ack",
+      "x": 3400,
+      "y": 855,
+      "w": 430,
+      "h": 126,
+      "title": "记录本次汇报",
+      "lines": [
+        "回答已保存 → briefedAt"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "deepagents",
+      "x": 100,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "Deep Agents",
+      "lines": [
+        "create_deep_agent",
+        "官方执行图"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "context",
+      "x": 650,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "理解任务与上下文",
+      "lines": [
+        "用户原话 / 当前资料",
+        "FreshLocalContext"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "model",
+      "x": 1200,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "ChatOpenRouter",
+      "lines": [
+        "LangChain 模型适配",
+        "OpenRouter → 配置模型"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "decide",
+      "x": 1750,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "选择下一步",
+      "lines": [
+        "回答 / 查资料 / 调工具"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "tools",
+      "x": 2300,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "LangChain 工具",
+      "lines": [
+        "@tool / ToolRuntime",
+        "AgentTools"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "tool-result",
+      "x": 2850,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "读取工具结果",
+      "lines": [
+        "数据 / 文件 / 状态",
+        "下一步判断"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "delivery",
+      "x": 3400,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "核对交付",
+      "lines": [
+        "DeliveryReview",
+        "DocumentCompletion"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "answer",
+      "x": 3950,
+      "y": 1195,
+      "w": 430,
+      "h": 126,
+      "title": "汇总与引用",
+      "lines": [
+        "回答 + 原文链接",
+        "结果卡 / 子任务卡"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "plan",
+      "x": 100,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "执行计划",
+      "lines": [
+        "write_todos"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "state-files",
+      "x": 650,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "工作笔记",
+      "lines": [
+        "StateBackend / 文件"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "summary",
+      "x": 1200,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "上下文压缩",
+      "lines": [
+        "SummarizationMiddleware"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "ask",
+      "x": 1750,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "询问澄清",
+      "lines": [
+        "ask_user → interrupt",
+        "Command(resume)"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "skills-mw",
+      "x": 2300,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "发现技能",
+      "lines": [
+        "SkillsMiddleware"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "subagent",
+      "x": 2850,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "官方内部子助手",
+      "lines": [
+        "general-purpose / document"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "fresh",
+      "x": 3400,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "补入当前状态",
+      "lines": [
+        "来源 / 草稿 / 版本"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "stream",
+      "x": 3950,
+      "y": 1405,
+      "w": 430,
+      "h": 126,
+      "title": "流式事件",
+      "lines": [
+        "graph.astream"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "refresh",
+      "x": 100,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "请求最新邮件",
+      "lines": [
+        "refresh_inbox"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "briefing",
+      "x": 100,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "读取分类摘要",
+      "lines": [
+        "get_secretary_briefing"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "prioritize",
+      "x": 100,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "列出需处理事项",
+      "lines": [
+        "重要 / 行动 / 待核实"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "fold",
+      "x": 100,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "折叠普通与广告",
+      "lines": [
+        "分类摘要卡"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "correct-tool",
+      "x": 100,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "保存人工纠正",
+      "lines": [
+        "correct_mail_category"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "search-mail",
+      "x": 650,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "查找相关邮件",
+      "lines": [
+        "search_mail"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "read-mail",
+      "x": 650,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "读取完整正文",
+      "lines": [
+        "read_mail"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "attachment",
+      "x": 650,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "导入邮件附件",
+      "lines": [
+        "import_attachment"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "file-read",
+      "x": 650,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "读取文件内容",
+      "lines": [
+        "文本 / 表格 / 图片 / 压缩包"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "source-link",
+      "x": 650,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "保留来源链接",
+      "lines": [
+        "邮件 / 文件 ID"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "check-child",
+      "x": 1200,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "查询现有任务",
+      "lines": [
+        "get_child_tasks"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "delegate-child",
+      "x": 1200,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "分派独立任务",
+      "lines": [
+        "create_child_conversation"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "handoff",
+      "x": 1200,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "交接原话与来源",
+      "lines": [
+        "目标 / 限制 / 文件"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "child-card",
+      "x": 1200,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "打开任务卡",
+      "lines": [
+        "独立对话 / 独立历史"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "child-progress",
+      "x": 1200,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "回查实际进度",
+      "lines": [
+        "当前结果 / 历史结果"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "document-agent",
+      "x": 1750,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "document 子助手",
+      "lines": [
+        "官方任务委派"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "template",
+      "x": 1750,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "读取原件 / 模板",
+      "lines": [
+        "结构 / 原文 / 页面"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "edit-file",
+      "x": 1750,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "生成 / 修改内容",
+      "lines": [
+        "Word / PDF / CSV"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "convert-file",
+      "x": 1750,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "转换 / 选页 / 排版",
+      "lines": [
+        "Word → PDF · PDF 选页"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "review-file",
+      "x": 1750,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "检查结构与页面",
+      "lines": [
+        "validate_file / view_file"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "query-task",
+      "x": 2300,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "读取当前任务",
+      "lines": [
+        "list_tasks / 历史状态"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-choice",
+      "x": 2300,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "判断新增或变更",
+      "lines": [
+        "新增 / 改期 / 取消"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-draft",
+      "x": 2300,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "生成待办提议",
+      "lines": [
+        "create_task_draft",
+        "propose_task_change"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-review",
+      "x": 2300,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "形成审核卡",
+      "lines": [
+        "原值 / 新值 / 来源"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-status",
+      "x": 2300,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "回查任务状态",
+      "lines": [
+        "任务 ID / revision"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "search-skill",
+      "x": 2850,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "查找已批准技能",
+      "lines": [
+        "search_skills"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "import-skill",
+      "x": 2850,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "导入现成 Skill 包",
+      "lines": [
+        "SKILL.md / 代码 / 样例"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "test-skill",
+      "x": 2850,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "运行包内样例",
+      "lines": [
+        "验证输入与输出"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "skill-review",
+      "x": 2850,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "保存技能审核稿",
+      "lines": [
+        "用途 / 范围 / 版本"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "apply-skill",
+      "x": 2850,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "调用批准版本",
+      "lines": [
+        "run_skill"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "search-memory",
+      "x": 3400,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "查找已有方法",
+      "lines": [
+        "search_learning"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "learn-method",
+      "x": 3400,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "整理用户指导",
+      "lines": [
+        "偏好 / 规则 / 样例"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "propose-memory",
+      "x": 3400,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "提出经验版本",
+      "lines": [
+        "propose_learning"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "memory-review",
+      "x": 3400,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "保存经验审核稿",
+      "lines": [
+        "适用对象 / 处理方法"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "reuse-memory",
+      "x": 3400,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "后续会话检索",
+      "lines": [
+        "按来源 / 对象 / 关键词"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "read-draft",
+      "x": 3950,
+      "y": 1660,
+      "w": 430,
+      "h": 126,
+      "title": "检查已有草稿",
+      "lines": [
+        "list_drafts / read_draft"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "write-draft",
+      "x": 3950,
+      "y": 1845,
+      "w": 430,
+      "h": 126,
+      "title": "生成 / 修订回复",
+      "lines": [
+        "create / replace_mail_draft"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "add-files",
+      "x": 3950,
+      "y": 2030,
+      "w": 430,
+      "h": 126,
+      "title": "加入当前附件",
+      "lines": [
+        "文件 ID / 当前版本"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "verify-draft",
+      "x": 3950,
+      "y": 2215,
+      "w": 430,
+      "h": 126,
+      "title": "核对正文与附件",
+      "lines": [
+        "validate_mail_draft"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "reply-card",
+      "x": 3950,
+      "y": 2400,
+      "w": 430,
+      "h": 126,
+      "title": "返回邮件草稿卡",
+      "lines": [
+        "收件人 / 正文 / 附件"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "mail-fetch",
+      "x": 100,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "读取账号与邮箱",
+      "lines": [
+        "IMAP / Graph",
+        "AccountManager"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "mail-pages",
+      "x": 100,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "分页导入与去重",
+      "lines": [
+        "初次近 7 天 / 后续增量",
+        "正文 / 附件 / 身份"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "mail-triage",
+      "x": 100,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "分类与汇报版本",
+      "lines": [
+        "每轮最多 20 封",
+        "指纹 / 人工纠正 / 余量"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "mail-store",
+      "x": 650,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "本地邮件库",
+      "lines": [
+        "MailStore / SQLite",
+        "原文 / 发件人 / 收件账号"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "schedule",
+      "x": 650,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "定时整理入口",
+      "lines": [
+        "Mac LaunchAgent",
+        "09:00 / 18:00"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "scheduled-triage",
+      "x": 650,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "后台自动整理",
+      "lines": [
+        "automation_worker",
+        "分类 / 摘要 / 待办草稿"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "run-store",
+      "x": 1200,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "对话与执行记录",
+      "lines": [
+        "agent.sqlite",
+        "父子关系 / 状态 / 来源"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "graph-store",
+      "x": 1200,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "图状态与历史",
+      "lines": [
+        "agent-checkpoints.sqlite",
+        "LangGraph SQLite saver"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "file-notes",
+      "x": 1200,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "会话工作文件",
+      "lines": [
+        "CompositeBackend",
+        "StateBackend"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "file-engine",
+      "x": 1750,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "文件内容引擎",
+      "lines": [
+        "python-docx / ReportLab",
+        "CSV / pypdf"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "conversion",
+      "x": 1750,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "原 Word 转 PDF",
+      "lines": [
+        "LibreOffice",
+        "独立临时 profile"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "page-engine",
+      "x": 1750,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "逐页渲染与识别",
+      "lines": [
+        "PDFium / 图像模型",
+        "渲染锁 / 页面证据"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-service",
+      "x": 2300,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "待办草稿与变更",
+      "lines": [
+        "TaskChangeService",
+        "来源 / revision"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "task-db",
+      "x": 2300,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "本地 Todo / 日历",
+      "lines": [
+        "TaskRepository",
+        "截止 / 完成 / 回收站"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "canvas",
+      "x": 2300,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "Canvas 作业同步",
+      "lines": [
+        "订阅导入 / 去重"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "skill-package",
+      "x": 2850,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "技能包存储",
+      "lines": [
+        "原代码 / 资源 / 样例",
+        "skill.json 契约"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "docker",
+      "x": 2850,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "Docker 隔离执行",
+      "lines": [
+        "样例验证 / 已批准技能"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "skill-db",
+      "x": 2850,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "技能版本库",
+      "lines": [
+        "scope / approval / version"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "learning-db",
+      "x": 3400,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "文字经验库",
+      "lines": [
+        "LearningService",
+        "版本 / 对象 / 审核状态"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "reuse-store",
+      "x": 3400,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "检索长期资料",
+      "lines": [
+        "邮件 / 任务 / 经验 / 技能"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "source-store",
+      "x": 3400,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "原件与版本",
+      "lines": [
+        "MailFiles",
+        "哈希 / 来源 / 当前版本"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "draft-store",
+      "x": 3950,
+      "y": 2800,
+      "w": 430,
+      "h": 126,
+      "title": "持久邮件草稿",
+      "lines": [
+        "DraftLifecycle",
+        "正文 / 附件 / revision"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "prepare-send",
+      "x": 3950,
+      "y": 2980,
+      "w": 430,
+      "h": 126,
+      "title": "预览发送内容",
+      "lines": [
+        "prepare / 确认令牌"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "smtp",
+      "x": 3950,
+      "y": 3160,
+      "w": 430,
+      "h": 126,
+      "title": "SMTP 与发送回执",
+      "lines": [
+        "成功 / 失败 / 待核实"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "see-summary",
+      "x": 100,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "查看重点",
+      "lines": [
+        "分类摘要 / 当前进度"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "see-source",
+      "x": 650,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "打开原文",
+      "lines": [
+        "邮件 / 附件 / 引用"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "see-child",
+      "x": 1200,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "继续任务对话",
+      "lines": [
+        "追问 / 修改 / 暂停"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "see-file",
+      "x": 1750,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "审阅生成文件",
+      "lines": [
+        "内容 / 排版 / 版本"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "approve-task",
+      "x": 2300,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "确认待办变更",
+      "lines": [
+        "新增 / 改期 / 取消"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "approve-skill",
+      "x": 2850,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "批准技能版本",
+      "lines": [
+        "用途 / 范围 / 样例"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "approve-memory",
+      "x": 3400,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "批准文字经验",
+      "lines": [
+        "规则 / 偏好 / 模板"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "approve-mail",
+      "x": 3950,
+      "y": 3580,
+      "w": 430,
+      "h": 126,
+      "title": "预览并确认发送",
+      "lines": [
+        "收件人 / 正文 / 附件"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "next-turn",
+      "x": 100,
+      "y": 3800,
+      "w": 980,
+      "h": 126,
+      "title": "下一轮继续",
+      "lines": [
+        "同会话 / 新会话检索"
+      ],
+      "kind": "human"
+    },
+    {
+      "id": "task-receipt",
+      "x": 2300,
+      "y": 3800,
+      "w": 430,
+      "h": 126,
+      "title": "保存本地任务",
+      "lines": [
+        "日历 / 同一任务 ID"
+      ],
+      "kind": "base"
+    },
+    {
+      "id": "approved-reuse",
+      "x": 2850,
+      "y": 3800,
+      "w": 980,
+      "h": 126,
+      "title": "批准后复用",
+      "lines": [
+        "技能版本 / 文字经验"
+      ],
+      "kind": "new"
+    },
+    {
+      "id": "send-receipt",
+      "x": 3950,
+      "y": 3800,
+      "w": 430,
+      "h": 126,
+      "title": "执行邮件发送",
+      "lines": [
+        "SMTP / 状态记录"
+      ],
+      "kind": "new"
+    }
+  ],
+  "edges": [
+    {
+      "source": "ipc",
+      "target": "persist"
+    },
+    {
+      "source": "persist",
+      "target": "queue"
+    },
+    {
+      "source": "queue",
+      "target": "home-lane"
+    },
+    {
+      "source": "queue",
+      "target": "work-lane"
+    },
+    {
+      "source": "child-store",
+      "target": "parent-gate"
+    },
+    {
+      "source": "parent-gate",
+      "target": "work-lane"
+    },
+    {
+      "source": "events",
+      "target": "ui"
+    },
+    {
+      "source": "events",
+      "target": "ack"
+    },
+    {
+      "source": "home",
+      "target": "ipc"
+    },
+    {
+      "source": "request",
+      "target": "ipc"
+    },
+    {
+      "source": "attach",
+      "target": "ipc"
+    },
+    {
+      "source": "followup",
+      "target": "ipc"
+    },
+    {
+      "source": "clarify",
+      "target": "ipc"
+    },
+    {
+      "source": "open-child",
+      "target": "ipc"
+    },
+    {
+      "source": "correct",
+      "target": "ipc"
+    },
+    {
+      "source": "configure",
+      "target": "ipc"
+    },
+    {
+      "source": "ipc",
+      "target": "resume-host"
+    },
+    {
+      "source": "deepagents",
+      "target": "context"
+    },
+    {
+      "source": "context",
+      "target": "model"
+    },
+    {
+      "source": "model",
+      "target": "decide"
+    },
+    {
+      "source": "decide",
+      "target": "tools"
+    },
+    {
+      "source": "tools",
+      "target": "tool-result"
+    },
+    {
+      "source": "tool-result",
+      "target": "delivery"
+    },
+    {
+      "source": "delivery",
+      "target": "answer"
+    },
+    {
+      "source": "decide",
+      "target": "answer"
+    },
+    {
+      "source": "home-lane",
+      "target": "deepagents"
+    },
+    {
+      "source": "work-lane",
+      "target": "deepagents"
+    },
+    {
+      "source": "resume-host",
+      "target": "deepagents"
+    },
+    {
+      "source": "answer",
+      "target": "events"
+    },
+    {
+      "source": "deepagents",
+      "target": "plan"
+    },
+    {
+      "source": "context",
+      "target": "state-files"
+    },
+    {
+      "source": "model",
+      "target": "summary"
+    },
+    {
+      "source": "decide",
+      "target": "ask"
+    },
+    {
+      "source": "tools",
+      "target": "skills-mw"
+    },
+    {
+      "source": "tool-result",
+      "target": "subagent"
+    },
+    {
+      "source": "delivery",
+      "target": "fresh"
+    },
+    {
+      "source": "answer",
+      "target": "stream"
+    },
+    {
+      "source": "tool-result",
+      "target": "model"
+    },
+    {
+      "source": "refresh",
+      "target": "briefing"
+    },
+    {
+      "source": "briefing",
+      "target": "prioritize"
+    },
+    {
+      "source": "prioritize",
+      "target": "fold"
+    },
+    {
+      "source": "fold",
+      "target": "correct-tool"
+    },
+    {
+      "source": "tools",
+      "target": "refresh"
+    },
+    {
+      "source": "search-mail",
+      "target": "read-mail"
+    },
+    {
+      "source": "read-mail",
+      "target": "attachment"
+    },
+    {
+      "source": "attachment",
+      "target": "file-read"
+    },
+    {
+      "source": "file-read",
+      "target": "source-link"
+    },
+    {
+      "source": "tools",
+      "target": "search-mail"
+    },
+    {
+      "source": "check-child",
+      "target": "delegate-child"
+    },
+    {
+      "source": "delegate-child",
+      "target": "handoff"
+    },
+    {
+      "source": "handoff",
+      "target": "child-card"
+    },
+    {
+      "source": "child-card",
+      "target": "child-progress"
+    },
+    {
+      "source": "tools",
+      "target": "check-child"
+    },
+    {
+      "source": "document-agent",
+      "target": "template"
+    },
+    {
+      "source": "template",
+      "target": "edit-file"
+    },
+    {
+      "source": "edit-file",
+      "target": "convert-file"
+    },
+    {
+      "source": "convert-file",
+      "target": "review-file"
+    },
+    {
+      "source": "tools",
+      "target": "document-agent"
+    },
+    {
+      "source": "query-task",
+      "target": "task-choice"
+    },
+    {
+      "source": "task-choice",
+      "target": "task-draft"
+    },
+    {
+      "source": "task-draft",
+      "target": "task-review"
+    },
+    {
+      "source": "task-review",
+      "target": "task-status"
+    },
+    {
+      "source": "tools",
+      "target": "query-task"
+    },
+    {
+      "source": "search-skill",
+      "target": "import-skill"
+    },
+    {
+      "source": "import-skill",
+      "target": "test-skill"
+    },
+    {
+      "source": "test-skill",
+      "target": "skill-review"
+    },
+    {
+      "source": "skill-review",
+      "target": "apply-skill"
+    },
+    {
+      "source": "tools",
+      "target": "search-skill"
+    },
+    {
+      "source": "search-memory",
+      "target": "learn-method"
+    },
+    {
+      "source": "learn-method",
+      "target": "propose-memory"
+    },
+    {
+      "source": "propose-memory",
+      "target": "memory-review"
+    },
+    {
+      "source": "memory-review",
+      "target": "reuse-memory"
+    },
+    {
+      "source": "tools",
+      "target": "search-memory"
+    },
+    {
+      "source": "read-draft",
+      "target": "write-draft"
+    },
+    {
+      "source": "write-draft",
+      "target": "add-files"
+    },
+    {
+      "source": "add-files",
+      "target": "verify-draft"
+    },
+    {
+      "source": "verify-draft",
+      "target": "reply-card"
+    },
+    {
+      "source": "tools",
+      "target": "read-draft"
+    },
+    {
+      "source": "correct-tool",
+      "target": "tool-result"
+    },
+    {
+      "source": "source-link",
+      "target": "tool-result"
+    },
+    {
+      "source": "child-progress",
+      "target": "tool-result"
+    },
+    {
+      "source": "review-file",
+      "target": "tool-result"
+    },
+    {
+      "source": "task-status",
+      "target": "tool-result"
+    },
+    {
+      "source": "apply-skill",
+      "target": "tool-result"
+    },
+    {
+      "source": "reuse-memory",
+      "target": "tool-result"
+    },
+    {
+      "source": "reply-card",
+      "target": "tool-result"
+    },
+    {
+      "source": "refresh",
+      "target": "mail-fetch"
+    },
+    {
+      "source": "briefing",
+      "target": "mail-triage"
+    },
+    {
+      "source": "read-mail",
+      "target": "mail-store"
+    },
+    {
+      "source": "handoff",
+      "target": "run-store"
+    },
+    {
+      "source": "template",
+      "target": "file-engine"
+    },
+    {
+      "source": "convert-file",
+      "target": "conversion"
+    },
+    {
+      "source": "review-file",
+      "target": "page-engine"
+    },
+    {
+      "source": "task-draft",
+      "target": "task-service"
+    },
+    {
+      "source": "apply-skill",
+      "target": "docker"
+    },
+    {
+      "source": "propose-memory",
+      "target": "learning-db"
+    },
+    {
+      "source": "reply-card",
+      "target": "draft-store"
+    },
+    {
+      "source": "mail-fetch",
+      "target": "mail-pages"
+    },
+    {
+      "source": "mail-pages",
+      "target": "mail-triage"
+    },
+    {
+      "source": "mail-pages",
+      "target": "mail-store"
+    },
+    {
+      "source": "schedule",
+      "target": "scheduled-triage"
+    },
+    {
+      "source": "scheduled-triage",
+      "target": "mail-pages"
+    },
+    {
+      "source": "conversion",
+      "target": "page-engine"
+    },
+    {
+      "source": "canvas",
+      "target": "task-db"
+    },
+    {
+      "source": "graph-store",
+      "target": "file-notes"
+    },
+    {
+      "source": "source-store",
+      "target": "reuse-store"
+    },
+    {
+      "source": "skill-package",
+      "target": "docker"
+    },
+    {
+      "source": "docker",
+      "target": "skill-db"
+    },
+    {
+      "source": "learning-db",
+      "target": "reuse-store"
+    },
+    {
+      "source": "draft-store",
+      "target": "prepare-send"
+    },
+    {
+      "source": "deepagents",
+      "target": "graph-store"
+    },
+    {
+      "source": "checkpoint",
+      "target": "graph-store"
+    },
+    {
+      "source": "mail-triage",
+      "target": "see-summary"
+    },
+    {
+      "source": "mail-store",
+      "target": "see-source"
+    },
+    {
+      "source": "run-store",
+      "target": "see-child"
+    },
+    {
+      "source": "page-engine",
+      "target": "see-file"
+    },
+    {
+      "source": "task-service",
+      "target": "approve-task"
+    },
+    {
+      "source": "skill-db",
+      "target": "approve-skill"
+    },
+    {
+      "source": "learning-db",
+      "target": "approve-memory"
+    },
+    {
+      "source": "prepare-send",
+      "target": "approve-mail"
+    },
+    {
+      "source": "approve-task",
+      "target": "task-receipt"
+    },
+    {
+      "source": "approve-skill",
+      "target": "approved-reuse"
+    },
+    {
+      "source": "approve-memory",
+      "target": "approved-reuse"
+    },
+    {
+      "source": "approve-mail",
+      "target": "send-receipt"
+    },
+    {
+      "source": "approved-reuse",
+      "target": "next-turn"
+    },
+    {
+      "source": "task-receipt",
+      "target": "task-db"
+    },
+    {
+      "source": "send-receipt",
+      "target": "smtp"
+    },
+    {
+      "source": "next-turn",
+      "target": "home"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "input",
+      "y": 180,
+      "height": 320,
+      "title": "01  用户 · 提出与继续",
+      "role": "human"
+    },
+    {
+      "id": "dispatch",
+      "y": 550,
+      "height": 480,
+      "title": "02  后台 · 接收与调度",
+      "role": "backend"
+    },
+    {
+      "id": "agent",
+      "y": 1080,
+      "height": 1560,
+      "title": "03  AI · 理解与执行",
+      "role": "ai"
+    },
+    {
+      "id": "services",
+      "y": 2690,
+      "height": 730,
+      "title": "04  后台 · 业务与保存",
+      "role": "backend"
+    },
+    {
+      "id": "review",
+      "y": 3470,
+      "height": 500,
+      "title": "05  用户 · 审核与继续",
+      "role": "human"
+    }
+  ]
+}

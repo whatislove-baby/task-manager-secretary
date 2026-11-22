@@ -1,0 +1,18 @@
+{
+  "source": "..",
+  "byteIdenticalInputs": true,
+  "hashes": {
+    "inputs/attachments/报名统计.csv": "684b194ec442f203832738874a94821e2375d1f1d8758895c1ad8b094c1336cb",
+    "inputs/attachments/简报说明.md": "2f5677b60394b95b6cfe05d492338bf8a32615d80fd66f91ece52b054222a502",
+    "inputs/eml/club-weekly.eml": "554cceebbccccac9961fd830be5a7a2254a571b687931b9af091a776b1821267",
+    "inputs/eml/course-project.eml": "10fd178cf1a743e9a93ba9283c9267375748673c7fd0721c268fbc19346749c5",
+    "inputs/eml/course-reschedule.eml": "4762843e79752f2bd7029fb3dd1cdf91b21c2d7b63a61ecc7ddcd0a0e3648aae",
+    "inputs/eml/intern-brief.eml": "360400f6995bde39f45b87abc94eb33563e89c6db653d1958c252a7f1c663a3d",
+    "inputs/eml/photo-workshop.eml": "a9b3568dc22b4d4dec8a0cbb062236b316eb01682a260d0e2f938465b5ae79c8",
+    "inputs/eml/shopping-ad.eml": "f18d3e136d7d6d731c4aa472cb73465132de0c042aa3aac10fe7c5dd2df4f873",
+    "inputs/manifest.json": "2e1250f39a04d98bf39f2b9cb06a463d9488008c0854aeff371f1c6c02b66dc2",
+    "inputs/scenario.json": "b7f4b95d40c9b3d267ba57b962263f6e7da931d8f6702d0a8fa86436453ab39e",
+    "requests-extra.json": "5505e3d610c67d4c8ae8804bb43ffe48a8932970274c114cd5354e57348f447f",
+    "requests.json": "fd9e9188df2c785e50bfcf57038a8c9c5299192cab10a19ba1c80b827a503ec3"
+  }
+}

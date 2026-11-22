@@ -1,0 +1,16 @@
+{
+  "profile": "[local-test-profile]",
+  "sourceProfile": "[local-test-profile]",
+  "copiedDatabases": [
+    "tasks.sqlite",
+    "agent.sqlite",
+    "agent-tools.sqlite",
+    "mail.sqlite",
+    "mail-files.sqlite",
+    "task-changes.sqlite",
+    "draft-lifecycle.sqlite"
+  ],
+  "settingsCopied": false,
+  "accountsCopied": false,
+  "credentialsAccessed": false
+}

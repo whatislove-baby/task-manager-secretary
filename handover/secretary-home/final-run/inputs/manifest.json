@@ -1,0 +1,42 @@
+{
+  "fictional": true,
+  "source": "New original synthetic content",
+  "messages": [
+    {
+      "key": "course-project",
+      "uid": 101,
+      "sha256": "10fd178cf1a743e9a93ba9283c9267375748673c7fd0721c268fbc19346749c5",
+      "bytes": 964
+    },
+    {
+      "key": "club-weekly",
+      "uid": 102,
+      "sha256": "554cceebbccccac9961fd830be5a7a2254a571b687931b9af091a776b1821267",
+      "bytes": 731
+    },
+    {
+      "key": "photo-workshop",
+      "uid": 103,
+      "sha256": "a9b3568dc22b4d4dec8a0cbb062236b316eb01682a260d0e2f938465b5ae79c8",
+      "bytes": 984
+    },
+    {
+      "key": "shopping-ad",
+      "uid": 104,
+      "sha256": "f18d3e136d7d6d731c4aa472cb73465132de0c042aa3aac10fe7c5dd2df4f873",
+      "bytes": 806
+    },
+    {
+      "key": "intern-brief",
+      "uid": 105,
+      "sha256": "360400f6995bde39f45b87abc94eb33563e89c6db653d1958c252a7f1c663a3d",
+      "bytes": 2594
+    },
+    {
+      "key": "course-reschedule",
+      "uid": 106,
+      "sha256": "4762843e79752f2bd7029fb3dd1cdf91b21c2d7b63a61ecc7ddcd0a0e3648aae",
+      "bytes": 882
+    }
+  ]
+}

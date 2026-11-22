@@ -1,0 +1,40 @@
+{
+  "canvas": {
+    "width": 4520,
+    "height": 4050,
+    "nodes": 112,
+    "edges": 128,
+    "roleLanes": 5
+  },
+  "files": [
+    {
+      "path": "handover/final-guide/workflow.html",
+      "sha256": "fcc0f018c97ba53b39630afb601559bcc8b48327b7c88fdd0a214ac67db7f2c1"
+    },
+    {
+      "path": "handover/final-guide/workflow-complete.svg",
+      "sha256": "e0fec8b29bdfab3075c5904647c51312cd1c21308ac26201458423966cd0ef41"
+    },
+    {
+      "path": "handover/final-guide/workflow-complete.png",
+      "sha256": "1ad7ead3b1ea8c21d9b48f311f4bb0a6a649e6606460a94b1f0aa7acf0a32d29"
+    },
+    {
+      "path": "handover/final-guide/workflow-nodes.json",
+      "sha256": "7332f0b9759b46f82294058674ab524ac5af83bdb568dfd23a87d4926cb79199"
+    },
+    {
+      "path": "handover/final-guide/workflow-source-index.json",
+      "sha256": "bb622f9e13351064f7041bb5ff8511a05051d9540222b1cb44a8d29b447ae0bd"
+    },
+    {
+      "path": "handover/final-guide/workflow-layout-check.json",
+      "sha256": "ff45dafbaf6448505213149cb667e233a73f17a1f4f9e907df4b09356fb32d96"
+    },
+    {
+      "path": "docs/workflow-complete.md",
+      "sha256": "c3b80334a65c49caacad2bc48a9a33db04513bfdfa390c23668c29a108638de5"
+    }
+  ],
+  "scope": "One public keyword canvas; roles user/AI/backend separated by dashed lanes; no private business examples or test links; source and boundaries in docs."
+}

@@ -1,0 +1,138 @@
+{
+  "batch_id": "TM演练 1121",
+  "verification_status": "expected_only_not_executed",
+  "message_count": 12,
+  "subject_prefix": "[TM演练 1121]",
+  "real_attachment_count": 2,
+  "roles_are_simulated": true,
+  "sender_boundary": "正文角色可以不同，但本批经同一真实邮箱发送，不能验证不同真实发件地址的自动归档或联系人记忆。",
+  "courses": {
+    "TEST101": {
+      "name": "数据分析实践",
+      "project": "Project 2",
+      "submission_deadline": {
+        "local": "2026-11-28T23:59:00+08:00",
+        "time_zone": "Asia/Hong_Kong",
+        "utc": "2026-11-28T15:59:00Z",
+        "source": "E04",
+        "superseded": "E01: 2026-11-26T23:59:00+08:00"
+      },
+      "presentation": {
+        "local": "2026-11-29T14:00:00+08:00",
+        "time_zone": "Asia/Hong_Kong",
+        "location": "模拟教室 R-305",
+        "source": "E04",
+        "superseded": "E01: 2026-11-27T14:00:00+08:00 / R-204",
+        "duration_minutes": 6,
+        "question_minutes": 2
+      },
+      "required_deliverables": [
+        "PDF报告及误差分析",
+        "六分钟演示幻灯片",
+        "实际团队交接记录"
+      ],
+      "rubric": {
+        "source": "E02/TEST101-P2-rubric.pdf",
+        "scores": {
+          "报告与误差分析": 40,
+          "六分钟演示": 30,
+          "可运行与可复现": 20,
+          "团队交接": 10
+        },
+        "appendix_failure_cases": 3,
+        "each_case_requires": [
+          "原始输入",
+          "错误表现",
+          "改进建议"
+        ],
+        "must_read_attachment_to_claim_content": true
+      },
+      "latest_progress": {
+        "data_cleaning": {
+          "status": "完成",
+          "sources": [
+            "E03",
+            "E12"
+          ]
+        },
+        "slides": {
+          "status": "初稿完成，待组内核对，最终版未确认",
+          "source": "E12",
+          "superseded": "E03: 还没开始"
+        },
+        "error_analysis": {
+          "status": "未完成",
+          "source": "E12"
+        },
+        "team_handover": {
+          "status": "未进行",
+          "source": "E12"
+        },
+        "unknown": [
+          "源码整理状态",
+          "README状态",
+          "文件打包状态"
+        ]
+      },
+      "rehearsal": {
+        "status": "取消，无替代日期",
+        "original": "E05: 2026-11-24 19:00–19:30 Asia/Hong_Kong / S-102",
+        "cancellation_source": "E06",
+        "must_not_create_attend_canceled_meeting_task": true,
+        "formal_presentation_remains_valid": true
+      },
+      "missing_attachment": {
+        "source": "E11",
+        "filename": "TEST101-FAQ-v2.pdf",
+        "expected": "说明没有找到附件，无法判断补充答疑具体要求；请用户补文件或向模拟助教澄清",
+        "must_not_substitute": "E02的rubric是另一份文件，不能冒充FAQ-v2。"
+      }
+    },
+    "TEST202": {
+      "name": "系统设计",
+      "project": "Project 2",
+      "deliverable": "接口设计说明，含输入、输出和两个异常场景",
+      "deadline": {
+        "kind": "date",
+        "date": "2026-11-30",
+        "source": "E07"
+      },
+      "must_not_invent_time": true,
+      "requires_presentation": false,
+      "must_not_apply_TEST101_revision": true
+    }
+  },
+  "ambiguous_request": {
+    "source": "E08",
+    "unknown": [
+      "TEST101还是TEST202",
+      "材料具体范围",
+      "周五的具体日期和时间",
+      "实际收件人"
+    ],
+    "expected": "在用户要求实际处理/准备发送时先澄清，不把不明确的材料请求直接当成已核实的课程截止安排；不发送邮件",
+    "test_in_new_conversation": true,
+    "clarification_example": "指TEST202的接口设计说明，只起草回复，询问对方要哪一个周五；先不要发送。"
+  },
+  "non_action_messages": {
+    "E09": "知会，可摘要；不生成提交/回执/复习强制任务",
+    "E10": "营销噪声，可归普通或疑似垃圾；不购买、不发信、不生成课程待办"
+  },
+  "workflow_assertions": [
+    "导入12封后先核对数量和两个实际附件，不应只看到发信成功就认定读取成功。",
+    "本轮对话未要求创建正式任务时，不保存正式任务；任务工具只生成待审核草稿。",
+    "总结应区分有效安排、已取消事项、最新进度和未知信息，并可追溯到邮件或附件。",
+    "用户指定仅处理本批时，不混入真实课程邮件或此前TM-E2E演练。",
+    "生成文档后可查看内容；生成邮件草稿不应自动发送，附件应是实际生成文件。",
+    "重开应用后已发送的对话及生成成果仍可访问；不因恢复重复生成同一工具调用的产物。",
+    "若既有任务日期已过期，当前版本应指出需人工在任务详情修改，不声称已自动合并或覆盖旧任务。",
+    "同一主题重新分析不保证语义去重；检查既有任务状态，不能把工具重试幂等误称为任意重复请求都不会重复。"
+  ],
+  "known_capability_limits_to_record": [
+    "同一真实发件邮箱只能验证正文角色理解，不能验证多真实来源归档。",
+    "当前Agent待办草稿工具只支持日期级新增，不能据此认定23:59精度已保存；分钟级日期需在人工审核界面核对/补充，若丢失则记录为限制。",
+    "当前未提供自动编辑/删除既有任务的Agent工具，取消会议测试应检查回答和新增草稿，不能要求它已自动删除旧日历事项。",
+    "批量邮件全部在同一发送时段投递，情境先后关系由明确E编号与更正文字给出，不能据此证明长期自然邮件串追踪。",
+    "这批是纯文本和小型文字PDF/Markdown；不覆盖HTML、多账号、扫描件OCR、复杂PDF排版或SMTP结果不确定。"
+  ]
+}

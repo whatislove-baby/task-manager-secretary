@@ -1,0 +1,76 @@
+{
+  "app": "[local-project]/release-document-repair/mac-arm64/Task Manager.app",
+  "profile": "[local-test-profile]",
+  "proof": {
+    "profile": "[local-test-profile]",
+    "sourceProfile": "[local-project]/handover/long-task-public/snapshots/15-after-run",
+    "copiedDatabases": [
+      "tasks.sqlite",
+      "agent.sqlite",
+      "agent-tools.sqlite",
+      "mail.sqlite",
+      "mail-files.sqlite",
+      "task-changes.sqlite",
+      "draft-lifecycle.sqlite",
+      "learning.sqlite"
+    ],
+    "settingsCopied": false,
+    "accountsCopied": false,
+    "credentialsAccessed": false,
+    "purpose": "Actual committed model state, copied unchanged before read-only UI navigation"
+  },
+  "shots": [
+    {
+      "id": "stage-15-answer",
+      "title": "本轮实际回答",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 65.0859375,
+          "width": 736,
+          "height": 1742.0234375,
+          "label": "真实回答与来源"
+        }
+      ]
+    },
+    {
+      "id": "stage-15-sources",
+      "title": "本轮来源和产物",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 396.109375,
+          "width": 736,
+          "height": 186,
+          "label": "打开原始依据"
+        }
+      ]
+    },
+    {
+      "id": "stage-15-tools",
+      "title": "真实工具调用记录",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 80.109375,
+          "width": 736,
+          "height": 599.796875,
+          "label": "本轮实际调用的检索与读取工具"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "No API key or mailbox accounts",
+    "Read-only navigation of actual stage 15; no model request, approval or send",
+    "No send or SMTP preparation"
+  ],
+  "errors": [],
+  "appAsarSha256": "a1e181e352d7c633eb8a21761847552792e0f5c162f74af03b4c2011aa02d8d9"
+}

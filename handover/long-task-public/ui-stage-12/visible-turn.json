@@ -1,0 +1,14 @@
+{
+  "conversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+  "turnId": "753f2428-a253-4541-84b7-25acf124f389:assistant",
+  "contentSha256": "691ca7ef0eb82c28609c4f6fb42b47d8e1269f8b78b28dfa2755ee5bf63f6158",
+  "sources": [
+    {
+      "kind": "mail",
+      "id": "0ba86c1ffdafb9edd43889072e22e45db5da17effc3525deb252f682114fd9be",
+      "title": "Re: COMP5051最终稿页数",
+      "excerpt": "许同学，\r\n\r\n页数和中文摘要长度仍按第一次发的Project通知来。不要为了赶提交把尚未验证的问卷结果写成已经确认的结论；如果有疑问，在发我前再核一下。\r\n\r\n周言\r\n"
+    }
+  ],
+  "artifacts": []
+}

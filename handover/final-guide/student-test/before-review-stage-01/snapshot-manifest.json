@@ -1,0 +1,88 @@
+{
+  "stage": 1,
+  "profile": "[local-project]/handover/final-guide/student-test/before-review-stage-01",
+  "sourceProfile": "[local-test-profile]",
+  "source": "actual completed API run before simulated user review",
+  "runId": "5a0e8b8a-454c-4c38-907f-fd3849e8b53f",
+  "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+  "artifacts": [
+    {
+      "kind": "task_draft",
+      "id": "75f1af35-f890-5830-9cda-65fea7aeca76",
+      "title": "COMP5082 Project：小组调研报告上传 Canvas"
+    },
+    {
+      "kind": "task_draft",
+      "id": "c7f8c5ed-829d-54bc-8a19-119f8d7a05d9",
+      "title": "COMP5082 Project 提纲小组讨论（421 室）"
+    },
+    {
+      "kind": "task_draft",
+      "id": "fac37ff3-f708-5270-926b-4f4c49cb3ad4",
+      "title": "摄影社校园夜拍（图书馆正门集合）"
+    }
+  ],
+  "taskIds": {},
+  "pending": [
+    {
+      "kind": "task_draft",
+      "id": "75f1af35-f890-5830-9cda-65fea7aeca76",
+      "title": "COMP5082 Project：小组调研报告上传 Canvas",
+      "runId": "5a0e8b8a-454c-4c38-907f-fd3849e8b53f",
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+      "createdAt": "2026-11-21T16:28:17.188Z"
+    },
+    {
+      "kind": "task_draft",
+      "id": "c7f8c5ed-829d-54bc-8a19-119f8d7a05d9",
+      "title": "COMP5082 Project 提纲小组讨论（421 室）",
+      "runId": "5a0e8b8a-454c-4c38-907f-fd3849e8b53f",
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+      "createdAt": "2026-11-21T16:28:17.188Z"
+    },
+    {
+      "kind": "task_draft",
+      "id": "fac37ff3-f708-5270-926b-4f4c49cb3ad4",
+      "title": "摄影社校园夜拍（图书馆正门集合）",
+      "runId": "5a0e8b8a-454c-4c38-907f-fd3849e8b53f",
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444",
+      "createdAt": "2026-11-21T16:28:17.188Z"
+    }
+  ],
+  "tasks": [],
+  "copied": [
+    {
+      "path": "tasks.sqlite",
+      "sha256": "81d8dc811cf3c3b6cce197d043b7e07d85077deb5d3d211a8a9e2b5272ffe862"
+    },
+    {
+      "path": "agent.sqlite",
+      "sha256": "f37f2158723dd278eb5f5d3626f3fad5bce16f514bfd16a0fb0ce2fd1260ca76"
+    },
+    {
+      "path": "agent-tools.sqlite",
+      "sha256": "316a08f2b93f1551aff1ae379d58b9c3df8dec4489ff29b0967959cd6b72c14d"
+    },
+    {
+      "path": "mail.sqlite",
+      "sha256": "d47f9ecf0e4991db85436bd7e06a80879d35dd6d9ac2d1add9f9641271cf63b3"
+    },
+    {
+      "path": "mail-files.sqlite",
+      "sha256": "011b14214807ee0d5f732bf7003afa8c0cfb191b8aee6c4ab9a90cc8563f5cbf"
+    },
+    {
+      "path": "task-changes.sqlite",
+      "sha256": "d05168e50eb791437f70d1178af8a96fd5c36051a59f23cc5221856870634780"
+    },
+    {
+      "path": "draft-lifecycle.sqlite",
+      "sha256": "2d38ad50fe5283328cbf00128857a7bd6add116bad341504f3624010c23c0c83"
+    }
+  ],
+  "credentialsCopied": false,
+  "settingsCopied": false,
+  "accountsCopied": false,
+  "originalModelAnswerUnchanged": true,
+  "simulatedReferenceTime": "2026-11-21T09:00:00+08:00"
+}

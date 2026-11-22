@@ -1,0 +1,40 @@
+{"event": "user_submitted", "monotonic": 1127180.789977166, "label": "01", "runId": "12d09b80-6546-444d-a0b8-b03cf47d0b36", "prompt": "刷新一下"}
+{"event": "observed_running", "monotonic": 1127180.949986791, "runId": "12d09b80-6546-444d-a0b8-b03cf47d0b36", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1127208.568764416, "runId": "12d09b80-6546-444d-a0b8-b03cf47d0b36", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1127317.794563, "label": "01", "signalSha256": "fd2557151bf6758fb474703e134cc7c4430eb6a9baaf9ab52b5f1542ee5f96fd"}
+{"event": "user_submitted", "monotonic": 1127317.7992405, "label": "02", "runId": "aa96d997-10b4-4d31-b326-7531aa322f9a", "prompt": "先帮我记一下那个课程项目的截止时间，放到待确认。"}
+{"event": "observed_running", "monotonic": 1127318.115353291, "runId": "aa96d997-10b4-4d31-b326-7531aa322f9a", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1127322.977543875, "runId": "aa96d997-10b4-4d31-b326-7531aa322f9a", "status": "completed"}
+{"event": "independent_review", "monotonic": 1127372.982086541, "label": "02", "signalSha256": "227cb3738f7678f88352304d23a31d4506ef6ed0cb7d2dc8f71d2074a26b45c7"}
+{"event": "user_submitted", "monotonic": 1127372.9882935, "label": "03", "runId": "893e5b0c-c6a0-46b5-85bb-5abf390f82de", "prompt": "摄影工作坊那封是我想参加的活动，别当广告折叠了，放到需要处理里。"}
+{"event": "observed_running", "monotonic": 1127373.179126041, "runId": "893e5b0c-c6a0-46b5-85bb-5abf390f82de", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1127396.966144583, "runId": "893e5b0c-c6a0-46b5-85bb-5abf390f82de", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1127427.541462083, "label": "03", "signalSha256": "029d0bc4eb62c947751fe5a12aaeecd5d4eaf4bf73f1ff52004dc00f894562cb"}
+{"event": "user_submitted", "monotonic": 1127427.546411875, "label": "04", "runId": "7783d12d-3d7a-413a-ab46-26ce20299850", "prompt": "顾老师要的报名简报帮我另开一个任务处理，一页就行，带上 Word 和 PDF，回信先存草稿。"}
+{"event": "observed_running", "monotonic": 1127427.859308708, "runId": "7783d12d-3d7a-413a-ab46-26ce20299850", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1127438.822686583, "runId": "7783d12d-3d7a-413a-ab46-26ce20299850", "status": "completed"}
+{"event": "observed_running", "monotonic": 1127439.066745583, "runId": "2c5cd9f7-1f24-4c6f-bc5a-dbc0ce6beb1a", "conversationId": "8cf6f21f-e397-5121-ac09-23c6771c5041"}
+{"event": "independent_continue", "monotonic": 1127515.855094916, "label": "04", "signalSha256": "b1b0d7f4f15175692a55eceec5b81072285d3f5136f76b2b22e66ed00e214d79"}
+{"event": "before_home_progress_question", "monotonic": 1127515.860457166, "childRunId": "2c5cd9f7-1f24-4c6f-bc5a-dbc0ce6beb1a", "childStatus": "running"}
+{"event": "user_submitted", "monotonic": 1127515.865749166, "label": "05", "runId": "ca48c914-a99a-4280-9d02-f25938341cb5", "prompt": "刚才那份简报做到哪一步了？"}
+{"event": "observed_running", "monotonic": 1127516.076933041, "runId": "ca48c914-a99a-4280-9d02-f25938341cb5", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1127523.498150666, "runId": "2c5cd9f7-1f24-4c6f-bc5a-dbc0ce6beb1a", "status": "completed"}
+{"event": "observed_terminal", "monotonic": 1127646.540578916, "runId": "ca48c914-a99a-4280-9d02-f25938341cb5", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1127714.7093525, "label": "05", "signalSha256": "8e55469c03064c5146af0d9b7a54b94f6be0e20667bb5e38ac14cb10214a3d70"}
+{"event": "independent_continue", "monotonic": 1127970.849775416, "label": "04-child", "signalSha256": "e1b59d818cc5b11d4a6428338f4c338128f122bd4d60038275a08e28fcef570b"}
+{"event": "user_submitted", "monotonic": 1127970.860675208, "label": "05-completed", "runId": "ca8f1e8d-173c-4f14-aacb-3dc68b717390", "prompt": "刚才那份简报做到哪一步了？"}
+{"event": "observed_running", "monotonic": 1127971.09016375, "runId": "ca8f1e8d-173c-4f14-aacb-3dc68b717390", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128010.916361166, "runId": "ca8f1e8d-173c-4f14-aacb-3dc68b717390", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1128028.36446825, "label": "05-completed", "signalSha256": "0c99841d2617091b3dbfcef959a51817554a6d2a9c89b238664c33b1faeff7ff"}
+{"event": "user_submitted", "monotonic": 1128028.370685375, "label": "06", "runId": "a81c6005-c037-4c2a-9b6f-7ce4abb91e09", "prompt": "再刷新一下"}
+{"event": "observed_running", "monotonic": 1128028.684038708, "runId": "a81c6005-c037-4c2a-9b6f-7ce4abb91e09", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128083.99392375, "runId": "a81c6005-c037-4c2a-9b6f-7ce4abb91e09", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1128094.766654125, "label": "06", "signalSha256": "849286962236832ed9310c91b5105eda12d2cab199d1c646626287f8ecd5c9be"}
+{"event": "user_submitted", "monotonic": 1128094.777667, "label": "07", "runId": "57f7ec26-b5b6-474c-a0b7-465acd23a022", "prompt": "刷新一下，课程如果改期就帮我同步一下。"}
+{"event": "observed_running", "monotonic": 1128095.093106625, "runId": "57f7ec26-b5b6-474c-a0b7-465acd23a022", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128236.643353291, "runId": "57f7ec26-b5b6-474c-a0b7-465acd23a022", "status": "completed"}
+{"event": "independent_review", "monotonic": 1128255.51067525, "label": "07", "signalSha256": "2a60f1cd57abd3e9b5600eab6e7c1d61fb7cd8b70376abd669d168de07078bbe"}
+{"event": "user_submitted", "monotonic": 1128255.514105416, "label": "08", "runId": "e084964f-88ed-41f9-ab2b-2f5ab7249156", "prompt": "有什么要处理的"}
+{"event": "observed_running", "monotonic": 1128255.855842875, "runId": "e084964f-88ed-41f9-ab2b-2f5ab7249156", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128310.939936041, "runId": "e084964f-88ed-41f9-ab2b-2f5ab7249156", "status": "completed"}
+{"event": "independent_continue", "monotonic": 1128335.651945541, "label": "08", "signalSha256": "e86c0659b8f15e835a81918f98c17f8ea28d79c241a502c2bfbd0bfabe781bd8"}

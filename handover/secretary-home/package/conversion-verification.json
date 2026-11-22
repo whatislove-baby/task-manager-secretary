@@ -1,0 +1,30 @@
+{
+  "packagedPython": "[local-project]/release-secretary-home/mac-arm64/Task Manager.app/Contents/Resources/python/bin/python3",
+  "renderer": "[local-project]/release-secretary-home/mac-arm64/Task Manager.app/Contents/Resources/libreoffice/LibreOffice.app/Contents/MacOS/soffice",
+  "sourceUnchanged": true,
+  "conversion": {
+    "sourceFileId": "d7af0c38-ed8e-48ed-bb96-a3645de6cd89",
+    "sourceSha256": "150d4d72ba297a8bf4f1b74ce322b6b9608883c0d4e61fcaf6c11b0a604ec36f",
+    "sourceRevision": 1,
+    "method": "LibreOffice writer_pdf_Export",
+    "preservesSourceLayout": true,
+    "visualReviewed": false
+  },
+  "allPages": [
+    {
+      "page": 1,
+      "identicalRenderedPixels": true
+    },
+    {
+      "page": 2,
+      "identicalRenderedPixels": true
+    }
+  ],
+  "structuralPassed": true,
+  "rendered": true,
+  "draftAttachments": [
+    "d7af0c38-ed8e-48ed-bb96-a3645de6cd89",
+    "533514df-2d40-5355-87c1-d394ad7f7a63"
+  ],
+  "smtpSends": 0
+}

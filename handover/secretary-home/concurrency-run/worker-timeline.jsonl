@@ -1,0 +1,12 @@
+{"event": "user_submitted", "monotonic": 1128371.318225791, "label": "04", "runId": "b7dde8af-9194-4a61-8360-75f1e67657e4", "prompt": "顾老师要的报名简报帮我另开一个任务处理，一页就行，带上 Word 和 PDF，回信先存草稿。"}
+{"event": "observed_terminal", "monotonic": 1128371.318571916, "runId": "12d09b80-6546-444d-a0b8-b03cf47d0b36", "status": "completed"}
+{"event": "observed_terminal", "monotonic": 1128371.318688875, "runId": "aa96d997-10b4-4d31-b326-7531aa322f9a", "status": "completed"}
+{"event": "observed_terminal", "monotonic": 1128371.3188535, "runId": "893e5b0c-c6a0-46b5-85bb-5abf390f82de", "status": "completed"}
+{"event": "observed_running", "monotonic": 1128371.479185666, "runId": "b7dde8af-9194-4a61-8360-75f1e67657e4", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128396.807035791, "runId": "b7dde8af-9194-4a61-8360-75f1e67657e4", "status": "completed"}
+{"event": "observed_running", "monotonic": 1128397.023648791, "runId": "036ca159-6c7b-4eea-b301-4400896fab07", "conversationId": "636cd339-2151-514a-a7cd-68ae72a6e2e9"}
+{"event": "before_home_progress_question", "monotonic": 1128397.023782291, "childRunId": "036ca159-6c7b-4eea-b301-4400896fab07", "childStatus": "running"}
+{"event": "user_submitted", "monotonic": 1128397.025559291, "label": "05", "runId": "e629e903-c88d-406e-82e5-d9a879d4b1e6", "prompt": "刚才那份简报做到哪一步了？"}
+{"event": "observed_running", "monotonic": 1128397.186079958, "runId": "e629e903-c88d-406e-82e5-d9a879d4b1e6", "conversationId": "a893bf38-9215-5796-aa5a-81be4e830816"}
+{"event": "observed_terminal", "monotonic": 1128460.6738445, "runId": "036ca159-6c7b-4eea-b301-4400896fab07", "status": "completed"}
+{"event": "observed_terminal", "monotonic": 1128482.272381208, "runId": "e629e903-c88d-406e-82e5-d9a879d4b1e6", "status": "completed"}

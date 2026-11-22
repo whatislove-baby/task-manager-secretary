@@ -1,0 +1,8 @@
+Noto Sans SC variable font
+Source: https://github.com/google/fonts/tree/main/ofl/notosanssc
+Downloaded 2026-11-20. Original filename: NotoSansSC[wght].ttf
+SHA256: a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da
+Redistributed under SIL Open Font License 1.1; see OFL-NotoSansSC.txt.
+Build-time transformation: fontTools 4.61.0 varLib.instancer at wght=400; name table set to Noto Sans SC Regular.
+Static bundled SHA256: 2801a9745cac284e640d5b0516df09395966a8b35155b7fa929e4124f7392fe9
+Font is embedded as a subset in generated PDFs and an obfuscated glyph subset in generated DOCX using fontTools 4.61.0.

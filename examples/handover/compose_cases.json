@@ -1,0 +1,72 @@
+{
+  "description": "合成邮件写作与发送边界用例。所有邮箱均为示例地址，不向这些地址真实发送。model_result 是可重复测试使用的受控模型响应，不代表真实模型输出或真实邮箱验收。",
+  "new_meeting": {
+    "to": "teammate@example.com",
+    "instructions": "请写一封简短、礼貌的中文邮件，邀请队友于2026年11月22日14:00（香港时间）在图书馆讨论Project 2演示分工，并请对方回复是否方便。不要声称会议已确认。",
+    "subject": "",
+    "body": "",
+    "model_result": {
+      "subject": "邀请讨论 Project 2 演示分工：11月22日14:00",
+      "body": "你好！\n\n想邀请你于2026年11月22日14:00（香港时间）在图书馆一起讨论 Project 2 的演示分工。请问这个时间方便吗？如果不方便，也请告诉我你可以参加的时间。\n\n谢谢！"
+    },
+    "expected": {
+      "ai_result_fields": ["subject", "body"],
+      "recipient_remains_user_input": true,
+      "smtp_calls_after_generate": 0,
+      "smtp_calls_after_prepare": 0,
+      "first_confirm_status": "sent",
+      "smtp_calls_after_first_confirm": 1,
+      "smtp_calls_after_repeated_confirm": 1,
+      "sent_means": "SMTP 服务器已接受，不等于收件人已收到或已读。"
+    }
+  },
+  "reply_reschedule": {
+    "source_mail": {
+      "subject": "Project 2 排练时间",
+      "sender": "Course Teammate <teammate@example.com>",
+      "receivedAt": "2026-11-20T10:00:00+08:00",
+      "body": "我们原定2026年11月22日14:00在图书馆排练。你方便参加吗？如果不方便，请建议另一个时间。"
+    },
+    "to": "teammate@example.com",
+    "instructions": "根据这封来信起草回复：我在原定时间有课，建议改为2026年11月22日16:00（香港时间），地点不变，请对方确认。语气礼貌，简短一些。",
+    "subject": "Re: Project 2 排练时间",
+    "body": "",
+    "model_result": {
+      "subject": "Re: Project 2 排练时间",
+      "body": "你好！\n\n谢谢你的安排。我在2026年11月22日14:00有课，可以改为当天16:00（香港时间）在图书馆排练吗？麻烦确认一下是否方便。\n\n谢谢！"
+    },
+    "expected": {
+      "request_contains": ["Project 2 排练时间", "2026年11月22日14:00", "图书馆", "2026年11月22日16:00"],
+      "source_is_untrusted_context": true,
+      "new_time_is_proposal_not_confirmation": true,
+      "no_calendar_or_todo_mutation": true,
+      "smtp_calls_before_user_confirm": 0,
+      "recipient_must_be_reviewed": true
+    }
+  },
+  "truncated_response": {
+    "instructions": "写一封确认收到课程通知的邮件。",
+    "subject": "",
+    "body": "",
+    "finish_reason": "length",
+    "model_result": {
+      "subject": "已收到课程通知",
+      "body": "您好，已收到课程通知，谢谢。"
+    },
+    "expected": {
+      "generate_rejected": true,
+      "existing_editor_content_unchanged": true,
+      "smtp_calls": 0,
+      "reason": "即便内容是合法 JSON，模型报告截断也不能当作完整草稿。"
+    }
+  },
+  "smtp_acceptance_uncertain": {
+    "transport_simulation": "提交邮件正文后连接中断，未收到明确接受或拒绝响应。",
+    "expected": {
+      "status": "uncertain",
+      "automatic_retry": false,
+      "repeat_same_receipt_does_not_resend": true,
+      "user_action": "先在邮箱服务商页面检查发送情况或联系收件人确认，再决定是否另写一封；不能把状态不明当成确定未发送。"
+    }
+  }
+}

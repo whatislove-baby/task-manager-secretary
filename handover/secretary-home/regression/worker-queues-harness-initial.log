@@ -1,0 +1,28 @@
+test_blocked_child_does_not_block_home_and_checkpoints_remain_separate (test_agent_worker_queues.WorkerQueueTests.test_blocked_child_does_not_block_home_and_checkpoints_remain_separate) ... ERROR
+test_lane_failure_stops_other_lane_and_closes_on_owner_threads (test_agent_worker_queues.WorkerQueueTests.test_lane_failure_stops_other_lane_and_closes_on_owner_threads) ... ok
+test_queue_selection_and_delegating_turn_completion (test_agent_worker_queues.WorkerQueueTests.test_queue_selection_and_delegating_turn_completion) ... ok
+
+======================================================================
+ERROR: test_blocked_child_does_not_block_home_and_checkpoints_remain_separate (test_agent_worker_queues.WorkerQueueTests.test_blocked_child_does_not_block_home_and_checkpoints_remain_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "[local-project]/backend/tests/test_agent_worker_queues.py", line 108, in test_blocked_child_does_not_block_home_and_checkpoints_remain_separate
+    asyncio.run(history())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "[local-project]/backend/tests/test_agent_worker_queues.py", line 106, in history
+    self.assertIn('刚才的任务', str(first.checkpoint['channel_values']['messages']))
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'messages'
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.413s
+
+FAILED (errors=1)

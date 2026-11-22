@@ -1,0 +1,23 @@
+{
+  "stages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "bindingId": "43aaff68-3826-49d4-9a99-ccabfd2edfae",
+  "visible": [
+    "course-project",
+    "club-weekly",
+    "photo-workshop",
+    "shopping-ad",
+    "intern-brief",
+    "course-reschedule"
+  ],
+  "secretaryId": "a893bf38-9215-5796-aa5a-81be4e830816",
+  "profile": "[local-test-profile]"
+}

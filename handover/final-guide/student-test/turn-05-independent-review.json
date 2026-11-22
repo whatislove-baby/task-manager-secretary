@@ -1,0 +1,34 @@
+{
+  "stage": 5,
+  "elapsedSeconds": 20.18,
+  "originalVerificationUnchanged": true,
+  "originalVerificationSha256": "f671b81f308d04eb066bbdc46a2a4692dd9f6551482e20818c832a3747c4d895",
+  "originalAnswerSha256": "213787dfcfa8f652112d6017abe7085e68da315029e96b8e3eef0d2f09aaecec",
+  "originalFailedCheck": "answer_mentions_created_changed_and_cancelled",
+  "reason": "Original lexical rubric required selected existence words and omitted explicit persisted task links. Correct answer identifies actual task ID and approved cancellation receipt, proving prior existence without saying 曾经.",
+  "correctedCheck": true,
+  "manualHistoricalSemanticPassed": true,
+  "reviewedEvidence": {
+    "taskId": "025ad431-3c5b-4227-b905-010d5c2a7c2c",
+    "lifecycleState": "cancelled",
+    "deletedAt": "2026-11-21T16:32:23.780Z",
+    "completed": false,
+    "cancellation": {
+      "changeId": "c58dbd10-91da-52d9-9852-f19ed9fa6d32",
+      "approvedAt": "2026-11-21T16:32:23.780Z",
+      "reason": "林老师 2026-11-23 邮件明确取消 2026年11月26日 15:00 的线下小组讨论，不再另约，意见改为直接批注在提纲文档里。",
+      "evidence": [
+        {
+          "mailId": "d6b89afcd1a1010d9a91f3b3d66d6f09bb3967ca1f63ce4f3c902239d1356373",
+          "quote": "2026年11月26日15:00 那次线下小组讨论取消，不再另约。我的意见会直接批注在你们的文档里，这次不需要来421室。",
+          "subject": "Re: COMP5082 Project：取消这次线下讨论",
+          "bindingId": "a330c2c3-3006-4d72-aea8-3d3682cf437a"
+        }
+      ]
+    }
+  },
+  "allOtherChecksPassed": true,
+  "sourceUnchangedAtPostRunVerification": true,
+  "noNewApiRun": true,
+  "noAnswerEdits": true
+}

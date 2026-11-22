@@ -1,0 +1,5 @@
+{
+  "scriptTeaching": "我负责 Harbor Instruments 的订单。以后这家客户的库存分配按我下面教的做法处理，帮我沉淀成可复用的方法，你判断最合适的保存方式；先给我检查。\n订单表是 PO,Line,SKU,Qty,UnitPriceUSD；库存表是 SKU,Available。按订单原行顺序分配，每个 SKU 的库存被前面的行使用后，后面的行只能用剩余量；没有出现在库存表的 SKU 视为库存零。Allocated=min(订购量,剩余库存)，Shortage=订购量-Allocated。保留所有订单行，包括缺货为零的行。PO、Line、SKU 都当文本，前导零不能丢。\n输出 CSV，固定列 PO,Line,SKU,Qty,Allocated,Shortage,ShortageValueUSD。数量用整数。缺货金额=Shortage×UnitPriceUSD，用精确十进制，按 ROUND_HALF_UP 四舍五入到两位小数并固定显示两位。价格可以多于两位，不要提前舍入单价。库存不能为负、数量必须正整数、价格不能为负；库存表相同 SKU 重复则拒绝，不能随便相加。缺少价格时先拒绝整个文件，错误应明确包含 MISSING_PRICE，不能留下一半的结果。\n我附了自己做过的两组历史输入 orders-a/stock-a、orders-b/stock-b 和各自的正确完成稿 completed-a/completed-b，还有一组缺价格的反例 orders-missing-price/stock-missing-price。请用它们检查你实现的做法，然后保存待我确认，不要发送邮件。",
+  "memoryTeaching": "以后给 Harbor Instruments 回信，用简短英文，先讲需要客户补充或确认的信息，再讲我们已完成的处理。库存分配表只是内部检查，不能因此承诺发货日期。请记住这个长期沟通习惯，保存前先让我看。由你判断适合怎么保存。",
+  "heldOutPrompt": "按上次学会的方法处理 Harbor 新订单，核对输出后起草附件回复，不发送。"
+}

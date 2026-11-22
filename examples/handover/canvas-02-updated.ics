@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Task Manager//Handover Fixture//EN
+BEGIN:VEVENT
+UID:course-5051-project2
+SEQUENCE:1
+DTSTAMP:20261120T030000Z
+DTSTART;TZID=Asia/Hong_Kong:20261125T235900
+SUMMARY:Project 2 submission (fixture extension)
+DESCRIPTION:Synthetic test only: the deadline was moved to 25 November.
+URL:https://school.example.invalid/courses/5051/assignments/2
+END:VEVENT
+END:VCALENDAR

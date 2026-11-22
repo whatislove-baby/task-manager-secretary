@@ -1,0 +1,63 @@
+{
+  "actor": "Separate evaluator reviewed actual proposal, then explicit product approval RPC",
+  "proposal": {
+    "id": "2da237db-9256-53d9-a54c-11fb06b3848d",
+    "messageIds": [
+      "7ff3c1feb993bb92eb14439961a9a336d90c8dc5b7d4f5d3066749f0e7a0f764"
+    ],
+    "instructions": "由对话整理，等待用户确认。",
+    "notes": "待确认事项，尚未写入任务或日历。",
+    "drafts": [
+      {
+        "title": "COMP6280 小组项目提交：上传 PDF 报告与可运行代码压缩包",
+        "notes": "提交要求（据陈知远邮件）：每组交一份 PDF 报告和可运行的代码压缩包，上传到课程平台；报告正文最多 6 页，参考文献不计入页数。\n另：12 月 2 日上课时展示，每组讲 5 分钟 + 2 分钟问答。上传截止与展示是两件事，不要记成展示当天。\n\n邮件分析来源：\nlinran@practice.invalid · COMP6280 小组项目提交安排\n本地邮件：7ff3c1feb993bb92eb14439961a9a336d90c8dc5b7d4f5d3066749f0e7a0f764\n收件时间：2026-11-22T00:10:00.000Z\n分析记录：2da237db-9256-53d9-a54c-11fb06b3848d\n原文依据：这次小组项目请在 11 月 30 日晚上 23:59（香港时间）前上传到课程平台。",
+        "due": {
+          "mode": "value",
+          "value": {
+            "kind": "minute",
+            "at": "2026-11-30T15:59:00.000Z",
+            "timeZone": "Asia/Hong_Kong"
+          }
+        },
+        "tempId": "1",
+        "parentTempId": null,
+        "source": "这次小组项目请在 11 月 30 日晚上 23:59（香港时间）前上传到课程平台。",
+        "sourceMailIds": [
+          "7ff3c1feb993bb92eb14439961a9a336d90c8dc5b7d4f5d3066749f0e7a0f764"
+        ]
+      }
+    ],
+    "createdAt": "2026-11-22T05:05:54.305Z",
+    "saved": false,
+    "complete": false,
+    "model": "conversation-agent",
+    "baseUrl": ""
+  },
+  "beforeTasks": [],
+  "result": {
+    "count": 1
+  },
+  "afterTasks": [
+    {
+      "id": "98b8145d-ccb6-4a39-a579-328067b1c027",
+      "parentId": null,
+      "title": "COMP6280 小组项目提交：上传 PDF 报告与可运行代码压缩包",
+      "notes": "提交要求（据陈知远邮件）：每组交一份 PDF 报告和可运行的代码压缩包，上传到课程平台；报告正文最多 6 页，参考文献不计入页数。\n另：12 月 2 日上课时展示，每组讲 5 分钟 + 2 分钟问答。上传截止与展示是两件事，不要记成展示当天。\n\n邮件分析来源：\nlinran@practice.invalid · COMP6280 小组项目提交安排\n本地邮件：7ff3c1feb993bb92eb14439961a9a336d90c8dc5b7d4f5d3066749f0e7a0f764\n收件时间：2026-11-22T00:10:00.000Z\n分析记录：2da237db-9256-53d9-a54c-11fb06b3848d\n原文依据：这次小组项目请在 11 月 30 日晚上 23:59（香港时间）前上传到课程平台。",
+      "completed": false,
+      "completedAt": null,
+      "due": {
+        "mode": "value",
+        "value": {
+          "kind": "minute",
+          "at": "2026-11-30T15:59:00.000Z",
+          "timeZone": "Asia/Hong_Kong"
+        }
+      },
+      "createdAt": "2026-11-22T05:06:45.841Z",
+      "updatedAt": "2026-11-22T05:06:45.841Z",
+      "revision": 1,
+      "deletedAt": null,
+      "trashBatchId": null
+    }
+  ]
+}

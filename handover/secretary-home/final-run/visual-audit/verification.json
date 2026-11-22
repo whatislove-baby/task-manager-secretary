@@ -1,0 +1,512 @@
+{
+  "target": "../TEST-LOG.html",
+  "checkedAt": "2026-11-22T05:40:07.697Z",
+  "sourceSha256": "cc5e985c8a8356f2f8e257af322269d2dfbb8087b706d19b5db899d80a5e9941",
+  "renderer": {
+    "node": "24.22.1",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.9",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.2",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "150",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "0.0.0",
+    "simdjson": "4.6.11",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026e",
+    "undici": "7.30.1",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "15.6.75.19-electron.0",
+    "zlib": "1.3.2.1-motley",
+    "zstd": "1.6.0",
+    "electron": "45.1.0",
+    "chrome": "156.0.8078.49"
+  },
+  "checks": {
+    "document": {
+      "title": "秘书主页：最终完整流程实测",
+      "stages": [
+        "stage-01",
+        "stage-02",
+        "stage-03",
+        "stage-04",
+        "stage-05",
+        "stage-04-child",
+        "stage-05-completed",
+        "stage-06",
+        "stage-07",
+        "stage-08"
+      ],
+      "details": 29,
+      "images": [
+        {
+          "src": "../../final-guide/secretary-inbox/screenshots/18-secretary-briefing.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "../../final-guide/secretary-inbox/screenshots/19-secretary-filtered.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "../../final-guide/secretary-inbox/screenshots/20-secretary-original.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "independent-child-audit/b09e7d7c-a328-56e6-bb37-e1cea5ac163f/page-1.png",
+          "width": 1132,
+          "height": 1600
+        },
+        {
+          "src": "independent-child-audit/18f76e6f-ca36-5631-a8d1-cc1c20a1449e/page-1.png",
+          "width": 1132,
+          "height": 1600
+        },
+        {
+          "src": "../../final-guide/secretary-task/screenshots/21-secretary-task-entry.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "../../final-guide/secretary-task/screenshots/22-secretary-task-context.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "../../final-guide/secretary-task/screenshots/23-secretary-task-status.png",
+          "width": 1320,
+          "height": 900
+        },
+        {
+          "src": "../live-status-ui/screenshots/24-live-status-contrast.png",
+          "width": 1320,
+          "height": 1063
+        }
+      ],
+      "links": [
+        "#stage-01",
+        "#stage-02",
+        "#stage-04",
+        "#stage-04-child",
+        "#concurrency",
+        "#stage-07",
+        "#stage-08",
+        "#offline",
+        "live-start.json",
+        "worker-timeline.jsonl",
+        "independent-e2e-verification.json",
+        "acceptance-summary.json",
+        "../TEST-LOG.html",
+        "../../final-guide/workflow.html",
+        "turn-01.json",
+        "tools-01.jsonl",
+        "snapshots/01/manifest.json",
+        "turn-02.json",
+        "tools-02.jsonl",
+        "snapshots/02/manifest.json",
+        "turn-03.json",
+        "tools-03.jsonl",
+        "snapshots/03/manifest.json",
+        "turn-04.json",
+        "tools-04.jsonl",
+        "snapshots/04/manifest.json",
+        "turn-05.json",
+        "tools-05.jsonl",
+        "snapshots/05/manifest.json",
+        "turn-04-child.json",
+        "tools-04-child.jsonl",
+        "snapshots/04-child/manifest.json",
+        "independent-child-audit/verification.json",
+        "independent-child-audit/b09e7d7c-a328-56e6-bb37-e1cea5ac163f/教育志愿者培训报名进度.docx",
+        "independent-child-audit/18f76e6f-ca36-5631-a8d1-cc1c20a1449e/教育志愿者培训报名进度.pdf",
+        "turn-05-completed.json",
+        "tools-05-completed.jsonl",
+        "snapshots/05-completed/manifest.json",
+        "turn-06.json",
+        "tools-06.jsonl",
+        "snapshots/06/manifest.json",
+        "turn-07.json",
+        "tools-07.jsonl",
+        "snapshots/07/manifest.json",
+        "turn-08.json",
+        "tools-08.jsonl",
+        "snapshots/08/manifest.json",
+        "../concurrency-run/audit-concurrency.json",
+        "../concurrency-run/audit-concurrency.md",
+        "concurrency-verification.json",
+        "../concurrency-run/seed.json",
+        "../concurrency-run/concurrency-verification.json",
+        "../concurrency-run/worker-timeline.jsonl",
+        "../concurrency-run/turn-04.json",
+        "../concurrency-run/tools-04.jsonl",
+        "../concurrency-run/turn-05.json",
+        "../concurrency-run/tools-05.jsonl",
+        "../concurrency-run/turn-04-child.json",
+        "../concurrency-run/tools-04-child.jsonl",
+        "../live-status-ui/screenshots.json",
+        "../live-status-ui/visible-contrast.json",
+        "../offline-verification.json",
+        "../fixture-check.json",
+        "../PLAN.md"
+      ],
+      "anchors": [
+        {
+          "href": "#stage-01",
+          "exists": true
+        },
+        {
+          "href": "#stage-02",
+          "exists": true
+        },
+        {
+          "href": "#stage-04",
+          "exists": true
+        },
+        {
+          "href": "#stage-04-child",
+          "exists": true
+        },
+        {
+          "href": "#concurrency",
+          "exists": true
+        },
+        {
+          "href": "#stage-07",
+          "exists": true
+        },
+        {
+          "href": "#stage-08",
+          "exists": true
+        },
+        {
+          "href": "#offline",
+          "exists": true
+        }
+      ],
+      "filterControls": 0
+    },
+    "localLinks": [
+      {
+        "href": "live-start.json",
+        "exists": true
+      },
+      {
+        "href": "worker-timeline.jsonl",
+        "exists": true
+      },
+      {
+        "href": "independent-e2e-verification.json",
+        "exists": true
+      },
+      {
+        "href": "acceptance-summary.json",
+        "exists": true
+      },
+      {
+        "href": "../TEST-LOG.html",
+        "exists": true
+      },
+      {
+        "href": "../../final-guide/workflow.html",
+        "exists": true
+      },
+      {
+        "href": "turn-01.json",
+        "exists": true
+      },
+      {
+        "href": "tools-01.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/01/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-02.json",
+        "exists": true
+      },
+      {
+        "href": "tools-02.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/02/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-03.json",
+        "exists": true
+      },
+      {
+        "href": "tools-03.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/03/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-04.json",
+        "exists": true
+      },
+      {
+        "href": "tools-04.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/04/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-05.json",
+        "exists": true
+      },
+      {
+        "href": "tools-05.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/05/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-04-child.json",
+        "exists": true
+      },
+      {
+        "href": "tools-04-child.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/04-child/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "independent-child-audit/verification.json",
+        "exists": true
+      },
+      {
+        "href": "independent-child-audit/b09e7d7c-a328-56e6-bb37-e1cea5ac163f/教育志愿者培训报名进度.docx",
+        "exists": true
+      },
+      {
+        "href": "independent-child-audit/18f76e6f-ca36-5631-a8d1-cc1c20a1449e/教育志愿者培训报名进度.pdf",
+        "exists": true
+      },
+      {
+        "href": "turn-05-completed.json",
+        "exists": true
+      },
+      {
+        "href": "tools-05-completed.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/05-completed/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-06.json",
+        "exists": true
+      },
+      {
+        "href": "tools-06.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/06/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-07.json",
+        "exists": true
+      },
+      {
+        "href": "tools-07.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/07/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "turn-08.json",
+        "exists": true
+      },
+      {
+        "href": "tools-08.jsonl",
+        "exists": true
+      },
+      {
+        "href": "snapshots/08/manifest.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/audit-concurrency.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/audit-concurrency.md",
+        "exists": true
+      },
+      {
+        "href": "concurrency-verification.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/seed.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/concurrency-verification.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/worker-timeline.jsonl",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/turn-04.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/tools-04.jsonl",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/turn-05.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/tools-05.jsonl",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/turn-04-child.json",
+        "exists": true
+      },
+      {
+        "href": "../concurrency-run/tools-04-child.jsonl",
+        "exists": true
+      },
+      {
+        "href": "../live-status-ui/screenshots.json",
+        "exists": true
+      },
+      {
+        "href": "../live-status-ui/visible-contrast.json",
+        "exists": true
+      },
+      {
+        "href": "../offline-verification.json",
+        "exists": true
+      },
+      {
+        "href": "../fixture-check.json",
+        "exists": true
+      },
+      {
+        "href": "../PLAN.md",
+        "exists": true
+      }
+    ],
+    "filters": "Not present; native details and anchor navigation are the actual UI",
+    "desktopClosed": {
+      "width": 1440,
+      "height": 978,
+      "documentWidth": 1440,
+      "bodyWidth": 1440
+    },
+    "nativeExpandCollapse": true,
+    "navigation": [
+      {
+        "href": "#stage-01",
+        "hash": "#stage-01",
+        "top": 15.0234375
+      },
+      {
+        "href": "#stage-02",
+        "hash": "#stage-02",
+        "top": 15.1640625
+      },
+      {
+        "href": "#stage-04",
+        "hash": "#stage-04",
+        "top": 15.1640625
+      },
+      {
+        "href": "#stage-04-child",
+        "hash": "#stage-04-child",
+        "top": 15.1640625
+      },
+      {
+        "href": "#concurrency",
+        "hash": "#concurrency",
+        "top": -0.0234375
+      },
+      {
+        "href": "#stage-07",
+        "hash": "#stage-07",
+        "top": 15.1953125
+      },
+      {
+        "href": "#stage-08",
+        "hash": "#stage-08",
+        "top": 14.8359375
+      },
+      {
+        "href": "#offline",
+        "hash": "#offline",
+        "top": 593.3671875
+      }
+    ],
+    "desktopExpanded": {
+      "width": 1440,
+      "height": 978,
+      "documentWidth": 1440,
+      "bodyWidth": 1440
+    },
+    "narrowExpanded": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "narrowClosed": {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "bodyWidth": 390
+    },
+    "sourceUnchanged": true
+  },
+  "screenshots": [
+    {
+      "name": "timeline-desktop.png",
+      "sha256": "3a6675e8aa9d3e099c0b7d8be97cbdfa106c7f57dcbe75db3dd185d45f105c89"
+    },
+    {
+      "name": "timeline-narrow.png",
+      "sha256": "98b44574c574c4f3d9aab077e34a4a3d98b0f839288ba1ae4d58e77de0ddd63c"
+    }
+  ],
+  "blockedRequests": [],
+  "passed": true,
+  "networkAllowed": false
+}

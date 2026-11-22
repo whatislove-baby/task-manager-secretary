@@ -1,0 +1,5 @@
+{"profile": "[local-test-profile]", "sourceProfile": "[local-project]/handover/final-guide/student-test/before-review-stage-01", "copiedDatabases": ["tasks.sqlite", "agent.sqlite", "agent-tools.sqlite", "mail.sqlite", "mail-files.sqlite", "task-changes.sqlite", "draft-lifecycle.sqlite"], "settingsCopied": false, "accountsCopied": false, "credentialsAccessed": false, "studentConversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444", "studentMailId": "554c5ab9f9ec5358ca93abd8784be98f9ea8c1bbb4efeddcb53befa4e85d9ffd", "studentDraftId": "c7f8c5ed-829d-54bc-8a19-119f8d7a05d9", "studentSubject": "Re: COMP5082 Project 小组讨论时间", "studentTaskTitle": "COMP5082 Project 提纲小组讨论（421 室）", "studentOrigin": "Actual model run in synthetic-mail test profile; pending before UI approval"}
+ 这是隔离的离线演示：没有 API 密钥或邮箱连接，不会发送邮件。
+点击“待确认” → 小组讨论提醒 → 核对日期并确认保存 → 到“日历与待办”查看。
+已有对话来自真实模型验收；无密钥时不能发起新的模型请求。
+本次独立资料目录：/var/folders/wg/rnr4vxq93x70v20w601hlrrc0000gn/T//task-manager-student-demo.ODnOOZ

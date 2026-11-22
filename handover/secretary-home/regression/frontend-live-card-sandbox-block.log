@@ -1,0 +1,24 @@
+
+> task-manager-python@0.1.0 test
+> node scripts/run-tests.cjs
+
+node:net:1926
+      const error = new UVExceptionWithHostPort(rval, 'listen', address, port);
+                    ^
+
+Error: listen EPERM: operation not permitted /var/folders/wg/rnr4vxq93x70v20w601hlrrc0000gn/T/tsx-501/98246.pipe
+    at Server.setupListenHandle [as _listen2] (node:net:1926:21)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2127:5)
+    at file://[local-project]/node_modules/tsx/dist/cli.mjs:53:32174
+    at new Promise (<anonymous>)
+    at createIpcServer (file://[local-project]/node_modules/tsx/dist/cli.mjs:53:32152)
+    at async file://[local-project]/node_modules/tsx/dist/cli.mjs:55:542 {
+  code: 'EPERM',
+  errno: -1,
+  syscall: 'listen',
+  address: '/var/folders/wg/rnr4vxq93x70v20w601hlrrc0000gn/T/tsx-501/98246.pipe',
+  port: -1
+}
+
+Node.js v24.14.0

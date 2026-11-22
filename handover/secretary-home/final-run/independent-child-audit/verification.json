@@ -1,0 +1,255 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "natural_child_completion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_frozen_during_parent_and_child",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "separate_persistent_child",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_request_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_smtp",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_current_child_reply_draft",
+      "passed": true,
+      "detail": [
+        "9728e574-3b4d-5628-8aa9-2e3f29dee417"
+      ]
+    },
+    {
+      "name": "one_actual_imported_attachment:报名统计.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "stored_byte_hash:27b2bf48-8c64-5a4a-ac96-cb2a9da320e5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MIME_download_matches_original:报名统计.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_actual_imported_attachment:简报说明.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "stored_byte_hash:41a6936b-4edd-5608-8ede-d6e81ec1fae1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "MIME_download_matches_original:简报说明.md",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "draft_unsent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "recipient_is_original_mentor",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "correct_reply_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exactly_one_word_and_one_pdf",
+      "passed": true,
+      "detail": [
+        "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+        "18f76e6f-ca36-5631-a8d1-cc1c20a1449e"
+      ]
+    },
+    {
+      "name": "discarded_report_variants_not_active",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "stored_byte_hash:b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "attachment_snapshot_hash:b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current_attachment_lifecycle:b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_structural_render_check:b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_page:b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "real_data_table",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "table_values:展厅讲解入门",
+      "passed": true,
+      "detail": [
+        "展厅讲解入门 40 31 9"
+      ]
+    },
+    {
+      "name": "table_values:文物故事写作",
+      "passed": true,
+      "detail": [
+        "文物故事写作 30 24 6"
+      ]
+    },
+    {
+      "name": "table_values:亲子导览演练",
+      "passed": true,
+      "detail": [
+        "亲子导览演练 28 18 10"
+      ]
+    },
+    {
+      "name": "stored_byte_hash:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "attachment_snapshot_hash:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current_attachment_lifecycle:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_structural_render_check:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "one_page:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "original_word_native_conversion",
+      "passed": true,
+      "detail": {
+        "sourceFileId": "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+        "sourceSha256": "f9332fd9b472a4f22c6adc4c1ed30467511242d4e04e6a0cef152b9f617d0678",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      }
+    },
+    {
+      "name": "stored_byte_hash:18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "converted_pdf_bytes_equal_original_render",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "independent_word_pdf_render_pixels_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "correct_totals_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "person_visits_not_unique_people",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "registration_cutoff_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_timestamp_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "department_signature_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "business_data_read_only",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "renders": {
+    "b09e7d7c-a328-56e6-bb37-e1cea5ac163f": {
+      "name": "教育志愿者培训报名进度.docx",
+      "pages": 1,
+      "pixelHashes": [
+        "0ff591f5505fcd1e182fb3dd7b92184d675db762b2e0af2e534cf97eafc78ade"
+      ],
+      "text": "教育活动组\n教育志愿者培训报名进度\n青岚博物馆 · 教育活动组\n场次 名额 已报名 剩余名额\n展厅讲解入门 40 31 9\n文物故事写作 30 24 6\n亲子导览演练 28 18 10\n总览：三场培训合计名额 98 个，已报名 73 人次，剩余 25 个名额。剩余名额以「亲子导览演练」最多（10 \n个），「文物故事写作」最少（6 个）。\n统计口径：统计截至 2026 年 11 月 22 日上午 9 点。三场培训彼此独立，报名数为人次，不是去重人数。\n报名截止时间：2026 年 11 月 25 日 18:00（香港时间）。",
+      "directory": "[local-project]/handover/secretary-home/final-run/independent-child-audit/b09e7d7c-a328-56e6-bb37-e1cea5ac163f"
+    },
+    "18f76e6f-ca36-5631-a8d1-cc1c20a1449e": {
+      "name": "教育志愿者培训报名进度.pdf",
+      "pages": 1,
+      "pixelHashes": [
+        "0ff591f5505fcd1e182fb3dd7b92184d675db762b2e0af2e534cf97eafc78ade"
+      ],
+      "text": "教育活动组\n教育志愿者培训报名进度\n青岚博物馆 · 教育活动组\n场次 名额 已报名 剩余名额\n展厅讲解入门 40 31 9\n文物故事写作 30 24 6\n亲子导览演练 28 18 10\n总览：三场培训合计名额 98 个，已报名 73 人次，剩余 25 个名额。剩余名额以「亲子导览演练」最多（10 \n个），「文物故事写作」最少（6 个）。\n统计口径：统计截至 2026 年 11 月 22 日上午 9 点。三场培训彼此独立，报名数为人次，不是去重人数。\n报名截止时间：2026 年 11 月 25 日 18:00（香港时间）。",
+      "directory": "[local-project]/handover/secretary-home/final-run/independent-child-audit/18f76e6f-ca36-5631-a8d1-cc1c20a1449e"
+    }
+  },
+  "conversationId": "8cf6f21f-e397-5121-ac09-23c6771c5041",
+  "parentConversationId": "a893bf38-9215-5796-aa5a-81be4e830816",
+  "runId": "2c5cd9f7-1f24-4c6f-bc5a-dbc0ce6beb1a",
+  "wordId": "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+  "pdfId": "18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+  "draftId": "9728e574-3b4d-5628-8aa9-2e3f29dee417",
+  "scope": "Read-only actual bytes, source arithmetic, persistent draft and independent rendering. Human still checks wording/layout; no model or repair."
+}

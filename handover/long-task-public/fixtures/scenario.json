@@ -1,0 +1,304 @@
+{
+  "scenarioId": "public-long-course",
+  "metadata": {
+    "fictional": true
+  },
+  "messages": [
+    {
+      "messageKey": "m01",
+      "messageId": "<long-course-1@demo.example.invalid>",
+      "subject": "COMP5051 Project 2：选题与提交安排",
+      "body": "各位同学好，\n\nProject 2 请选一个校园中的具体问题做小组调研。正文最多8页，参考文献不计入页数；附一段不超过180字的中文摘要。报告暂定11月30日23:59（香港时间）交Canvas，展示暂定12月2日，每组6分钟陈述、2分钟问答。每组交一份即可。正式要求以课程邮件为准。\n\n周言",
+      "sentAt": "2026-11-22T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "m02",
+      "messageId": "<long-course-2@demo.example.invalid>",
+      "subject": "Re: COMP5051 Project 2：雨天共享单车选题",
+      "body": "许同学，\n\n你们研究雨天对校园共享单车使用的影响可以。把观察范围先收窄到图书馆和教学楼两个停车点，分别观察早上、傍晚。不要把这个选题写成已经证明了雨天会造成什么影响。\n\n周言",
+      "sentAt": "2026-11-23T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m03",
+      "messageId": "<long-course-3@demo.example.invalid>",
+      "subject": "我们组先这样分工？",
+      "body": "我来负责图表，你先整理观察记录和数据说明。等我们各自做完，再由你统一合进报告。访谈那块还没有人认领，先别在给老师的回复里说已经安排好了。\n\n佳宁",
+      "sentAt": "2026-11-23T09:00:00+08:00",
+      "from": {
+        "name": "佳宁",
+        "address": "jianing@students.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "m04",
+      "messageId": "<long-course-4@demo.example.invalid>",
+      "subject": "COMP5051 Project 2：先交一页提纲",
+      "body": "各组同学，\n\n请在11月24日20:00（香港时间）前把一页提纲发给我，包括研究问题、数据来源和组员分工。提纲通过邮件交，不是Canvas正式报告。\n\n周言",
+      "sentAt": "2026-11-23T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m05",
+      "messageId": "<long-course-5@demo.example.invalid>",
+      "subject": "Re: 提纲截止延后两天",
+      "body": "许同学，\n\n这周安排比较紧，提纲的截止时间从11月24日20:00延到11月26日20:00（香港时间）。原来的时间不再适用。正式报告截止日暂时不变。\n\n周言",
+      "sentAt": "2026-11-24T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-4@demo.example.invalid>",
+      "references": [
+        "<long-course-4@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m06",
+      "messageId": "<long-course-6@demo.example.invalid>",
+      "subject": "周三讨论前先别赶最终稿",
+      "body": "大家周三先线上聊一下研究问题即可，具体时间等我下一封通知。现在不用为了这次讨论做完整的PPT。\n\n周言",
+      "sentAt": "2026-11-24T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m07",
+      "messageId": "<long-course-7@demo.example.invalid>",
+      "subject": "Re: 提纲里数据部分的写法",
+      "body": "许同学，\n\n提纲中把数据来源和计划采用的分析方式分开写。采集没有结束就注明进行中。请告诉我你们准备比较哪两个时间段；延后的提纲截止仍有效。\n\n周言",
+      "sentAt": "2026-11-25T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-5@demo.example.invalid>",
+      "references": [
+        "<long-course-5@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m08",
+      "messageId": "<long-course-8@demo.example.invalid>",
+      "subject": "问卷先别急着算有效样本",
+      "body": "刚导出了32条问卷记录。我看到其中有3条可能重复，但还没核对是不是同一个人；所以现在不能直接写有效样本29人。图表我还在做。\n\n佳宁",
+      "sentAt": "2026-11-26T09:00:00+08:00",
+      "from": {
+        "name": "佳宁",
+        "address": "jianing@students.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-3@demo.example.invalid>",
+      "references": [
+        "<long-course-3@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m09",
+      "messageId": "<long-course-9@demo.example.invalid>",
+      "subject": "COMP5051 Project 2：正式报告延期",
+      "body": "各位同学，\n\n正式报告截止从11月30日23:59延到12月3日23:59（香港时间），仍然由组长上传Canvas。提纲已结束，不要把提纲和正式报告当成同一个提交。其余文档要求不变。\n\n周言",
+      "sentAt": "2026-11-27T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m10",
+      "messageId": "<long-course-10@demo.example.invalid>",
+      "subject": "COMP5051：展示改到周六",
+      "body": "你们组的展示调整到12月5日15:10（香港时间），地点仍在教学楼B203。原定12月2日的安排取消。陈述和问答时长沿用最初邮件，不变。\n\n周言",
+      "sentAt": "2026-11-28T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m11",
+      "messageId": "<long-course-11@demo.example.invalid>",
+      "subject": "STAT5301 Project：请准备英文进展",
+      "body": "许同学好，\n\n统计课Project是另一项作业，请在12月8日17:00前发我一段英文进展，不超过150词，重点写遇到的统计问题。它与COMP5051的校园调研是两个项目。\n\n周言",
+      "sentAt": "2026-11-28T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@stat5301.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": []
+    },
+    {
+      "messageKey": "m12",
+      "messageId": "<long-course-12@demo.example.invalid>",
+      "subject": "Re: COMP5051最终稿页数",
+      "body": "许同学，\n\n页数和中文摘要长度仍按第一次发的Project通知来。不要为了赶提交把尚未验证的问卷结果写成已经确认的结论；如果有疑问，在发我前再核一下。\n\n周言",
+      "sentAt": "2026-11-29T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-1@demo.example.invalid>",
+      "references": [
+        "<long-course-1@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m13",
+      "messageId": "<long-course-13@demo.example.invalid>",
+      "subject": "COMP5051：请把最新目录和分工发我",
+      "body": "许同学，\n\n请把你们目前的目录和分工简短发我，数据还没有核完就如实说明。上一轮说的图书馆与教学楼两个停车点可以继续保留。\n\n周言",
+      "sentAt": "2026-11-30T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@comp5051.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-12@demo.example.invalid>",
+      "references": [
+        "<long-course-12@demo.example.invalid>"
+      ]
+    },
+    {
+      "messageKey": "m14",
+      "messageId": "<long-course-14@demo.example.invalid>",
+      "subject": "Re: STAT5301英文进展的提醒",
+      "body": "许同学，\n\n请只写一段不超过150词的英文进展，不用中文条列。我还不知道你具体选了什么数据，没确定的话就说明尚在选数据，并说下一步准备确认什么。\n\n周言",
+      "sentAt": "2026-11-30T09:00:00+08:00",
+      "from": {
+        "name": "周老师",
+        "address": "zhou.yan@stat5301.example.invalid"
+      },
+      "to": [
+        {
+          "name": "许同学",
+          "address": "xu.student@campus.example.invalid"
+        }
+      ],
+      "attachments": [],
+      "inReplyTo": "<long-course-11@demo.example.invalid>",
+      "references": [
+        "<long-course-11@demo.example.invalid>"
+      ]
+    }
+  ]
+}

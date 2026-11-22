@@ -1,0 +1,8 @@
+{
+  "stageCards": 15,
+  "screenshots": 26,
+  "missingLinks": [],
+  "missingImages": [],
+  "htmlSha256": "c8bd2d7afa8983de1072b51cc1bfb5fc937f472cb0c004c371b480880310bca2",
+  "scope": "HTML parsing plus local link and image-file existence checks; actual Electron visual audit is separate."
+}

@@ -1,0 +1,105 @@
+{
+  "app": "[local-project]/release-document-repair/mac-arm64/Task Manager.app",
+  "profile": "[local-test-profile]",
+  "proof": {
+    "profile": "[local-test-profile]",
+    "sourceProfile": "[local-project]/handover/long-task-public/snapshots/06-before-memory-review",
+    "copiedDatabases": [
+      "tasks.sqlite",
+      "agent.sqlite",
+      "agent-tools.sqlite",
+      "mail.sqlite",
+      "mail-files.sqlite",
+      "task-changes.sqlite",
+      "draft-lifecycle.sqlite",
+      "learning.sqlite"
+    ],
+    "settingsCopied": false,
+    "accountsCopied": false,
+    "credentialsAccessed": false,
+    "purpose": "Actual committed model state, copied unchanged before read-only UI navigation"
+  },
+  "shots": [
+    {
+      "id": "stage-06-answer",
+      "title": "本轮实际回答",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 64.84375,
+          "width": 736,
+          "height": 1084.03125,
+          "label": "真实回答与来源"
+        }
+      ]
+    },
+    {
+      "id": "stage-06-sources",
+      "title": "本轮来源和产物",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 416,
+          "y": 382.875,
+          "width": 736,
+          "height": 26,
+          "label": "打开原始依据"
+        },
+        {
+          "x": 416,
+          "y": 423.875,
+          "width": 736,
+          "height": 217.5,
+          "label": "实际保存的产物"
+        }
+      ]
+    },
+    {
+      "id": "stage-06-method-scope",
+      "title": "学习方法的状态与邮箱范围",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 136,
+          "y": 218.09375,
+          "width": 1042,
+          "height": 176.8828125,
+          "label": "核对邮箱与范围"
+        }
+      ]
+    },
+    {
+      "id": "stage-06-method-rules",
+      "title": "待审核的完整方法",
+      "width": 1320,
+      "height": 900,
+      "boxes": [
+        {
+          "x": 136,
+          "y": 484.6171875,
+          "width": 1042,
+          "height": 85.78125,
+          "label": "规则实际写入了什么"
+        },
+        {
+          "x": 136,
+          "y": 739.0390625,
+          "width": 1042,
+          "height": 89.890625,
+          "label": "仍需要人工审核"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "No API key or mailbox accounts",
+    "Read-only navigation of actual stage 06; no model request, approval or send",
+    "No send or SMTP preparation"
+  ],
+  "errors": [],
+  "appAsarSha256": "a1e181e352d7c633eb8a21761847552792e0f5c162f74af03b4c2011aa02d8d9"
+}

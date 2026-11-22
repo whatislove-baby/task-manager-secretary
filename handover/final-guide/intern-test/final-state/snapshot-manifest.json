@@ -1,0 +1,37 @@
+{
+  "profile": "[local-test-profile]",
+  "sourceProfile": "[local-test-profile]",
+  "copiedDatabases": [
+    "tasks.sqlite",
+    "agent.sqlite",
+    "agent-tools.sqlite",
+    "mail.sqlite",
+    "mail-files.sqlite",
+    "task-changes.sqlite",
+    "draft-lifecycle.sqlite"
+  ],
+  "settingsCopied": false,
+  "accountsCopied": false,
+  "credentialsAccessed": false,
+  "allSynthetic": true,
+  "snapshotType": "Business-only snapshot from new synthetic public internship run",
+  "sourceHashes": {
+    "tasks.sqlite": "51c213128adefe90b4ab541441653839cb920ec3948c7fa45a34ccd5cac7bd7c",
+    "agent.sqlite": "80b33bf6868b8922150baea24aaa4d6b2cb8dd3b1f2b189c854f087eca9593d8",
+    "agent-tools.sqlite": "9ba2edaf8a42461e74a10946ceb4ce64d7427c8adaea73919e87f53474ffb0aa",
+    "mail.sqlite": "2fd421182c2719cd0ad0ae482f00ca65b7490978c6047a70fda206ab1e236b0d",
+    "mail-files.sqlite": "d60f7412feeab828bac8f9318bc13bf6dfa7bd83b64ead47de2209ee7726f41f",
+    "task-changes.sqlite": "a69d297e039ab5340ab3eabf65433029840f9662d365e6bda1262be60d4419a2",
+    "draft-lifecycle.sqlite": "94cd57b8839b6beb66ab05f42c47135888afee0872b353e05c4743f681bc2975",
+    "mail-files/60d83d8e-3ab3-527e-81fc-43659ac22330": "c8d1c20d52a78f7d6da537743f8fe5c0ab0fefe79bf5a9022e86415d6fc5baad",
+    "mail-files/6ff8dccf-ae92-521f-b783-91579a13d6ba": "c8d1c20d52a78f7d6da537743f8fe5c0ab0fefe79bf5a9022e86415d6fc5baad",
+    "mail-files/8f72f35e-2e2d-5e60-8d4a-37d23ba8f3b8": "406614fd47c352f2b14056b009fd4b4c64b5384e2e970c4c69907c481c831f09",
+    "mail-files/95bd3cfa-7f60-5d92-9c40-73eb0392b491": "954d76f2ed36c6baf42bdd2caea14b58ed4e932f3b4ef14857dfd2ff2cdebcb1",
+    "mail-files/aba95a8a-5d48-58cc-8b13-7a3ba386bba3": "5ac98b6b667eb5c46e8ccfcadb102c6162201472199669fb616ddecb21f9a2c0",
+    "mail-files/b16ac209-50e7-5035-bf3d-f0ba7a87d17f": "406614fd47c352f2b14056b009fd4b4c64b5384e2e970c4c69907c481c831f09"
+  },
+  "conversationId": "59898143-1d28-436a-a408-6154950f6e28",
+  "wordId": "95bd3cfa-7f60-5d92-9c40-73eb0392b491",
+  "pdfId": "aba95a8a-5d48-58cc-8b13-7a3ba386bba3",
+  "draftId": "52569089-d0ee-5dac-8d50-532a2fd1ad2d"
+}

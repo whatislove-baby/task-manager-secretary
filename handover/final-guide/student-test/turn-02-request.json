@@ -1,0 +1,30 @@
+{
+  "stage": 2,
+  "user": "老师又改安排了，帮我把日历里这门课的作业和讨论更新一下，别弄出两份。",
+  "simulatedReferenceTime": "2026-11-22T09:00:00+08:00",
+  "newConversation": false,
+  "serviceReopened": true,
+  "visibleMailKeys": [
+    "report",
+    "discussion",
+    "club",
+    "lecture",
+    "reschedule"
+  ],
+  "independentExpectations": {
+    "initialDue": {
+      "report": "2026-12-04T15:59:00.000Z",
+      "discussion": "2026-11-25T06:30:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "finalDue": {
+      "report": "2026-12-07T15:59:00.000Z",
+      "discussion": "2026-11-26T07:00:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "cancelled": "discussion",
+    "explicitlyOptedIn": "club",
+    "notOptedIn": "lecture"
+  },
+  "note": "Only user text and local RFC mail reach model; oracle stays in evaluator. Simulated time, not three months of actual elapsed execution."
+}

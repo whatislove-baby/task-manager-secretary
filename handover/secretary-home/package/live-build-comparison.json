@@ -1,0 +1,8 @@
+{
+  "packagedAppAsarSha256": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+  "modelRunSource": "../final-run/live-start.json",
+  "comparedModules": 71,
+  "missingPaths": [],
+  "differentHashes": [],
+  "passed": true
+}

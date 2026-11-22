@@ -1,0 +1,11 @@
+{
+  "sourceSha256": "c8bd2d7afa8983de1072b51cc1bfb5fc937f472cb0c004c371b480880310bca2",
+  "observation": {
+    "hiddenBefore": true,
+    "clicked": true,
+    "hash": "#mail-m01",
+    "hiddenAfter": false,
+    "targetExpanded": true,
+    "top": -0.0859375
+  }
+}

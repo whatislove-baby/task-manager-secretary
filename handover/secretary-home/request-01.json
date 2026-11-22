@@ -1,0 +1,60 @@
+{
+  "stage": 1,
+  "prompt": "刷新一下",
+  "clock": "2026-11-22T10:00:00+08:00",
+  "visibleMailKeys": [
+    "course-project",
+    "club-weekly",
+    "photo-workshop",
+    "shopping-ad",
+    "intern-brief"
+  ],
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "before": {
+    "localMailTotal": 0,
+    "localMail": [],
+    "tasks": [],
+    "secretary": {
+      "id": "a893bf38-9215-5796-aa5a-81be4e830816",
+      "kind": "secretary",
+      "title": "秘书",
+      "createdAt": "2026-11-22T04:33:40.313Z",
+      "updatedAt": "2026-11-22T04:33:40.313Z",
+      "turns": [],
+      "turnCount": 0,
+      "children": []
+    },
+    "briefing": {
+      "items": [],
+      "counts": {
+        "action": 0,
+        "important": 0,
+        "normal": 0,
+        "spam": 0,
+        "review": 0
+      },
+      "total": 0,
+      "unbriefedTotal": 0,
+      "pendingClassification": 0,
+      "groups": {
+        "action": [],
+        "important": [],
+        "normal": [],
+        "spam": [],
+        "review": []
+      },
+      "collapsedCategories": [
+        "normal",
+        "spam"
+      ],
+      "offset": 0,
+      "limit": 100,
+      "hasMore": false,
+      "nextOffset": null,
+      "stateNotice": "briefedAt只表示已展示汇报；unread是服务器快照。分类、分析和已汇报均不表示事项已办完。"
+    },
+    "files": [],
+    "smtpReceipts": 0
+  },
+  "requestsSha256": "fd9e9188df2c785e50bfcf57038a8c9c5299192cab10a19ba1c80b827a503ec3"
+}

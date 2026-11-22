@@ -1,0 +1,101 @@
+{
+  "name": "task-manager-python",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local React desktop planner with a Python business backend",
+  "main": "dist-backend/main/main.js",
+  "scripts": {
+    "dev": "npm run build && node scripts/dev-python.cjs",
+    "build": "tsc -p tsconfig.main.json && vite build",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.renderer.json",
+    "test": "node scripts/run-tests.cjs",
+    "check": "npm run typecheck && npm run test:python && npm test && npm run build",
+    "pack": "npm run build && npm run runtime:python && node scripts/package-app.cjs dir && node scripts/verify-python-package.cjs",
+    "dist": "npm run build && npm run runtime:python && node scripts/package-app.cjs zip && node scripts/verify-python-package.cjs",
+    "runtime:install": "node node_modules/electron/install.js",
+    "test:runtime": "npm run build && electron scripts/python-electron-smoke.cjs && electron scripts/python-credentials-smoke.cjs",
+    "dev:legacy": "npm run build && node scripts/dev-python.cjs --legacy",
+    "test:python": "node scripts/test-python.cjs",
+    "test:python-desktop": "npm run build && electron scripts/python-electron-smoke.cjs",
+    "runtime:python": "node scripts/prepare-python-runtime.cjs",
+    "test:package": "node scripts/verify-python-package.cjs",
+    "runtime:python:mac": "node scripts/prepare-python-runtime-mac.cjs",
+    "runtime:documents:mac": "node scripts/prepare-document-runtime-mac.cjs",
+    "pack:mac": "npm run build && npm run runtime:python:mac && node scripts/package-app-mac.cjs dir && npm run test:package:mac",
+    "dist:mac": "npm run build && npm run runtime:python:mac && node scripts/package-app-mac.cjs zip && npm run test:package:mac",
+    "test:package:mac": "node scripts/verify-python-package-mac.cjs",
+    "test:handover": "node scripts/run-handover.cjs",
+    "test:package:credentials:mac": "node scripts/verify-mac-keychain.cjs",
+    "test:automation:mac": "node scripts/verify-mail-automation-mac.cjs"
+  },
+  "dependencies": {
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@azure/msal-node": "7.1.2",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jsdom": "^27.0.0",
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0",
+    "ical.js": "2.2.1",
+    "imapflow": "2.10.0",
+    "jsdom": "^27.0.0",
+    "lucide-react": "0.468.0",
+    "mailparser": "3.12.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "8.3.5"
+  },
+  "build": {
+    "appId": "com.gao.taskmanager",
+    "productName": "Task Manager",
+    "directories": {
+      "output": "release-v2"
+    },
+    "files": [
+      "dist-backend/main/main.js",
+      "dist-backend/main/preload.js",
+      "dist-backend/main/python-backend.js",
+      "dist-backend/main/mail-automation-host.js",
+      "dist-backend/main/python-desktop.js",
+      "dist-backend/main/python-channels.js",
+      "dist-backend/main/storage.js",
+      "dist-backend/main/tray.js",
+      "dist-backend/main/preferences.js",
+      "dist-backend/main/widget-policy.js",
+      "dist-backend/main/window-page.js",
+      "dist-backend/main/window-log.js",
+      "dist-backend/shared/preferences.js",
+      "dist-renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "zip",
+      "extraResources": [
+        {
+          "from": ".python-runtime",
+          "to": "python"
+        },
+        {
+          "from": "backend/task_backend",
+          "to": "backend/task_backend",
+          "filter": [
+            "**/*.py",
+            "assets/**/*"
+          ]
+        }
+      ]
+    }
+  },
+  "license": "UNLICENSED",
+  "author": "Gao"
+}

@@ -1,0 +1,14 @@
+{
+  "images": 24,
+  "allImagesLoaded": true,
+  "allEmbedded": true,
+  "anchors": true,
+  "svgOverlays": 24,
+  "title": "Task Manager 图文使用手册",
+  "scrollWidth": 1440,
+  "width": 1440,
+  "zoomWorks": true,
+  "annotationToggleWorks": true,
+  "networkRequestsAllowed": false,
+  "passed": true
+}

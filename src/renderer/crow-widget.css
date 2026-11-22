@@ -1,0 +1,95 @@
+html.crow-widget-mode,html.crow-widget-mode body,html.crow-widget-mode #root{background:transparent!important;overflow:hidden;height:100%;min-width:0}
+.crow-widget{-webkit-app-region:no-drag;font-family:"Microsoft YaHei UI",sans-serif;color:#25282a;height:100dvh;padding:6px 8px 8px;position:relative;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+.crow-widget button,.crow-widget input,.crow-widget textarea,.crow-widget select{-webkit-app-region:no-drag}
+.crow-perch{height:132px;flex-shrink:0;overflow:hidden;scrollbar-width:none}
+
+.crow-branch-scene{position:relative;height:106px}.crow-branch{position:absolute;top:8px;left:0;width:100%;height:120px;object-fit:fill;pointer-events:none}
+.crow-close{position:absolute;top:2px;right:11px;width:25px;height:25px;padding:4px;z-index:8;border:0;background:transparent!important;opacity:0;pointer-events:none;transition:opacity .16s}
+.crow-close svg{width:100%;height:100%;stroke:#25282a;stroke-width:1.5;stroke-linecap:round;filter:drop-shadow(0 1px 1px #ecede8)}
+.crow-widget.artwork-hover .crow-close,.crow-widget:focus-within .crow-close{opacity:1;pointer-events:auto}
+.crow-pendant{position:absolute;top:81px;right:42px;width:29px;height:40px;padding:0;background:transparent!important;border:0;z-index:4;transform-origin:50% 0}
+.crow-pendant svg{width:100%;height:100%;stroke:#25282a;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.crow-pendant:hover,.crow-pendant:focus-visible{transform:rotate(-8deg)}
+.crow-paper{position:relative;min-height:0;flex:1;display:flex;flex-direction:column;margin:10px 7px 0;padding:15px 16px;background:radial-gradient(ellipse at 20% 8%,#d9e2dc33,transparent 58%),radial-gradient(ellipse at 95% 98%,#e9d7cd33,transparent 55%),#f5f5ef;border-radius:3px 7px 4px 6px;box-shadow:0 3px 12px #303c4320}
+.crow-paper:before,.crow-paper:after{content:"";position:absolute;width:1px;height:23px;top:-19px;background:#75827d;z-index:0;transform:rotate(-5deg)}
+.crow-paper:before{left:44px}.crow-paper:after{right:46px;transform:rotate(7deg)}
+.crow-paper-outline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.crow-paper-outline path{fill:none;stroke:#7f8b85;stroke-width:.8;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.crow-paper-heading{position:relative;display:flex;align-items:center;gap:9px;flex-shrink:0;padding:0 2px 12px;border-bottom:1px solid #aab7c3}
+.crow-paper-heading h2{font-size:13px;font-weight:500;color:#40586c;flex:1}
+.crow-paper-knot{width:10px;height:10px;background:#e5c9bd;border:1px solid #b29e96;border-radius:45% 55% 40% 60%;transform:rotate(15deg)}
+.crow-fold{padding:0 5px;font-size:21px;line-height:20px;background:transparent!important;border:0}
+.crow-paper-content{min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:11px 2px 2px;user-select:text}
+.crow-task{display:flex;gap:10px;align-items:center;min-height:42px;border-bottom:1px solid #aab7c35c}
+.crow-check{flex:0 0 18px;width:18px;height:18px;border:1px solid #7b8c89;border-radius:45% 50% 48% 42%;padding:0;font-size:11px;line-height:14px;background:transparent}
+.crow-task-title{flex:1;min-width:0;overflow-wrap:anywhere;text-align:left;font-size:12px;padding:9px 2px}
+.crow-completed .crow-task-title,.crow-strike{text-decoration:line-through;opacity:.55}
+.crow-detail-title{display:flex;align-items:center;gap:10px}.crow-detail h3{font-size:17px;line-height:1.6;overflow-wrap:anywhere;min-width:0}
+.crow-notes{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.9;margin:15px 0}
+.crow-due,.crow-empty{font-size:11px;color:#526776;line-height:1.9}.crow-due{padding:8px 0;border-top:1px dashed #aab7c3}
+.crow-form-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.crow-form-actions button{font-size:11px;border:1px solid #a8b4ad;border-radius:3px;background:#e6ebe43d;padding:6px 10px}
+.crow-edit{display:grid;gap:13px}.crow-edit label{display:grid;gap:6px;font-size:11px;color:#40586c}
+.crow-edit input,.crow-edit textarea,.crow-edit select{width:100%;font-size:12px;user-select:text;border:0;border-bottom:1px solid #b5c0b8;border-radius:0;background:#e9eee638;padding:8px;line-height:1.7}
+.crow-edit textarea{min-height:75px;resize:vertical}.crow-edit .due-input{display:flex;flex-wrap:wrap;gap:8px}
+.crow-error,.crow-warning{font-size:11px;line-height:1.8;overflow-wrap:anywhere;color:#854f4a;margin:0 0 10px;border-left:2px solid #f3c6bc;padding:0 8px}.crow-warning{color:#706074}
+.crow-context{position:absolute;top:15px;right:28px;background:#f5f5ef;border:1px solid #a8b4ad;border-radius:4px 7px 4px 6px;padding:6px;z-index:10;display:grid;box-shadow:2px 3px 0 #40586c33}
+.crow-context button{font-size:11px;text-align:left;padding:7px 11px}
+.crow-bird{position:absolute;top:9px;width:56px;height:76px;padding:0;border:0;background:transparent!important;transform-origin:65% 90%;z-index:1;-webkit-app-region:no-drag}
+.crow-illustration{position:absolute;top:0;left:-5px;width:66px;height:72px;object-fit:contain;pointer-events:none;transform-origin:36px 61px;transition:transform .25s ease-out;transform:rotate(var(--crow-pose-angle,0deg)) scale(var(--crow-pose-scale,1));animation:crow-idle var(--crow-idle-duration,7s) ease-in-out var(--crow-idle-delay,0s) infinite}
+.crow-bird:hover .crow-illustration,.crow-bird:focus-visible .crow-illustration{animation:none;transform:rotate(calc(var(--crow-pose-angle,0deg) - 3deg)) scale(var(--crow-pose-scale,1))}
+.crow-bird:disabled{opacity:1}.crow-tooltip{position:absolute;top:0;left:16px;width:max-content;max-width:170px;padding:4px 7px;font-size:10px;background:#f5f5ef;color:#40515b;border:1px solid #a8b4ad;border-radius:3px;box-shadow:0 2px 5px #303c4314;white-space:normal;overflow-wrap:anywhere;visibility:hidden;pointer-events:none}
+.crow-widget.artwork-hover .crow-bird:hover .crow-tooltip,.crow-bird:focus-visible .crow-tooltip{visibility:visible}
+.crow-flying{animation:crow-takeoff .76s ease-in forwards;pointer-events:none}
+@keyframes crow-takeoff{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(-2px,-5px) rotate(-5deg)}100%{transform:translate(55px,-105px) rotate(-13deg) scale(.9);opacity:0}}
+@media(prefers-reduced-motion:reduce){.crow-flying{animation:none;opacity:0}.crow-illustration{transition:none}}
+
+.crow-overflow{position:absolute;top:17px;right:17px;width:38px;height:38px;border:0;padding:0;background:transparent!important;animation:crow-circle 4s ease-in-out infinite;z-index:2}
+.crow-overflow img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+@keyframes crow-circle{0%,100%{transform:translate(-5px,0) rotate(-8deg)}25%{transform:translate(2px,-7px) rotate(4deg)}50%{transform:translate(8px,0) rotate(10deg)}75%{transform:translate(1px,7px) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.crow-overflow{animation:none}}
+
+
+/* 4列×2行的独立展翅帧；校准两行躯干基线，动作与外层轨迹分别播放。 */
+.crow-flight-sprite{display:block;position:absolute;width:82px;height:82px;left:-13px;top:-7px;background-image:url('/art/raven-flight-atlas.png');background-size:400% 200%;background-repeat:no-repeat;pointer-events:none;animation:crow-wing-beat .64s steps(1,end) infinite}
+.crow-overflow .crow-flight-sprite{width:48px;height:48px;left:-5px;top:-4px}
+@keyframes crow-wing-beat{
+  0%{background-position:0% 0%;transform:translateY(-22%)}
+  12.5%{background-position:33.333333% 0%;transform:translateY(-22%)}
+  25%{background-position:66.666667% 0%;transform:translateY(-22%)}
+  37.5%{background-position:100% 0%;transform:translateY(-22%)}
+  50%{background-position:0% 100%;transform:translateY(0)}
+  62.5%{background-position:33.333333% 100%;transform:translateY(0)}
+  75%{background-position:66.666667% 100%;transform:translateY(0)}
+  87.5%{background-position:100% 100%;transform:translateY(0)}
+  100%{background-position:0% 0%;transform:translateY(-22%)}
+}
+@media(prefers-reduced-motion:reduce){.crow-flight-sprite{animation:none;background-position:66.666667% 0%;transform:translateY(-22%)}}
+
+.crow-slot{position:absolute;width:56px;height:106px;touch-action:none}
+.crow-slot .crow-bird{left:0;top:0}
+.crow-perch,.crow-pendant,.crow-overflow{touch-action:none;cursor:grab}
+.crow-name-tag{position:absolute;left:0;top:75px;width:56px;max-height:29px;min-height:17px;padding:2px 3px;font-size:9.5px;line-height:12px;text-align:center;color:#56656b;background:#f5f5efdb;border:0;border-radius:2px 4px 3px 2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;box-shadow:0 1px 2px #40586c12;cursor:grab}
+.crow-name-tag:hover:not(:disabled){background:#f0e8e1}
+.crow-incoming{animation:crow-arrive 1s ease-out both;pointer-events:none}
+@keyframes crow-arrive{0%{transform:translate(-70px,-65px) scale(.4);opacity:0}25%{opacity:1}80%{transform:translate(1px,-5px) scale(1)}100%{transform:translate(0,0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.crow-incoming{animation:none}}
+
+.crow-move-error{position:absolute;bottom:0;left:10px;right:10px;max-height:22px;overflow:auto;z-index:9;font-size:10px;line-height:1.6;color:#854f4a;background:#f5f5efed;overflow-wrap:anywhere}
+
+/* Tiny independent shifts around the gripping point; the feet and slot remain anchored. */
+@keyframes crow-idle{0%,45%,100%{transform:rotate(var(--crow-pose-angle,0deg)) scale(var(--crow-pose-scale,1))}55%,65%{transform:rotate(calc(var(--crow-pose-angle,0deg) + .55deg)) scale(var(--crow-pose-scale,1)) scaleY(1.008)}}
+@media(prefers-reduced-motion:reduce){.crow-illustration{animation:none}}
+.crow-back-parent{align-self:flex-start;font-size:10px;color:#40586c;border:0;background:transparent!important;padding:2px 0;margin:-4px 0 2px}
+.crow-subtasks{max-height:190px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;margin-top:12px;padding:9px 2px 2px;border-top:1px dashed #aab7c3;user-select:text}
+.crow-subtasks-heading{font-size:10.5px;font-weight:500;color:#40586c;margin:0 0 5px;letter-spacing:.04em}
+.crow-subtask-row{display:flex;align-items:center;gap:7px;min-height:34px;border-bottom:1px solid #aab7c34d}
+.crow-subtask-row:last-child{border-bottom:0}
+.crow-subtask-current{background:#e6ebe455}
+.crow-subtask-toggle{flex:0 0 17px;width:17px;height:18px;padding:0;border:0;background:transparent!important;font-size:10px;line-height:18px;color:#526776}
+.crow-subtask-toggle:disabled{opacity:.45}
+.crow-subtask-title{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;text-align:left;padding:5px 0;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.crow-subtask-title span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow-subtask-due{font-size:9.5px;color:#526776;line-height:1.5}
+.crow-subtask-current .crow-subtask-title{font-weight:500;color:#40586c}
+.crow-subtask-edit{flex:0 0 auto;font-size:10px;border:1px solid #a8b4ad;border-radius:3px;background:#e6ebe43d;padding:3px 7px}

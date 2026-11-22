@@ -1,0 +1,95 @@
+{
+  "kind": "mail_draft",
+  "id": "0f31f95c-cce0-5244-9fbf-312e3a731019",
+  "subject": "Re: 帮忙整理教育志愿者培训的报名简报",
+  "body": "顾老师：\n\n教育志愿者培训的报名简报已经做好，一页。附件里是 Word 和 PDF 两个版本，内容相同，Word 那份方便您直接改字：\n\n- 教育志愿者培训报名进度.docx\n- 教育志愿者培训报名进度.pdf\n\n简报按说明标明数据统计截至 2026 年 11 月 22 日上午 9 点，三场培训彼此独立、报名数为 73 人次，剩余名额分别为 9、6、10 个，截止报名时间为 11 月 25 日 18:00（香港时间）。\n\n按您的意思，先放在回信里请您过目；转发给谁，等您看过之后再定。\n\n林然",
+  "to": "guyao@museum.example.invalid",
+  "bindingId": "43aaff68-3826-49d4-9a99-ccabfd2edfae",
+  "replyToLocalId": "16f003a690da166d15305a5500be5d5d1de6c655546b58a40b0a31d1ce0c8bde",
+  "attachmentIds": [
+    "6e5bff1b-7e84-507d-a9c4-042059cdaf60",
+    "45eaa333-989d-5aed-932d-8d6be12a9869"
+  ],
+  "attachments": [
+    {
+      "id": "6e5bff1b-7e84-507d-a9c4-042059cdaf60",
+      "name": "教育志愿者培训报名进度.docx",
+      "extension": "docx",
+      "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "byteSize": 19401,
+      "source": "generated",
+      "parentIds": [],
+      "createdAt": "2026-11-22T04:39:38.657Z",
+      "sha256": "b3a9c20e5cf6a37b27c79d8bb8ae222267b709186e7330acc794f4847ae2347d",
+      "warnings": [
+        "文本索引包含正文及表格文字；结构工具提供段落和单元格定位，图片及版式请查看页面。批注和修订语义未完整解析。"
+      ],
+      "validation": {
+        "sha256": "b3a9c20e5cf6a37b27c79d8bb8ae222267b709186e7330acc794f4847ae2347d",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "Word 可重新打开",
+          "段落、表格和图片关系可读取",
+          "所有页面可渲染"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "paragraphCount": 5,
+        "tableCount": 1,
+        "imageCount": 0,
+        "pageCount": 1
+      }
+    },
+    {
+      "id": "45eaa333-989d-5aed-932d-8d6be12a9869",
+      "name": "教育志愿者培训报名进度.pdf",
+      "extension": "pdf",
+      "mediaType": "application/pdf",
+      "byteSize": 41241,
+      "source": "generated",
+      "parentIds": [
+        "6e5bff1b-7e84-507d-a9c4-042059cdaf60"
+      ],
+      "createdAt": "2026-11-22T04:42:06.990Z",
+      "sha256": "106a251e6a27a311defa01a31d44f1745eb3745b881875cd71b0eb7b4cd93ff6",
+      "warnings": [
+        "文本索引不包含图片、手写内容和复杂表格布局；请按页查看原图后判断。"
+      ],
+      "validation": {
+        "sha256": "106a251e6a27a311defa01a31d44f1745eb3745b881875cd71b0eb7b4cd93ff6",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "输出格式可重新解析",
+          "所有页面可渲染"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "pageCount": 1
+      },
+      "conversion": {
+        "sourceFileId": "6e5bff1b-7e84-507d-a9c4-042059cdaf60",
+        "sourceSha256": "b3a9c20e5cf6a37b27c79d8bb8ae222267b709186e7330acc794f4847ae2347d",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      },
+      "familyId": "45eaa333-989d-5aed-932d-8d6be12a9869",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    }
+  ],
+  "conversationId": "3bbf9a3d-8374-5d19-a748-65c5e29ddc59",
+  "createdAt": "2026-11-22T04:43:29.634Z",
+  "status": "draft",
+  "detail": "仅保存可编辑草稿；用户预览确认后才会发送。"
+}

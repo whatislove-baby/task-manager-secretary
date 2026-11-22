@@ -1,0 +1,10 @@
+{
+  "stage": "before_model_and_before_isolated_profile_creation",
+  "command": ".venv/bin/python handover/public-demo-intern/run.py 1",
+  "status": "failed",
+  "reason": "Existing Settings credential could not be decrypted by the ordinary virtualenv interpreter in this execution environment.",
+  "modelCalled": false,
+  "artifactCreated": false,
+  "smtpCalled": false,
+  "nextStep": "Use the previously authorized trusted interpreter and the same existing encrypted settings; do not expose or copy API secrets."
+}

@@ -1,0 +1,72 @@
+{
+  "purpose": "真实 QQ 邮箱到 AI 待办及日历的合成输入；本文件只记录预期，不代表已通过实测。",
+  "subject_prefix": "TM-E2E-20261120-",
+  "recipient": "执行者自己的测试邮箱；实际地址不写入仓库",
+  "instructions": "这是已授权的合成全流程测试。请提取每封邮件明确要求的测试任务，保留【自测A/B/C】前缀；各封邮件独立分析。明确时间保留香港时区，只有日期不要补时刻，时间未定用无截止并在备注标明待确认；不为无需行动的通知生成待办，不拆分出多余子任务。",
+  "cases": [
+    {
+      "id": "A",
+      "subject": "TM-E2E-20261120-A 明确时间",
+      "body": "这是一封合成软件测试邮件，不是真实课程通知。\n\n测试任务：【自测A】提交排练报告。\n截止时间：2026年11月21日18:00，香港时间（Asia/Hong_Kong）。\n要求：将排练报告整理为一份 PDF。",
+      "expected": {
+        "task_count": 1,
+        "title_contains": "【自测A】",
+        "task": "提交排练报告",
+        "due": {
+          "mode": "value",
+          "value": {
+            "kind": "minute",
+            "at": "2026-11-21T10:00:00.000Z",
+            "timeZone": "Asia/Hong_Kong"
+          }
+        },
+        "notes_include": "PDF",
+        "calendar_day": "2026-11-21",
+        "local_time": "18:00"
+      }
+    },
+    {
+      "id": "B",
+      "subject": "TM-E2E-20261120-B 只有日期",
+      "body": "这是一封合成软件测试邮件，不是真实课程通知。\n\n测试任务：【自测B】完成演示幻灯片。\n截止日期：2026年11月22日。原通知没有指定几点，不要补成某个时刻。\n要求：整理一份六分钟演示使用的幻灯片。",
+      "expected": {
+        "task_count": 1,
+        "title_contains": "【自测B】",
+        "task": "完成演示幻灯片",
+        "due": {
+          "mode": "value",
+          "value": {
+            "kind": "date",
+            "date": "2026-11-22"
+          }
+        },
+        "calendar_day": "2026-11-22",
+        "must_not_invent_time": true
+      }
+    },
+    {
+      "id": "C",
+      "subject": "TM-E2E-20261120-C 时间缺失",
+      "body": "这是一封合成软件测试邮件，不是真实课程通知。\n\n测试任务：【自测C】整理会议资料。\n截止时间尚未确定，稍后另行通知。请保留待办并标明时间待确认，不要猜测日期。\n附带消息：系统维护已结束，这条消息无需采取行动。",
+      "expected": {
+        "task_count": 1,
+        "title_contains": "【自测C】",
+        "task": "整理会议资料",
+        "due": { "mode": "none" },
+        "notes_include": "待确认",
+        "must_not_invent_date_or_time": true,
+        "must_not_create_maintenance_task": true,
+        "calendar_day": null,
+        "current_ui_behavior": "未完成的无截止主任务会出现在每日左侧任务列表，标为无截止日期；不出现在上方某一天的截止任务卡片。"
+      }
+    }
+  ],
+  "workflow_expectations": [
+    "仅导入本批主题前缀且来自执行者本人邮箱的邮件。",
+    "导入本身不自动调用模型或保存待办。",
+    "每封邮件独立分析，草稿确认后才保存。",
+    "再次以仅导入未保存的邮件执行同一范围，应跳过已完整导入的邮件。",
+    "已保存的草稿再次确认不应增加重复待办；重新分析同一邮件不属于这一保证。",
+    "日期不明确的任务保留无截止，不应编造日历截止日期。"
+  ]
+}

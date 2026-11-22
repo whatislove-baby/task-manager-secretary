@@ -1,0 +1,11 @@
+{
+  "childRunId": "036ca159-6c7b-4eea-b301-4400896fab07",
+  "homeRunId": "e629e903-c88d-406e-82e5-d9a879d4b1e6",
+  "childStatusAtQuestion": "running",
+  "childStatusWhenHomeFinished": "completed",
+  "homeFinishedBeforeChild": false,
+  "actualProductionWorker": true,
+  "toolsFromThreads": [
+    "agent-secretary"
+  ]
+}

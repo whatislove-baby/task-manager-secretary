@@ -1,0 +1,135 @@
+{
+  "kind": "mail_draft",
+  "id": "9728e574-3b4d-5628-8aa9-2e3f29dee417",
+  "subject": "回复：帮忙整理教育志愿者培训的报名简报",
+  "body": "顾老师：\n\n您好！\n\n按您的要求，教育志愿者培训的报名简报已经做好，共一页，随信附上 Word 和 PDF 两个版本，内容相同，供您查看。\n\n简报按附件统计列出三场的名额、已报名和剩余名额，并注明统计截至 2026 年 11 月 22 日上午 9 点、报名截止时间为 2026 年 11 月 25 日 18:00（香港时间）。\n\n如需调整措辞或版式，请告诉我。\n\n林然",
+  "to": "guyao@museum.example.invalid",
+  "bindingId": "1d798150-12ea-4bdb-bb22-35046bea59d9",
+  "replyToLocalId": "304ab3cc9cad43d2146b4561eae191d9884e8595bbe865c5d413a938a77a7d8c",
+  "attachmentIds": [
+    "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+    "18f76e6f-ca36-5631-a8d1-cc1c20a1449e"
+  ],
+  "attachments": [
+    {
+      "id": "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "name": "教育志愿者培训报名进度.docx",
+      "extension": "docx",
+      "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "byteSize": 22149,
+      "source": "generated",
+      "parentIds": [],
+      "createdAt": "2026-11-22T05:08:16.476Z",
+      "sha256": "f9332fd9b472a4f22c6adc4c1ed30467511242d4e04e6a0cef152b9f617d0678",
+      "warnings": [
+        "文本索引包含正文及表格文字；结构工具提供段落和单元格定位，图片及版式请查看页面。批注和修订语义未完整解析。"
+      ],
+      "validation": {
+        "sha256": "f9332fd9b472a4f22c6adc4c1ed30467511242d4e04e6a0cef152b9f617d0678",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "Word 可重新打开",
+          "段落、表格和图片关系可读取",
+          "所有页面可渲染",
+          "保存的结构化数据经 Decimal 重新计算一致；不代表已验证资料语义或视觉外观"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "paragraphCount": 3,
+        "tableCount": 2,
+        "imageCount": 0,
+        "pageCount": 1,
+        "businessCalculation": {
+          "calculated": false,
+          "layout": "structured-document-v1",
+          "originalLayoutPreserved": false
+        },
+        "templateLayout": {
+          "page": "A4",
+          "landscape": false,
+          "headerColor": "#263B4A",
+          "headerTextColor": "#FFFFFF",
+          "tableHeaderColor": "#E8EEF1",
+          "summaryColor": "#F0F3F5",
+          "textColor": "#263640",
+          "fontSize": 11.0,
+          "headerBand": true,
+          "summaryLayout": "stacked"
+        }
+      },
+      "familyId": "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    },
+    {
+      "id": "18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "name": "教育志愿者培训报名进度.pdf",
+      "extension": "pdf",
+      "mediaType": "application/pdf",
+      "byteSize": 44833,
+      "source": "generated",
+      "parentIds": [
+        "b09e7d7c-a328-56e6-bb37-e1cea5ac163f"
+      ],
+      "createdAt": "2026-11-22T05:08:28.006Z",
+      "sha256": "70ebbfa16b68da3da7fd6735a5bfa419ead2582efe558b51999b22163338212e",
+      "warnings": [
+        "文本索引不包含图片、手写内容和复杂表格布局；请按页查看原图后判断。"
+      ],
+      "validation": {
+        "sha256": "70ebbfa16b68da3da7fd6735a5bfa419ead2582efe558b51999b22163338212e",
+        "structuralPassed": true,
+        "rendered": true,
+        "visualReviewed": false,
+        "checks": [
+          "原文件哈希与字节数一致",
+          "输出格式可重新解析",
+          "所有页面可渲染",
+          "保存的结构化数据经 Decimal 重新计算一致；不代表已验证资料语义或视觉外观"
+        ],
+        "warnings": [
+          "渲染成功仅证明页面可打开；布局及内容仍需视觉检查。"
+        ],
+        "pageCount": 1,
+        "businessCalculation": {
+          "calculated": false,
+          "layout": "structured-document-v1",
+          "originalLayoutPreserved": false
+        },
+        "templateLayout": {
+          "page": "A4",
+          "landscape": false,
+          "headerColor": "#263B4A",
+          "headerTextColor": "#FFFFFF",
+          "tableHeaderColor": "#E8EEF1",
+          "summaryColor": "#F0F3F5",
+          "textColor": "#263640",
+          "fontSize": 11.0,
+          "headerBand": true,
+          "summaryLayout": "stacked"
+        }
+      },
+      "conversion": {
+        "sourceFileId": "b09e7d7c-a328-56e6-bb37-e1cea5ac163f",
+        "sourceSha256": "f9332fd9b472a4f22c6adc4c1ed30467511242d4e04e6a0cef152b9f617d0678",
+        "sourceRevision": 1,
+        "method": "LibreOffice writer_pdf_Export",
+        "preservesSourceLayout": true,
+        "visualReviewed": false
+      },
+      "familyId": "18f76e6f-ca36-5631-a8d1-cc1c20a1449e",
+      "revision": 1,
+      "lifecycleStatus": "active",
+      "supersededBy": null
+    }
+  ],
+  "conversationId": "8cf6f21f-e397-5121-ac09-23c6771c5041",
+  "createdAt": "2026-11-22T05:08:42.291Z",
+  "status": "draft",
+  "detail": "仅保存可编辑草稿；用户预览确认后才会发送。"
+}

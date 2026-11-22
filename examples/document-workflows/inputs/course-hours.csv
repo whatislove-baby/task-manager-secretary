@@ -1,0 +1,8 @@
+﻿record_id,team,hours,status
+001,A,4,active
+002,A,6,active
+002,A,6,active
+003,B,8,active
+004,B,12,active
+005,A,,active
+006,C,9,cancelled

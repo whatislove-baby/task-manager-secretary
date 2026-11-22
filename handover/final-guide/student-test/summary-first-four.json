@@ -1,0 +1,125 @@
+{
+  "realApi": true,
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "stages": [
+    {
+      "stage": 1,
+      "elapsedSeconds": 34.13,
+      "status": "completed",
+      "structuralPassed": true,
+      "checks": {
+        "model_completed": true,
+        "model_did_not_directly_change_local_tasks": true,
+        "exactly_three_task_drafts": true,
+        "correct_report_source_and_time": true,
+        "correct_discussion_source_and_time": true,
+        "correct_club_source_and_time": true,
+        "undecided_lecture_not_added": true,
+        "no_unrequested_artifact_types": true,
+        "three_saved_after_review": true,
+        "no_send_receipts": true
+      },
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444"
+    },
+    {
+      "stage": 2,
+      "elapsedSeconds": 60.56,
+      "status": "completed",
+      "structuralPassed": true,
+      "checks": {
+        "model_completed": true,
+        "model_did_not_directly_change_local_tasks": true,
+        "expected_change_count": true,
+        "no_duplicate_task_drafts": true,
+        "no_unrequested_artifact_types": true,
+        "correct_report_change": true,
+        "correct_discussion_change": true,
+        "club_untouched": true,
+        "same_three_task_ids": true,
+        "both_reviewed_dates_applied": true,
+        "no_send_receipts": true
+      },
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444"
+    },
+    {
+      "stage": 3,
+      "elapsedSeconds": 71.08,
+      "status": "completed",
+      "structuralPassed": true,
+      "checks": {
+        "model_completed": true,
+        "model_did_not_directly_change_local_tasks": true,
+        "expected_change_count": true,
+        "no_duplicate_task_drafts": true,
+        "no_unrequested_artifact_types": true,
+        "correct_discussion_change": true,
+        "club_untouched": true,
+        "discussion_cancelled_not_completed": true,
+        "report_untouched": true,
+        "no_send_receipts": true
+      },
+      "conversationId": "1c54ee37-4b65-48c9-b6fd-a15d5c59f444"
+    },
+    {
+      "stage": 4,
+      "elapsedSeconds": 27.39,
+      "status": "completed",
+      "structuralPassed": true,
+      "checks": {
+        "model_completed": true,
+        "model_did_not_directly_change_local_tasks": true,
+        "new_conversation": true,
+        "queried_persistent_mail_and_current_tasks": true,
+        "recovered_latest_deadline_and_cancel_sources": true,
+        "read_only_no_new_artifacts": true,
+        "no_task_mutation": true,
+        "no_send_receipts": true
+      },
+      "conversationId": "f3a30f30-1b3b-4cb8-80d8-9478418fba6f"
+    }
+  ],
+  "totalModelRunSeconds": 193.16,
+  "allStructuralChecksPassed": true,
+  "allSemanticChecksPassed": false,
+  "semanticIssues": [
+    {
+      "stages": [
+        2,
+        3
+      ],
+      "issue": "Email receivedAt rendered as UTC clock without an explicit UTC label; task Hong Kong times themselves correct."
+    },
+    {
+      "stages": [
+        4
+      ],
+      "issue": "Model inferred discussion had never been a task from its absence in active tasks. Actual task was created, rescheduled then cancelled.",
+      "codeEvidence": "AgentTools.list_tasks reads listTodos without deleted history; no deleted-task query option exposed by this tool.",
+      "modelIssue": "Absence in active query is not evidence of never-created; model should restrict statement to current active list or state uncertainty."
+    }
+  ],
+  "realMailRead": false,
+  "realEmailSent": false,
+  "externalCalendarWritten": false,
+  "simulatedTimeNotActualMonths": true,
+  "realTeammateHandoverCompleted": false,
+  "sourceIntegrity": {
+    "endHashRecordedPerStage": false,
+    "stage1to2StartHashesEqual": true,
+    "stage2to3StartHashesEqual": true,
+    "stage3to4StartChangedFiles": [
+      "backend/task_backend/agent_runtime.py",
+      "backend/task_backend/agent_tools.py",
+      "backend/task_backend/assets/deepagents-skills/documents/SKILL.md",
+      "backend/task_backend/document_agent.py",
+      "backend/task_backend/document_completion.py",
+      "backend/task_backend/mail_files.py"
+    ],
+    "explanation": "Concurrent addition of extract_pdf_pages occurred between stage 3 and stage 4 start snapshots. No claim all four stages used one frozen build.",
+    "stage4StartMatchesPostRunCurrent": true
+  },
+  "beforeReviewSnapshots": [
+    "before-review-stage-01/snapshot-manifest.json",
+    "before-review-stage-02/snapshot-manifest.json"
+  ]
+}

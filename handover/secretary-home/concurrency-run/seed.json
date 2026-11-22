@@ -1,0 +1,24 @@
+{
+  "snapshot": "[local-project]/handover/secretary-home/final-run/snapshots/03",
+  "snapshotHashes": {
+    "tasks.sqlite": "1fad5e37aff465879e383defac590f83320bff861dea9387de79c9e3df56f749",
+    "agent.sqlite": "85e2c58562bc918410625cd92690b2d427985514e357c5b0eeed5e418dd388a5",
+    "agent-tools.sqlite": "08119cb311a0b924dae39b41f50038b87bfdc093799d72755171f86bbcff4702",
+    "agent-checkpoints.sqlite": "3d7bab9720096da54090bf63fd76e1ffe8fc7ca2e50f2915d6cdfe340891bcfb",
+    "mail.sqlite": "2f4180ea25917a7aad8af49d5b316c2150da12687892e22c58a22c608141ce65",
+    "mail-files.sqlite": "c3e96c6d7c13ff4949d83445a386dcc0f35085b6d389c3d1b1fd116bd64c9ce1",
+    "task-changes.sqlite": "d05168e50eb791437f70d1178af8a96fd5c36051a59f23cc5221856870634780",
+    "draft-lifecycle.sqlite": "d1923be5fe3dbde9620ee9f39bcbef9a8e5598caf37599c9dfe8dfdf48ac76d3",
+    "learning.sqlite": "d982d75dcd3986107bc9d0a4d20c2df9833741036519b6c0e8e3328cb54d2bda",
+    "mail-compose.sqlite": "019211d4d766af6880f6771daba206dcdc5e57d28bf25c820006a69e91890c13",
+    "secretary.sqlite": "203c988d57f863791ca2a1f86d160039ba5d3c31cedcad5e0d44935457d9518a",
+    "mail-automation.sqlite": "dcdf25540f62be3892150b558971dd062b14d07216517b2e3e42c04a249ae230",
+    "mail-operations.sqlite": "409ee003b69884d3b7240bb443a3687c47b5681fb1531122e96c33c9eee63648"
+  },
+  "credentialsCopied": false,
+  "reconstructedAccount": "Only synthetic fixture account with its prior binding ID",
+  "originalRequests": [
+    4,
+    5
+  ]
+}

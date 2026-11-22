@@ -1,0 +1,7 @@
+{
+  "reviewed": true,
+  "independentChecksPassed": 41,
+  "visualReview": "一页Word实际渲染已查看；表格数值、统计口径、截止、部门签名清晰，PDF已逐像素一致",
+  "draftReview": "指定顾老师收件人、原邮件回复关联、Word/PDF恰好两附件、未发送",
+  "limitation": "中间计算CSV未附是符合用户需求；应用交付核对提示将此当漏附件，记录为过宽UX提示"
+}

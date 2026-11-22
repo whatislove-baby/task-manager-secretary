@@ -1,0 +1,29 @@
+{
+  "stage": 1,
+  "user": "帮我看看 COMP5082 最近这些邮件，把作业和已经约好的小组讨论整理到待确认。摄影社这场校园夜拍我也想参加，也记一下。研究院那个讲座我还没决定去，先别替我排上。",
+  "simulatedReferenceTime": "2026-11-21T09:00:00+08:00",
+  "newConversation": false,
+  "serviceReopened": true,
+  "visibleMailKeys": [
+    "report",
+    "discussion",
+    "club",
+    "lecture"
+  ],
+  "independentExpectations": {
+    "initialDue": {
+      "report": "2026-12-04T15:59:00.000Z",
+      "discussion": "2026-11-25T06:30:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "finalDue": {
+      "report": "2026-12-07T15:59:00.000Z",
+      "discussion": "2026-11-26T07:00:00.000Z",
+      "club": "2026-11-28T09:00:00.000Z"
+    },
+    "cancelled": "discussion",
+    "explicitlyOptedIn": "club",
+    "notOptedIn": "lecture"
+  },
+  "note": "Only user text and local RFC mail reach model; oracle stays in evaluator. Simulated time, not three months of actual elapsed execution."
+}

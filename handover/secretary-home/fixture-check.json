@@ -1,0 +1,546 @@
+{
+  "scope": "Protocol fixture preparation only; no secretary feature or model acceptance claimed",
+  "passed": true,
+  "checks": [
+    {
+      "name": "local inbox is empty before product importer",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "actual inbox sync completed",
+      "actual": "completed",
+      "expected": "completed",
+      "passed": true
+    },
+    {
+      "name": "all five original MIME messages imported",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "no import failure",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "sender:intern-brief",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "complete body:intern-brief",
+      "actual": "林然，\n\n林禾刚把这周三个培训场次的报名表导出来了，CSV 和简短说明都放在附件里。你帮我整理成一页简报吧，主要让我看清各场还有多少名额，不需要长篇分析。\n\n给我一个 Word 方便改字，再附相同内容的 PDF。你先做好放回信里，我看过后再决定转发给谁。今天下班前准备好即可，不急着发出去。\n\n谢谢！\n顾遥\n青岚博物馆 · 教育活动组",
+      "expected": "林然，\n\n林禾刚把这周三个培训场次的报名表导出来了，CSV 和简短说明都放在附件里。你帮我整理成一页简报吧，主要让我看清各场还有多少名额，不需要长篇分析。\n\n给我一个 Word 方便改字，再附相同内容的 PDF。你先做好放回信里，我看过后再决定转发给谁。今天下班前准备好即可，不急着发出去。\n\n谢谢！\n顾遥\n青岚博物馆 · 教育活动组",
+      "passed": true
+    },
+    {
+      "name": "sender:shopping-ad",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "complete body:shopping-ad",
+      "actual": "会员你好！\n\n本周收纳盒与桌面支架享会员折扣，满额赠小礼品。本邮件是营销推广，不含订单、付款或物流通知，不需要回复。活动截至今晚，欢迎到店选购。\n\n优选好物市场部\n不想收到此类促销，可通过会员页面取消订阅。",
+      "expected": "会员你好！\n\n本周收纳盒与桌面支架享会员折扣，满额赠小礼品。本邮件是营销推广，不含订单、付款或物流通知，不需要回复。活动截至今晚，欢迎到店选购。\n\n优选好物市场部\n不想收到此类促销，可通过会员页面取消订阅。",
+      "passed": true
+    },
+    {
+      "name": "sender:photo-workshop",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "complete body:photo-workshop",
+      "actual": "你好，\n\n你订阅的城市影像空间本周开放手机摄影工作坊。时间是 11 月 28 日周六 10:00–12:00（香港时间），地点是文化中心 2 楼活动室。新朋友首次免费参加。\n\n如果想参加，请在 11 月 26 日 18:00 前回复人数；名额确认后我们再发准备事项。不参加无需回复，退订也可以直接回复告知。\n\n城市影像空间活动组",
+      "expected": "你好，\n\n你订阅的城市影像空间本周开放手机摄影工作坊。时间是 11 月 28 日周六 10:00–12:00（香港时间），地点是文化中心 2 楼活动室。新朋友首次免费参加。\n\n如果想参加，请在 11 月 26 日 18:00 前回复人数；名额确认后我们再发准备事项。不参加无需回复，退订也可以直接回复告知。\n\n城市影像空间活动组",
+      "passed": true
+    },
+    {
+      "name": "sender:club-weekly",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "complete body:club-weekly",
+      "actual": "大家好，\n\n本周推荐《看不见的城市》。上周交流时大家提到的几个问题整理在社团主页，欢迎有空看看。这封只是例行资讯，不需要报名或回复；下一次活动确定后会另发通知。\n\n读书会小组",
+      "expected": "大家好，\n\n本周推荐《看不见的城市》。上周交流时大家提到的几个问题整理在社团主页，欢迎有空看看。这封只是例行资讯，不需要报名或回复；下一次活动确定后会另发通知。\n\n读书会小组",
+      "passed": true
+    },
+    {
+      "name": "sender:course-project",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "complete body:course-project",
+      "actual": "同学们好，\n\n这次小组项目请在 11 月 30 日晚上 23:59（香港时间）前上传到课程平台。每组交一份 PDF 报告和可运行的代码压缩包，报告正文最多 6 页，参考文献不计入。\n\n12 月 2 日上课时展示，每组讲 5 分钟，再留 2 分钟问答。报告和展示是两件事，不要把上传时间记成展示当天。\n\n有问题可以回复这封邮件。\n陈知远",
+      "expected": "同学们好，\n\n这次小组项目请在 11 月 30 日晚上 23:59（香港时间）前上传到课程平台。每组交一份 PDF 报告和可运行的代码压缩包，报告正文最多 6 页，参考文献不计入。\n\n12 月 2 日上课时展示，每组讲 5 分钟，再留 2 分钟问答。报告和展示是两件事，不要把上传时间记成展示当天。\n\n有问题可以回复这封邮件。\n陈知远",
+      "passed": true
+    },
+    {
+      "name": "both original attachments listed",
+      "actual": [
+        "报名统计.csv",
+        "简报说明.md"
+      ],
+      "expected": [
+        "报名统计.csv",
+        "简报说明.md"
+      ],
+      "passed": true
+    },
+    {
+      "name": "downloaded MIME bytes match original:报名统计.csv",
+      "actual": "684b194ec442f203832738874a94821e2375d1f1d8758895c1ad8b094c1336cb",
+      "expected": "684b194ec442f203832738874a94821e2375d1f1d8758895c1ad8b094c1336cb",
+      "passed": true
+    },
+    {
+      "name": "downloaded MIME bytes match original:简报说明.md",
+      "actual": "2f5677b60394b95b6cfe05d492338bf8a32615d80fd66f91ece52b054222a502",
+      "expected": "2f5677b60394b95b6cfe05d492338bf8a32615d80fd66f91ece52b054222a502",
+      "passed": true
+    },
+    {
+      "name": "repeat adds no mail",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "repeat does not reread body",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "SMTP receipts stay empty",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    }
+  ],
+  "transport": {
+    "boundary": "synthetic IMAP protocol; real product ImapReader and persistence",
+    "source": [
+      {
+        "uid": 101,
+        "key": "course-project",
+        "subject": "COMP6280 小组项目提交安排",
+        "sha256": "10fd178cf1a743e9a93ba9283c9267375748673c7fd0721c268fbc19346749c5"
+      },
+      {
+        "uid": 102,
+        "key": "club-weekly",
+        "subject": "读书会本周书单与上次活动照片",
+        "sha256": "554cceebbccccac9961fd830be5a7a2254a571b687931b9af091a776b1821267"
+      },
+      {
+        "uid": 103,
+        "key": "photo-workshop",
+        "subject": "周末摄影工作坊开放报名｜新朋友可免费参加",
+        "sha256": "a9b3568dc22b4d4dec8a0cbb062236b316eb01682a260d0e2f938465b5ae79c8"
+      },
+      {
+        "uid": 104,
+        "key": "shopping-ad",
+        "subject": "仅限今天！收纳用品会员专属优惠",
+        "sha256": "f18d3e136d7d6d731c4aa472cb73465132de0c042aa3aac10fe7c5dd2df4f873"
+      },
+      {
+        "uid": 105,
+        "key": "intern-brief",
+        "subject": "帮忙整理教育志愿者培训的报名简报",
+        "sha256": "360400f6995bde39f45b87abc94eb33563e89c6db653d1958c252a7f1c663a3d"
+      }
+    ],
+    "logins": 10,
+    "events": [
+      {
+        "operation": "login",
+        "number": 1,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 2,
+        "failed": false
+      },
+      {
+        "operation": "search",
+        "criteria": [
+          "SINCE",
+          "2026-11-15",
+          "BEFORE",
+          "2026-11-24"
+        ],
+        "uids": [
+          101,
+          102,
+          103,
+          104,
+          105
+        ]
+      },
+      {
+        "operation": "login",
+        "number": 3,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 4,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 5,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 6,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 7,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 8,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 9,
+        "failed": false
+      },
+      {
+        "operation": "login",
+        "number": 10,
+        "failed": false
+      },
+      {
+        "operation": "search",
+        "criteria": [
+          "SINCE",
+          "2026-11-15",
+          "BEFORE",
+          "2026-11-24"
+        ],
+        "uids": [
+          101,
+          102,
+          103,
+          104,
+          105
+        ]
+      }
+    ],
+    "fetches": [
+      {
+        "uids": [
+          105,
+          104,
+          103,
+          102,
+          101
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE",
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[]<2594.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "UID"
+        ]
+      },
+      {
+        "uids": [
+          104
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE",
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          104
+        ],
+        "fields": [
+          "BODY.PEEK[]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          104
+        ],
+        "fields": [
+          "BODY.PEEK[]<806.262144>"
+        ]
+      },
+      {
+        "uids": [
+          104
+        ],
+        "fields": [
+          "UID"
+        ]
+      },
+      {
+        "uids": [
+          103
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE",
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          103
+        ],
+        "fields": [
+          "BODY.PEEK[]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          103
+        ],
+        "fields": [
+          "BODY.PEEK[]<984.262144>"
+        ]
+      },
+      {
+        "uids": [
+          103
+        ],
+        "fields": [
+          "UID"
+        ]
+      },
+      {
+        "uids": [
+          102
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE",
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          102
+        ],
+        "fields": [
+          "BODY.PEEK[]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          102
+        ],
+        "fields": [
+          "BODY.PEEK[]<731.262144>"
+        ]
+      },
+      {
+        "uids": [
+          102
+        ],
+        "fields": [
+          "UID"
+        ]
+      },
+      {
+        "uids": [
+          101
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE",
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          101
+        ],
+        "fields": [
+          "BODY.PEEK[]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          101
+        ],
+        "fields": [
+          "BODY.PEEK[]<964.262144>"
+        ]
+      },
+      {
+        "uids": [
+          101
+        ],
+        "fields": [
+          "UID"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[2.MIME]"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[2]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[2]<136.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[3.MIME]"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[3]<0.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODY.PEEK[3]<736.262144>"
+        ]
+      },
+      {
+        "uids": [
+          105
+        ],
+        "fields": [
+          "BODYSTRUCTURE"
+        ]
+      },
+      {
+        "uids": [
+          105,
+          104,
+          103,
+          102,
+          101
+        ],
+        "fields": [
+          "ENVELOPE",
+          "INTERNALDATE",
+          "FLAGS",
+          "RFC822.SIZE"
+        ]
+      }
+    ],
+    "realMailboxConnections": 0,
+    "smtpAttempts": 0
+  }
+}

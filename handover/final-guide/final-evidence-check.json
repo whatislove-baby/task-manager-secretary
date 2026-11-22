@@ -1,0 +1,616 @@
+{
+  "checkedAt": "2026-11-22T05:44:24.776068+00:00",
+  "finalAppAsarSha256": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+  "finalGuideSha256": "12cd46514221cd24a4028c4cc9eaee29b2ea3247a2d97f0fd3ce31adaa2f24e4",
+  "packagedBackendFiles": 71,
+  "screenshots": [
+    {
+      "mode": "setup",
+      "count": 6,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    },
+    {
+      "mode": "secretary-inbox",
+      "count": 3,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    },
+    {
+      "mode": "secretary-task",
+      "count": 3,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    },
+    {
+      "mode": "student",
+      "count": 6,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    },
+    {
+      "mode": "change",
+      "count": 1,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    },
+    {
+      "mode": "intern",
+      "count": 5,
+      "asar": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+      "backendModules": 58
+    }
+  ],
+  "guideBrowserValidation": {
+    "images": 24,
+    "allImagesLoaded": true,
+    "allEmbedded": true,
+    "anchors": true,
+    "svgOverlays": 24,
+    "title": "Task Manager 图文使用手册",
+    "scrollWidth": 1440,
+    "width": 1440,
+    "zoomWorks": true,
+    "annotationToggleWorks": true,
+    "networkRequestsAllowed": false,
+    "passed": true
+  },
+  "independentGuideVerification": {
+    "checkedAt": "2026-11-22T05:42:02.917768+00:00",
+    "screenshots": 24,
+    "embeddedFigureImages": 24,
+    "zoomDialogImageExcluded": true,
+    "allEmbeddedHashesMatch": true,
+    "captureOrigins": 6,
+    "sameAppAsar": true,
+    "appAsarSha256": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+    "sameBackendSources": true,
+    "backendFiles": 58,
+    "backendMatchesCurrentFrozenSource": true,
+    "brokenGuideLinks": [],
+    "shots": [
+      {
+        "id": "01-home",
+        "path": "setup/screenshots/01-home.png",
+        "sha256": "5ccb6bb7106fe610b3d1b152a4d22a102126b001712a4b505f98590962040167",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "02-add-context",
+        "path": "setup/screenshots/02-add-context.png",
+        "sha256": "32df9fa1df2175bd369517860a7de9b9ca9914f537920a3e85a5b52f700daa91",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "03-settings",
+        "path": "setup/screenshots/03-settings.png",
+        "sha256": "aed9395bf7d14db6ef6b4284b66579a344fb6dbfbffb3a6fa01e73defefc4727",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "04-api",
+        "path": "setup/screenshots/04-api.png",
+        "sha256": "c5bbd64d896e396053134527682285c4c64f97da3ba129b011c4628a1f2a5ae9",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "05-mail-setup",
+        "path": "setup/screenshots/05-mail-setup.png",
+        "sha256": "a637e3fe1b15d4e0a62d2f8246fc01140a7993d208677e8e9a55644ee503aaaa",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "06-schedule",
+        "path": "setup/screenshots/06-schedule.png",
+        "sha256": "c1cf83b07bff715225b9a1c5ab1107b502106a5391815168dd92c91edd431ff1",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "18-secretary-briefing",
+        "path": "secretary-inbox/screenshots/18-secretary-briefing.png",
+        "sha256": "e5dfc4e114b9913080727cbd6ab7491c4d350255adf11dae184bbd3a2c551d4d",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "19-secretary-filtered",
+        "path": "secretary-inbox/screenshots/19-secretary-filtered.png",
+        "sha256": "7951902dc20dc86c034bae24dbefca45e6a3c4b45fc36857d1f8b9d92602ad78",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "20-secretary-original",
+        "path": "secretary-inbox/screenshots/20-secretary-original.png",
+        "sha256": "db2802f197b09bd97f8910c4464c7dd8454a1b24fc4e8c75c2e1ad6525776451",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "21-secretary-task-entry",
+        "path": "secretary-task/screenshots/21-secretary-task-entry.png",
+        "sha256": "40bd8f54e9c7b0b8d190f3b24929177825331d1a0353e4f83d03e4778c788aeb",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "22-secretary-task-context",
+        "path": "secretary-task/screenshots/22-secretary-task-context.png",
+        "sha256": "97a4d352abc6d405e9667698dc841f74121aad50cb279c36004db8c4815bb57b",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "23-secretary-task-status",
+        "path": "secretary-task/screenshots/23-secretary-task-status.png",
+        "sha256": "872e281d16600e974d9ecb91dc5a83f18e1d5283d58f52682656678ea9752332",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "07-inbox",
+        "path": "student/screenshots/07-inbox.png",
+        "sha256": "777a4888225cad0e7b1c20980455e6be178d2e708eda51bd48e5e0ee386e4548",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "08-course-input",
+        "path": "student/screenshots/08-course-input.png",
+        "sha256": "dcd7bcc87ab9740f6e07b437a83b606fb6d4c4df9dac8afeb6d9d022f51a2448",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "09-course-chat",
+        "path": "student/screenshots/09-course-chat.png",
+        "sha256": "f49c3a257c78f0846c0079d672ce99d6970dbbdf32b534297f095edd4b107473",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "10-pending",
+        "path": "student/screenshots/10-pending.png",
+        "sha256": "38935e5f36d04556a832c983945e3cc48af721fda893dd5768ab5ba734b5b184",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "11-task-review",
+        "path": "student/screenshots/11-task-review.png",
+        "sha256": "696b9493f22eba2cdc58e815c034b172ed2d85db9014c97e8c2885c6700c81bb",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "12-calendar",
+        "path": "student/screenshots/12-calendar.png",
+        "sha256": "6aa83b6530cfec62ae1cd14932e2f5267e9a3cb3f7684820fc536596b3e984ee",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "12b-change-review",
+        "path": "change/screenshots/12b-change-review.png",
+        "sha256": "edd2faa831afcdf854df0e01c7035ffc3f124c7c731a4271f4337eab81fb49f7",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "13-intern-chat",
+        "path": "intern/screenshots/13-intern-chat.png",
+        "sha256": "04802f54be94730d20bf20a05818cf8d28626974bda089bd32f4e3dc26a91b09",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "14-pdf-preview",
+        "path": "intern/screenshots/14-pdf-preview.png",
+        "sha256": "458a93248158821999a0956fad85bbc34c4df585dc662c13bdcb8d2e940ed133",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "15-word-preview",
+        "path": "intern/screenshots/15-word-preview.png",
+        "sha256": "ed0aab2f7495380c553743e8c34d7bf7beefa363d0a1356458dab896f15273c5",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "16-reply-draft",
+        "path": "intern/screenshots/16-reply-draft.png",
+        "sha256": "b5f094c02fb5a121c9b42631e463bd835f1d7e4747ba68a427ee9ae26de1f85d",
+        "embeddedMatchesRawAndManifest": true
+      },
+      {
+        "id": "17-reply-files",
+        "path": "intern/screenshots/17-reply-files.png",
+        "sha256": "ddc7bd38b67c9faf5776bc849bbbdab34a2ee38eb22b092d93d2d11ac2cc85de",
+        "embeddedMatchesRawAndManifest": true
+      }
+    ],
+    "visualLiveStatusContrast": {
+      "file": "../live-status-ui/screenshots/24-live-status-contrast.png",
+      "sha256": "f0b7f692fc4c4fe15449b210f7226f6c253b8047e0b3e4c061fa9fd28c5c2864",
+      "observed": "Original model text still says running/no draft while the actual task card in the same frame shows completed. The old answer is retained."
+    },
+    "statePreservationEvidence": {
+      "file": "../live-status-ui/state-preservation.json",
+      "sha256": "5baec8d1d30d788487827ba61ab7f300b5c439825976f33cc6dd8a3bfed9ef7c",
+      "sourceStateCopiedWithoutCredentials": true,
+      "modelAnswersAndRunRecords": {
+        "agent_conversations": {
+          "rows": 2,
+          "allOriginalPayloadsUnchanged": true,
+          "newRows": 0
+        },
+        "agent_runs": {
+          "rows": 6,
+          "allOriginalPayloadsUnchanged": true,
+          "newRows": 0
+        }
+      }
+    },
+    "scope": "Read-only SHA and screenshot audit. Model wording failure remains visible. Independent capture evidence records unchanged payloads of two conversations and six runs.",
+    "passed": true,
+    "guideHtmlSha256": "12cd46514221cd24a4028c4cc9eaee29b2ea3247a2d97f0fd3ce31adaa2f24e4",
+    "guideManifestSha256": "b29cb39ff1a3726e2eef6df91e79335cd3620e9464a198eba1d0684384c04362"
+  },
+  "sourceVersionsMatch": true,
+  "embeddedRawPixelsMatch": true,
+  "baselineLongTaskImages": 24,
+  "baselineLongTaskUnchanged": true,
+  "postFixComparisonImages": 4,
+  "postFixAsar": "26f2a3176a4cf39fadc6b67091a9f6976a3dcacfd94aa06c1e49e0c8ecddee26",
+  "longTaskTimelineSha256": "c8bd2d7afa8983de1072b51cc1bfb5fc937f472cb0c004c371b480880310bca2",
+  "longTaskTimelineBrowserValidation": {
+    "target": "../TEST-LOG.html",
+    "checkedAt": "2026-11-22T01:36:55.987Z",
+    "sourceSha256": "c8bd2d7afa8983de1072b51cc1bfb5fc937f472cb0c004c371b480880310bca2",
+    "renderer": {
+      "node": "24.22.1",
+      "acorn": "8.18.0",
+      "ada": "4.0.0",
+      "amaro": "1.1.11",
+      "ares": "1.34.9",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.2",
+      "llhttp": "9.4.3",
+      "merve": "1.2.2",
+      "modules": "150",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.70.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "openssl": "0.0.0",
+      "simdjson": "4.6.11",
+      "simdutf": "7.7.0",
+      "sqlite": "3.53.4",
+      "tz": "2026e",
+      "undici": "7.30.1",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "15.6.75.19-electron.0",
+      "zlib": "1.3.2.1-motley",
+      "zstd": "1.6.0",
+      "electron": "45.1.0",
+      "chrome": "156.0.8078.49"
+    },
+    "screenshots": [
+      {
+        "name": "timeline-desktop.png",
+        "sha256": "7e6ace85e7b7d6efb084ebd5e3fec22cd8328ecf5a7517bda2311a18e8691990"
+      },
+      {
+        "name": "timeline-narrow.png",
+        "sha256": "d52f4b2e8f208e215eb496e5996738b4f04d46c946b013facefbce859180162e"
+      }
+    ],
+    "blockedRequests": [],
+    "checks": {
+      "document": {
+        "title": "15轮真实任务过程记录",
+        "stages": [
+          {
+            "id": "stage-1",
+            "status": "passed"
+          },
+          {
+            "id": "stage-2",
+            "status": "passed"
+          },
+          {
+            "id": "stage-3",
+            "status": "passed"
+          },
+          {
+            "id": "stage-4",
+            "status": "passed"
+          },
+          {
+            "id": "stage-5",
+            "status": "partial"
+          },
+          {
+            "id": "stage-6",
+            "status": "partial"
+          },
+          {
+            "id": "stage-7",
+            "status": "partial"
+          },
+          {
+            "id": "stage-8",
+            "status": "passed"
+          },
+          {
+            "id": "stage-9",
+            "status": "passed"
+          },
+          {
+            "id": "stage-10",
+            "status": "passed"
+          },
+          {
+            "id": "stage-11",
+            "status": "partial"
+          },
+          {
+            "id": "stage-12",
+            "status": "partial"
+          },
+          {
+            "id": "stage-13",
+            "status": "partial"
+          },
+          {
+            "id": "stage-14",
+            "status": "passed"
+          },
+          {
+            "id": "stage-15",
+            "status": "passed"
+          }
+        ],
+        "postfix": true,
+        "images": [
+          {
+            "src": "ui-stage-06/screenshots/stage-06-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-06/screenshots/stage-06-method-rules.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-06/screenshots/stage-06-method-scope.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-06/screenshots/stage-06-sources.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-12/screenshots/stage-12-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-12/screenshots/stage-12-detail.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-12/screenshots/stage-12-earlier-source-card.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-12/screenshots/stage-12-original-mail.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-12/screenshots/stage-12-sources.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-13/screenshots/stage-13-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-13/screenshots/stage-13-draft.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-13/screenshots/stage-13-source-open.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-13/screenshots/stage-13-sources.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-13/screenshots/stage-13-tools.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-14/screenshots/stage-14-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-14/screenshots/stage-14-draft.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-14/screenshots/stage-14-sources.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-15/screenshots/stage-15-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-15/screenshots/stage-15-sources.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-15/screenshots/stage-15-tools.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-15-detail/screenshots/stage-15-section-1.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "ui-stage-15-detail/screenshots/stage-15-section-2.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "fixes/ui-stage-16/screenshots/stage-16-answer.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "fixes/ui-stage-16/screenshots/stage-16-inline-source-open.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "fixes/ui-stage-16/screenshots/stage-16-original-mail.png",
+            "width": 1320,
+            "height": 900
+          },
+          {
+            "src": "fixes/ui-stage-16/screenshots/stage-16-sources.png",
+            "width": 1320,
+            "height": 900
+          }
+        ],
+        "anchors": true
+      },
+      "desktopClosed": {
+        "width": 1440,
+        "height": 978,
+        "scrollWidth": 1440,
+        "bodyWidth": 1440,
+        "overflow": []
+      },
+      "filter_issues": [
+        5,
+        6,
+        7,
+        11,
+        12,
+        13
+      ],
+      "filter_fresh": [
+        13,
+        14,
+        15
+      ],
+      "filter_pending": [],
+      "filter_all": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "search": true,
+      "expandCollapse": true,
+      "hiddenHistoryNavigation": {
+        "hash": "#mail-m01",
+        "revealed": true,
+        "expanded": true,
+        "top": -0.0859375
+      },
+      "desktopExpanded": {
+        "width": 1440,
+        "height": 978,
+        "scrollWidth": 1440,
+        "bodyWidth": 1440,
+        "overflow": []
+      },
+      "narrowExpanded": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "bodyWidth": 390,
+        "overflow": []
+      },
+      "narrowClosed": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "bodyWidth": 390,
+        "overflow": []
+      },
+      "narrowPostfixScreens": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "bodyWidth": 390,
+        "overflow": []
+      },
+      "sourceUnchanged": true
+    },
+    "passed": true,
+    "networkAllowed": false
+  },
+  "secretarySnapshotSources": [
+    "secretary-home/final-run/snapshots/01",
+    "secretary-home/final-run/snapshots/04-child"
+  ],
+  "actualApiSourceMatchesPackage": {
+    "packagedAppAsarSha256": "7ede36141c538e1dba24694a70c34e20dd6f1c550015b3480cfae8d792d5da02",
+    "modelRunSource": "../final-run/live-start.json",
+    "comparedModules": 71,
+    "missingPaths": [],
+    "differentHashes": [],
+    "passed": true
+  },
+  "allPublicExamplesSynthetic": true,
+  "noSmtpSentByCapture": true,
+  "credentialsInCaptureProfiles": false,
+  "oldBusinessFixturesLinked": false,
+  "publicSafetyScanPassed": true,
+  "passed": true,
+  "liveTaskCardContrast": {
+    "source": "../concurrency-run/snapshots/05",
+    "sourceStateCopiedWithoutCredentials": true,
+    "modelAnswersAndRunRecords": {
+      "agent_conversations": {
+        "rows": 2,
+        "allOriginalPayloadsUnchanged": true,
+        "newRows": 0
+      },
+      "agent_runs": {
+        "rows": 6,
+        "allOriginalPayloadsUnchanged": true,
+        "newRows": 0
+      }
+    },
+    "passed": true
+  },
+  "liveTaskCardScreenshotSha256": "f0b7f692fc4c4fe15449b210f7226f6c253b8047e0b3e4c061fa9fd28c5c2864",
+  "secretaryFinalTimelineSha256": "cc5e985c8a8356f2f8e257af322269d2dfbb8087b706d19b5db899d80a5e9941",
+  "publicSafetyScan": "public-safety-scan.json"
+}

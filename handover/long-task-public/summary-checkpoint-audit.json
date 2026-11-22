@@ -1,0 +1,394 @@
+{
+  "mainConversationId": "ba9e6e18-5c93-4473-aacc-88fa380c67b2",
+  "throughUserStage": 12,
+  "stage12Status": "completed",
+  "checkpointRowsInspected": 311,
+  "latestCheckpointId": "1f1e6128-5ac5-6046-8136-2fc19594ee1c",
+  "rawStateMessageCount": 94,
+  "rawMessageTypes": {
+    "human": 24,
+    "ai": 36,
+    "tool": 34
+  },
+  "effectiveMessageCountAfterSummary": 23,
+  "effectiveMessageTypes": {
+    "human": 9,
+    "ai": 9,
+    "tool": 5
+  },
+  "rawMessagesApproxTokensExcludingSystemAndTools": 23297,
+  "effectiveMessagesApproxTokensExcludingSystemAndTools": 8361,
+  "summaryEventCount": 16,
+  "summaryEvents": [
+    {
+      "firstObservedStage": 6,
+      "checkpointId": "1f1e6114-c6f7-605c-8089-42c4eb44908b",
+      "cutoffIndex": 12,
+      "cutoffMessageId": "lc_run--01a200cb-2362-72a4-af26-e39124a67e9c",
+      "createdAtMessageIndex": 41,
+      "summaryMessageId": null,
+      "summaryCharacters": 3146,
+      "summaryApproxTokens": 791,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 6,
+      "checkpointId": "1f1e6116-6968-660a-809e-09460f6c54eb",
+      "cutoffIndex": 25,
+      "cutoffMessageId": "lc_run--01a200cb-737a-7632-bdb0-8db1605e1923",
+      "createdAtMessageIndex": 48,
+      "summaryMessageId": null,
+      "summaryCharacters": 4136,
+      "summaryApproxTokens": 1038,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 6,
+      "checkpointId": "1f1e6117-2456-68f4-80a5-32f43722386f",
+      "cutoffIndex": 28,
+      "cutoffMessageId": "lc_run--01a200cb-83da-70ba-8f8e-c874e0334c81",
+      "createdAtMessageIndex": 50,
+      "summaryMessageId": null,
+      "summaryCharacters": 3829,
+      "summaryApproxTokens": 962,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 6,
+      "checkpointId": "1f1e6118-20ad-60e4-80ac-e3675c0a195f",
+      "cutoffIndex": 33,
+      "cutoffMessageId": "lc_run--01a200cb-97d7-7619-8447-07c112dca86e",
+      "createdAtMessageIndex": 52,
+      "summaryMessageId": null,
+      "summaryCharacters": 4435,
+      "summaryApproxTokens": 1113,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 7,
+      "checkpointId": "1f1e611b-12b9-64da-80b8-9e3b6c730036",
+      "cutoffIndex": 36,
+      "cutoffMessageId": "lc_run--01a200cb-a7a7-749d-b391-a98b5241302f",
+      "createdAtMessageIndex": 55,
+      "summaryMessageId": null,
+      "summaryCharacters": 4198,
+      "summaryApproxTokens": 1054,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 7,
+      "checkpointId": "1f1e611b-c0eb-6648-80bf-c106ed9f0d06",
+      "cutoffIndex": 39,
+      "cutoffMessageId": "8d78f3f8-29d6-4133-a5ce-f6a1d622247a:user",
+      "createdAtMessageIndex": 58,
+      "summaryMessageId": null,
+      "summaryCharacters": 4173,
+      "summaryApproxTokens": 1048,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 7,
+      "checkpointId": "1f1e611c-da81-632c-80c6-2beab19f93d5",
+      "cutoffIndex": 44,
+      "cutoffMessageId": "lc_run--01a200cc-9e92-7402-86ab-b55b7715a571",
+      "createdAtMessageIndex": 61,
+      "summaryMessageId": null,
+      "summaryCharacters": 5799,
+      "summaryApproxTokens": 1454,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 7,
+      "checkpointId": "1f1e611d-6877-6f96-80cd-f552872b3319",
+      "cutoffIndex": 46,
+      "cutoffMessageId": "lc_run--01a200cc-bee7-7694-9b7a-d67fee41f753",
+      "createdAtMessageIndex": 63,
+      "summaryMessageId": null,
+      "summaryCharacters": 7541,
+      "summaryApproxTokens": 1890,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 8,
+      "checkpointId": "1f1e611f-3470-67a0-80e0-8156848aefca",
+      "cutoffIndex": 48,
+      "cutoffMessageId": "lc_run--01a200cd-1993-77e9-937c-06f83f47dc12",
+      "createdAtMessageIndex": 68,
+      "summaryMessageId": null,
+      "summaryCharacters": 6292,
+      "summaryApproxTokens": 1577,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 8,
+      "checkpointId": "1f1e6120-0a0f-6a78-80e7-6ecf2513226a",
+      "cutoffIndex": 50,
+      "cutoffMessageId": "lc_run--01a200cd-875a-7496-8d73-e66aaffc15cb",
+      "createdAtMessageIndex": 72,
+      "summaryMessageId": null,
+      "summaryCharacters": 7199,
+      "summaryApproxTokens": 1804,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 9,
+      "checkpointId": "1f1e6120-b986-6ede-80f3-52118b7baffa",
+      "cutoffIndex": 52,
+      "cutoffMessageId": "lc_run--01a200cd-e7d5-72bd-8d8f-b90a69e69e8d",
+      "createdAtMessageIndex": 75,
+      "summaryMessageId": null,
+      "summaryCharacters": 7494,
+      "summaryApproxTokens": 1878,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 9,
+      "checkpointId": "1f1e6122-8906-6424-8101-3177e0e42738",
+      "cutoffIndex": 55,
+      "cutoffMessageId": "lc_run--01a200cf-13b1-7784-88a9-e568945d7566",
+      "createdAtMessageIndex": 80,
+      "summaryMessageId": null,
+      "summaryCharacters": 6887,
+      "summaryApproxTokens": 1726,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 10,
+      "checkpointId": "1f1e6123-688f-6f8c-810d-79d3ae2a862e",
+      "cutoffIndex": 58,
+      "cutoffMessageId": "lc_run--01a200cf-5aa7-759f-90e3-ac87dc142a8a",
+      "createdAtMessageIndex": 83,
+      "summaryMessageId": null,
+      "summaryCharacters": 7085,
+      "summaryApproxTokens": 1776,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 10,
+      "checkpointId": "1f1e6124-24d0-62fa-8114-2ba049654469",
+      "cutoffIndex": 61,
+      "cutoffMessageId": "lc_run--01a200cf-bcad-7095-b0a6-b6660ec3d70a",
+      "createdAtMessageIndex": 85,
+      "summaryMessageId": null,
+      "summaryCharacters": 7541,
+      "summaryApproxTokens": 1890,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 11,
+      "checkpointId": "1f1e6126-9fb5-6dba-8120-469da9bc5fdd",
+      "cutoffIndex": 68,
+      "cutoffMessageId": "lc_run--01a200d0-d4f2-76df-a02d-302a7d374c38",
+      "createdAtMessageIndex": 88,
+      "summaryMessageId": null,
+      "summaryCharacters": 9044,
+      "summaryApproxTokens": 2265,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    },
+    {
+      "firstObservedStage": 12,
+      "checkpointId": "1f1e6128-5ab4-6a8e-8133-783628f65865",
+      "cutoffIndex": 72,
+      "cutoffMessageId": "lc_run--01a200d1-2cd2-73e7-bdbb-227a40420640",
+      "createdAtMessageIndex": 93,
+      "summaryMessageId": null,
+      "summaryCharacters": 8348,
+      "summaryApproxTokens": 2091,
+      "summarySource": "summarization",
+      "offloadPath": "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md"
+    }
+  ],
+  "offloadedHistoryFiles": {
+    "/conversation_history/session_ccf63a9d24cd4ca58c95b10f6179dbe8.md": {
+      "storedContentType": "str",
+      "lineCount": 358,
+      "characters": 68654,
+      "sha256": "b06fee5b424609faf8da8b7d988cc7d1a79b8c9b87a7b6452be507a445b09312",
+      "source": "Reconstructed official files DeltaChannel; contents not copied"
+    }
+  },
+  "uniqueObservedAIMessages": 36,
+  "aiMessagesWithUsageMetadata": 36,
+  "observedInputTokensSum": 1106403,
+  "observedOutputTokensSum": 23326,
+  "observedTotalTokensSum": 1129729,
+  "inputTokenRange": [
+    16390,
+    53592
+  ],
+  "usageScope": "Deduplicated model AIMessage IDs from main-conversation checkpoints only. Cumulative call usage re-counts reused history; not live context length. Independent summarizer calls/subagent calls/retries may not be present; not complete invoice usage.",
+  "approxScope": "count_tokens_approximately on stored/effective messages only; excludes the runtime system prompt and tool schemas, so not the middleware total_tokens threshold calculation.",
+  "settings": {
+    "trigger": [
+      "tokens",
+      32000
+    ],
+    "keep": [
+      "tokens",
+      6000
+    ],
+    "trim_tokens_to_summarize": null
+  },
+  "readOnly": true,
+  "extraProviderCalls": 0,
+  "stageEndpoints": [
+    {
+      "stage": 1,
+      "checkpointId": "1f1e6111-1364-613c-8019-fdb0bd50eed3",
+      "rawMessageCount": 7,
+      "effectiveMessageCount": 7,
+      "summaryPresent": false,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 1205,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 1205,
+      "threadModelCallCount": 3
+    },
+    {
+      "stage": 2,
+      "checkpointId": "1f1e6111-ac48-63c6-803a-b13c4e9c48ff",
+      "rawMessageCount": 19,
+      "effectiveMessageCount": 19,
+      "summaryPresent": false,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 3475,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 3475,
+      "threadModelCallCount": 7
+    },
+    {
+      "stage": 3,
+      "checkpointId": "1f1e6112-14c3-6e00-8054-82bdca9544e8",
+      "rawMessageCount": 26,
+      "effectiveMessageCount": 26,
+      "summaryPresent": false,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 4944,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 4944,
+      "threadModelCallCount": 10
+    },
+    {
+      "stage": 4,
+      "checkpointId": "1f1e6112-6c2c-6b7e-806e-5d26ad290f7e",
+      "rawMessageCount": 34,
+      "effectiveMessageCount": 34,
+      "summaryPresent": false,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 6998,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 6998,
+      "threadModelCallCount": 13
+    },
+    {
+      "stage": 5,
+      "checkpointId": "1f1e6112-c80a-6be4-8081-1c4b8de93868",
+      "rawMessageCount": 39,
+      "effectiveMessageCount": 39,
+      "summaryPresent": false,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 8078,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 8078,
+      "threadModelCallCount": 15
+    },
+    {
+      "stage": 6,
+      "checkpointId": "1f1e6119-f0fa-6354-80b0-8ca3398bb88b",
+      "rawMessageCount": 53,
+      "effectiveMessageCount": 21,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 12896,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 7135,
+      "threadModelCallCount": 21
+    },
+    {
+      "stage": 7,
+      "checkpointId": "1f1e611e-0e22-66e4-80d8-f1c98e06e446",
+      "rawMessageCount": 66,
+      "effectiveMessageCount": 21,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 15521,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 7634,
+      "threadModelCallCount": 26
+    },
+    {
+      "stage": 8,
+      "checkpointId": "1f1e6120-1302-681a-80eb-6fd4a31f36d0",
+      "rawMessageCount": 73,
+      "effectiveMessageCount": 24,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 17197,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 7288,
+      "threadModelCallCount": 28
+    },
+    {
+      "stage": 9,
+      "checkpointId": "1f1e6122-91ab-6b24-8105-76290a5115e7",
+      "rawMessageCount": 81,
+      "effectiveMessageCount": 27,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 19335,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 7610,
+      "threadModelCallCount": 31
+    },
+    {
+      "stage": 10,
+      "checkpointId": "1f1e6124-2d1a-6c8a-8118-9c0fb7dea75d",
+      "rawMessageCount": 86,
+      "effectiveMessageCount": 26,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 20748,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 7909,
+      "threadModelCallCount": 33
+    },
+    {
+      "stage": 11,
+      "checkpointId": "1f1e6127-8055-626c-812b-ce2130fdb6b8",
+      "rawMessageCount": 91,
+      "effectiveMessageCount": 24,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 22194,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 8180,
+      "threadModelCallCount": 35
+    },
+    {
+      "stage": 12,
+      "checkpointId": "1f1e6128-5ac5-6046-8136-2fc19594ee1c",
+      "rawMessageCount": 94,
+      "effectiveMessageCount": 23,
+      "summaryPresent": true,
+      "rawMessagesApproxTokensExcludingSystemAndTools": 23297,
+      "effectiveMessagesApproxTokensExcludingSystemAndTools": 8361,
+      "threadModelCallCount": 36
+    }
+  ],
+  "messageReconstruction": "Official SqliteSaver.get_delta_channel_history + Deep Agents _messages_delta_reducer/_file_data_delta_reducer via DeltaChannel, query-only connection. A checkpoint missing messages is a delta skeleton, not empty history.",
+  "firstSummaryStage": 6,
+  "summaryEventsPerStage": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 4,
+    "7": 4,
+    "8": 2,
+    "9": 2,
+    "10": 2,
+    "11": 1,
+    "12": 1
+  },
+  "limitations": [
+    "Main conversation stages 1-12 only; stages 13-15 are separate thread IDs and require separate retrieval verification.",
+    "Stored AIMessage usage sums repeated prompts, cache accounting depends on provider; independent summary/subagent calls are not included if absent from main message records.",
+    "Approximate token counts omit system prompt/tool schemas and cannot be compared directly with the 32000 trigger.",
+    "16 persisted summary events prove compaction occurred, not that no semantic information was lost.",
+    "Read-only inspection did not trigger compaction, run an agent, modify model results or invoke an API."
+  ]
+}
