@@ -97,7 +97,8 @@ try {
     $result.stoppedPreinstalledWindowsDocker = $true
   }
   $null = Invoke-Native 'rdctl-version' $rdctl @('version')
-  $null = Invoke-Native 'rancher-start' $rdctl @('start', '--container-engine.name=moby', '--kubernetes.enabled=false', '--application.start-in-background=true', '--application.telemetry.enabled=false', '--application.updater.enabled=false', '--application.auto-start=false', '--application.admin-access=false', '--no-modal-dialogs', '--wait', '--wait-timeout=7m') 450
+  $null = Invoke-Native 'rdctl-start-help' $rdctl @('start', '--help')
+  $null = Invoke-Native 'rancher-start' $rdctl @('start', '--container-engine.name=moby', '--kubernetes.enabled=false', '--application.start-in-background=true', '--application.telemetry.enabled=false', '--application.updater.enabled=false', '--application.auto-start=false', '--no-modal-dialogs', '--wait', '--wait-timeout=7m') 450
   # Default is Docker's built-in local Windows named-pipe context. No remote host,
   # custom proxy, WSL client wrapper, or alternate production execution path.
   $null = Invoke-Native 'docker-context-select' $docker @('context', 'use', 'default')
