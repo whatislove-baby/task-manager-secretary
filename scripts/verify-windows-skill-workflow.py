@@ -217,8 +217,13 @@ try:
             tool_call('read_file',dict(file_path='/skills/builtin/learning/SKILL.md'),'load-import-workflow'),
             tool_call('import_skill',dict(file_id=package_file['id'],scope=scope,instruction='Keep replies concise. Do not promise a delivery date.'),'import-fixed'),
             AIMessage(content='The imported code has been tested. Please review and approve the pending skill.')],fileIds=[package_file['id']])
-        check('official_import_progressive_disclosure','import_skill' not in teacher.bindings[0] and
-              any('import_skill' in names for names in teacher.bindings[1:]))
+        # import_skill is intentionally a base tool in agent_runtime; run_skill
+        # is deferred. Verify the actual disclosure and instruction-read order,
+        # rather than assuming every tool mentioned in metadata starts hidden.
+        completed=[event.get('tool') for event in taught['events'] if event.get('status')=='completed']
+        check('official_learning_instructions_precede_import',completed==['read_file','import_skill'] and
+              'import_skill' in teacher.bindings[0] and 'run_skill' not in teacher.bindings[0] and
+              any('run_skill' in names for names in teacher.bindings[1:]))
         skill_id=next(a['id'] for a in taught['artifacts'] if a['kind']=='skill_draft')
         skill=service.skills.get(skill_id);save_json('import-review.json',skill)
         check('two_success_one_failure_real_docker',skill['canApprove'] and len(skill['validation']['cases'])==3
