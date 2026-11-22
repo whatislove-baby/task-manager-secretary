@@ -2,6 +2,7 @@
 from network_guard import no_external_network
 from pathlib import Path
 import json
+import sqlite3
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -29,6 +30,17 @@ class FileArchiveTests(unittest.TestCase):
 
     def archive(self, ids, call='archive'):
         return self.ctx.archive_generated_files(ids, '用户明确要求只保留最后的交付版本', call_id=call)
+
+    def test_reference_query_closes_its_sqlite_connection(self):
+        from task_backend.file_archive import _rows
+        db = sqlite3.connect(self.root/'reference.sqlite')
+        try:
+            with patch('task_backend.file_archive.sqlite3.connect', return_value=db):
+                self.assertEqual(_rows(self.root, 'reference.sqlite', 'SELECT 1'), [(1,)])
+            with self.assertRaises(sqlite3.ProgrammingError):
+                db.execute('SELECT 1')
+        finally:
+            db.close()
 
     def test_pdf_separate_families_archive_old_560_keep_final_542_and_source(self):
         source = self.service.files._save('customer-request.txt', b'Customer Harbor H7314', 'local')

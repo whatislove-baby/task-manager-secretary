@@ -5,6 +5,7 @@ import shutil
 import struct
 import tempfile
 import unittest
+from unittest.mock import patch
 
 SCRIPT = Path(__file__).resolve().parents[2] / 'scripts/prepare-document-runtime-windows.py'
 SPEC = importlib.util.spec_from_file_location('prepare_document_windows', SCRIPT)
@@ -79,3 +80,53 @@ class WindowsCrtBundleTests(unittest.TestCase):
         notice.write_bytes(content)
         manifest = runtime.bundle_msi_crt(self.image, self.source, self.target)
         self.assertEqual((self.target / manifest['licenses'][0]).read_bytes(), content)
+
+    def test_guid_suffixed_msi_filename_keeps_the_canonical_dll_name(self):
+        dll = self.image / 'System64Folder/vcruntime140.dll'
+        dll.rename(dll.with_name(dll.name + '.ABCDEF01_0123_4567_89AB_0123456789AB'))
+        manifest = runtime.bundle_msi_crt(self.image, self.source, self.target)
+        self.assertTrue((self.target / 'program/vcruntime140.dll').is_file())
+        self.assertTrue(any('.dll.ABCDEF' in item['source'] for item in manifest['files']))
+
+    def test_static_runtime_does_not_force_unreferenced_crt(self):
+        shutil.rmtree(self.image / 'System64Folder')
+        with patch.object(runtime, 'visual_studio_crt', side_effect=AssertionError('unneeded fallback')):
+            manifest = runtime.bundle_msi_crt(self.image, self.source, self.target,
+                                               required_crt=set(), allow_visual_studio=True)
+        self.assertEqual(manifest['files'], [])
+        self.assertEqual(manifest['requiredByImports'], [])
+
+    def test_missing_dynamic_runtime_uses_complete_official_redist_set(self):
+        redist = self.root / 'Visual Studio/VC/Redist/MSVC'
+        folder = redist / '14.44.35211/x64/Microsoft.VC143.CRT'
+        shutil.copytree(self.image / 'System64Folder', folder)
+        shutil.rmtree(self.image / 'System64Folder')
+        files = {p.name: p for p in folder.iterdir()}
+        vendor = dict(root=redist, version='14.44.35211', directory=folder.relative_to(redist).as_posix())
+        with patch.object(runtime, 'visual_studio_crt', return_value=(files, vendor)), \
+                patch.object(runtime, 'copy_crt_license', return_value='third-party-notices/CRT.docx'):
+            manifest = runtime.bundle_msi_crt(self.image, self.source, self.target,
+                required_crt={'vcruntime140.dll'}, allow_visual_studio=True)
+        self.assertIn('VC/Redist', manifest['source'])
+        self.assertEqual(manifest['version'], '14.44.35211')
+        self.assertEqual(len(manifest['files']), 4)
+
+    def test_real_import_and_delay_import_tables_determine_requirements(self):
+        file = self.source / 'program/example.dll'
+        data = bytearray(1024)
+        data[:2] = b'MZ'; struct.pack_into('<I', data, 60, 128)
+        data[128:132] = b'PE\0\0'; struct.pack_into('<H', data, 134, 1)
+        struct.pack_into('<H', data, 148, 240)
+        optional = 152
+        struct.pack_into('<H', data, optional, 0x20b)
+        struct.pack_into('<I', data, optional + 60, 512)
+        struct.pack_into('<I', data, optional + 108, 16)
+        struct.pack_into('<II', data, optional + 112 + 8, 0x1000, 40)
+        struct.pack_into('<II', data, optional + 112 + 13 * 8, 0x1080, 64)
+        struct.pack_into('<IIII', data, optional + 240 + 8, 512, 0x1000, 512, 512)
+        struct.pack_into('<I', data, 512 + 12, 0x1060)
+        data[608:627] = b'VCRUNTIME140_1.dll\0'
+        struct.pack_into('<II', data, 640, 1, 0x10c0)
+        data[704:717] = b'msvcp140.dll\0'
+        file.write_bytes(data)
+        self.assertEqual(runtime.pe_imports(file), {'vcruntime140_1.dll', 'msvcp140.dll'})

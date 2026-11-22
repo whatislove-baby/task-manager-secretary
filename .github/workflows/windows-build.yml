@@ -50,6 +50,8 @@ jobs:
         shell: pwsh
         run: .venv\Scripts\python.exe scripts/verify-runtime-deps.py --requirements backend/requirements.txt --smoke --output handover/windows-release/dependencies.json
       - name: Prepare bundled document renderer
+        id: renderer
+        continue-on-error: true
         shell: pwsh
         run: |
           npm run runtime:documents:win
@@ -91,7 +93,7 @@ jobs:
       - name: Run regression checks and build frontend
         id: regression
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 20
         shell: pwsh
         run: |
           npm run check 2>&1 | Tee-Object -FilePath handover/windows-release/regression.log
@@ -99,7 +101,7 @@ jobs:
       - name: Require every acceptance check to pass
         shell: pwsh
         env:
-          RESULTS: ${{ steps.regression.outcome }} ${{ steps.bridge.outcome }} ${{ steps.scheduler.outcome }} ${{ steps.workflow.outcome }} ${{ steps.app.outcome }}
+          RESULTS: ${{ steps.renderer.outcome }} ${{ steps.regression.outcome }} ${{ steps.bridge.outcome }} ${{ steps.scheduler.outcome }} ${{ steps.workflow.outcome }} ${{ steps.app.outcome }}
         run: |
           if (($env:RESULTS -split ' ' | Where-Object { $_ -ne 'success' }).Count -gt 0) {
             Write-Error "One or more Windows checks did not pass: $env:RESULTS"

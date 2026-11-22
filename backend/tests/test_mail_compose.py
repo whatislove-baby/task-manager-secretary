@@ -112,6 +112,7 @@ class MailComposeTests(unittest.TestCase):
     def test_attachment_snapshot_matches_preview_and_survives_source_change(self):
         original = self.directory / '选中的本地资料.txt'
         original.write_text('课程 Project 交接要求\n截止 2026-11-23', encoding='utf-8')
+        original_bytes = original.read_bytes()
         record = self.service.files.import_local(str(original))
         receipt = self.prepare(attachmentIds=[record['id']])
         self.assertEqual(receipt['attachments'][0]['sha256'], record['sha256'])
@@ -126,7 +127,8 @@ class MailComposeTests(unittest.TestCase):
         attached = list(parsed.iter_attachments())
         self.assertEqual(len(attached), 1)
         self.assertEqual(attached[0].get_filename(), '选中的本地资料.txt')
-        self.assertEqual(attached[0].get_payload(decode=True).decode(), '课程 Project 交接要求\n截止 2026-11-23')
+        # Attachments preserve the original bytes, including Windows CRLF.
+        self.assertEqual(attached[0].get_payload(decode=True), original_bytes)
         self.compose.send(receipt['id'])
         self.assertEqual(len(self.smtp.payloads), 1)
 

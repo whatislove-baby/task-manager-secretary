@@ -71,7 +71,7 @@ Docker 平台回归位于 `backend/tests/test_skill_execution_platform.py`：真
 
 ## Windows 从源码运行与打包
 
-开发环境需要 Node.js 24、Python 3.12 x64；打包另外需要 uv 0.11.7 或更新版本。普通 ZIP 用户不需要这些环境。
+开发环境需要 Node.js 24、Python 3.12 x64；打包另外需要 uv 0.11.7 或更新版本，以及 Visual Studio C++ 的 x64 可再发行组件（GitHub Windows 构建机已提供，用来随包补齐文档渲染依赖）。普通 ZIP 用户不需要这些环境。
 
 ```powershell
 py -3.12 -m venv .venv

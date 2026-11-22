@@ -88,8 +88,17 @@ class BundleFilesTests(unittest.TestCase):
             self.assertEqual(len(self.files.list_files()),1)
 
     def test_duplicate_names_traversal_absolute_backslash_and_nul_are_rejected(self):
-        for member in ['../escape.md','/tmp/escape.md','x/../../escape.md','C:/escape.md','x\\escape.md','x//escape.md']:
+        for member in ['../escape.md','/tmp/escape.md','x/../../escape.md','C:/escape.md','x//escape.md']:
             with self.subTest(member=member),self.assertRaises(ValueError):archive_index(bundle([(member,b'body')]))
+        # ZipInfo normalizes backslashes while writing on Windows. Patch both
+        # on-disk names so the fixture still contains the hostile original path.
+        raw=bundle([('x/escape.md',b'body')],compression=ZIP_STORED)
+        self.assertEqual(raw.count(b'x/escape.md'),2)
+        raw=raw.replace(b'x/escape.md',b'x\\escape.md')
+        self.assertEqual(raw.count(b'x\\escape.md'),2)
+        with ZipFile(BytesIO(raw)) as archive:
+            self.assertEqual(archive.infolist()[0].orig_filename,'x\\escape.md')
+        with self.assertRaises(ValueError):archive_index(raw)
         for names in [('same.md','same.md'),('A.md','a.md')]:
             with self.assertRaises(ValueError):archive_index(bundle([(n,b'text') for n in names]))
         raw=bundle([('safeX.md',b'text')],compression=ZIP_STORED).replace(b'safeX.md',b'safe\x00.md')

@@ -4,7 +4,7 @@ Archival is not a semantic replacement: no filename, shared template, sender or
 order number is used to decide that another file supersedes this one. Callers
 select exact generated IDs. Source documents and immutable bytes are retained.
 """
-from contextlib import ExitStack
+from contextlib import ExitStack, closing
 import json
 from pathlib import Path
 import sqlite3
@@ -19,7 +19,9 @@ def _rows(directory, filename, sql):
     path = Path(directory) / filename
     if not path.is_file():
         return []
-    with sqlite3.connect(path.as_uri() + '?mode=ro', uri=True) as db:
+    # sqlite3's own context manager commits/rolls back but does not close the
+    # handle. Explicitly release read connections before Windows file cleanup.
+    with closing(sqlite3.connect(path.as_uri() + '?mode=ro', uri=True)) as db:
         return db.execute(sql).fetchall()
 
 
