@@ -10,7 +10,7 @@ Windows 版本沿用同一套秘书对话、邮件、文档和待办功能。面
 
 这是尚未购买代码签名证书的预览构建，Windows 可能显示未知发布者。请使用本仓库 Releases 提供的文件，下载校验值见 `SHA256SUMS.txt`。
 
-首次进入固定“秘书”主对话。展开左侧栏可进入收件箱、待确认、日历与待办、资料与文件、设置。完整功能介绍见[图文说明书](product-kit/user-manual.pdf)；其中部分截图来自 Mac，Windows 的窗口边框和定时设置有所不同。
+首次进入固定“秘书”主对话。展开左侧栏可进入收件箱、待确认、日历与待办、资料与文件、设置。完整功能介绍见[图文说明书](https://github.com/whatislove-baby/task-manager-secretary/blob/main/docs/product-kit/user-manual.pdf)，解压目录中也提供 `User-Manual.pdf`；其中部分截图来自 Mac，Windows 的窗口边框和定时设置有所不同。
 
 ## 第一次配置
 
@@ -34,12 +34,14 @@ Windows 版本沿用同一套秘书对话、邮件、文档和待办功能。面
 ## 定时整理、Skill 与数据
 
 - 定时整理在设置里配置时间和时区，并按页面提示启用 Windows 计划任务。电脑需开机并能联网；睡眠、关机或未登录时的行为以设置页说明为准。首次建议用“立即整理一轮”核对范围。
-- 内置 PDF、Word、CSV 等文件工具不需要 Docker。**执行导入的 Python Skill** 需要额外安装并启动 Docker Desktop，使用 Linux containers 和本机 Docker context，再按[技能运行说明](../README.md)准备运行环境。支持 Docker Desktop 的本机命名管道；不连接远程 Docker。普通文字经验不需要 Docker。Windows Docker Desktop 的实际 Skill 执行属于可选验收，尚未完成真实容器端到端验证，不包含在普通成品验收通过的范围中。
+- 内置 PDF、Word、CSV 等文件工具不需要 Docker。**执行导入的 Python Skill** 需要额外安装并启动 Docker Desktop，使用 Linux containers 和本机 Docker context。完成下方源码开发环境配置后，在源码根目录执行 `.\.venv\Scripts\python.exe scripts/prepare-skill-runtime.py`，准备 Skill 运行镜像。支持 Docker Desktop 的本机命名管道；不连接远程 Docker。普通文字经验不需要 Docker。Windows Docker Desktop 的实际 Skill 执行属于可选验收，尚未完成真实容器端到端验证，不包含在普通成品验收通过的范围中。
 - 数据默认保存在 `Task Manager.exe` 同目录的 `data` 文件夹；设置页可查看实际路径。退出应用后备份整个 `data`。升级时先从托盘退出应用，将旧目录的 `data` 备份并复制到新版本目录，再启动新版本；确认资料正常后再清理旧程序。应用目录移动后，需要重新保存启用定时整理，使计划任务使用新路径。
 - API Key 和邮箱凭据使用 Windows 当前用户的 DPAPI 保护。复制数据到另一台电脑或另一位 Windows 用户后，需要重新填写凭据；不应把自己的 `data` 发给组员。
 - 出错时保留具体操作和时间，查看数据目录的 `logs`。文件无法导出时，先确认解压完整、目录可写，再把日志和错误截图交给开发同学。
 
 ## 开发者验收与证据
+
+本次移植的实际结果与 Windows 界面见 [Windows 版本验收记录](WINDOWS-TEST-REPORT.md)。
 
 下面的验收在独立合成资料目录运行，不使用真实 API Key、收件箱或 SMTP 发送。只有在 **Windows 上使用成品内的 Python 和真实 EXE** 运行成功，才能标记 Windows 成品验收通过。Mac 开发检查不能代替它。
 
@@ -71,20 +73,20 @@ Docker 平台回归位于 `backend/tests/test_skill_execution_platform.py`：真
 
 ## Windows 从源码运行与打包
 
-开发环境需要 Node.js 24、Python 3.12 x64；打包另外需要 uv 0.11.7 或更新版本，以及 Visual Studio C++ 的 x64 可再发行组件（GitHub Windows 构建机已提供，用来随包补齐文档渲染依赖）。普通 ZIP 用户不需要这些环境。
+开发环境需要 Node.js 24、Python 3.12 x64；打包另外需要 uv 0.11.7 或更新版本，以及 Visual Studio 2022 或更新版的 C++ 桌面生成工具。Build Tools 安装器中需包含 `Microsoft.VisualStudio.Component.VC.Tools.x86.x64`，构建脚本从其 `VC/Redist` 目录补齐文档渲染依赖；仅安装 `vc_redist.x64.exe` 不够。GitHub Windows 构建机已提供这些组件。普通 ZIP 用户不需要这些开发环境。
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
-npm ci
-npm run runtime:install
-npm run dev
+npm.cmd ci
+npm.cmd run runtime:install
+npm.cmd run dev
 ```
 
 ```powershell
-npm run runtime:documents:win
-npm run check
-npm run dist:win
+npm.cmd run runtime:documents:win
+npm.cmd run check
+npm.cmd run dist:win
 ```
 
 成品输出 `release-windows/Task-Manager-Windows-x64.zip`。构建脚本会准备官方独立 Python 与校验过的 LibreOffice，不使用开发虚拟环境作为成品运行时。GitHub Actions 还会启动成品、运行计划任务、检查文档和持久化，全部通过后才创建预览发布。运行证据同时放在发布页的 `Windows-Verification.zip`。

@@ -6,7 +6,7 @@
 
 面向需要处理课程、工作和邮件的用户。直接描述任务，AI 检索已导入邮件、文件与待办，必要时澄清，再给出带来源的分析、文档副本或待确认草稿。不要求先选课程空间。
 
-**Windows 用户：** 从 [Releases](https://github.com/whatislove-baby/task-manager-secretary/releases) 下载通过 Windows CI 验收的 x64 便携 ZIP，全部解压后运行 `Task Manager.exe`；详见 [Windows 使用与交接](docs/WINDOWS.md)。成品包含 Python 和 Word/PDF 渲染器。
+**Windows 用户：** 从 [Releases](https://github.com/whatislove-baby/task-manager-secretary/releases) 下载通过 Windows CI 验收的 x64 便携预览 ZIP，全部解压后运行 `Task Manager.exe`；详见 [Windows 使用与交接](docs/WINDOWS.md)和[验收记录](docs/WINDOWS-TEST-REPORT.md)。成品包含 Python 和 Word/PDF 渲染器。
 
 Apple Silicon 构建输出（成品未放入源码仓库）：`release-secretary-home/mac-arm64/Task Manager.app`。构建后退出旧版并双击运行，成品自带 Python 和文档渲染器；数据保存在 `~/Library/Application Support/Task Manager Mac/data`。这是本机临时签名构建，尚未公证。
 

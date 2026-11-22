@@ -48,8 +48,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5531,
-      "sha256": "ab4a3b4761c35ce5b0ac9d0c81585548387e215a80ce16c26895b08d63fa1752",
+      "bytes": 5583,
+      "sha256": "a87534afdd41a1d26e5ee697f6c5c99fb524d164095aac9e338b536b07a6d23b",
       "sourceSha256": "c7d71e6e9ae2967b64ce051f23c0889c2bd9759282fd7fe26a4fdff69fc984bf",
       "unchanged": false
     },
@@ -1090,9 +1090,16 @@
       "unchanged": false
     },
     {
+      "path": "docs/WINDOWS-TEST-REPORT.md",
+      "bytes": 5069,
+      "sha256": "2e3ed8b4ca08088ad10c978eeca1786ff7fc20c40946b92c3f62db19bfe7de23",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "docs/WINDOWS.md",
-      "bytes": 7940,
-      "sha256": "49380f066e386e69e8e11b65a9a4830f6ce2159c485f81ba37c6f332df406ce9",
+      "bytes": 8466,
+      "sha256": "e73500025325d63b0d9782c13c81cd61cd24cc393a32b57effdeab6ac32f6d5c",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -1317,6 +1324,13 @@
       "path": "docs/task-manager-product-kit.zip",
       "bytes": 7548165,
       "sha256": "3d0ac9522f5f4a989f6e3db95d6ddf7f722b422edafb742872b74317d67a062c",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "docs/windows-assets/secretary-home.png",
+      "bytes": 42520,
+      "sha256": "03b8cd53aba108f4bf43b6e27febe58733be2f85bc34fb60238ca6f6c894ca33",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -7251,7 +7265,7 @@
     }
   ],
   "scope": "Source, synthetic examples, static guides and test evidence; excludes local data, credentials and runtime bundles.",
-  "documentationUpdate": "2026-11-22: full illustrated manual, product overview, vector workflow, offline kit and README links.",
+  "documentationUpdate": "2026-11-22: full illustrated manual, Windows onboarding and native Windows acceptance evidence.",
   "originalExport": {
     "mode": "explicit-allowlist-source-and-static-evidence-export",
     "sourceCommit": "working-tree-final-source",
@@ -7308,7 +7322,9 @@
     "backend/tests/test_word_format_patch.py",
     "backend/tests/test_word_pdf_conversion.py",
     "docs/TEAM-START.md",
+    "docs/WINDOWS-TEST-REPORT.md",
     "docs/WINDOWS.md",
+    "docs/windows-assets/secretary-home.png",
     "docs/workflow-complete.md",
     "package-lock.json",
     "package.json",
