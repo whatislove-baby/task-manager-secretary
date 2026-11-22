@@ -62,8 +62,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5583,
-      "sha256": "a87534afdd41a1d26e5ee697f6c5c99fb524d164095aac9e338b536b07a6d23b",
+      "bytes": 5708,
+      "sha256": "bbc3f75dde799018a671db5e9b538bb1b3733923e76657ea90e28c1d5d38bb40",
       "sourceSha256": "c7d71e6e9ae2967b64ce051f23c0889c2bd9759282fd7fe26a4fdff69fc984bf",
       "unchanged": false
     },
@@ -1111,16 +1111,23 @@
       "unchanged": false
     },
     {
+      "path": "docs/WINDOWS-SKILL-TEST-REPORT.md",
+      "bytes": 6730,
+      "sha256": "b2c97f3db88d5745e4911efe42a83c12e817f88fa8bd555c1ba7deada96b478a",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "docs/WINDOWS-TEST-REPORT.md",
-      "bytes": 5069,
-      "sha256": "2e3ed8b4ca08088ad10c978eeca1786ff7fc20c40946b92c3f62db19bfe7de23",
+      "bytes": 5829,
+      "sha256": "caccd4636744d902fac3ae8ab0b4ffd71c1122b97ae4cf086aa364090876064d",
       "sourceSha256": null,
       "unchanged": false
     },
     {
       "path": "docs/WINDOWS.md",
-      "bytes": 8851,
-      "sha256": "ae1cf6d33325a5bbd1c6652a7cc89294197f20b3b835378fe9010f6207713aed",
+      "bytes": 8909,
+      "sha256": "c3556adb3db2d02646ff002f85eb4fbd502fd954c5e299c51661463ba9733b35",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -7389,6 +7396,7 @@
     "backend/tests/test_word_format_patch.py",
     "backend/tests/test_word_pdf_conversion.py",
     "docs/TEAM-START.md",
+    "docs/WINDOWS-SKILL-TEST-REPORT.md",
     "docs/WINDOWS-TEST-REPORT.md",
     "docs/WINDOWS.md",
     "docs/windows-assets/secretary-home.png",

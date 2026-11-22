@@ -35,7 +35,7 @@ Windows 版本沿用同一套秘书对话、邮件、文档和待办功能。面
 
 - 定时整理在设置里配置时间和时区，并按页面提示启用 Windows 计划任务。电脑需开机并能联网；睡眠、关机或未登录时的行为以设置页说明为准。首次建议用“立即整理一轮”核对范围。
 - 内置 PDF、Word、CSV 等文件工具不需要 Docker。**执行导入的 Python Skill** 需要额外安装并启动 Docker Desktop，使用 Linux containers 和本机 Docker context。完成下方源码开发环境配置后，在源码根目录执行 `.\.venv\Scripts\python.exe scripts/prepare-skill-runtime.py`，准备 Skill 运行镜像。准备过程与应用固定使用同一本机 Linux 引擎；Windows containers 会提示切换。安装 Docker 后重新打开应用，普通文字经验不需要 Docker。
-- Windows 容器验收采用 Windows Server 2025、Rancher Desktop / Moby 和原生 Windows Docker 命名管道，完整流程与实际结果见 [Skill 验收记录](https://github.com/whatislove-baby/task-manager-secretary/blob/main/docs/WINDOWS-SKILL-TEST-REPORT.md)。这与组员的 Windows 10/11 + Docker Desktop 是不同的具体环境，仍需按下方练习完成本人交接；不使用远程 Docker。
+- Windows 容器验收采用 Windows Server 2025、Rancher Desktop / Moby 和原生 Windows Docker 命名管道，完整流程与实际结果见 [Skill 验收记录](https://github.com/whatislove-baby/task-manager-secretary/blob/main/docs/WINDOWS-SKILL-TEST-REPORT.md)。这与组员的 Windows 10/11 + Docker Desktop 是不同的具体环境，仍需在组员自己的 Windows 10/11 机器按 Skill 验收记录中的复测步骤完成交接；不使用远程 Docker。
 - 数据默认保存在 `Task Manager.exe` 同目录的 `data` 文件夹；设置页可查看实际路径。退出应用后备份整个 `data`。升级时先从托盘退出应用，将旧目录的 `data` 备份并复制到新版本目录，再启动新版本；确认资料正常后再清理旧程序。应用目录移动后，需要重新保存启用定时整理，使计划任务使用新路径。
 - API Key 和邮箱凭据使用 Windows 当前用户的 DPAPI 保护。复制数据到另一台电脑或另一位 Windows 用户后，需要重新填写凭据；不应把自己的 `data` 发给组员。
 - 出错时保留具体操作和时间，查看数据目录的 `logs`。文件无法导出时，先确认解压完整、目录可写，再把日志和错误截图交给开发同学。
