@@ -11,6 +11,7 @@ from types import SimpleNamespace
 from uuid import uuid4
 import json
 import os
+import signal
 import subprocess
 import sys
 import unittest
@@ -287,7 +288,10 @@ skills.propose(args['value'],proposal_id=args['id'])
             with self.subTest(afterRename=after):
                 id=str(uuid4());value=dict(title='Crash recovery '+str(after),kind='memory',scope=SCOPE,rationale='Reusable tone',instruction='Reply politely and ask for missing data.')
                 result=subprocess.run([sys.executable,'-c',child],input=json.dumps(dict(directory=str(self.root),after=after,id=id,value=value)),text=True,capture_output=True,timeout=20)
-                self.assertEqual(result.returncode,-15,result.stderr)
+                # Windows os.kill(SIGTERM) uses TerminateProcess(SIGTERM),
+                # whereas POSIX subprocess exposes a negative signal number.
+                expected_exit=signal.SIGTERM if os.name=='nt' else -signal.SIGTERM
+                self.assertEqual(result.returncode,expected_exit,result.stderr)
                 self.assertEqual(self.s.skills.db.execute('SELECT count(*) FROM skill_package_journal WHERE id=?',(id,)).fetchone()[0],1)
                 self.assertIsNone(self.s.skills.db.execute('SELECT id FROM learning_versions WHERE id=?',(id,)).fetchone())
                 p=self.s.skills.propose(value,proposal_id=id);self.assertEqual(p['status'],'draft');self.assertTrue(p['canApprove'])

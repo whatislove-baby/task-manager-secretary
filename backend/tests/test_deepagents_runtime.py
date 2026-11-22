@@ -3,6 +3,7 @@
 Includes genuine checkpoints written by the pre-migration create_agent graph.
 No test sends email, reaches a provider, or authorizes an external operation.
 """
+from network_guard import no_external_network
 import asyncio
 import os
 from pathlib import Path
@@ -34,8 +35,7 @@ class DeepAgentsRuntimeTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(patch.dict(os.environ, {'LANGSMITH_TRACING': 'false',
             'LANGCHAIN_TRACING_V2': 'false', 'LANGCHAIN_TRACING': 'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
-        self.enterContext(patch('socket.socket.connect_ex', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.temp = tempfile.TemporaryDirectory()
         self.directory = Path(self.temp.name)
         self.service = self.open_service()

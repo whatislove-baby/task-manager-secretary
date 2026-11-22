@@ -3,6 +3,7 @@
 Only the model boundary is scripted. Business tools, SQLite stores, the Agent
 worker coroutine, stream handling and public RPC methods execute for real.
 """
+from network_guard import no_external_network
 import asyncio
 import json
 import os
@@ -82,8 +83,7 @@ class AgentRuntimeTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(patch.dict(os.environ, {'LANGSMITH_TRACING': 'false',
                                                  'LANGCHAIN_TRACING_V2': 'false', 'LANGCHAIN_TRACING': 'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
-        self.enterContext(patch('socket.socket.connect_ex', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.tmp = tempfile.TemporaryDirectory()
         self.directory = Path(self.tmp.name)
         self.service = self.open_service()

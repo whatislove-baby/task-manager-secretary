@@ -1,4 +1,5 @@
 """Business tools use real temporary stores; no live model, mail or credentials."""
+from network_guard import no_external_network
 import asyncio
 import json
 import os
@@ -25,7 +26,7 @@ class AgentToolsTests(unittest.TestCase):
         self.addCleanup(self.service.close)
         self.addCleanup(lambda: self.ctx.close())
         self.enterContext(patch.dict(os.environ, {'LANGCHAIN_TRACING_V2': 'false', 'LANGSMITH_TRACING': 'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
 
     def mail(self, body='Project 2 提交报告。', subject='课程通知', sender='teacher@example.invalid', attachments=None, remote='mail1', **extra):
         return self.service.mail.store.put('fixture-binding', 'fixture-identity', 'student@example.invalid',

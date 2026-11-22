@@ -3,6 +3,7 @@
 No mock execute, fabricated runtime, provider or mailbox. Both proposal tools
 must retain an explicitly supplied correction parent, or reject ambiguous input.
 """
+from network_guard import no_external_network
 import asyncio
 import json
 import tempfile
@@ -23,7 +24,7 @@ class ProposalToolArgumentsTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
         self.service=BackendService(Path(self.temp.name),worker=True);self.addCleanup(self.service.close)
         self.ctx=AgentTools(self.service,'proposal-wire-test');self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.tools={t.name:t for t in build_tools(self.ctx)}
         graph=StateGraph(MessagesState)
         graph.add_node('tools',ToolNode([self.tools[n] for n in ('propose_learning','propose_skill')]))

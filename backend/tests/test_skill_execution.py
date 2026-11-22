@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import runpy
+import stat
 import subprocess
 import tempfile
 import unittest
@@ -28,7 +29,14 @@ class SkillExecutionContractTests(unittest.TestCase):
             mount=next(v for v in command if 'dst=/work,readonly' in v)
             root=Path(mount.split('src=',1)[1].split(',dst=',1)[0])
             seen.append((root/'package/app/module.py').read_bytes())
-            self.assertEqual((root/'package/app/module.py').stat().st_mode&0o777,0o444)
+            file_stat=(root/'package/app/module.py').stat()
+            if os.name=='nt':
+                # Windows chmod maps to the file's native read-only attribute;
+                # the Docker mount above must still be explicitly readonly.
+                self.assertTrue(file_stat.st_file_attributes & stat.FILE_ATTRIBUTE_READONLY)
+                self.assertEqual(file_stat.st_mode & stat.S_IWRITE,0)
+            else:
+                self.assertEqual(file_stat.st_mode&0o777,0o444)
             self.assertEqual((root/'main.py').read_bytes(),b'# original\r\npass\r\n')
             self.assertTrue((root/'runner.py').exists())
             return 0,json.dumps(dict(protocol=1,exitCode=0,stdout='',stderr='',outputs={})).encode(),b'',None

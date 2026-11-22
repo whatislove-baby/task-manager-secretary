@@ -1,4 +1,5 @@
 """Real official graph boundaries preserve saved output instead of endless polish."""
+from network_guard import no_external_network
 import asyncio
 import os
 from pathlib import Path
@@ -24,7 +25,7 @@ class DocumentCompletionTests(unittest.TestCase):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
         self.service=BackendService(Path(self.tmp.name),worker=True);self.addCleanup(self.service.close)
         self.events=[];self.ctx=AgentTools(self.service,'doc-run','doc-chat',self.events.append);self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.enterContext(patch.dict(os.environ,{'LANGSMITH_TRACING':'false','LANGCHAIN_TRACING_V2':'false'}))
     def agent(self,script,limit=3):
         ctx=self.ctx

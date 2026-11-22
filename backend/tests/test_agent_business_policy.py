@@ -3,6 +3,7 @@
 Scripted models inspect actual messages; these are mechanism checks, not claims
 that a real model always reasons correctly about business correspondence.
 """
+from network_guard import no_external_network
 import asyncio
 import os
 from pathlib import Path
@@ -75,8 +76,7 @@ class BusinessPolicyAppTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(patch.dict(os.environ, {'LANGSMITH_TRACING':'false',
             'LANGCHAIN_TRACING_V2':'false', 'LANGCHAIN_TRACING':'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('No network')))
-        self.enterContext(patch('socket.socket.connect_ex', side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
         self.temp = TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)

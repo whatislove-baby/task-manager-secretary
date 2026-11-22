@@ -1,4 +1,5 @@
 """Real ZIP/image byte paths, bounded expansion, source linkage and tool recovery."""
+from network_guard import no_external_network
 import asyncio
 import base64
 from io import BytesIO
@@ -33,7 +34,7 @@ class BundleFilesTests(unittest.TestCase):
         self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name)
         self.files=MailFiles(SimpleNamespace(directory=self.root))
         self.addCleanup(self.tmp.cleanup);self.addCleanup(self.files.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network allowed')))
+        self.enterContext(no_external_network())
 
     def save(self,name,data):return self.files._save(name,data,'local')
 
@@ -163,7 +164,7 @@ class BundleAgentTests(unittest.TestCase):
     def test_actual_image_reaches_vision_and_archive_retry_recovers_committed_members(self):
         from task_backend.service import BackendService
         from task_backend.agent_tools import AgentTools
-        with tempfile.TemporaryDirectory() as temporary,patch('socket.socket.connect',side_effect=AssertionError('No network')):
+        with tempfile.TemporaryDirectory() as temporary,no_external_network():
             service=BackendService(Path(temporary),worker=True);ctx=AgentTools(service,'bundle-agent','chat')
             try:
                 source=service.files._save('pack.zip',bundle([('guide.md',b'![chart](chart.png)'),('chart.png',picture())]),'local')

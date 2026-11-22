@@ -40,6 +40,7 @@ from task_backend.document_render import soffice_path
 from task_backend.settings import Settings
 from langchain_core.messages import AIMessage
 from test_agent_runtime import ScriptedModel, tool_call
+from network_guard import no_external_network
 
 checks = []
 report = dict(startedAt=datetime.now(timezone.utc).isoformat(), platform=platform.platform(),
@@ -73,8 +74,7 @@ try:
             if ctx is not None:ctx.close();ctx=None
             if service is not None:service.close();service=None
         guards.callback(close_current)
-        guards.enter_context(patch('socket.socket.connect', side_effect=AssertionError('External network forbidden')))
-        guards.enter_context(patch('socket.socket.connect_ex', side_effect=AssertionError('External network forbidden')))
+        guards.enter_context(no_external_network())
         guards.enter_context(patch('smtplib.SMTP', side_effect=block_smtp))
         guards.enter_context(patch('smtplib.SMTP_SSL', side_effect=block_smtp))
         guards.enter_context(patch.dict(os.environ, {'LANGSMITH_TRACING':'false','LANGCHAIN_TRACING_V2':'false','LANGCHAIN_TRACING':'false'}))

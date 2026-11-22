@@ -1,4 +1,5 @@
 """History is queryable without restoring tasks or inferring cancellation from trash."""
+from network_guard import no_external_network
 import asyncio
 import json
 from pathlib import Path
@@ -15,7 +16,7 @@ class TaskHistoryTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.s=BackendService(Path(self.temp.name),worker=True)
         self.ctx=AgentTools(self.s,'history-test','history-chat')
         self.addCleanup(self.temp.cleanup);self.addCleanup(self.s.close);self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
     def task(self,title='Course discussion',completed=False):
         value=self.s.repo.call('createTodo',dict(title=title,notes='project',due={'mode':'value','value':{'kind':'minute','at':'2026-11-26T15:00:00+08:00','timeZone':'Asia/Hong_Kong'}}))['value']
         if completed:value=self.s.repo.call('setCompleted',value['id'],True,value['revision'])['value']

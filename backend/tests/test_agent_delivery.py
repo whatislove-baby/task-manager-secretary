@@ -1,4 +1,5 @@
 """Actual persisted delivery checks and official graph corrective routing."""
+from network_guard import no_external_network
 import asyncio
 import json
 import os
@@ -23,7 +24,7 @@ class DeliveryReviewTests(unittest.TestCase):
         self.service.settings.for_request = lambda: dict(CONFIG)
         self.service.agent.schedule = lambda: None
         self.enterContext(patch.dict(os.environ, {'LANGSMITH_TRACING': 'false', 'LANGCHAIN_TRACING_V2': 'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.run = self.service.agent.call('startTurn', {'text': '修改这份报告并附入回复草稿，先不发送。'})
         self.ctx = self.context(self.run['id'], self.run['conversationId'])
 

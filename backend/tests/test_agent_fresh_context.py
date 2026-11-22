@@ -1,3 +1,4 @@
+from network_guard import no_external_network
 import asyncio
 import json
 from pathlib import Path
@@ -29,7 +30,7 @@ class FreshContextTests(unittest.TestCase):
         self.service=BackendService(Path(self.temp.name),worker=True);self.addCleanup(self.service.close)
         self.events=[];self.ctx=EvidenceAgentTools(self.service,'run-13','conversation',self.events.append)
         self.addCleanup(lambda:self.ctx.close())
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.service.mail.manager.entry=lambda id:dict(id=id)
 
     def mail(self,id,body,sender='orders@harbor.example.invalid',binding='local',identity='identity',status='complete',at='2026-11-21T08:00:00Z'):

@@ -1,4 +1,5 @@
 """Real file stores and transformations; only the vision provider is synthetic."""
+from network_guard import no_external_network
 import asyncio
 from io import BytesIO
 from pathlib import Path
@@ -18,7 +19,7 @@ class DocumentAgentTests(unittest.TestCase):
         self.service=BackendService(self.root,worker=True)
         self.events=[];self.ctx=AgentTools(self.service,'document-tests','test-chat',self.events.append)
         self.addCleanup(self.tmp.cleanup);self.addCleanup(self.service.close);self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
         self.config=dict(apiKey='synthetic-key',baseUrl='https://example.invalid/v1',model='test/vision')
         self.service.settings.for_request=lambda:dict(self.config)
 

@@ -11,10 +11,12 @@ import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
-import selectors
+import re
 import shutil
 import subprocess
+import sys
 import tempfile
+import threading
 import time
 import uuid
 
@@ -33,8 +35,14 @@ def runtime_hash():
 
 
 def _docker():
-    for path in (shutil.which('docker'), '/usr/local/bin/docker',
-                 '/Applications/Docker.app/Contents/Resources/bin/docker'):
+    candidates = [shutil.which('docker')]
+    if sys.platform == 'win32':
+        candidates.append(str(Path(os.environ.get('ProgramFiles', r'C:\Program Files')) /
+                              'Docker' / 'Docker' / 'resources' / 'bin' / 'docker.exe'))
+    else:
+        candidates.extend(('/usr/local/bin/docker',
+                           '/Applications/Docker.app/Contents/Resources/bin/docker'))
+    for path in candidates:
         if path and Path(path).is_file() and os.access(path, os.X_OK):
             return path
     return None
@@ -44,14 +52,29 @@ def _control(args, timeout=8):
     # The CLI needs its existing Docker context, but no environment is forwarded
     # into the container unless explicitly named in the fixed run command.
     return subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                          text=True, timeout=timeout, check=False, env=_cli_env())
+                          text=True, encoding='utf-8', errors='replace', timeout=timeout,
+                          check=False, env=_cli_env(), **_process_options())
+
+
+def _process_options():
+    return {'creationflags': subprocess.CREATE_NO_WINDOW} if sys.platform == 'win32' else {}
 
 
 def _cli_env():
     # Keep the user's on-disk local context, but do not inherit provider secrets
     # or environment overrides that could silently select a remote daemon.
-    return {key: value for key, value in os.environ.items()
-            if key in ('PATH', 'HOME', 'USER', 'TMPDIR', 'DOCKER_CONFIG')}
+    allowed = {'PATH', 'HOME', 'USER', 'TMPDIR', 'DOCKER_CONFIG', 'SYSTEMROOT', 'WINDIR',
+               'USERPROFILE', 'HOMEDRIVE', 'HOMEPATH', 'APPDATA', 'LOCALAPPDATA', 'TEMP', 'TMP'}
+    return {key: value for key, value in os.environ.items() if key.upper() in allowed}
+
+
+def _local_endpoint(endpoint):
+    if sys.platform == 'win32':
+        # Docker Desktop's default and desktop-linux contexts use local named
+        # pipes. A remote server name, URL credentials or extra path is refused.
+        return bool(re.fullmatch(r'npipe:////\./pipe/[A-Za-z0-9][A-Za-z0-9_.-]{0,127}', endpoint))
+    return endpoint.startswith('unix:///') and len(endpoint) > len('unix:///') and not any(
+        ord(character) < 32 for character in endpoint)
 
 
 def get_status():
@@ -63,8 +86,8 @@ def get_status():
     try:
         local = _control([command, 'context', 'inspect', '--format', '{{.Endpoints.docker.Host}}'])
         endpoint = local.stdout.strip()
-        if local.returncode or not endpoint.startswith('unix:///') or '\n' in endpoint:
-            return dict(result, reason='技能执行仅允许本机 Unix socket Docker；当前上下文不是本机环境。')
+        if local.returncode or not _local_endpoint(endpoint):
+            return dict(result, reason='技能执行仅允许本机 Docker（Windows 命名管道或 Unix socket）；当前上下文不是受支持的本机环境。')
         prefix = [command, '--host', endpoint]
         inspected = _control(prefix + ['image', 'inspect', IMAGE, '--format',
                               '{{.Id}}|{{ index .Config.Labels "org.taskmanager.skill-runtime" }}'])
@@ -131,38 +154,67 @@ def _command(docker, image_id, name, work, inputs, endpoint):
 def _capture(command, timeout_seconds):
     started = time.monotonic()
     process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, start_new_session=True, env=_cli_env())
-    selector = selectors.DefaultSelector()
-    for pipe, key in ((process.stdout, 'stdout'), (process.stderr, 'stderr')):
-        selector.register(pipe, selectors.EVENT_READ, key)
+                               stderr=subprocess.PIPE, bufsize=0, env=_cli_env(),
+                               start_new_session=sys.platform != 'win32', **_process_options())
+    # Windows selectors only support sockets. Two bounded pipe readers also
+    # avoid stderr deadlock without communicate() buffering unlimited output.
     parts = {'stdout': bytearray(), 'stderr': bytearray()}
+    stopped = threading.Event()
+    lock = threading.Lock()
+    failures = []
+    def read_pipe(pipe, key):
+        try:
+            while not stopped.is_set():
+                chunk = pipe.read(65536)
+                if not chunk:
+                    break
+                with lock:
+                    if stopped.is_set():
+                        break
+                    cap = MAX_TRANSPORT if key == 'stdout' else 65536
+                    if len(parts[key]) + len(chunk) > cap:
+                        failures.append('脚本输出超过传输上限，隔离任务已停止')
+                        stopped.set()
+                        break
+                    parts[key].extend(chunk)
+        except OSError:
+            with lock:
+                if not stopped.is_set():
+                    failures.append('无法读取隔离任务输出，隔离任务已停止')
+                    stopped.set()
+        finally:
+            pipe.close()
+    readers = [threading.Thread(target=read_pipe, args=(pipe, key), daemon=True,
+                                name='tm-skill-'+key)
+               for pipe, key in ((process.stdout, 'stdout'), (process.stderr, 'stderr'))]
+    for reader in readers:
+        reader.start()
     error = None
     try:
-        while selector.get_map():
+        while process.poll() is None or any(reader.is_alive() for reader in readers):
+            if stopped.is_set():
+                error = failures[0] if failures else '隔离任务输出已停止'
+                break
             if time.monotonic() - started > timeout_seconds:
                 error = '脚本超过执行时间上限，隔离任务已停止'
                 break
-            for event, _ in selector.select(.1):
-                chunk = os.read(event.fileobj.fileno(), 65536)
-                if not chunk:
-                    selector.unregister(event.fileobj); event.fileobj.close(); continue
-                cap = MAX_TRANSPORT if event.data == 'stdout' else 65536
-                if len(parts[event.data]) + len(chunk) > cap:
-                    error = '脚本输出超过传输上限，隔离任务已停止'
-                    break
-                parts[event.data].extend(chunk)
-            if error:
-                break
+            stopped.wait(.02)
+        # A fast exited process may finish both readers before the loop starts.
+        if failures:
+            error = failures[0]
         if error:
-            process.kill()
+            stopped.set()
+            if process.poll() is None:
+                process.kill()
         code = process.wait(timeout=2)
-        return code, bytes(parts['stdout']), bytes(parts['stderr']), error
+        with lock:
+            return code, bytes(parts['stdout']), bytes(parts['stderr']), error
     finally:
-        selector.close()
-        for pipe in (process.stdout, process.stderr):
-            if pipe and not pipe.closed: pipe.close()
+        stopped.set()
         if process.poll() is None:
             process.kill(); process.wait(timeout=2)
+        for reader in readers:
+            reader.join(timeout=2)
 
 
 def _decode(code, stdout, stderr):

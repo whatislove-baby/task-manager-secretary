@@ -38,8 +38,9 @@ def main():
     source = Path(found).resolve().parent
     if not source.is_relative_to(installs.resolve()):
         raise RuntimeError('Managed Python resolved outside the project install directory.')
-    if not (source / 'python.exe').is_file():
-        raise RuntimeError('Managed Windows Python not found at the expected distribution path.')
+    for executable in ('python.exe', 'pythonw.exe'):
+        if not (source / executable).is_file():
+            raise RuntimeError(f'Managed Windows Python is missing {executable}.')
     for directory in (target, staging):
         if directory.is_symlink():
             raise RuntimeError('Refusing a linked runtime output directory.')
@@ -47,6 +48,14 @@ def main():
         shutil.rmtree(staging)
     shutil.copytree(source, staging)
     python = staging / 'python.exe'
+    runtime = json.loads(subprocess.check_output(
+        [str(python), '-B', '-I', '-c',
+         'import json,sys; print(json.dumps({"version": list(sys.version_info[:3]), '
+         '"description": sys.version, "bits": 64 if sys.maxsize > 2**32 else 32}))'],
+        cwd=root, text=True,
+    ))
+    if runtime['version'] != [int(part) for part in VERSION.split('.')] or runtime['bits'] != 64:
+        raise RuntimeError('The copied runtime does not match the pinned Python version and architecture.')
     requirements = root / 'backend' / 'requirements.txt'
     # Native Windows wheels go directly into the copied runtime, not a copied
     # venv that can contain absolute paths or wrong-platform DLLs.
@@ -57,9 +66,17 @@ def main():
     manifest = dict(version=VERSION, architecture='x64',
                     distribution='astral-sh/python-build-standalone',
                     distributionKey=DISTRIBUTION,
-                    release=(source / 'BUILD').read_text(encoding='utf-8').strip(),
+                    runtimeDescription=runtime['description'],
                     requirementsSha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in locks},
                     dependencies=dict(pins))
+    # BUILD is not part of the install-only distribution's guaranteed layout.
+    # Record it if supplied; provenance metadata must not break a valid runtime.
+    try:
+        release = (source / 'BUILD').read_text(encoding='utf-8').strip()
+    except (OSError, UnicodeError):
+        release = ''
+    if release:
+        manifest['release'] = release
     (staging / 'runtime-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     run([str(python), '-B', '-I', str(root / 'scripts' / 'verify-runtime-deps.py'),
          '--requirements', str(requirements), '--smoke'])

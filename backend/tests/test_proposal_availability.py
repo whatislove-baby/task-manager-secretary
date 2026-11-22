@@ -4,6 +4,7 @@ Only the provider responses and summary text are scripted. Production runtime,
 official graph/middleware, persisted checkpoints and proposal stores are real.
 No skill execution, approval or external network access is granted.
 """
+from network_guard import no_external_network
 import asyncio
 import json
 import os
@@ -29,8 +30,7 @@ class ProposalAvailabilityTests(unittest.TestCase):
     def setUp(self):
         self.enterContext(patch.dict(os.environ, {'LANGSMITH_TRACING': 'false',
             'LANGCHAIN_TRACING_V2': 'false', 'LANGCHAIN_TRACING': 'false'}))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
-        self.enterContext(patch('socket.socket.connect_ex', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
         self.temp = tempfile.TemporaryDirectory()
         self.directory = Path(self.temp.name)
         self.service = self.open_service()

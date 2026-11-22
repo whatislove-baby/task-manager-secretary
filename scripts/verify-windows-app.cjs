@@ -50,8 +50,14 @@ async function launch(iteration) {
   socket=await connect(target.webSocketDebuggerUrl);
   let state;
   while(Date.now()<until){
-    state=await evaluate(`({heading:document.querySelector('.ag-welcome h1')?.textContent||'',body:document.body.innerText.slice(0,4000),hasIPC:!!window.agent?.getSecretary})`);
-    if(state.hasIPC&&state.heading==='今天有什么需要处理？')break;
+    try {
+      state=await evaluate(`({heading:document.querySelector('.ag-welcome h1')?.textContent||'',body:document.body?.innerText.slice(0,4000)||'',hasIPC:!!window.agent?.getSecretary})`);
+    } catch(error) {
+      // The file target can appear before navigation has a default context.
+      // Retry only that startup gap; actual preload/IPC exceptions still fail.
+      if(!/execution context was destroyed|cannot find (?:default )?(?:execution )?context|inspected target navigated/i.test(error.message))throw error;
+    }
+    if(state?.hasIPC&&state.heading==='今天有什么需要处理？')break;
     await delay(250);
   }
   check(`secretary_home_visible_${iteration}`,state?.heading==='今天有什么需要处理？'&&state.hasIPC);

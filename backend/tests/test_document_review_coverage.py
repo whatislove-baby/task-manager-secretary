@@ -1,4 +1,5 @@
 """Parent/subagent share actual immutable-file review evidence without re-calling vision."""
+from network_guard import no_external_network
 import asyncio
 from io import BytesIO
 import json
@@ -21,7 +22,7 @@ class DocumentReviewCoverageTests(unittest.TestCase):
         writer=PdfWriter();writer.add_blank_page(100,100);writer.add_blank_page(100,100)
         stream=BytesIO();writer.write(stream)
         self.file=self.s.files._save('two-pages.pdf',stream.getvalue(),'generated')
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
 
     def review(self,pages,status='pass',issues=None):
         body=dict(pages=[dict(page=p,status=status,blockingIssues=issues or [],suggestions=[]) for p in pages],summary='Actual fixture page check')

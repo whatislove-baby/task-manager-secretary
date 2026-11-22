@@ -32,7 +32,7 @@ Windows 版本沿用同一套秘书对话、邮件、文档和待办功能。面
 ## 定时整理、Skill 与数据
 
 - 定时整理在设置里配置时间和时区，并按页面提示启用 Windows 计划任务。电脑需开机并能联网；睡眠、关机或未登录时的行为以设置页说明为准。首次建议用“立即整理一轮”核对范围。
-- 内置 PDF、Word、CSV 等文件工具不需要 Docker。**执行导入的 Python Skill** 需要额外安装并启动 Docker Desktop，再按[技能运行说明](../README.md)准备运行环境。普通文字经验不需要 Docker。
+- 内置 PDF、Word、CSV 等文件工具不需要 Docker。**执行导入的 Python Skill** 需要额外安装并启动 Docker Desktop，使用 Linux containers 和本机 Docker context，再按[技能运行说明](../README.md)准备运行环境。支持 Docker Desktop 的本机命名管道；不连接远程 Docker。普通文字经验不需要 Docker。Windows Docker Desktop 的实际 Skill 执行属于可选验收，尚未完成真实容器端到端验证，不包含在普通成品验收通过的范围中。
 - 数据默认保存在 `Task Manager.exe` 同目录的 `data` 文件夹；设置页可查看实际路径。退出应用后备份整个 `data`。升级时先备份，再使用新版本程序，避免覆盖已有数据。
 - API Key 和邮箱凭据使用 Windows 当前用户的 DPAPI 保护。复制数据到另一台电脑或另一位 Windows 用户后，需要重新填写凭据；不应把自己的 `data` 发给组员。
 - 出错时保留具体操作和时间，查看数据目录的 `logs`。文件无法导出时，先确认解压完整、目录可写，再把日志和错误截图交给开发同学。
@@ -64,3 +64,5 @@ node scripts/verify-windows-app.cjs `
 所有路径均相对 `handover/windows-release`。结果 JSON 会保存实际平台、解释器或 EXE 路径及逐项结果；CI 构建附件提供完整证据。此脚本使用受控模型回答来检查代码执行链路，**不代表真实模型理解质量、真实邮箱连接或真人排版审阅已通过**。发布前还需查看截图和生成文件。
 
 当前状态请以对应 Windows 发布构建的结果为准；没有 Windows 结果的版本应标注“待验证”。
+
+Docker 平台回归位于 `backend/tests/test_skill_execution_platform.py`：真实本机进程检查双路输出、字节限额、超时与清理，并检查 Windows 命名管道和凭据环境边界。它不需要安装 Docker，不能替代 `TM_RUN_SKILL_DOCKER_TESTS=1` 的实际容器验收。实现依据 [Docker 本机命名管道说明](https://docs.docker.com/reference/cli/docker/) 与 [Python 跨平台 pipe 限制](https://docs.python.org/3/library/selectors.html)。
