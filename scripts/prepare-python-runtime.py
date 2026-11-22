@@ -1,37 +1,76 @@
-"""Build a relocatable Python runtime from the verified official Windows distribution."""
+"""Prepare the relocatable Python 3.12 runtime family also used by the Mac app.
+
+uv verifies Astral's python-build-standalone download. Nothing is installed into
+PATH/the registry; the final app does not need uv or a system Python.
+"""
 from pathlib import Path
-import hashlib,importlib.metadata,json,shutil,subprocess,sys,urllib.request,zipfile
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
 from requirements_lock import read_lock
-if sys.platform!='win32' or sys.version_info[:2]!=(3,14):
-    raise RuntimeError('Windows runtime must be prepared with the Windows Python 3.14 project environment; use prepare-python-runtime-mac.cjs on macOS.')
-root=Path(__file__).resolve().parents[1];target=root/'.python-runtime';target.mkdir(exist_ok=True)
-url='https://www.python.org/ftp/python/3.14.10/python-3.14.10-embed-amd64.zip'
-expected='90905e64a840557d8c1bc4f5b74db3d7ee85e3ffb217611cac1c7813acea4159'
-cache=root/'.cache/python-3.14.10-embed-amd64.zip';cache.parent.mkdir(exist_ok=True)
-if not cache.exists() or hashlib.sha256(cache.read_bytes()).hexdigest()!=expected:
-    with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(url,timeout=60) as response:data=response.read()
-    if hashlib.sha256(data).hexdigest()!=expected:raise RuntimeError('Official Python runtime checksum mismatch')
-    cache.write_bytes(data)
-with zipfile.ZipFile(cache) as archive:
-    for item in archive.infolist():
-        file=(target/item.filename).resolve()
-        if not file.is_relative_to(target.resolve()):raise RuntimeError('Unsafe runtime archive path')
-    archive.extractall(target)
-(target/'python314._pth').write_text('python314.zip\n.\nLib/site-packages\n../backend\nimport site\n',encoding='utf-8')
-site=root/'.venv/Lib/site-packages';installed=target/'Lib/site-packages'
-if installed.exists():shutil.rmtree(installed)
-installed.mkdir(parents=True,exist_ok=True)
-versions={}
-requirements=root/'backend/requirements.txt';pins,lock_files=read_lock(requirements)
-for name,version in pins:
-    distribution=importlib.metadata.distribution(name)
-    if distribution.version!=version:raise RuntimeError('Dependency version mismatch: '+name)
-    versions[name]=version
-    for file in distribution.files or []:
-        source=Path(distribution.locate_file(file)).resolve()
-        if source.is_file() and source.is_relative_to(site.resolve()):
-            destination=installed/source.relative_to(site.resolve());destination.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,destination)
-(target/'runtime-manifest.json').write_text(json.dumps(dict(version='3.14.10',url=url,sha256=expected,dependencies=versions,requirementsSha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in lock_files}),indent=2),encoding='utf-8')
-result=subprocess.run([str(target/'python.exe'),'-c','import pypdf,reportlab,PIL,fontTools;import sqlite3,ssl,ctypes,icalendar,imapclient,tzlocal,dateutil;import sys;print(sys.version)'],text=True)
-if result.returncode:raise SystemExit(result.returncode)
-raise SystemExit(subprocess.call([str(target/'python.exe'),'-B',str(root/'scripts/verify-runtime-deps.py'),'--requirements',str(requirements),'--smoke']))
+
+VERSION = '3.12.13'
+DISTRIBUTION = f'cpython-{VERSION}-windows-x86_64-none'
+
+
+def main():
+    if sys.platform != 'win32' or sys.version_info[:2] != (3, 12) or sys.maxsize < 2**32:
+        raise RuntimeError('Prepare the Windows runtime with a Windows x64 Python 3.12 project environment.')
+    root = Path(__file__).resolve().parents[1]
+    cache = root / '.cache' / 'uv'
+    installs = root / '.cache' / 'managed-python'
+    target = root / '.python-runtime'
+    staging = root / '.python-runtime-staging'
+    uv = os.environ.get('TM_UV', 'uv')
+    common = [uv, '--cache-dir', str(cache), '--no-config']
+
+    def run(args):
+        subprocess.run(args, cwd=root, check=True)
+
+    run(common + ['python', 'install', '--install-dir', str(installs),
+                  '--no-bin', '--no-registry', DISTRIBUTION])
+    found = subprocess.check_output(common + ['python', 'find', '--managed-python', DISTRIBUTION],
+                                    cwd=root, text=True,
+                                    env={**os.environ, 'UV_PYTHON_INSTALL_DIR': str(installs)}).strip()
+    source = Path(found).resolve().parent
+    if not source.is_relative_to(installs.resolve()):
+        raise RuntimeError('Managed Python resolved outside the project install directory.')
+    if not (source / 'python.exe').is_file():
+        raise RuntimeError('Managed Windows Python not found at the expected distribution path.')
+    for directory in (target, staging):
+        if directory.is_symlink():
+            raise RuntimeError('Refusing a linked runtime output directory.')
+    if staging.exists():
+        shutil.rmtree(staging)
+    shutil.copytree(source, staging)
+    python = staging / 'python.exe'
+    requirements = root / 'backend' / 'requirements.txt'
+    # Native Windows wheels go directly into the copied runtime, not a copied
+    # venv that can contain absolute paths or wrong-platform DLLs.
+    run(common + ['pip', 'install', '--python', str(python), '--target',
+                  str(staging / 'Lib' / 'site-packages'), '--only-binary', ':all:',
+                  '--no-deps', '-r', str(requirements)])
+    pins, locks = read_lock(requirements)
+    manifest = dict(version=VERSION, architecture='x64',
+                    distribution='astral-sh/python-build-standalone',
+                    distributionKey=DISTRIBUTION,
+                    release=(source / 'BUILD').read_text(encoding='utf-8').strip(),
+                    requirementsSha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in locks},
+                    dependencies=dict(pins))
+    (staging / 'runtime-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    run([str(python), '-B', '-I', str(root / 'scripts' / 'verify-runtime-deps.py'),
+         '--requirements', str(requirements), '--smoke'])
+    # Keep the previous runtime until the candidate passed its Agent smoke.
+    if target.exists():
+        shutil.rmtree(target)
+    staging.rename(target)
+    run([str(target / 'python.exe'), '-B', '-I', '-c',
+         'import sys,sqlite3,ssl,ctypes,pypdf,pypdfium2,pandas,docx,langchain_openrouter,deepagents; '
+         'assert sys.version_info[:3] == (3,12,13); print("WINDOWS_RUNTIME_READY",sys.version)'])
+
+
+if __name__ == '__main__':
+    main()

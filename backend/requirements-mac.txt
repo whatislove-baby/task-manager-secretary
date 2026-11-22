@@ -1,4 +1,1 @@
 -r requirements.txt
-cryptography==50.0.2
-cffi==2.1.1
-pycparser==3.12

@@ -1,8 +1,8 @@
 {
-  "mode": "explicit-allowlist-source-and-static-evidence-export",
+  "mode": "maintained-public-source-and-synthetic-evidence",
   "sourceCommit": "working-tree-final-source",
   "coreFiles": 163,
-  "coreByteIdentical": true,
+  "coreByteIdentical": false,
   "files": [
     {
       "path": ".gitattributes",
@@ -12,9 +12,16 @@
       "unchanged": true
     },
     {
+      "path": ".github/workflows/windows-build.yml",
+      "bytes": 4937,
+      "sha256": "2ec129f847287fb2e4907022185e4fbbc6dc967b52a53a32caf4b8c58082b013",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": ".gitignore",
-      "bytes": 1041,
-      "sha256": "859d9c8068503afb2ddd855eef1e568208f1e5c410a527c58068c46dd94aec52",
+      "bytes": 1116,
+      "sha256": "1b20526baf1c344f4101786db821820588e2f3b228af8912f890ed051b692f06",
       "sourceSha256": "f5cc07ab63c263e8dfccce95fcdecb7747e50ac9b290903e3370ecfd35772f15",
       "unchanged": false
     },
@@ -27,15 +34,15 @@
     },
     {
       "path": "PUBLICATION.md",
-      "bytes": 2515,
-      "sha256": "3492964fd7d544bb65a7b5cb78cb5fce17b0760d978d78a659b0574d509c3b42",
+      "bytes": 2729,
+      "sha256": "949a0499cc3ed2e2511e9c21c711a91a5b64002eeebf128d3d2662646f94d060",
       "sourceSha256": null,
       "unchanged": false
     },
     {
       "path": "README.md",
-      "bytes": 5183,
-      "sha256": "91a78b3258889364ecd852d0de1de1561c03111b0fc2859d399fd0a2d23f5cb4",
+      "bytes": 5531,
+      "sha256": "ab4a3b4761c35ce5b0ac9d0c81585548387e215a80ce16c26895b08d63fa1752",
       "sourceSha256": "c7d71e6e9ae2967b64ce051f23c0889c2bd9759282fd7fe26a4fdff69fc984bf",
       "unchanged": false
     },
@@ -55,17 +62,17 @@
     },
     {
       "path": "backend/requirements-mac.txt",
-      "bytes": 69,
-      "sha256": "721bcd26dfaaa4658e72439440f71f06b31fefe242c01ba5df9759f29ca2ebe3",
+      "bytes": 20,
+      "sha256": "69075054c6d3bf5e0104bbc5d72895f380f050216a76ee8978dc4fbfd62f95e8",
       "sourceSha256": "721bcd26dfaaa4658e72439440f71f06b31fefe242c01ba5df9759f29ca2ebe3",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/requirements.txt",
-      "bytes": 450,
-      "sha256": "09ac5cab21edf425b31fb0a1585a90a1283f4f4627511dd077bd01dc4833f4ec",
+      "bytes": 499,
+      "sha256": "a1430eba26b6b0b0baea07493ee94742699b0e10f3ea4a20a4f83aa8cde5f2c7",
       "sourceSha256": "09ac5cab21edf425b31fb0a1585a90a1283f4f4627511dd077bd01dc4833f4ec",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/task_backend/__init__.py",
@@ -307,10 +314,10 @@
     },
     {
       "path": "backend/task_backend/document_render.py",
-      "bytes": 6204,
-      "sha256": "e74a6adca2e0b4562e6596b590d6bb0c0695fa7ab9bd29d7ff26bbfb7e9747fc",
+      "bytes": 6839,
+      "sha256": "190a3bc12c001ef468cd6a02820a1fc5bf56cd4dac6d87b282dbe0ed84faea65",
       "sourceSha256": "e74a6adca2e0b4562e6596b590d6bb0c0695fa7ab9bd29d7ff26bbfb7e9747fc",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "backend/task_backend/document_review.py",
@@ -754,6 +761,13 @@
       "unchanged": true
     },
     {
+      "path": "backend/tests/test_document_runtime_paths.py",
+      "bytes": 3798,
+      "sha256": "b2791eb22065769b665eb23a4d8176c3fd6514329e837b69ad6e0482c22cde4e",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "backend/tests/test_document_threading.py",
       "bytes": 2061,
       "sha256": "5df92c1cec9bf27632bb7df219ace7e4d06511677479c1249e9468ef3015b64f",
@@ -1039,6 +1053,13 @@
       "sha256": "471e0537cb1ae43e5bfdd029a847d1f21e9b926dda0c1fe2fd1ce214eda1f72f",
       "sourceSha256": "471e0537cb1ae43e5bfdd029a847d1f21e9b926dda0c1fe2fd1ce214eda1f72f",
       "unchanged": true
+    },
+    {
+      "path": "docs/WINDOWS.md",
+      "bytes": 5902,
+      "sha256": "0502e0d3fb5a579525d42d9529eb636d8ac34ed964b2115dd58949bf58145e2e",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "docs/agent-runtime-build.md",
@@ -5893,10 +5914,10 @@
     },
     {
       "path": "package.json",
-      "bytes": 3904,
-      "sha256": "aba6e098b9a3f9218d0462ca8700c461f800c6f2200ffc3d4fca90b2b366bfda",
+      "bytes": 4315,
+      "sha256": "40d75ed4f8e6218e1fedb641e4f2a74606d92e7e2a432952fa6be9f385f09506",
       "sourceSha256": "aba6e098b9a3f9218d0462ca8700c461f800c6f2200ffc3d4fca90b2b366bfda",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "scripts/dev-python.cjs",
@@ -5927,6 +5948,13 @@
       "unchanged": true
     },
     {
+      "path": "scripts/package-app-windows.cjs",
+      "bytes": 2557,
+      "sha256": "749b261263fa1fc53705a9fb88e1d8f628af6cb7071489ab24ea3e6839c5c869",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "scripts/package-app.cjs",
       "bytes": 5940,
       "sha256": "6a0c0c40c93d908f0131392290fe426b4faa1404e1df6652af3a003dca584d2f",
@@ -5948,6 +5976,20 @@
       "unchanged": true
     },
     {
+      "path": "scripts/prepare-document-runtime-windows.cjs",
+      "bytes": 647,
+      "sha256": "7244e99a2f5ebc559f0229a0a47c60f427417babe02045303c0281dcd5d8da00",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/prepare-document-runtime-windows.py",
+      "bytes": 4550,
+      "sha256": "8561a57703f9a0f10c73307d61b248eb5ce9a7260a0af337e8d48fe08461e521",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "scripts/prepare-python-runtime-mac.cjs",
       "bytes": 2817,
       "sha256": "c2fc0b28284ed0a4efb2181603bdcccd4b45ff74f89d57f11998733d481601ff",
@@ -5963,10 +6005,10 @@
     },
     {
       "path": "scripts/prepare-python-runtime.py",
-      "bytes": 2962,
-      "sha256": "b53cd4e5c1d9d2208d09f6da6f802c918772405a1eed37dcae18e6f2350f6ae7",
+      "bytes": 3643,
+      "sha256": "b5a3dc6ce73a395579477e81d6750ef1cf2927398ba6b99ad4cff442f39b65b4",
       "sourceSha256": "b53cd4e5c1d9d2208d09f6da6f802c918772405a1eed37dcae18e6f2350f6ae7",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "scripts/prepare-skill-runtime.py",
@@ -6060,6 +6102,13 @@
       "unchanged": true
     },
     {
+      "path": "scripts/verify-mail-automation-windows.cjs",
+      "bytes": 4870,
+      "sha256": "6d946c14113e4530aa651322f10c99f31cf1a7f0183ec7a055c4b2ab7d793a79",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
       "path": "scripts/verify-python-package-mac.cjs",
       "bytes": 12670,
       "sha256": "0ad664fa3dd2515b8156047ccc497d7980b36e060a322c2ccecb4ad55b04c4eb",
@@ -6068,17 +6117,31 @@
     },
     {
       "path": "scripts/verify-python-package.cjs",
-      "bytes": 2568,
-      "sha256": "9ae7ac5605dbb3e2043dc0a6c07d0b345913cc8edf30a0287581c649d63142c3",
+      "bytes": 2748,
+      "sha256": "b48a98cbaff66389abd6d1330e49117d8411271101417f0f0591589e1f850a0a",
       "sourceSha256": "9ae7ac5605dbb3e2043dc0a6c07d0b345913cc8edf30a0287581c649d63142c3",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "scripts/verify-runtime-deps.py",
-      "bytes": 11208,
-      "sha256": "b2314c8b86c617a5d2bfc4c44855284d149be01ecbc3b477e6a2f84f868894cd",
+      "bytes": 11427,
+      "sha256": "7936e94105d1a47f565bbc7743b2c8399c9fa9170e3823d6fc20e42ca00fbd47",
       "sourceSha256": "b2314c8b86c617a5d2bfc4c44855284d149be01ecbc3b477e6a2f84f868894cd",
-      "unchanged": true
+      "unchanged": false
+    },
+    {
+      "path": "scripts/verify-windows-app.cjs",
+      "bytes": 8463,
+      "sha256": "0dd0cbf8ec4259422cd17b712c7534c7700ddb2a367f9d286295602621491978",
+      "sourceSha256": null,
+      "unchanged": false
+    },
+    {
+      "path": "scripts/verify-windows-workflow.py",
+      "bytes": 14005,
+      "sha256": "4794a25482f26fc1fd0ced3b18bd0363f82e09169ea79f4151c0c7a6013c4278",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "scripts/widget-bounds-smoke.cjs",
@@ -6159,10 +6222,10 @@
     },
     {
       "path": "src/main/mail-automation-host.ts",
-      "bytes": 6601,
-      "sha256": "5d7346c6d82b8d89cdd487e5b95a396b2812eab46b29af35dea805425e149f5a",
+      "bytes": 13575,
+      "sha256": "e60b19c4100bf2363e19f23455808c6b88f1c034576ebf2a49052100fa8632a0",
       "sourceSha256": "5d7346c6d82b8d89cdd487e5b95a396b2812eab46b29af35dea805425e149f5a",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "src/main/mail-connections.ts",
@@ -6859,10 +6922,10 @@
     },
     {
       "path": "tests/mail-automation-host.test.ts",
-      "bytes": 14615,
-      "sha256": "38e23c8e1842b575b011043316a5f436f86576170b54439bb1df3745d9e733f1",
+      "bytes": 15023,
+      "sha256": "541503ad0280c82660a32b45c320ae9af331b95fd1697484c1f48b006fdfb30d",
       "sourceSha256": "38e23c8e1842b575b011043316a5f436f86576170b54439bb1df3745d9e733f1",
-      "unchanged": true
+      "unchanged": false
     },
     {
       "path": "tests/mail-automation-ui.test.tsx",
@@ -6870,6 +6933,13 @@
       "sha256": "9daece83ffcc9f9a7c23ac1443aab77a761108ac5d4e5d8f5ed316189a27efcf",
       "sourceSha256": "9daece83ffcc9f9a7c23ac1443aab77a761108ac5d4e5d8f5ed316189a27efcf",
       "unchanged": true
+    },
+    {
+      "path": "tests/mail-automation-windows.test.ts",
+      "bytes": 7557,
+      "sha256": "f7a10a56946e775e599a772c74add0ebef7c5b791efa16d8269d0873b840c102",
+      "sourceSha256": null,
+      "unchanged": false
     },
     {
       "path": "tests/mail-compose-ui.test.tsx",
@@ -7139,5 +7209,36 @@
     }
   ],
   "scope": "Source, synthetic examples, static guides and test evidence; excludes local data, credentials and runtime bundles.",
-  "documentationUpdate": "2026-11-22: full illustrated manual, product overview, vector workflow, offline kit and README links."
+  "documentationUpdate": "2026-11-22: full illustrated manual, product overview, vector workflow, offline kit and README links.",
+  "originalExport": {
+    "mode": "explicit-allowlist-source-and-static-evidence-export",
+    "sourceCommit": "working-tree-final-source",
+    "coreFiles": 163,
+    "coreByteIdentical": true
+  },
+  "maintenanceNote": "Windows runtime, document renderer, Task Scheduler, packaging and acceptance added after the original Mac export.",
+  "windowsAdaptationFiles": [
+    ".github/workflows/windows-build.yml",
+    ".gitignore",
+    "PUBLICATION.md",
+    "README.md",
+    "backend/requirements-mac.txt",
+    "backend/requirements.txt",
+    "backend/task_backend/document_render.py",
+    "backend/tests/test_document_runtime_paths.py",
+    "docs/WINDOWS.md",
+    "package.json",
+    "scripts/package-app-windows.cjs",
+    "scripts/prepare-document-runtime-windows.cjs",
+    "scripts/prepare-document-runtime-windows.py",
+    "scripts/prepare-python-runtime.py",
+    "scripts/verify-mail-automation-windows.cjs",
+    "scripts/verify-python-package.cjs",
+    "scripts/verify-runtime-deps.py",
+    "scripts/verify-windows-app.cjs",
+    "scripts/verify-windows-workflow.py",
+    "src/main/mail-automation-host.ts",
+    "tests/mail-automation-host.test.ts",
+    "tests/mail-automation-windows.test.ts"
+  ]
 }

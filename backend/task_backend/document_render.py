@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import tempfile
 import threading
 
@@ -25,14 +26,23 @@ _PDFIUM_LOCK = threading.RLock()
 
 def soffice_path():
     root=Path(__file__).resolve().parents[2]
-    candidates=[os.environ.get('TM_SOFFICE',''),
+    candidates=[os.environ.get('TM_SOFFICE','')]
+    if sys.platform=='win32':
+        # Packaged builds: resources/libreoffice. Development: prepared runtime.
+        # The console wrapper waits for conversion and returns its exit code.
+        locations=[root/'libreoffice',root/'.libreoffice-runtime-windows']
+        for variable in ('PROGRAMFILES','ProgramW6432','PROGRAMFILES(X86)'):
+            if os.environ.get(variable):locations.append(Path(os.environ[variable])/'LibreOffice')
+        for location in locations:
+            candidates.extend(str(location/'program'/name) for name in ('soffice.com','soffice.exe'))
+    candidates.extend([
         str(root/'libreoffice/LibreOffice.app/Contents/MacOS/soffice'),
         str(root/'libreoffice/LibreOfficeDev.app/Contents/MacOS/soffice'),
         str(root/'.libreoffice-runtime-mac/LibreOffice.app/Contents/MacOS/soffice'),
-        '/Applications/LibreOffice.app/Contents/MacOS/soffice']
+        '/Applications/LibreOffice.app/Contents/MacOS/soffice'])
     for candidate in candidates:
         if candidate and Path(candidate).is_file() and os.access(candidate,os.X_OK):return candidate
-    raise ValueError('Word 页面预览需要 LibreOffice 渲染器；请使用包含渲染器的 Mac 版本，或安装 LibreOffice')
+    raise ValueError('Word 页面预览需要 LibreOffice 渲染器；请使用包含渲染器的完整应用，或安装 LibreOffice 并设置 TM_SOFFICE')
 
 
 def _cached(cache,key):

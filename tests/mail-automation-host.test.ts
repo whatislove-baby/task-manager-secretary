@@ -59,9 +59,11 @@ class FakeBackend {
 async function fixture(t:TestContext){
   const root=await mkdtemp(join(tmpdir(),'tm-automation-host-test-'));
   t.after(()=>rm(root,{recursive:true,force:true}));
-  const home=join(root,'Home & <xml> "double" \'single\'');
-  const directory=join(root,'Data folder & <xml> "double" \'single\' $(literal)');
-  const runtime:AutomationRuntime={python:join(root,'Runtime with spaces & <xml>','python executable'),backendDirectory:join(root,'Backend & <xml> "quoted"')};
+  // Materialized fixture paths must also be legal on Windows. XML quoting is
+  // separately checked below without trying to create Windows-illegal names.
+  const home=join(root,'Home & 中文');
+  const directory=join(root,'Data folder & 中文 $(literal)');
+  const runtime:AutomationRuntime={python:join(root,'Runtime with spaces & 中文','python executable'),backendDirectory:join(root,'Backend & 中文')};
   await mkdir(join(runtime.backendDirectory,'task_backend'),{recursive:true});
   await mkdir(join(runtime.python,'..'),{recursive:true});
   await writeFile(runtime.python,'synthetic runtime; never executed');
@@ -78,18 +80,21 @@ function plistField(dict:Element,key:string):Element{
 
 test('plist preserves spaces/XML characters as explicit argv and uses no shell or credentials',async t=>{
   const f=await fixture(t);
-  const source=f.host.plist();
+  const directory=join(f.root,'Data & <xml> "double" \'single\' $(literal)');
+  const runtime={python:join(f.root,'Python & <xml> "double" \'single\''),backendDirectory:join(f.root,'Backend & <xml> "quoted"')};
+  const host=new MailAutomationHost(directory,runtime,f.options);
+  const source=host.plist();
   const dom=new JSDOM(source,{contentType:'text/xml'});
   t.after(()=>dom.window.close());
   const dict=dom.window.document.querySelector('plist > dict');assert.ok(dict);
   const argumentsNode=plistField(dict,'ProgramArguments');
   assert.equal(argumentsNode.tagName,'array');
   assert.deepEqual(Array.from(argumentsNode.children).map(node=>node.textContent),[
-    resolve(f.runtime.python),'-B','-u','-m','task_backend.automation_worker','--data-dir',resolve(f.directory),'--once',
+    resolve(runtime.python),'-B','-u','-m','task_backend.automation_worker','--data-dir',resolve(directory),'--once',
   ]);
-  assert.equal(plistField(dict,'WorkingDirectory').textContent,resolve(f.runtime.backendDirectory));
+  assert.equal(plistField(dict,'WorkingDirectory').textContent,resolve(runtime.backendDirectory));
   assert.match(source,/&amp;/);assert.match(source,/&lt;xml&gt;/);assert.match(source,/&quot;/);assert.match(source,/&apos;/);
-  assert.equal(plistField(dict,'Label').textContent,f.host.label);
+  assert.equal(plistField(dict,'Label').textContent,host.label);
   assert.equal(plistField(dict,'StartInterval').textContent,'60');
   assert.equal(plistField(dict,'RunAtLoad').tagName,'true');
   assert.equal(plistField(dict,'Umask').textContent,'63');
@@ -112,7 +117,7 @@ test('construction, status and disabled config never create a LaunchAgent; expli
   const enabled=await dispatchPython(backend,true,'mail-automation:saveConfig',[{...backend.config,enabled:true}],()=>changed++,{automation:f.host});
   assert.equal(enabled.ok,true);assert.equal(backend.config.enabled,true);
   assert.equal(await readFile(f.host.plistPath,'utf8'),f.host.plist());
-  assert.equal((await stat(f.host.plistPath)).mode&0o777,0o600);
+  if(process.platform!=='win32')assert.equal((await stat(f.host.plistPath)).mode&0o777,0o600);
   assert.equal((await f.host.status()).active,true);
   assert.equal(changed,2,'config mutations broadcast, read-only status does not');
   const stopped=await dispatchPython(backend,true,'mail-automation:saveConfig',[{...backend.config,enabled:false}],()=>changed++,{automation:f.host});

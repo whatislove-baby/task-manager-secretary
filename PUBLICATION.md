@@ -1,6 +1,6 @@
 # Public source export
 
-This is a source-only export of the final Mac application. Runtime implementation files under `src/` and `backend/task_backend/` are copied byte for byte. Existing package metadata and attribution are retained. No API credentials, user profile, real mailbox, database, application bundle, dependency installation or original customer workbook is included.
+This repository started as a source export of the Mac application, whose runtime implementation was copied byte for byte. It now includes maintained Windows adaptations: relocatable Python, bundled LibreOffice, current-user Task Scheduler integration, and packaged-app acceptance checks. See `docs/WINDOWS.md` and the Windows CI results for the current platform scope. Existing package metadata and attribution are retained. No API credentials, user profile, real mailbox, database, application bundle, dependency installation or original customer workbook is included.
 
 ## Export differences
 

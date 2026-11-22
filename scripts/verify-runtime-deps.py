@@ -192,13 +192,18 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--requirements', type=Path)
     parser.add_argument('--smoke', action='store_true')
+    parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     report = dict(python=platform.python_version(), architecture=platform.machine())
     if args.requirements:
         report.update(verify_requirements(args.requirements))
     if args.smoke:
         report['agent'] = smoke_agent()
-    print(json.dumps(report, ensure_ascii=False, indent=2))
+    rendered = json.dumps(report, ensure_ascii=False, indent=2)
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered + '\n', encoding='utf-8')
+    print(rendered)
 
 
 if __name__ == '__main__':

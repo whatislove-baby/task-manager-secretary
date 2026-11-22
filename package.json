@@ -10,8 +10,8 @@
     "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.renderer.json",
     "test": "node scripts/run-tests.cjs",
     "check": "npm run typecheck && npm run test:python && npm test && npm run build",
-    "pack": "npm run build && npm run runtime:python && node scripts/package-app.cjs dir && node scripts/verify-python-package.cjs",
-    "dist": "npm run build && npm run runtime:python && node scripts/package-app.cjs zip && node scripts/verify-python-package.cjs",
+    "pack": "npm run pack:win",
+    "dist": "npm run dist:win",
     "runtime:install": "node node_modules/electron/install.js",
     "test:runtime": "npm run build && electron scripts/python-electron-smoke.cjs && electron scripts/python-credentials-smoke.cjs",
     "dev:legacy": "npm run build && node scripts/dev-python.cjs --legacy",
@@ -26,7 +26,13 @@
     "test:package:mac": "node scripts/verify-python-package-mac.cjs",
     "test:handover": "node scripts/run-handover.cjs",
     "test:package:credentials:mac": "node scripts/verify-mac-keychain.cjs",
-    "test:automation:mac": "node scripts/verify-mail-automation-mac.cjs"
+    "test:automation:mac": "node scripts/verify-mail-automation-mac.cjs",
+    "runtime:documents:win": "node scripts/prepare-document-runtime-windows.cjs",
+    "pack:win": "npm run build && npm run runtime:python && npm run runtime:documents:win && node scripts/package-app-windows.cjs dir && npm run test:package:win",
+    "dist:win": "npm run build && npm run runtime:python && npm run runtime:documents:win && node scripts/package-app-windows.cjs zip && npm run test:package:win",
+    "test:package:win": "node scripts/verify-python-package.cjs",
+    "test:automation:win": "node scripts/verify-mail-automation-windows.cjs",
+    "test:app:win": "node scripts/verify-windows-app.cjs"
   },
   "dependencies": {
     "react-markdown": "10.1.0",

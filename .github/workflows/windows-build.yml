@@ -12,7 +12,7 @@ permissions:
 jobs:
   windows:
     runs-on: windows-2025
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       PYTHONUTF8: '1'
       PYTHONDONTWRITEBYTECODE: '1'
@@ -28,6 +28,9 @@ jobs:
         with:
           python-version: '3.12.10'
           architecture: x64
+      - uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          version: '0.11.7'
       - name: Install locked dependencies
         shell: pwsh
         run: |
@@ -36,6 +39,84 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm ci
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node node_modules/electron/install.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force handover/windows-release | Out-Null
       - name: Verify Windows Python and Agent dependencies
         shell: pwsh
-        run: .venv\Scripts\python.exe scripts/verify-runtime-deps.py --requirements backend/requirements.txt --smoke
+        run: .venv\Scripts\python.exe scripts/verify-runtime-deps.py --requirements backend/requirements.txt --smoke --output handover/windows-release/dependencies.json
+      - name: Prepare bundled document renderer
+        shell: pwsh
+        run: |
+          npm run runtime:documents:win
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "TM_SOFFICE=$((Get-Location).Path)\.libreoffice-runtime-windows\program\soffice.com" >> $env:GITHUB_ENV
+      - name: Run regression checks and build frontend
+        shell: pwsh
+        run: |
+          npm run check 2>&1 | Tee-Object -FilePath handover/windows-release/regression.log
+          exit $LASTEXITCODE
+      - name: Prepare relocatable Python and build Windows ZIP
+        shell: pwsh
+        run: |
+          npm run runtime:python
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node scripts/package-app-windows.cjs zip
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "TM_WINDOWS_APP=$((Get-Location).Path)\release-windows\win-unpacked" >> $env:GITHUB_ENV
+      - name: Verify packaged Python bridge
+        run: npm run test:package:win
+      - name: Verify actual Windows scheduled task
+        shell: pwsh
+        run: |
+          npm run test:automation:win 2>&1 | Tee-Object -FilePath handover/windows-release/scheduler.log
+          exit $LASTEXITCODE
+      - name: Verify document, draft, calendar and persistence workflow
+        shell: pwsh
+        run: |
+          $env:TM_SOFFICE = "$env:TM_WINDOWS_APP\resources\libreoffice\program\soffice.com"
+          & "$env:TM_WINDOWS_APP\resources\python\python.exe" scripts/verify-windows-workflow.py --backend-dir "$env:TM_WINDOWS_APP\resources\backend" --output handover/windows-release/workflow
+          exit $LASTEXITCODE
+      - name: Open packaged app and verify actual homepage
+        run: node scripts/verify-windows-app.cjs --app-dir "$env:TM_WINDOWS_APP" --output handover/windows-release/app
+      - name: Record download checksum
+        shell: pwsh
+        run: |
+          $archive = Get-Item release-windows/Task-Manager-Windows-x64.zip
+          $digest = (Get-FileHash $archive.FullName -Algorithm SHA256).Hash.ToLower()
+          "$digest  Task-Manager-Windows-x64.zip" | Set-Content -Encoding ascii release-windows/SHA256SUMS.txt
+          Copy-Item docs/WINDOWS.md release-windows/WINDOWS-START.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-verification-${{ github.run_number }}
+          path: handover/windows-release/
+          retention-days: 30
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Task-Manager-Windows-x64
+          path: |
+            release-windows/Task-Manager-Windows-x64.zip
+            release-windows/SHA256SUMS.txt
+            release-windows/WINDOWS-START.md
+          compression-level: 0
+          retention-days: 30
+          if-no-files-found: error
+  release:
+    needs: windows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Task-Manager-Windows-x64
+          path: release-files
+      - name: Publish verified Windows preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: windows-v0.2.0-rc.${{ github.run_number }}
+        run: |
+          gh release create "$RELEASE_TAG" release-files/* --target "$GITHUB_SHA" --prerelease --title "Task Manager Windows x64 preview" --notes-file docs/WINDOWS.md
