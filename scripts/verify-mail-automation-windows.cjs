@@ -73,7 +73,12 @@ function ps(source) {
 function taskDetails(run = false) {
   const label = host.label;
   assert.match(label, /^com\.gao\.taskmanager\.mail\.[a-f0-9]{16}$/);
-  return ps(`$ErrorActionPreference='Stop'; $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User.Value; $s=New-Object -ComObject 'Schedule.Service'; $s.Connect(); $t=$s.GetFolder('\\').GetTask('${label}.'+$sid); ${run ? '$null=$t.Run($null);' : ''} $d=$t.Definition; @{user=$d.Principal.UserId;sid=$sid;logon=[int]$d.Principal.LogonType;level=[int]$d.Principal.RunLevel;interval=$d.Triggers.Item(1).Repetition.Interval;multiple=[int]$d.Settings.MultipleInstances;command=$d.Actions.Item(1).Path;arguments=$d.Actions.Item(1).Arguments;state=[int]$t.State;result=[int]$t.LastTaskResult} | ConvertTo-Json -Compress`);
+  return ps(`$ErrorActionPreference='Stop'; $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User.Value; $s=New-Object -ComObject 'Schedule.Service'; $s.Connect(); $t=$s.GetFolder('\\').GetTask('${label}.'+$sid); ${run ? '$null=$t.Run($null);' : ''} $d=$t.Definition;
+function CanonicalSid([string]$identity) {
+  try { return ([Security.Principal.SecurityIdentifier]::new($identity)).Value }
+  catch { return ([Security.Principal.NTAccount]::new($identity)).Translate([Security.Principal.SecurityIdentifier]).Value }
+}
+@{user=$d.Principal.UserId;ownerSid=(CanonicalSid ([string]$d.Principal.UserId));triggerSid=(CanonicalSid ([string]$d.Triggers.Item(2).UserId));sid=$sid;marker=$d.RegistrationInfo.Description;logon=[int]$d.Principal.LogonType;level=[int]$d.Principal.RunLevel;interval=$d.Triggers.Item(1).Repetition.Interval;multiple=[int]$d.Settings.MultipleInstances;command=$d.Actions.Item(1).Path;arguments=$d.Actions.Item(1).Arguments;state=[int]$t.State;result=[int]$t.LastTaskResult} | ConvertTo-Json -Compress`);
 }
 (async () => {
   let failure;
@@ -84,7 +89,9 @@ function taskDetails(run = false) {
     await host.enable(); await host.enable();
     assert.equal((await host.status()).active, true);
     const task = taskDetails(true);
-    assert.equal(task.user, task.sid); assert.equal(task.logon, 3); assert.equal(task.level, 0);
+    assert.equal(task.ownerSid, task.sid); assert.equal(task.triggerSid, task.sid);
+    assert.equal(task.marker, 'Task Manager mail automation v1: ' + host.label);
+    assert.equal(task.logon, 3); assert.equal(task.level, 0);
     assert.equal(task.interval, 'PT1M'); assert.equal(task.multiple, 2);
     assert.equal(task.command.toLowerCase(), runtime.python.replace(/python\.exe$/i, 'pythonw.exe').toLowerCase());
     assert.ok(task.arguments.includes(directory));
