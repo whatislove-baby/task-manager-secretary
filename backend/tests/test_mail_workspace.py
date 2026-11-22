@@ -1,3 +1,4 @@
+from network_guard import no_external_network
 import base64
 import json
 from pathlib import Path
@@ -12,7 +13,7 @@ class WorkspaceTests(unittest.TestCase):
         # This offline fixture must never access the user's OS keychain.
         self.enterContext(patch('task_backend.vault.encrypt',side_effect=lambda value:base64.b64encode(value.encode()).decode()))
         self.enterContext(patch('task_backend.vault.decrypt',side_effect=lambda value:base64.b64decode(value).decode()))
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
     def test_offline_workspace_and_batch_saving_keeps_parent_links(self):
         with tempfile.TemporaryDirectory() as folder:
             service=BackendService(Path(folder))

@@ -1,4 +1,5 @@
 """Native Word export, managed lineage and actual draft attachment contracts."""
+from network_guard import no_external_network
 from io import BytesIO
 from pathlib import Path
 import tempfile
@@ -41,7 +42,7 @@ class WordPdfConversionTests(unittest.TestCase):
         self.service=BackendService(self.root,worker=True)
         self.ctx=AgentTools(self.service,'conversion-run','conversion-chat',lambda event:None)
         self.addCleanup(self.temp.cleanup);self.addCleanup(self.service.close);self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
         self.source=self.service.files._save('company-template.docx',rich_word(),'local')
 
     def test_convert_records_exact_source_and_keeps_word_active(self):

@@ -1,4 +1,5 @@
 """Structured rendering, deterministic amounts and durable revision integration."""
+from network_guard import no_external_network
 from copy import deepcopy
 from io import BytesIO
 from pathlib import Path
@@ -151,7 +152,7 @@ class BusinessDocumentTests(unittest.TestCase):
             finally:ctx.close();service.close()
 
     def test_service_reopen_targeted_revision_idempotence_and_stale_id(self):
-        with tempfile.TemporaryDirectory() as directory,patch('socket.socket.connect',side_effect=AssertionError('No network')):
+        with tempfile.TemporaryDirectory() as directory,no_external_network():
             service=BackendService(Path(directory),worker=True);ctx=AgentTools(service,'render','chat')
             try:
                 first=ctx.create_business_document('quote','pdf',specimen(),call_id='first')

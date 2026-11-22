@@ -55,13 +55,6 @@ jobs:
           npm run runtime:documents:win
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           "TM_SOFFICE=$((Get-Location).Path)\.libreoffice-runtime-windows\program\soffice.com" >> $env:GITHUB_ENV
-      - name: Run regression checks and build frontend
-        id: regression
-        continue-on-error: true
-        shell: pwsh
-        run: |
-          npm run check 2>&1 | Tee-Object -FilePath handover/windows-release/regression.log
-          exit $LASTEXITCODE
       - name: Prepare relocatable Python and build Windows ZIP
         shell: pwsh
         run: |
@@ -95,6 +88,14 @@ jobs:
         id: app
         continue-on-error: true
         run: node scripts/verify-windows-app.cjs --app-dir "$env:TM_WINDOWS_APP" --output handover/windows-release/app
+      - name: Run regression checks and build frontend
+        id: regression
+        continue-on-error: true
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          npm run check 2>&1 | Tee-Object -FilePath handover/windows-release/regression.log
+          exit $LASTEXITCODE
       - name: Require every acceptance check to pass
         shell: pwsh
         env:

@@ -1,4 +1,5 @@
 """Layout corrections preserve source packages and use the current file family."""
+from network_guard import no_external_network
 from io import BytesIO
 from pathlib import Path
 import tempfile
@@ -74,7 +75,7 @@ class WordFormatPatchTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);service=BackendService(root,worker=True);ctx=AgentTools(service,'format-run','chat',lambda event:None)
             try:
-                with patch('socket.socket.connect',side_effect=AssertionError('No network')):
+                with no_external_network():
                     original=service.files._save('template.docx',fixture(),'local')
                     changes=[dict(target='p0',expected='Weekly progress',style='Heading 1')]
                     first=ctx.format_word(original['id'],'formatted',changes,call_id='format-1')

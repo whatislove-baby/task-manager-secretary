@@ -1,4 +1,5 @@
 """Real import/classifier/persistence services; fixture transport only, no network."""
+from network_guard import no_external_network
 import base64
 from copy import deepcopy
 from datetime import datetime, timedelta
@@ -45,7 +46,7 @@ class SecretaryTests(unittest.TestCase):
         cipher = Fernet(Fernet.generate_key())
         self.enterContext(patch('task_backend.vault.encrypt', lambda s: base64.b64encode(cipher.encrypt(s.encode())).decode()))
         self.enterContext(patch('task_backend.vault.decrypt', lambda s: cipher.decrypt(base64.b64decode(s)).decode()))
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('No external network')))
+        self.enterContext(no_external_network())
         self.clock = datetime(2026, 11, 22, 10, tzinfo=ZoneInfo('Asia/Hong_Kong'))
         self.boxes = {}; self.calls = []; self.invalid = set(); self.model_hook = None
         self.open_service(); self.addCleanup(self.close_service)

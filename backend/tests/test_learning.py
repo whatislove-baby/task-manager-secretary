@@ -3,6 +3,7 @@
 These tests use synthetic business documents and no network, real mailbox or API.
 They verify the deterministic learning contract, not model inference quality.
 """
+from network_guard import no_external_network
 from copy import deepcopy
 from hashlib import sha256
 from io import BytesIO
@@ -49,7 +50,7 @@ class LearningStories(unittest.TestCase):
         self.service.files=MailFiles(self.service);self.addCleanup(self.service.files.close)
         self.service.learning=LearningService(self.service)
         self.addCleanup(lambda:self.service.learning.close())
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('Network is forbidden')))
+        self.enterContext(no_external_network())
         self.mails['mail-a']=dict(fromAddress='orders@harbor.example',sender='Purchasing <orders@harbor.example>',subject='PO 000031 — November call-off',body='Please retain the line revisions shown in the attachment.',messageId='<po31@harbor.example>')
         self.mails['mail-b']=dict(fromAddress='orders@ridge.example',sender='Purchasing <orders@ridge.example>',subject='PO 000031',body='Different customer; never inherit Harbor conventions.',messageId='<po31@ridge.example>')
         self.input=self.file('PO-000031.csv',ROWS,mail='mail-a')
@@ -356,7 +357,7 @@ class TeachingEvidenceTests(unittest.TestCase):
         self.service=BackendService(Path(self.temp.name),worker=True);self.addCleanup(self.service.close)
         self.service.settings.for_request=lambda:dict(apiKey='offline-fixture',baseUrl='https://example.invalid',model='offline')
         self.service.agent.schedule=lambda:None
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
 
     def start(self,text,conversation=None):
         args=dict(text=text)

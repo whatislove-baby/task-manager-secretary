@@ -1,4 +1,5 @@
 """Real pypdf page selection, visual equivalence and managed delivery checks."""
+from network_guard import no_external_network
 from io import BytesIO
 import base64
 import json
@@ -37,7 +38,7 @@ class PdfPageSelectionTests(unittest.TestCase):
         self.s=BackendService(Path(self.tmp.name),worker=True);self.addCleanup(self.s.close)
         self.ctx=AgentTools(self.s,'run','chat',lambda event:None);self.addCleanup(self.ctx.close)
         self.raw=fixture_pdf();self.file=self.s.files._save('original.pdf',self.raw,'local')
-        self.enterContext(patch('socket.socket.connect',side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
 
     def test_reordered_actual_pages_preserve_images_rotation_crop_and_pixels(self):
         result=self.ctx.execute('extract_pdf_pages',dict(file_id=self.file['id'],name='selected.pdf',pages=[3,1]),'selection')

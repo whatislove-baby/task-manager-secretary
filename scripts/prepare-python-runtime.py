@@ -38,9 +38,9 @@ def main():
     source = Path(found).resolve().parent
     if not source.is_relative_to(installs.resolve()):
         raise RuntimeError('Managed Python resolved outside the project install directory.')
-    for executable in ('python.exe', 'pythonw.exe'):
-        if not (source / executable).is_file():
-            raise RuntimeError(f'Managed Windows Python is missing {executable}.')
+    for required in ('python.exe', 'pythonw.exe', 'vcruntime140.dll', 'vcruntime140_1.dll', 'LICENSE.txt'):
+        if not (source / required).is_file():
+            raise RuntimeError(f'Managed Windows Python is missing {required}.')
     for directory in (target, staging):
         if directory.is_symlink():
             raise RuntimeError('Refusing a linked runtime output directory.')
@@ -50,7 +50,10 @@ def main():
     python = staging / 'python.exe'
     runtime = json.loads(subprocess.check_output(
         [str(python), '-B', '-I', '-c',
-         'import json,sys; print(json.dumps({"version": list(sys.version_info[:3]), '
+         'import ctypes,json,pathlib,sys; '
+         '[ctypes.WinDLL(str(pathlib.Path(sys.executable).parent/n)) '
+         'for n in ("vcruntime140.dll","vcruntime140_1.dll")]; '
+         'print(json.dumps({"version": list(sys.version_info[:3]), '
          '"description": sys.version, "bits": 64 if sys.maxsize > 2**32 else 32}))'],
         cwd=root, text=True,
     ))
@@ -67,6 +70,8 @@ def main():
                     distribution='astral-sh/python-build-standalone',
                     distributionKey=DISTRIBUTION,
                     runtimeDescription=runtime['description'],
+                    visualCppRuntime={name: hashlib.sha256((staging / name).read_bytes()).hexdigest()
+                                      for name in ('vcruntime140.dll', 'vcruntime140_1.dll')},
                     requirementsSha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in locks},
                     dependencies=dict(pins))
     # BUILD is not part of the install-only distribution's guaranteed layout.

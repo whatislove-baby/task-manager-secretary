@@ -26,6 +26,7 @@ const runtime = {python: path.join(resources, 'python', 'python.exe'), backendDi
 const host = new MailAutomationHost(directory, runtime);
 let bridge;
 function ps(source) {
+  source = '[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false); ' + source;
   const out = execFileSync('powershell.exe', ['-NoLogo', '-NoProfile', '-NonInteractive', '-EncodedCommand', Buffer.from(source, 'utf16le').toString('base64')], {encoding: 'utf8', windowsHide: true, timeout: 20000});
   return JSON.parse(out.trim().replace(/^\uFEFF/, ''));
 }

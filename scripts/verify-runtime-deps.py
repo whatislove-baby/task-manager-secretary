@@ -14,6 +14,8 @@ import sys
 # Explicit project script import also works under Python -I isolated mode.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from requirements_lock import normalized, read_lock
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'backend' / 'tests'))
+from network_guard import no_external_network
 
 
 def verify_requirements(filename):
@@ -103,8 +105,7 @@ def smoke_agent():
     skill_text = ('---\nname: runtime\ndescription: Read the synthetic runtime marker\n'
                   'metadata:\n  include_tools: read_fixture\n---\nCall read_fixture after reading this skill.')
     with patch.dict(os.environ, {'LANGSMITH_TRACING': 'false', 'LANGCHAIN_TRACING_V2': 'false', 'LANGCHAIN_TRACING': 'false'}), \
-            patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')), \
-            patch('socket.socket.connect_ex', side_effect=AssertionError('Network forbidden')), \
+            no_external_network(), \
             tempfile.TemporaryDirectory(prefix='tm-agent-runtime-') as directory:
         conn = sqlite3.connect(str(Path(directory) / 'state.sqlite'), check_same_thread=False)
         try:

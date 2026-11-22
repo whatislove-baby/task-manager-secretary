@@ -1,4 +1,5 @@
 """Offline MIME fixtures must preserve identity, attachments and time isolation."""
+from network_guard import no_external_network
 from copy import deepcopy
 import importlib.util
 from pathlib import Path
@@ -23,9 +24,7 @@ class ScenarioMailFixturesTests(unittest.TestCase):
         (self.root / 'attachments/details.md').write_text('# Course plan\nRead chapter 4.\n', encoding='utf-8')
         profile = self.root / 'profile'
         profile.mkdir()
-        self.no_network = patch('socket.socket.connect', side_effect=AssertionError('No fixture network'))
-        self.no_network.start()
-        self.addCleanup(self.no_network.stop)
+        self.enterContext(no_external_network())
         self.service = BackendService(profile)
         self.addCleanup(self.service.close)
         base = dict(to=[dict(name='学生', address='student@example.invalid')], body='请看附件。\n陈明',

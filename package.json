@@ -1,6 +1,6 @@
 {
   "name": "task-manager-python",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Local React desktop planner with a Python business backend",
   "main": "dist-backend/main/main.js",

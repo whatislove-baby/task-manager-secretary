@@ -1,4 +1,5 @@
 """Actual file/draft stores: recoverable cleanup without guessing business scope."""
+from network_guard import no_external_network
 from pathlib import Path
 import json
 import tempfile
@@ -21,7 +22,7 @@ class FileArchiveTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.addCleanup(self.service.close)
         self.addCleanup(self.ctx.close)
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('No network')))
+        self.enterContext(no_external_network())
 
     def generated(self, name='old.txt', content='Older report', parents=None):
         return self.service.files._save(name, content.encode(), 'generated', parents=parents or [])

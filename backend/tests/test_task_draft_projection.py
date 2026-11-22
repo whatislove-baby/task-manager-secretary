@@ -1,4 +1,5 @@
 """Task draft history and current state, real stores and review RPC, no model."""
+from network_guard import no_external_network
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -21,7 +22,7 @@ class TaskDraftProjectionTests(unittest.TestCase):
         self.run = self.service.agent.call('startTurn', dict(text='Prepare tasks for review.'))
         self.service.agent._update(self.run['id'], dict(status='running', _executing=True))
         self.ctx = self.context()
-        self.enterContext(patch('socket.socket.connect', side_effect=AssertionError('Network forbidden')))
+        self.enterContext(no_external_network())
 
     def context(self):
         return AgentTools(self.service, self.run['id'], self.run['conversationId'],
