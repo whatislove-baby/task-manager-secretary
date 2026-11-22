@@ -13,8 +13,8 @@
     },
     {
       "path": ".github/workflows/windows-build.yml",
-      "bytes": 8129,
-      "sha256": "e6d71d1df30be811d7c6130969609b14d768257d95382e197b44123c8ee9c2ad",
+      "bytes": 8184,
+      "sha256": "fbba142d926e26d4963f3e54d5ef1faaf48a0c0c8475441e33e448d69ddecef0",
       "sourceSha256": null,
       "unchanged": false
     },
@@ -1049,8 +1049,8 @@
     },
     {
       "path": "backend/tests/test_skill_runtime_setup.py",
-      "bytes": 4040,
-      "sha256": "01b5b14010a5938227aec4fdaee467d7be94034fc4c707da035fb384c3952aaa",
+      "bytes": 4259,
+      "sha256": "23f8d1258122af30b264ec53a1f19845508b2904b2ba90a6d06f8f76ba6e6c1c",
       "sourceSha256": null,
       "unchanged": false
     },

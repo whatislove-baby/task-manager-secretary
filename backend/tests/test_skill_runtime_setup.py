@@ -39,8 +39,11 @@ class SkillRuntimeSetupTests(unittest.TestCase):
         self.assertEqual([call.args[0][3] for call in run.call_args_list], ['pull', 'build'])
         for call in run.call_args_list:
             self.assertEqual(call.args[0][:3], ['docker.exe', '--host', host])
-            self.assertEqual(call.kwargs['env'], {key:value for key,value in environment.items()
-                                                if key in ('PATH', 'USERPROFILE', 'SystemRoot')})
+            # Windows os.environ normalizes keys to uppercase; values and the
+            # exact allowed key set must still match on both host platforms.
+            self.assertEqual({key.upper():value for key,value in call.kwargs['env'].items()},
+                             {key.upper():value for key,value in environment.items()
+                              if key in ('PATH', 'USERPROFILE', 'SystemRoot')})
             self.assertEqual(call.kwargs['creationflags'], 0x08000000)
             self.assertTrue(call.kwargs['check'])
         self.assertIn('org.taskmanager.skill-runtime='+runtime_hash, run.call_args_list[1].args[0])
