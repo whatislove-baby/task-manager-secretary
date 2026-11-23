@@ -104,7 +104,7 @@ contextBridge.exposeInMainWorld('mailFiles',Object.freeze(files));
 const agentInvoke=(name:keyof import('../shared/agent').AgentAPI,...args:unknown[])=>ipcRenderer.invoke('agent:'+name,...args);
 const agent:import('../shared/agent').AgentAPI={
  getSecretary:()=>agentInvoke('getSecretary'),createChild:input=>agentInvoke('createChild',input),getBriefing:id=>agentInvoke('getBriefing',id),
- listConversations:()=>agentInvoke('listConversations'),getConversation:id=>agentInvoke('getConversation',id),
+ listConversations:()=>agentInvoke('listConversations'),getConversation:id=>agentInvoke('getConversation',id),exportConversation:input=>agentInvoke('exportConversation',input),
  startTurn:input=>agentInvoke('startTurn',input),getRun:id=>agentInvoke('getRun',id),
  resumeRun:input=>agentInvoke('resumeRun',input),pauseRun:id=>agentInvoke('pauseRun',id),cancelRun:id=>agentInvoke('cancelRun',id),
  deleteConversation:id=>agentInvoke('deleteConversation',id),getMailDraft:id=>agentInvoke('getMailDraft',id),listPending:()=>agentInvoke('listPending'),

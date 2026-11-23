@@ -1,14 +1,62 @@
 import type { BrowserWindow, IpcMain } from 'electron';
+import { randomUUID } from 'node:crypto';
+import { open, rename, unlink, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { PythonBackend } from './python-backend';
 import { pythonChannels } from './python-channels';
 import { mutationMethods, rendererAllowed } from './widget-policy';
 import type { Result, DesktopAPI } from '../shared/contracts';
+import type { AgentConversation, AgentConversationExportInput } from '../shared/agent';
+import { conversationFilename, conversationMarkdown } from '../shared/conversation-export';
 import type { AutomationHost } from './mail-automation-host';
 
 interface Backend {call(method: string, ...args: unknown[]): Promise<Result<unknown>>}
 
 export interface PythonDesktopPorts {chooseFiles?():Promise<string[]|null>;saveFile?(name:string):Promise<string|null>;automation?:AutomationHost;runtime?:{python:string;backendDirectory:string}; notifyJob?(job:{id:string;kind:string;label:string},acknowledge:()=>void):void;chooseBackup?(): Promise<string | null>; saveBackup?(): Promise<string | null>; chooseText?(): Promise<string | null>; openExternal?(url:string):Promise<void>; decryptLegacy?(cipher:Buffer):Promise<string>}
+
+function isConversationExportInput(value:unknown):value is AgentConversationExportInput {
+  if (!value || typeof value!=='object' || Reflect.ownKeys(value).length!==2 ||
+      !Object.hasOwn(value,'id') || !Object.hasOwn(value,'includeSources')) return false;
+  const {id,includeSources}=value as Partial<AgentConversationExportInput>;
+  return typeof id==='string' && id.length===36 && /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(id) && typeof includeSources==='boolean';
+}
+
+async function writeConversationExport(path:string,markdown:string):Promise<void> {
+  const temporary=join(dirname(path),`.tm-conversation-${randomUUID()}.tmp`);
+  const file=await open(temporary,'wx',0o600);
+  try {
+    try {
+      await writeFile(file,markdown,'utf8');
+      await file.sync();
+    } finally {
+      await file.close();
+    }
+    await rename(temporary,path);
+  } catch(error) {
+    await unlink(temporary).catch(()=>{});
+    throw error;
+  }
+}
+
+async function exportConversation(backend:Backend,args:unknown[],saveFile:PythonDesktopPorts['saveFile']):Promise<Result<boolean>> {
+  const [input]=args;
+  if (args.length!==1 || !isConversationExportInput(input)) return {ok:false,error:'无效的对话导出参数。'};
+  if (!saveFile) return {ok:false,error:'当前环境无法打开保存窗口。'};
+  try {
+    const response=await backend.call('agent:getConversation',input.id);
+    const conversation=response.ok?response.data as AgentConversation:undefined;
+    if (conversation?.id!==input.id) return {ok:false,error:'无法读取这段对话，请重试。'};
+    const markdown=conversationMarkdown(conversation,input.includeSources);
+    if (!markdown) return {ok:false,error:'这段对话没有可导出的内容。'};
+    const path=await saveFile(conversationFilename(conversation.title));
+    if (!path) return {ok:true,data:false};
+    await writeConversationExport(path,markdown);
+    return {ok:true,data:true};
+  } catch {
+    return {ok:false,error:'保存对话失败，请重试。'};
+  }
+}
 
 export async function migratePythonCredentials(backend:Backend, decrypt:(cipher:Buffer)=>Promise<string>):Promise<Result<unknown>> {
   const response=await backend.call('_legacySecrets');
@@ -27,6 +75,7 @@ export async function dispatchPython(backend: Backend, trusted: boolean, channel
   if (!trusted) return {ok: false, error: '拒绝未知页面请求。'};
   if (!pythonChannels.includes(channel)) return {ok:false,error:'拒绝未知接口。'};
   const method = channel.startsWith('backend:') ? channel.slice('backend:'.length) : channel;
+  if (method==='agent:exportConversation') return exportConversation(backend,args,ports.saveFile);
   let result: Result<unknown>;
   try {
     if (method === 'mail-files:importLocal') {

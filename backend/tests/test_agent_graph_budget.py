@@ -29,6 +29,8 @@ class AgentGraphBudgetTests(AgentRuntimeTests):
                            AIMessage(content='This should never be reached.'))
         result = self.execute_run(self.start('Exercise the bounded model-call guard.'))
         self.assertEqual(result['status'], 'failed')
+        self.assertEqual(result.get('errorCode'), 'execution_limit')
+        self.assertIn('拆分当前任务', result['error'])
         self.assertEqual(errors, ['ModelCallLimitExceededError'])
         self.assertEqual(len(model.seen), 40)
 

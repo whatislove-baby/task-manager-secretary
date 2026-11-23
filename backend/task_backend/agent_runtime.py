@@ -20,6 +20,7 @@ from typing import NotRequired
 from uuid import uuid4, uuid5, NAMESPACE_URL
 from zoneinfo import ZoneInfo
 
+from .agent_diagnostics import AgentFailure, EmptyModelResponse, diagnose_run_error
 from .archive import text
 from .mail_store import compact, digest
 from .tree import identifier, instant, strict
@@ -79,6 +80,10 @@ def _message_text(message):
         return ''.join(item.get('text', '') for item in content
                        if isinstance(item, dict) and item.get('type') in ('text', 'output_text'))
     return ''
+
+
+def _has_incomplete_finish_reason(message):
+    return message.response_metadata.get('finish_reason') in ('length', 'content_filter', 'error')
 
 
 class AgentService:
@@ -318,7 +323,7 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
         reasoning = value.get('reasoning', 'auto')
         if reasoning not in ('auto', 'high', 'low'):
             raise ValueError('无效思考模式')
-        self.service.settings.for_request()  # Validate before saving a user turn.
+        self._request_config()  # Validate before saving a user turn.
         for key, cap in (('mailIds', 20), ('fileIds', 12)):
             ids = value.get(key, [])
             if not isinstance(ids, list) or len(ids) > cap or any(not isinstance(i, str) for i in ids) or len(set(ids)) != len(ids):
@@ -423,6 +428,7 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
                 if current['status'] != run['status'] or current.get('_executing'):
                     raise ValueError('任务状态已变化，请刷新后重试')
                 current.update(changes, updatedAt=instant())
+                current.pop('errorCode', None)
                 self.db.execute('UPDATE agent_runs SET payload=? WHERE id=?', (compact(current), run['id']))
                 if conversation:
                     self._save_conversation(conversation)
@@ -509,6 +515,22 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
             return pending
         raise ValueError('未知助手接口')
 
+    def _request_config(self):
+        try:
+            return self.service.settings.for_request()
+        except (ValueError, OSError) as exc:
+            # Settings validation owns these exact messages. Unexpected errors
+            # get fixed guidance even before there is a run to store it on.
+            for message in (
+                '请先配置AI服务、模型和密钥',
+                '服务地址须为不含账号、查询参数的HTTPS地址',
+                '配置文件无法读取，请先备份数据目录并检查settings.json',
+                '凭据无法解密，请在当前设备重新保存或重新授权',
+            ):
+                if exc.args == (message,):
+                    raise AgentFailure('configuration', message) from None
+            raise AgentFailure('configuration') from None
+
     def _model(self, config, reasoning):
         if self.model_factory:
             return self.model_factory(config, reasoning)
@@ -517,7 +539,10 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
                       timeout=180000, max_retries=1, max_tokens=32768, streaming=True)
         if reasoning != 'auto':
             kwargs['reasoning'] = {'effort': reasoning}
-        return FormatPreservingChatOpenRouter(**kwargs)
+        try:
+            return FormatPreservingChatOpenRouter(**kwargs)
+        except ValueError:
+            raise AgentFailure('configuration') from None
 
     def _restore_referenced_sources(self, run, answer):
         """Keep known historical citation links usable after a follow-up/summary.
@@ -618,19 +643,13 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
             if self._run(id)['status'] == 'running':
                 self._update(id, {'status': 'paused'})
         except Exception as exc:
-            # Provider errors can include request content or credentials. Never persist them verbatim.
-            error = '助手执行失败，已有文件和草稿保留。请检查网络、模型工具能力及配置后重试。'
-            name = type(exc).__name__
-            if name in ('GraphRecursionError', 'ModelCallLimitExceededError'):
-                error = '本轮工具调用较多，已暂停继续执行。可以重试，或拆分当前任务。'
-            elif name in ('RemoteProtocolError','ConnectError','ReadTimeout','ConnectTimeout','APITimeoutError','APIConnectionError'):
-                error = '模型连接中断或超时，已完成的文件和步骤保留。点击继续会从检查点恢复，请勿重新创建同一任务。'
-            elif name == 'RateLimitError':
-                error = '模型服务暂时限制请求频率，已有进度保留。稍后可点击继续。'
-            elif isinstance(exc, ValueError) and str(exc).startswith(('AI配置', '模型回复', '请先配置', '服务地址')):
-                error = str(exc)
-            if self._run(id)['status'] == 'running':
-                self._update(id, {'status': 'failed', 'error': error})
+            # The public run record only stores the fixed diagnostic.
+            failure = diagnose_run_error(exc)
+            try:
+                self._update(id, {'status': 'failed', 'error': failure.message,
+                                  'errorCode': failure.code}, running=True)
+            except AgentStopped:
+                pass  # A concurrent pause or cancel owns the final status.
         finally:
             if watch:
                 watch.cancel()
@@ -696,10 +715,10 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
             host_run_id: NotRequired[str]
 
         run = self._run(id)
-        config = self.service.settings.for_request()
+        config = self._request_config()
         fingerprint = digest([config['baseUrl'], config['model'], config['apiKey']])
         if run.get('_configFingerprint', fingerprint) != fingerprint:
-            raise ValueError('AI配置已改变，请取消这次任务后重新发起，避免混用模型状态')
+            raise AgentFailure('configuration', 'AI配置已改变，请取消这次任务后重新发起，避免混用模型状态')
         self._update(id, {'_configFingerprint': fingerprint, 'model': config['model']}, running=True)
         model = self._model(config, run['_input'].get('reasoning', 'auto'))
         tool_context = EvidenceAgentTools(self.service, id, conversation_id=run['conversationId'],
@@ -851,7 +870,7 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
                     invocation = None  # Resume original node and tool IDs, including a consumed clarification.
                 elif same_run:
                     previous = next((m for m in reversed(state.values.get('messages', [])) if isinstance(m, AIMessage) and not m.tool_calls), None)
-                    if previous is not None and _message_text(previous).strip() and previous.response_metadata.get('finish_reason') not in ('length', 'content_filter'):
+                    if previous is not None and _message_text(previous).strip() and not _has_incomplete_finish_reason(previous):
                         invocation = None  # A completed graph whose result was not saved to the visible transcript.
                     else:
                         invocation = {'messages': [HumanMessage(content='上一轮模型回复为空或未完整结束，请继续完成本轮原始用户任务。核对已完成工具结果，不重复创建已有产物。',
@@ -884,7 +903,7 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
                             chunk_message_id = message.id
                         partial += _message_text(message)
                         if len(partial) > 250000:
-                            raise ValueError('模型回复超过本轮可展示范围，请拆分任务')
+                            raise AgentFailure('model_response', '模型回复超过本轮可展示范围，请拆分任务')
                         if time.monotonic() - last_flush >= .12:
                             self._update(id, {'partialText': partial}, running=True)
                             last_flush = time.monotonic()
@@ -906,11 +925,11 @@ CREATE INDEX IF NOT EXISTS agent_runs_conversation ON agent_runs(conversation_id
                 messages = state.values.get('messages', [])
                 answer = next((m for m in reversed(messages) if isinstance(m, AIMessage) and not m.tool_calls), None)
                 if answer is None or not _message_text(answer).strip():
-                    raise ValueError('模型回复为空，未将任务标记完成；可以重试')
-                if answer.response_metadata.get('finish_reason') in ('length', 'content_filter'):
-                    raise ValueError('模型回复未完整结束，保留部分内容供检查；请重试或拆分任务')
-                if self.service.settings.for_request() != config:
-                    raise ValueError('AI配置在执行中改变，当前输出尚未确认完成')
+                    raise EmptyModelResponse()
+                if _has_incomplete_finish_reason(answer):
+                    raise AgentFailure('model_response', '模型回复未完整结束，保留部分内容供检查。请重试或拆分任务。')
+                if self._request_config() != config:
+                    raise AgentFailure('configuration', 'AI配置在执行中改变，当前输出尚未确认完成。请取消本轮后重新发起。')
                 result_text = _message_text(answer)
                 self._restore_referenced_sources(run, result_text)
                 # Transcript and terminal state commit together. A concurrent pause/cancel

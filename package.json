@@ -81,6 +81,7 @@
       "dist-backend/main/window-page.js",
       "dist-backend/main/window-log.js",
       "dist-backend/shared/preferences.js",
+      "dist-backend/shared/conversation-export.js",
       "dist-renderer/**/*",
       "package.json"
     ],

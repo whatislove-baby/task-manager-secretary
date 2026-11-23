@@ -23,6 +23,8 @@ from langchain_core.messages import BaseMessage
 from langchain_core.outputs import ChatGenerationChunk
 from langchain_openrouter import ChatOpenRouter
 
+from .agent_diagnostics import EmptyModelResponse
+
 
 class ReasoningMetadataConflict(ValueError):
     """A stream changed metadata for an existing reasoning block."""
@@ -99,6 +101,8 @@ class FormatPreservingChatOpenRouter(ChatOpenRouter):
                             logprobs=(normalized.generation_info or {}).get("logprobs"),
                         )
                     yield normalized
+                if not received_chunk:
+                    raise EmptyModelResponse()
                 return
             except (RemoteProtocolError, ConnectError):
                 if received_chunk or attempt:
@@ -126,6 +130,8 @@ class FormatPreservingChatOpenRouter(ChatOpenRouter):
                             logprobs=(normalized.generation_info or {}).get("logprobs"),
                         )
                     yield normalized
+                if not received_chunk:
+                    raise EmptyModelResponse()
                 return
             except (RemoteProtocolError, ConnectError):
                 if received_chunk or attempt:

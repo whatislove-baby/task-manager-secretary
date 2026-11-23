@@ -10,6 +10,8 @@ import './canvas-sync.css';
 import './canvas-reader.css';
 import './agent.css';
 import './agent-pending.css';
+import './agent-recovery.css';
+import './conversation-export.css';
 const widget = new URLSearchParams(window.location.search).get('widget') === '1';
 if (widget) document.documentElement.classList.add('crow-widget-mode');
 createRoot(document.getElementById('root')!).render(<React.StrictMode>{widget ? <CrowWidget/> : <AgentApp/>}</React.StrictMode>);

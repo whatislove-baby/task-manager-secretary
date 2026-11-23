@@ -1,0 +1,81 @@
+.ag-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  min-width: 0;
+}
+
+.ag-conversation-export {
+  position: relative;
+  flex: none;
+}
+
+.ag-topbar .ag-export-trigger {
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid #e9e8e5;
+  border-radius: 8px;
+  color: #545451;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.ag-export-panel {
+  position: absolute;
+  z-index: 10;
+  inset: calc(100% + 8px) 0 auto auto;
+  width: min(276px, calc(100vw - 36px));
+  padding: 12px;
+  border: 1px solid #e4e3df;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 28px #16161016;
+  color: #454541;
+  font-size: 12px;
+}
+
+.ag-export-panel label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.ag-export-panel label input {
+  margin: 0;
+  accent-color: #41413d;
+}
+
+.ag-export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ag-topbar .ag-export-actions button {
+  padding: 7px 9px;
+}
+
+.ag-export-panel p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ag-export-actions + p,
+.ag-export-panel label ~ p {
+  margin-top: 9px;
+}
+
+.ag-export-panel [role='alert'] {
+  color: #9a302c;
+}
+
+@media (max-width: 750px) {
+  .ag-header-actions { gap: 7px; }
+}
+
+@media (max-width: 560px) {
+  .ag-header-actions:has(.ag-conversation-export) .ag-model-label { max-width: min(95px, 23vw); }
+}

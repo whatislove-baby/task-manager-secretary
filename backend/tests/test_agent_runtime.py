@@ -15,9 +15,14 @@ from types import SimpleNamespace
 from unittest.mock import patch
 from uuid import uuid4
 
+from httpx import ConnectError, HTTPStatusError, Request, Response
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import AIMessage, AIMessageChunk, HumanMessage, ToolMessage
 from langchain_core.outputs import ChatGeneration, ChatGenerationChunk, ChatResult
+from openrouter.chat import Chat
+from openrouter.errors import (
+    EdgeNetworkTimeoutResponseError, EdgeNetworkTimeoutResponseErrorData, OpenRouterDefaultError,
+)
 from pydantic import Field
 
 from task_backend.service import BackendService
@@ -293,21 +298,96 @@ class AgentRuntimeTests(unittest.TestCase):
     def test_retry_after_document_tool_does_not_duplicate_artifact(self):
         self.model(tool_call('task',dict(subagent_type='document',description='Generate the requested plan file.'),'delegate-plan'),
                    tool_call('create_document', dict(name='plan.md', format='md', title='计划', content='Synthetic plan.')),
-                   RuntimeError('synthetic provider outage not-a-real-key'))
+                   ConnectError('synthetic provider outage not-a-real-key'))
         run = self.start('生成一份计划文件。')
         first = self.execute_run(run)
         self.assertEqual(first['status'], 'failed')
+        self.assertEqual(first.get('errorCode'), 'connection')
         self.assertNotIn('not-a-real-key', first['error'])
         self.assertEqual(len(first['artifacts']), 1)
         artifact = first['artifacts'][0]['id']
         self.reopen()
+        last_run = self.service.call('agent:getConversation', run['conversationId'])['lastRun']
+        self.assertEqual(last_run.get('errorCode'), 'connection')
         model = self.model(AIMessage(content='计划文件已生成。'),AIMessage(content='已保留原有计划文件。'))
         resumed = self.service.call('agent:resumeRun', dict(id=run['id']))
+        self.assertEqual(resumed['id'], run['id'])
+        self.assertEqual([a['id'] for a in resumed['artifacts']], [artifact])
+        self.assertNotIn('errorCode', resumed)
+        self.assertIsNone(resumed['error'])
         done = self.execute_run(resumed)
         self.assertEqual(done['status'], 'completed', done.get('error'))
+        self.assertNotIn('errorCode', done)
         self.assertEqual([a['id'] for a in done['artifacts']], [artifact])
         self.assertEqual(len(self.service.files.list_files()), 1)
         self.assertTrue(any(isinstance(m, ToolMessage) and artifact in m.content for m in model.seen[0]))
+
+    def test_provider_diagnostics_use_trusted_status_and_omit_raw_messages(self):
+        marker = 'private-provider-marker'
+        request = Request('POST', f'https://offline.invalid/{marker}')
+        response = Response(401, request=request, text=marker)
+        edge_timeout = EdgeNetworkTimeoutResponseError(
+            EdgeNetworkTimeoutResponseErrorData(error={'code': 524, 'message': marker}),
+            Response(524, request=request, text=marker),
+        )
+        spoofed = ValueError(f'模型回复：{marker}')
+        spoofed.status_code = 401
+        cases = [
+            (OpenRouterDefaultError(marker, response), 'authentication', '模型设置'),
+            (HTTPStatusError(marker, request=request, response=Response(403, request=request)),
+             'authentication', '模型设置'),
+            (HTTPStatusError(marker, request=request, response=Response(429, request=request)),
+             'rate_limit', '请求频率'),
+            (edge_timeout, 'connection', '超时'),
+            (spoofed, 'unknown', '助手执行失败'),
+        ]
+        for error, code, guidance in cases:
+            with self.subTest(code=code):
+                model = self.model(error)
+                run = self.start()
+                result = self.execute_run(run)
+                self.assertEqual(result['status'], 'failed')
+                self.assertEqual(result.get('errorCode'), code)
+                self.assertIn(guidance, result['error'])
+                self.assertNotIn(marker, json.dumps(result, ensure_ascii=False))
+                payload = self.service.agent.db.execute(
+                    'SELECT payload FROM agent_runs WHERE id=?', (run['id'],)).fetchone()[0]
+                self.assertNotIn(marker, payload)
+                self.assertEqual(len(model.seen), 1)
+                self.assertFalse(asyncio.run(self.service.agent.run_next()))
+
+    def test_invalid_settings_before_start_preserve_the_no_turn_contract(self):
+        with patch.object(self.service.settings, 'for_request',
+                          side_effect=ValueError('服务地址 private-configuration-marker')):
+            with self.assertRaisesRegex(ValueError, '模型设置') as raised:
+                self.start()
+        self.assertNotIn('private-configuration-marker', str(raised.exception))
+        self.assertEqual(self.service.call('agent:listConversations'), [])
+
+    def test_unreadable_settings_after_queue_are_classified_without_requesting_model(self):
+        run = self.start()
+        model = self.model(AIMessage(content='不应请求模型'))
+        with patch.object(self.service.settings, 'for_request',
+                          side_effect=ValueError('服务地址 private-configuration-marker')):
+            failed = self.execute_run(run)
+        self.assertEqual(failed['status'], 'failed')
+        self.assertEqual(failed.get('errorCode'), 'configuration')
+        self.assertIn('模型设置', failed['error'])
+        self.assertNotIn('private-configuration-marker', failed['error'])
+        self.assertFalse(model.seen)
+
+    def test_legacy_failure_with_no_error_code_can_resume(self):
+        run = self.start()
+        self.service.agent._update(run['id'], {'status': 'failed', 'error': '旧版执行失败'})
+        self.reopen()
+        former = self.service.call('agent:getConversation', run['conversationId'])['lastRun']
+        self.assertEqual(former['error'], '旧版执行失败')
+        self.assertNotIn('errorCode', former)
+        self.model(AIMessage(content='已继续完成这轮。'))
+        resumed = self.service.call('agent:resumeRun', {'id': run['id']})
+        self.assertEqual(resumed['id'], run['id'])
+        self.assertNotIn('errorCode', resumed)
+        self.assertEqual(self.execute_run(resumed)['status'], 'completed')
 
     def test_cancel_is_terminal_and_does_not_run_queued_model(self):
         model = self.model(AIMessage(content='不应执行'))
@@ -342,21 +422,55 @@ class AgentRuntimeTests(unittest.TestCase):
         self.service.call('agent:resumeRun', dict(id=run['id']))
         failed = self.execute_run(run)
         self.assertEqual(failed['status'], 'failed')
+        self.assertEqual(failed.get('errorCode'), 'configuration')
         self.assertIn('AI配置已改变', failed['error'])
         with self.assertRaises(ValueError):
             self.service.call('agent:executeShell', 'echo unsafe')
 
-    def test_truncated_answer_retry_really_calls_model_again(self):
-        self.model(AIMessage(content='被截断的回答', response_metadata={'finish_reason': 'length'}))
-        run = self.start('完整解释这个问题。')
-        failed = self.execute_run(run)
+    def test_incomplete_answer_retry_really_calls_model_again(self):
+        partial = '尚未完成的回答。'
+        for reason in ('length', 'content_filter', 'error'):
+            with self.subTest(reason=reason):
+                self.model(AIMessage(content=partial, response_metadata={'finish_reason': reason}))
+                run = self.start('完整解释这个问题。')
+                failed = self.execute_run(run)
+                self.assertEqual(failed['status'], 'failed')
+                self.assertEqual(failed.get('errorCode'), 'model_response')
+                self.assertEqual(failed['partialText'], partial)
+                conversation = self.service.call('agent:getConversation', run['conversationId'])
+                self.assertEqual([turn['role'] for turn in conversation['turns']], ['user'])
+                self.reopen()
+                model = self.model(AIMessage(content='这次是完整回答。'))
+                self.service.call('agent:resumeRun', dict(id=run['id']))
+                retried = self.execute_run(run)
+                self.assertEqual(retried['status'], 'completed', retried.get('error'))
+                self.assertEqual(len(model.seen), 1)
+                conversation = self.service.call('agent:getConversation', run['conversationId'])
+                self.assertEqual([turn['role'] for turn in conversation['turns']], ['user', 'assistant'])
+                self.assertEqual(conversation['turns'][-1]['content'], '这次是完整回答。')
+
+    def test_empty_provider_stream_can_be_retried_without_committing_answer(self):
+        async def empty_stream():
+            for chunk in ():
+                yield chunk
+
+        run = self.start('解释这个问题。')
+        with patch.object(Chat, 'send_async', return_value=empty_stream()) as send:
+            failed = self.execute_run(run)
         self.assertEqual(failed['status'], 'failed')
-        model = self.model(AIMessage(content='这次是完整回答。'))
-        self.service.call('agent:resumeRun', dict(id=run['id']))
-        retried = self.execute_run(run)
+        self.assertEqual(failed.get('errorCode'), 'model_response')
+        self.assertIn('模型回复为空', failed['error'])
+        self.assertEqual(failed['partialText'], '')
+        send.assert_awaited_once()
+        conversation = self.service.call('agent:getConversation', run['conversationId'])
+        self.assertEqual([turn['role'] for turn in conversation['turns']], ['user'])
+
+        self.model(AIMessage(content='恢复后收到的完整回答。'))
+        resumed = self.service.call('agent:resumeRun', dict(id=run['id']))
+        self.assertEqual(resumed['id'], run['id'])
+        retried = self.execute_run(resumed)
         self.assertEqual(retried['status'], 'completed', retried.get('error'))
-        self.assertEqual(len(model.seen), 1)
-        self.assertEqual(retried['partialText'], '这次是完整回答。')
+        self.assertEqual(retried['partialText'], '恢复后收到的完整回答。')
 
     def test_cancel_waiting_run_then_new_turn_closes_old_tool_call(self):
         self.model(tool_call('ask_user', dict(question='旧项目是哪一个？', options=['A', 'B']), 'old-question'))
@@ -489,6 +603,7 @@ class AgentRuntimeTests(unittest.TestCase):
         restored = self.service.call('agent:getRun', run['id'])
         self.assertEqual(restored['status'], 'paused')
         self.assertFalse(restored['stopping'])
+        self.assertNotIn('errorCode', restored)
         self.assertEqual(closed, [True])
         self.assertIsNone(self.service.agent.process)
         self.assertFalse(scheduled, 'A crashed worker must not silently restart external work')

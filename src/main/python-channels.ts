@@ -1,4 +1,4 @@
-const agentChannels = ['getSecretary','createChild','getBriefing','listConversations','getConversation','startTurn','getRun','resumeRun','pauseRun','cancelRun','deleteConversation','getMailDraft','listPending','resolveMailDraft'].map(name=>'agent:'+name);
+const agentChannels = ['getSecretary','createChild','getBriefing','listConversations','getConversation','exportConversation','startTurn','getRun','resumeRun','pauseRun','cancelRun','deleteConversation','getMailDraft','listPending','resolveMailDraft'].map(name=>'agent:'+name);
 const inboxChannels = ['mail-operations:startInboxSync'];
 const reviewChannels=['skill:list','skill:get','skill:importPackage','skill:approve','skill:disable','learning:list','learning:get','learning:approve','learning:disable','task-changes:list','task-changes:get','task-changes:approve','task-changes:reject'];
 const automationChannels = ['getConfig','saveConfig','getStatus','runNow','listResults','correctCategory','getBackgroundStatus'].map(name=>'mail-automation:'+name);

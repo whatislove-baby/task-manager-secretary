@@ -3,6 +3,7 @@ import type {ComposeInput} from './mail-compose';
 import type {Todo,TodoPatch} from './todo';
 
 export type AgentRunStatus = 'queued'|'running'|'waiting'|'paused'|'completed'|'failed'|'canceled';
+export type AgentRunErrorCode = 'connection'|'rate_limit'|'authentication'|'configuration'|'execution_limit'|'model_response'|'unknown';
 export interface AgentSource {kind:'mail'|'file'|'task'|'learning'|'skill';id:string;title:string;excerpt?:string}
 export interface AgentArtifact {kind:'file'|'task_draft'|'mail_draft'|'learning_draft'|'skill_draft'|'task_change'|'conversation'|'briefing';id:string;title:string}
 export interface AgentEvent {
@@ -14,7 +15,7 @@ export interface AgentClarification {id:string;question:string;options:string[]}
 export interface AgentRun {
   id:string;conversationId:string;status:AgentRunStatus;createdAt:string;updatedAt:string;
   partialText:string;events:AgentEvent[];sources:AgentSource[];artifacts:AgentArtifact[];
-  clarification?:AgentClarification;error?:string;model?:string;
+  clarification?:AgentClarification;error?:string;errorCode?:AgentRunErrorCode;model?:string;
   stopping?:boolean;
   usage?:{inputTokens:number;outputTokens:number};
 }
@@ -24,6 +25,7 @@ export interface AgentTurn {
 }
 export interface AgentConversationSummary {id:string;title:string;createdAt:string;updatedAt:string;turnCount:number;kind?:'secretary'|'task'|'chat';parentConversationId?:string;goal?:string;status?:AgentRunStatus}
 export interface AgentConversation extends AgentConversationSummary {turns:AgentTurn[];activeRun?:AgentRun;lastRun?:AgentRun;children?:AgentConversationSummary[];mailIds?:string[];fileIds?:string[]}
+export interface AgentConversationExportInput {id:string;includeSources:boolean}
 export interface AgentChildInput {parentConversationId:string;title:string;goal:string;mailIds?:string[];fileIds?:string[]}
 export type BriefingCategory='action'|'important'|'normal'|'spam'|'review';
 export interface AgentBriefing {id:string;createdAt?:string;counts:Record<BriefingCategory,number>;items:{mailId:string;subject:string;sender?:string;receivedAt?:string;category:BriefingCategory;reason?:string;summary?:string}[];warning?:string}
@@ -36,6 +38,7 @@ export interface AgentAPI {
   getBriefing(id:string):Promise<Result<AgentBriefing>>;
   listConversations():Promise<Result<AgentConversationSummary[]>>;
   getConversation(id:string):Promise<Result<AgentConversation>>;
+  exportConversation(input:AgentConversationExportInput):Promise<Result<boolean>>;
   startTurn(input:AgentTurnInput):Promise<Result<AgentRun>>;
   getRun(id:string):Promise<Result<AgentRun>>;
   resumeRun(input:{id:string;answer?:string;questionId?:string}):Promise<Result<AgentRun>>;

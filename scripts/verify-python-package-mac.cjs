@@ -23,6 +23,7 @@ function verifyAppFile(name) {
   shippedAppHashes[name]=createHash('sha256').update(shipped).digest('hex');
 }
 for (const name of ['main','preload','python-channels','python-desktop','python-backend']) verifyAppFile('dist-backend/main/'+name+'.js');
+verifyAppFile('dist-backend/shared/conversation-export.js');
 function verifyRenderer(directory) {
   for (const entry of fs.readdirSync(path.join(root,directory),{withFileTypes:true})) {
     const name=directory+'/'+entry.name;

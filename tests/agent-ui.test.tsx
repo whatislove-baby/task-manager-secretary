@@ -21,8 +21,68 @@ function makeSecretary(patch:Partial<AgentConversation>={}):AgentConversation{re
 function setup(overrides:Partial<AgentAPI>={}){
  window.desktop={getSettings:async()=>ok({baseUrl:'https://model.example/v1',model:'deepseek/test',hasApiKey:true,dataDirectory:'data'}),listTodos:async()=>ok([])} as unknown as DesktopAPI;
  window.mailWorkspace={getAccounts:async()=>ok([]),listLocal:async()=>ok({messages:[],total:0})} as unknown as MailWorkspaceAPI;
- window.agent={getSecretary:async()=>ok(makeSecretary()),createChild:async()=>{throw Error('unused child');},getBriefing:async()=>{throw Error('unused briefing');},listConversations:async()=>ok([]),listPending:async()=>ok([]),getConversation:async()=>ok(makeConversation()),getRun:async()=>ok(makeRun()),startTurn:async()=>ok(makeRun()),resumeRun:async()=>ok(makeRun()),pauseRun:async()=>ok(makeRun({status:'paused'})),cancelRun:async()=>ok(makeRun({status:'canceled'})),deleteConversation:async()=>ok(undefined),getMailDraft:async()=>{throw Error('unused');},resolveMailDraft:async()=>ok(undefined),...overrides};
+ window.agent={getSecretary:async()=>ok(makeSecretary()),createChild:async()=>{throw Error('unused child');},getBriefing:async()=>{throw Error('unused briefing');},listConversations:async()=>ok([]),listPending:async()=>ok([]),getConversation:async()=>ok(makeConversation()),exportConversation:async()=>{throw Error('unused export');},getRun:async()=>ok(makeRun()),startTurn:async()=>ok(makeRun()),resumeRun:async()=>ok(makeRun()),pauseRun:async()=>ok(makeRun({status:'paused'})),cancelRun:async()=>ok(makeRun({status:'canceled'})),deleteConversation:async()=>ok(undefined),getMailDraft:async()=>{throw Error('unused');},resolveMailDraft:async()=>ok(undefined),...overrides};
 }
+
+test('导出复制时重新读取所选对话，附加名称需单独选择，切换对话关闭面板',async t=>{
+ const clipboard:string[]=[];
+ Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async(text:string)=>{clipboard.push(text);}}});
+ t.after(()=>Reflect.deleteProperty(navigator,'clipboard'));
+ const chat=makeConversation();
+ const reads:string[]=[];
+ const source={kind:'file' as const,id:'private-source',title:'课程参考.pdf'};
+ const fresh={...chat,turns:[{...chat.turns[0],content:'最新对话内容',sources:[source]}]};
+ setup({listConversations:async()=>ok([chat]),getConversation:async id=>{reads.push(id);return ok(reads.length===1?chat:fresh);}});
+ const ui=render(<AgentApp/>);
+ fireEvent.click(await ui.findByRole('button',{name:chat.title}));
+ await ui.findByText(chat.turns[0].content);
+ fireEvent.click(ui.getByRole('button',{name:'导出对话'}));
+ const option=ui.getByRole('checkbox',{name:'附上来源与产物名称'}) as HTMLInputElement;
+ assert.equal(option.checked,false);
+ fireEvent.click(ui.getByRole('button',{name:'复制完整对话'}));
+ await ui.findByText('完整对话已复制。');
+ assert.deepEqual(reads,[chat.id,chat.id]);
+ assert.match(clipboard[0],/最新对话内容/);
+ assert.doesNotMatch(clipboard[0],/课程参考|帮我分析/);
+ fireEvent.click(option);
+ fireEvent.click(ui.getByRole('button',{name:'复制完整对话'}));
+ await waitFor(()=>assert.equal(clipboard.length,2));
+ assert.match(clipboard[1],/课程参考\.pdf/);
+ fireEvent.click(ui.getByRole('button',{name:'秘书'}));
+ await ui.findByRole('heading',{name:'今天有什么需要处理？'});
+ assert.equal(ui.queryByRole('checkbox',{name:'附上来源与产物名称'}),null);
+ fireEvent.click(ui.getByRole('button',{name:'导出对话'}));
+ assert.equal((ui.getByRole('checkbox',{name:'附上来源与产物名称'}) as HTMLInputElement).checked,false);
+});
+
+test('Markdown 保存发送当前对话 ID 和选项，并反馈取消、失败及成功',async()=>{
+ const chat=makeConversation();
+ const requests:unknown[]=[];
+ setup({listConversations:async()=>ok([chat]),exportConversation:async input=>{requests.push(input);return requests.length===1?ok(false):requests.length===2?{ok:false,error:'保存对话失败，请重试。'}:ok(true);}});
+ const ui=render(<AgentApp/>);
+ fireEvent.click(await ui.findByRole('button',{name:chat.title}));
+ await ui.findByText(chat.turns[0].content);
+ fireEvent.click(ui.getByRole('button',{name:'导出对话'}));
+ fireEvent.click(ui.getByRole('checkbox',{name:'附上来源与产物名称'}));
+ const save=ui.getByRole('button',{name:'保存 Markdown'});
+ fireEvent.click(save);
+ await ui.findByText('已取消保存。');
+ assert.deepEqual(requests,[{id:chat.id,includeSources:true}]);
+ fireEvent.click(save);
+ await ui.findByRole('alert');
+ assert.equal(ui.getByRole('alert').textContent,'保存对话失败，请重试。');
+ fireEvent.click(save);
+ await ui.findByText('Markdown 已保存。');
+});
+
+test('空对话的复制操作显示无内容反馈',async()=>{
+ setup({getConversation:async()=>ok(makeSecretary())});
+ const ui=render(<AgentApp/>);
+ await ui.findByRole('heading',{name:'今天有什么需要处理？'});
+ fireEvent.click(ui.getByRole('button',{name:'导出对话'}));
+ fireEvent.click(ui.getByRole('button',{name:'复制完整对话'}));
+ await ui.findByText('这段对话没有可导出的内容。');
+});
 
 test('聊天是主入口，无需选择空间；发送自然语言并展示真实流进度和最终答复',async()=>{
  let current=makeRun(),conversation=makeConversation(current);const sent:AgentTurnInput[]=[];
@@ -261,7 +321,7 @@ test('实时任务卡显示真实失败，仍可打开任务，不声称文件�
  const child={...makeConversation(),id:item.id,kind:'task' as const,parentConversationId:'secretary',lastRun:makeRun({id:'failed-child-run',conversationId:item.id,status:'failed',error:'服务暂时不可用'})};
  setup({getSecretary:async()=>ok(makeSecretary({turns:[{id:'failed-card',role:'assistant',content:'先前回复。',createdAt:date,artifacts:[item]}]})),getConversation:async()=>ok(child)});
  const ui=render(<AgentApp/>);await waitFor(()=>assert.ok(ui.getByText(/实时状态：执行失败/)));assert.ok(!ui.queryByText(/实时状态：本轮完成/));
- fireEvent.click(ui.getByRole('button',{name:/失败的报告任务.*执行失败/}));await waitFor(()=>assert.ok(ui.getByText('本轮未完成：服务暂时不可用')));
+ fireEvent.click(ui.getByRole('button',{name:/失败的报告任务.*执行失败/}));await waitFor(()=>assert.match(ui.getByRole('status',{name:'执行恢复指引'}).textContent??'',/本轮未完成/));
 });
 
 test('任务状态读取失败可见；切页后迟到的状态不覆盖新对话或输入',async()=>{
