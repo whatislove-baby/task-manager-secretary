@@ -127,6 +127,10 @@ npm run test:handover
 
 前四条也可合并为 `npm run check`。`test:handover` 使用合成输入与受控 HTTP、模型、SMTP 响应，写入 `handover/results.json`；不会用真实邮箱发信，也不能代替组员亲手做上面的交接。
 
+向 `main` 提交合并请求后，GitHub 会自动运行 Mac / Windows 回归测试和依赖审计。
+Mac 如需不访问系统钥匙串的自动测试，可运行 `npm run test:python:ci`；其凭据
+隔离范围、Excel 预览修复和依赖更新详见[仓库检查修复](repository-health.md)。
+
 | 已有验证范围 | 已记录结果与边界 |
 | --- | --- |
 | 首次公开源码副本的 Mac 后端回归 | 650 项：**638 通过、12 跳过、0 失败**；在 Mac 普通权限环境复测。与后续 Windows 构建统计不混加。 |
