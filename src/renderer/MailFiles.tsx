@@ -43,12 +43,14 @@ export function FileCard({id,onAttach,onSelect,onLearning,onSkill,disabled=false
   void run(async()=>{
    const result=unwrap(await window.mailFiles!.inspect!(id,offset,30));
    const columns=result.columns,rows=result.rows,total=result.rowCount;
+   const validCell=(value:unknown)=>typeof value==='string'||(file?.extension==='xlsx'&&(value===null||typeof value==='boolean'||(typeof value==='number'&&Number.isFinite(value))));
    if(result.fileId&&result.fileId!==id)throw Error('表格与当前文件不匹配。');
-   if(!Array.isArray(columns)||!columns.length||!columns.every(v=>typeof v==='string')||!Array.isArray(rows)||!rows.every(row=>Array.isArray(row)&&row.length===columns.length&&row.every(v=>typeof v==='string'))||typeof total!=='number'||!Number.isInteger(total)||total<offset+rows.length)throw Error('表格数据不完整，请重新读取。');
+   if(!Array.isArray(columns)||!columns.length||!columns.every(v=>typeof v==='string')||!Array.isArray(rows)||!rows.every(row=>Array.isArray(row)&&row.length===columns.length&&row.every(validCell))||typeof total!=='number'||!Number.isInteger(total)||total<offset+rows.length)throw Error('表格数据不完整，请重新读取。');
    const next=offset+rows.length<total?offset+rows.length:null;
    if(next!==null&&next<=offset)throw Error('表格没有返回后续行，请重新读取。');
    if(result.nextOffset!==undefined&&result.nextOffset!==next)throw Error('表格分页信息不一致，请重新读取。');
-   return {columns,rows,rowCount:total,offset,nextOffset:next,warnings:result.warnings??[]};
+   const displayRows=rows.map(row=>row.map(value=>value===null?'':typeof value==='boolean'?(value?'TRUE':'FALSE'):String(value)));
+   return {columns,rows:displayRows,rowCount:total,offset,nextOffset:next,warnings:result.warnings??[]};
   },setTable);
  }
  function checkFile(){

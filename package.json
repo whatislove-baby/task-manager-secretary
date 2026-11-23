@@ -16,6 +16,7 @@
     "test:runtime": "npm run build && electron scripts/python-electron-smoke.cjs && electron scripts/python-credentials-smoke.cjs",
     "dev:legacy": "npm run build && node scripts/dev-python.cjs --legacy",
     "test:python": "node scripts/test-python.cjs",
+    "test:python:ci": "node scripts/test-python.cjs --isolated-credentials",
     "test:python-desktop": "npm run build && electron scripts/python-electron-smoke.cjs",
     "runtime:python": "node scripts/prepare-python-runtime.cjs",
     "test:package": "node scripts/verify-python-package.cjs",
@@ -38,6 +39,9 @@
     "react-markdown": "10.1.0",
     "remark-gfm": "4.0.1",
     "zod": "^4.0.0"
+  },
+  "overrides": {
+    "minimatch@>=7.0.0 <11.0.1": "11.0.1"
   },
   "devDependencies": {
     "@azure/msal-node": "7.1.2",

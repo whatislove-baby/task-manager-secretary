@@ -59,6 +59,60 @@ test('CSV 表格按30行分页，保留前导零且不自动计算或发送数�
  assert.equal(ui.queryByRole('table'),null);
 });
 
+test('XLSX 工作表显示合并标题、空格、数字及布尔值，并保留前导零和公式原文',async()=>{
+ const xlsx={...file,name:'采购单.xlsx',extension:'xlsx'};
+ // Mirrors inspect_xlsx's worksheet layout; it preserves scalar types.
+ const worksheet={fileId:file.id,format:'xlsx',layout:'worksheet' as const,sheetName:'采购单',sheetNames:['采购单','说明'],
+  columns:['A','B','C','D'],rowCount:4,offset:0,nextOffset:null,
+  mergedRanges:['A1:D1'],formulasEvaluated:false,warnings:['公式只读取，不会计算。'],
+  rows:[['采购单',null,null,null],[null,null,null,null],['料号','数量','含税','审核'],['0007',0,12.5,false]]};
+ setup({get:async()=>ok(xlsx),inspect:async()=>ok(worksheet)});
+ const ui=render(<FileCard id={file.id}/>);
+ await waitFor(()=>assert.ok(ui.getByRole('button',{name:'查看表格'})));
+ fireEvent.click(ui.getByRole('button',{name:'查看表格'}));
+ await waitFor(()=>assert.ok(ui.getByRole('table')));
+ assert.equal(ui.queryByRole('alert'),null);
+ assert.ok(ui.getByRole('cell',{name:'0007'}));
+ assert.ok(ui.getByRole('cell',{name:'0'}));
+ assert.ok(ui.getByRole('cell',{name:'12.5'}));
+ assert.ok(ui.getByRole('cell',{name:'FALSE'}));
+ assert.equal(ui.getAllByRole('cell',{name:''}).length,7);
+ fireEvent.click(ui.getByRole('button',{name:'收起表格'}));
+ window.mailFiles!.inspect=async()=>ok({...worksheet,rows:[['=1+1',true,'','']],rowCount:1});
+ fireEvent.click(ui.getByRole('button',{name:'查看表格'}));
+ await waitFor(()=>assert.ok(ui.getByRole('cell',{name:'=1+1'})));
+ assert.ok(ui.getByRole('cell',{name:'TRUE'}));
+ assert.equal(ui.queryByRole('cell',{name:'2'}),null);
+});
+
+test('XLSX 混合类型仍按实际返回行数翻页',async()=>{
+ const calls:number[]=[];
+ setup({get:async()=>ok({...file,name:'分页.xlsx',extension:'xlsx'}),inspect:async(_id,offset=0)=>{
+  calls.push(offset);return ok({layout:'worksheet',columns:['A'],rowCount:3,
+   rows:offset===0?[[0],[false]]:[[null]],nextOffset:offset===0?2:null});
+ }});
+ const ui=render(<FileCard id={file.id}/>);
+ await waitFor(()=>assert.ok(ui.getByRole('button',{name:'查看表格'})));
+ fireEvent.click(ui.getByRole('button',{name:'查看表格'}));
+ await waitFor(()=>assert.ok(ui.getByRole('cell',{name:'FALSE'})));
+ fireEvent.click(ui.getByRole('button',{name:'表格下一页'}));
+ await waitFor(()=>assert.ok(ui.getByText('3–3 / 3 行')));
+ assert.deepEqual(calls,[0,2]);
+ assert.equal((ui.getByRole('button',{name:'表格下一页'}) as HTMLButtonElement).disabled,true);
+});
+
+test('表格拒绝对象、数组、非有限数字及 CSV 中的非字符串单元格',async()=>{
+ for(const [extension,value] of [['xlsx',{}],['xlsx',[]],['xlsx',Infinity],['xlsx',NaN],['csv',12],['csv',null]] as const){
+  setup({get:async()=>ok({...file,name:`坏数据.${extension}`,extension}),inspect:async()=>ok({columns:['A'],rows:[[value]],rowCount:1,nextOffset:null} as any)});
+  const ui=render(<FileCard id={file.id}/>);
+  await waitFor(()=>assert.ok(ui.getByRole('button',{name:'查看表格'})));
+  fireEvent.click(ui.getByRole('button',{name:'查看表格'}));
+  await waitFor(()=>assert.ok(ui.getByRole('alert')));
+  assert.equal(ui.queryByRole('table'),null);
+  cleanup();
+ }
+});
+
 test('文件检查分别展示结构与渲染状态，自动检查不宣称视觉正确',async()=>{
  setup();const ui=render(<FileCard id={file.id}/>);
  await waitFor(()=>assert.ok(ui.getByRole('button',{name:'检查文件'})));

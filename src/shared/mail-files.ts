@@ -15,7 +15,8 @@ export interface FileRecord {
 }
 export interface FileValidation {sha256:string;structuralPassed:boolean;rendered:boolean;visualReviewed:boolean;pageCount?:number;rowCount?:number;columnCount?:number;checks:string[];warnings:string[]}
 export interface FilePreview {fileId:string;sha256:string;page:number;pageCount:number;dataUrl:string;width:number;height:number;rendered:boolean}
-export interface FileInspection {fileId?:string;format?:string;columns?:string[];rows?:string[][];rowCount?:number;nextOffset?:number|null;warnings?:string[];sheets?:{name:string;rowCount?:number}[]}
+export type FileCellValue=string|number|boolean|null;
+export interface FileInspection {fileId?:string;format?:string;layout?:'table'|'worksheet';columns?:string[];rows?:FileCellValue[][];rowCount?:number;nextOffset?:number|null;warnings?:string[];sheets?:{name:string;rowCount?:number}[]}
 export type FileOutputFormat='none'|'pdf'|'docx'|'md'|'txt';
 export interface FileTaskInput {
  conversationId?:string; messageIds?:string[]; text:string; fileIds:string[];
