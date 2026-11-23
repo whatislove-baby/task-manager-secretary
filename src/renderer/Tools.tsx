@@ -9,15 +9,20 @@ import type { MailAnalysis } from '../shared/mail-workspace';
 import { DueEditor } from './DueEditor';
 import { PreferencesSection } from './PreferencesSection';
 import { clearDraftReview, draftReviewKey, loadDraftReview, saveDraftReview } from './draft-review-store';
+import { DuplicateTodoMatches } from './DuplicateTodoMatches';
+import { findDuplicateTodos } from './duplicate-todos';
 
 type Props = { initialAnalysis?:MailAnalysis; initialExtraction?: MailExtraction; section: 'settings' | 'ai' | 'trash'; todos: Todo[]; onClose: () => void; onChanged: () => Promise<void>; onSaved?: () => void | Promise<void>; returnFocus?: HTMLElement | null };
 const unwrap = <T,>(result: Result<T>): T => { if (!result.ok) throw new Error(result.error); return result.data; };
 const describe = (error: unknown) => error instanceof Error ? error.message : String(error);
 const tabbable = 'button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],summary,[tabindex="0"]';
+type SaveMode = 'selected' | 'all';
+type DuplicateConfirmation = { mode: SaveMode; signature: string; blockedCount: number; pendingCount: number };
 
 export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtraction, initialAnalysis, returnFocus }: Props) {
   const panel = useRef<HTMLDivElement>(null);
   const confirmPanel = useRef<HTMLDivElement>(null);
+  const duplicatePrompt = useRef<HTMLParagraphElement>(null);
   const locked = useRef(false);
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -45,7 +50,10 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
   const [saved, setSaved] = useState(restored?.saved ?? initialAnalysis?.saved ?? false);
   const [aiNotes, setAiNotes] = useState(restored?.aiNotes ?? initialAnalysis?.notes ?? initialExtraction?.notes ?? '');
   const [added, setAdded] = useState<Set<string>>(new Set(restored?.addedTempIds ?? initialAnalysis?.addedTempIds ?? []));
+  const [addedTodos, setAddedTodos] = useState(initialAnalysis?.addedTodos);
   const [invalidDraft, setInvalidDraft] = useState('');
+  const [checkedTodos, setCheckedTodos] = useState<Todo[] | null>(null);
+  const [duplicateConfirmation, setDuplicateConfirmation] = useState<DuplicateConfirmation | null>(null);
   const dirty = section === 'settings'
     ? !!settings && (baseUrl !== settings.baseUrl || model !== settings.model || !!apiKey || (!!config && JSON.stringify(config) !== configBaseline))
     : section === 'ai' && (initialAnalysis ? !saved && (JSON.stringify(drafts)!==JSON.stringify(initialAnalysis.drafts)||JSON.stringify([...selected])!==JSON.stringify(initialAnalysis.drafts.map(d=>d.tempId))) : text !== textBaseline || (!!token && !saved));
@@ -120,16 +128,23 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
     else panel.current?.focus();
   }, [confirmClose]);
   useEffect(() => {
+    if (duplicateConfirmation) duplicatePrompt.current?.focus();
+  }, [duplicateConfirmation]);
+  useEffect(() => {
     if (!reviewMode || !reviewKey) return;
     saveDraftReview(reviewKey, { drafts, selected: [...selected], token, saved, aiNotes, addedTempIds: [...added], baseDrafts: JSON.stringify(sourceDrafts) });
   }, [reviewMode, reviewKey, drafts, selected, token, saved, aiNotes, added, sourceDrafts]);
-  function patchDraft(id: string, patch: Partial<TodoDraft>) { setDrafts(old => old.map(d => d.tempId === id ? { ...d, ...patch } : d)); }
+  function patchDraft(id: string, patch: Partial<TodoDraft>) {
+    setDuplicateConfirmation(null);
+    setDrafts(old => old.map(d => d.tempId === id ? { ...d, ...patch } : d));
+  }
   function ancestorIds(id: string, items = drafts): string[] {
     const result: string[] = []; let cursor: string | null = id;
     while (cursor && !result.includes(cursor)) { result.push(cursor); cursor = items.find(d => d.tempId === cursor)?.parentTempId ?? null; }
     return result;
   }
   function toggleSelected(id: string, checked: boolean) {
+    setDuplicateConfirmation(null);
     setSelected(old => {
       const next = new Set(old);
       if (checked) ancestorIds(id).forEach(v => next.add(v));
@@ -138,6 +153,7 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
     });
   }
   function changeParent(id: string, parentTempId: string | null) {
+    setDuplicateConfirmation(null);
     const changed = drafts.map(d => d.tempId === id ? { ...d, parentTempId, due: !parentTempId && d.due?.mode === 'inherit' ? { mode: 'none' as const } : d.due } : d);
     setDrafts(changed);
     if (selected.has(id)) setSelected(old => new Set([...old, ...ancestorIds(id, changed)]));
@@ -164,14 +180,46 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
     try { validateDrafts(items); } catch (e) { setError(describe(e)); return false; }
     return true;
   }
-  async function saveDraftSet(mode: 'selected' | 'all') {
+  async function saveDraftSet(mode: SaveMode, confirmedSignature?: string) {
     if (!token || saved) return;
+    setDuplicateConfirmation(null);
     const base = mode === 'all' ? drafts : drafts.filter(draft => selected.has(draft.tempId));
     const chosen = withAncestors(base);
     if (!chosen.length) throw new Error('请至少选择一项草稿。');
     const pending = chosen.filter(draft => !added.has(draft.tempId));
     if (!pending.length) { setWarning('本轮草稿都已在待办中，没有重复添加。'); return; }
     if (!validateForSave(mode === 'all' ? drafts : chosen)) return;
+    let savedTodoIds = addedTodos;
+    const unmappedParents = pending.flatMap(({ due, parentTempId }) =>
+      parentTempId && added.has(parentTempId) && !addedTodos?.[parentTempId] && (!due || due.mode === 'inherit')
+        ? [parentTempId] : [],
+    );
+    if (initialAnalysis && unmappedParents.length) {
+      try {
+        const progress = unwrap(await window.mailWorkspace.getAnalysis(initialAnalysis.id));
+        savedTodoIds = { ...addedTodos, ...progress.addedTodos };
+        if (unmappedParents.some(id => !savedTodoIds?.[id])) throw new Error('部分已添加的父待办缺少对应标识。');
+        setAddedTodos(savedTodoIds);
+      } catch (e) {
+        throw new Error(`无法读取已添加父待办的保存记录，草稿已保留。${describe(e)}`);
+      }
+    }
+    let latestTodos: Todo[];
+    try {
+      latestTodos = unwrap(await window.desktop.listTodos());
+    } catch (e) {
+      throw new Error(`无法读取待办以检查重复，草稿已保留。${describe(e)}`);
+    }
+    setCheckedTodos(latestTodos);
+    const matches = findDuplicateTodos(chosen, latestTodos, added, savedTodoIds);
+    const signature = JSON.stringify(Array.from(matches, ([id, candidates]) => [
+      id, [...candidates].sort((a, b) => a.todo.id.localeCompare(b.todo.id))
+        .map(({ todo, deadline, parentTitle, reasons }) => [todo.id, todo.revision, deadline, parentTitle, reasons]),
+    ]));
+    if (matches.size && signature !== confirmedSignature) {
+      setDuplicateConfirmation({ mode, signature, blockedCount: matches.size, pendingCount: pending.length });
+      return;
+    }
     if (initialAnalysis) {
       // 后端按已添加标识去重，并保留批次之间的父子层级。
       const result = unwrap(await window.mailWorkspace.saveAnalysis(initialAnalysis.id, mode === 'all' ? drafts : chosen));
@@ -194,6 +242,9 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
     await onChanged();
     await onSaved?.();
   }
+  const duplicateMatches = section === 'ai' && generated && !saved
+    ? findDuplicateTodos(drafts, checkedTodos ?? todos, added, addedTodos)
+    : undefined;
   const batches = Array.from(new Set(todos.filter(t => t.deletedAt && t.trashBatchId).map(t => t.trashBatchId!))).map(id => {
     const items = todos.filter(t => t.trashBatchId === id && t.deletedAt);
     const root = items.find(t => !items.some(parent => parent.id === t.parentId)) ?? items[0];
@@ -241,6 +292,7 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
             {!initialExtraction && !initialAnalysis && <form className="tools-card" onSubmit={e => { e.preventDefault(); void run(async () => {
               const next = unwrap(await window.desktop.extract(text));
               setDrafts(next.drafts); setSelected(new Set(next.drafts.map(d => d.tempId))); setToken(next.confirmationToken); setGenerated(true); setSaved(false); setAiNotes(next.notes);
+              setAdded(new Set()); setDuplicateConfirmation(null); setCheckedTodos(null);
             }); }}>
               <h3>01 / 放入原文</h3><fieldset disabled={busy} className="tools-fields">
                 <label>邮件或其他原文<textarea rows={7} maxLength={20000} value={text} onChange={e => setText(e.target.value)} placeholder="粘贴需要整理的文字…" /></label>
@@ -261,12 +313,19 @@ export function Tools({ section, todos, onClose, onChanged, onSaved, initialExtr
                     <label>标题<input maxLength={200} required={selected.has(draft.tempId)} disabled={added.has(draft.tempId)} value={draft.title} onChange={e => patchDraft(draft.tempId, { title: e.target.value })} /></label>
                     <label>备注<textarea maxLength={10000} rows={2} disabled={added.has(draft.tempId)} value={draft.notes ?? ''} onChange={e => patchDraft(draft.tempId, { notes: e.target.value })} /></label>
                     <label>所属父待办<select disabled={added.has(draft.tempId)} value={draft.parentTempId ?? ''} onChange={e => changeParent(draft.tempId, e.target.value || null)}><option value="">独立待办</option>{drafts.filter(candidate => !ancestorIds(candidate.tempId).includes(draft.tempId)).map(candidate => <option key={candidate.tempId} value={candidate.tempId}>{candidate.title || '未命名草稿'}</option>)}</select></label>
-                    <DueEditor value={draft.due ?? { mode: 'none' }} child={!!draft.parentTempId} disabled={busy || saved || added.has(draft.tempId) || !selected.has(draft.tempId)} onChange={due => patchDraft(draft.tempId, { due })} />
+                    <DueEditor value={draft.due ?? { mode: draft.parentTempId ? 'inherit' : 'none' }} child={!!draft.parentTempId} disabled={busy || saved || added.has(draft.tempId) || !selected.has(draft.tempId)} onChange={due => patchDraft(draft.tempId, { due })} />
                     {draft.source && <details className="tools-source"><summary>查看原文依据</summary><p>{draft.source}</p></details>}
+                    <DuplicateTodoMatches matches={duplicateMatches?.get(draft.tempId)} draftNumber={index + 1} />
                   </article>)}
+                  {duplicateConfirmation && <p className="tools-ai-notes" role="status" tabIndex={0} ref={duplicatePrompt}>
+                    {duplicateConfirmation.blockedCount} 项草稿可能重复。取消勾选相应草稿后可使用“确认保存”，也可以确认仍然添加。
+                  </p>}
                   <div className="tools-actions">
                     <button type="submit" className="tools-primary" disabled={!selected.size || !token || saved}>确认保存 {selected.size} 项待办</button>
                     <button type="button" className="tools-primary" disabled={!drafts.length || !token || saved || drafts.every(draft => added.has(draft.tempId))} onClick={() => void run(() => saveDraftSet('all'))}>全部添加（{drafts.length} 项）</button>
+                    {duplicateConfirmation && <button type="button" onClick={() => void run(() => saveDraftSet(duplicateConfirmation.mode, duplicateConfirmation.signature))}>
+                      仍然添加 {duplicateConfirmation.pendingCount} 项待办
+                    </button>}
                   </div>
                   <p className="tools-muted">“全部添加”覆盖本轮全部 {drafts.length} 项待审核草稿（包含未勾选项）；已添加的 {added.size} 项不会重复保存。</p>
                 </fieldset>

@@ -14,7 +14,7 @@ afterEach(() => cleanup());
 const ok = <T,>(data: T) => ({ ok: true as const, data });
 const settings = { baseUrl: 'https://example.org/v1', model: 'user-model', hasApiKey: true, dataDirectory: 'local-data' };
 function setup(overrides: Partial<DesktopAPI> = {}) {
-  window.desktop = { getSettings: async () => ok(settings), getCompletionConfig: async () => ok({ cascadeComplete: true, autoCompleteParent: true }), ...overrides } as DesktopAPI;
+  window.desktop = { getSettings: async () => ok(settings), getCompletionConfig: async () => ok({ cascadeComplete: true, autoCompleteParent: true }), listTodos: async () => ok([]), ...overrides } as DesktopAPI;
 }
 const onChanged = async () => {};
 const onClose = () => {};
@@ -81,6 +81,37 @@ test('AI 错误不清除原文，空结果不保存', async () => {
   fireEvent.click(ui.getByRole('button', { name: '生成待办草稿' }));
   await waitFor(() => assert.ok(ui.getByText('这段原文中没有识别到待办。可以编辑原文后再次生成。')));
   assert.equal(ui.queryByRole('button', { name: /确认保存/ }), null); assert.equal(saves, 0);
+});
+
+test('普通草稿读待办失败时保留编辑，重试后以标题和继承日提示重复并使用原令牌保存', async () => {
+  const date = { mode: 'value', value: { kind: 'date', date: '2026-11-24' } } as const;
+  const existingParent: Todo = { id: 'old-parent', parentId: null, title: '旧项目', notes: '', completed: false, due: date, createdAt: '2026-11-20T10:00:00Z', updatedAt: '2026-11-20T10:00:00Z', revision: 1, deletedAt: null, trashBatchId: null };
+  const existingChild: Todo = { ...existingParent, id: 'old-child', parentId: existingParent.id, title: '提交  ＰＤＦ。', due: { mode: 'inherit' } };
+  let fail = true;
+  const saved: { items: TodoDraft[]; token: string }[] = [];
+  setup({
+    extract: async () => ok({ drafts: [{ ...drafts[0], due: date }, drafts[1]], notes: '', confirmationToken: 'duplicate-check-token' }),
+    listTodos: async () => fail ? { ok: false, error: '暂时无法读取数据库' } : ok([existingParent, existingChild]),
+    saveDrafts: async (items, token) => { saved.push({ items, token }); return ok({ value: items.length, warnings: [] }); },
+  });
+  const ui = render(<Tools section="ai" todos={[]} onClose={onClose} onChanged={onChanged} />);
+  fireEvent.change(await ui.findByLabelText('邮件或其他原文'), { target: { value: '请提交 PDF' } });
+  fireEvent.click(ui.getByRole('button', { name: '生成待办草稿' }));
+  const save = await ui.findByRole('button', { name: '确认保存 2 项待办' });
+  const child = ui.getAllByLabelText('标题')[1] as HTMLInputElement;
+  fireEvent.change(child, { target: { value: '提交 pdf' } });
+  fireEvent.click(save);
+  const error = await ui.findByRole('alert');
+  assert.match(error.textContent ?? '', /读取待办/);
+  assert.equal(saved.length, 0);
+  assert.equal(child.value, '提交 pdf');
+  fail = false;
+  fireEvent.click(save);
+  fireEvent.click(await ui.findByRole('button', { name: '仍然添加 2 项待办' }));
+  await waitFor(() => assert.equal(saved.length, 1));
+  assert.equal(saved[0].token, 'duplicate-check-token');
+  assert.equal(saved[0].items[1].title, '提交 pdf');
+  assert.equal(saved[0].items[1].parentTempId, 'p');
 });
 
 test('回收站按批展示并整批恢复，成功刷新列表', async () => {

@@ -58,7 +58,7 @@ test('未保存筛选关闭保护、键盘焦点及局部读取错误',async()=>
 });
 
 test('邮件草稿复用审核界面与稳定确认令牌，不再次调用模型',async()=>{
- let savedToken='',models=0;window.desktop={getSettings:async()=>ok(settings),extract:async()=>{models++;throw Error('不应重新请求');},saveDrafts:async(drafts,token)=>{assert.equal(drafts[0].title,'提交报告');savedToken=token;return ok({value:1,warnings:[]});}} as Partial<DesktopAPI> as DesktopAPI;
+ let savedToken='',models=0;window.desktop={getSettings:async()=>ok(settings),listTodos:async()=>ok([]),extract:async()=>{models++;throw Error('不应重新请求');},saveDrafts:async(drafts,token)=>{assert.equal(drafts[0].title,'提交报告');savedToken=token;return ok({value:1,warnings:[]});}} as Partial<DesktopAPI> as DesktopAPI;
  const ui=render(<Tools section="ai" initialExtraction={extraction} todos={[]} onClose={noop} onChanged={async()=>{}}/>);
  await waitFor(()=>assert.ok(ui.queryByRole('button',{name:'确认保存 1 项待办'})));
  assert.ok(ui.queryByLabelText('邮件或其他原文')===null);fireEvent.click(ui.getByRole('button',{name:'确认保存 1 项待办'}));await waitFor(()=>assert.equal(savedToken,'mail:stable-marker'));assert.equal(models,0);

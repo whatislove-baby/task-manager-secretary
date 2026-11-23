@@ -67,6 +67,88 @@ test('写信附件默认不交给 AI，显式参考后才发送；预览固定�
  fireEvent.click(picker.getByRole('checkbox',{name:/项目计划.docx/}));assert.equal(ui.queryByRole('button',{name:'确认发送这封邮件'}),null);assert.equal(sent,0);
 });
 
+function convertedPdf(word:FileRecord, id:string, name:string):FileRecord {
+ return {...input,id,name,source:'generated',conversion:{
+  sourceFileId:word.id,sourceSha256:word.sha256,sourceRevision:word.revision??1,
+  method:'LibreOffice writer_pdf_Export',preservesSourceLayout:true,visualReviewed:false,
+ }};
+}
+
+async function prepareWithAttachments(attachments:FileRecord[]) {
+ setup();
+ let sent=0;
+ window.mailCompose.send=async()=>{sent++;return ok({...receipt,status:'sent'});};
+ // The picker has a cached view without conversion data. Only the prepared
+ // receipt supplies the provenance of the actual bytes selected for sending.
+ const pickerRecords=attachments.map(({id,name,mediaType,extension,byteSize,sha256,createdAt,source,warnings})=>
+  ({id,name,mediaType,extension,byteSize,sha256,createdAt,source,warnings}));
+ window.mailFiles!.list=async()=>ok(pickerRecords);
+ window.mailFiles!.get=async id=>ok(pickerRecords.find(file=>file.id===id)!);
+ const ids=attachments.map(file=>file.id);
+ window.mailCompose.prepare=async value=>{
+  assert.deepEqual(value.attachmentIds,ids);
+  return ok({...receipt,attachments});
+ };
+ const ui=render(<MailComposePanel accounts={[account]} initialDraft={{
+  id:'manual-pairing',bindingId:account.id,to:receipt.to,subject:receipt.subject,body:receipt.body,attachmentIds:ids,
+ }}/>);
+ await readyCompose(ui);
+ fireEvent.click(ui.getByRole('button',{name:'预览并准备发送'}));
+ const panel=await ui.findByLabelText('发送前预览');
+ await waitFor(()=>assert.equal((ui.getByRole('button',{name:'确认发送这封邮件'}) as HTMLButtonElement).disabled,false));
+ assert.equal(sent,0);
+ return {ui,attachmentRow:(name:string)=>{
+  const row=within(panel).getByText((_,node)=>node?.tagName==='P'&&node.textContent?.startsWith(`${name} · `)===true);
+  return within(row);
+ }};
+}
+
+test('发送预览为多组附件分别匹配各自的 Word，允许 PDF 使用不同名称',async()=>{
+ const otherWord={...output,id:'word-b',name:'预算.docx',sha256:'c'.repeat(64),revision:3};
+ const planPdf=convertedPdf(output,'plan-pdf','对外版本.pdf');
+ const budgetPdf=convertedPdf(otherWord,'budget-pdf','预算附件.pdf');
+ const {attachmentRow}=await prepareWithAttachments([otherWord,planPdf,output,budgetPdf]);
+ assert.ok(attachmentRow(planPdf.name).getByText('配套'));
+ assert.ok(attachmentRow(planPdf.name).getByText(/项目计划\.docx/));
+ assert.ok(attachmentRow(budgetPdf.name).getByText('配套'));
+ assert.ok(attachmentRow(budgetPdf.name).getByText(/预算\.docx/));
+});
+
+test('发送预览不会把同名同哈希的不同 Word 文件当成源 Word',async()=>{
+ const sameNameWord={...output,id:'same-name-word'};
+ const pdf=convertedPdf(output,'plan-pdf','项目计划.pdf');
+ const {attachmentRow}=await prepareWithAttachments([sameNameWord,pdf]);
+ assert.ok(attachmentRow(pdf.name).getByText('不匹配'));
+ assert.ok(attachmentRow(pdf.name).getByText(/未附源 Word/));
+});
+
+test('发送预览标记源 Word 已附但哈希或修订版本与转换时不同',async()=>{
+ const word={...output,revision:2};
+ const staleHash=convertedPdf({...word,sha256:'c'.repeat(64)},'old-hash','旧内容.pdf');
+ const staleRevision=convertedPdf({...word,revision:1},'old-revision','旧修订.pdf');
+ const {attachmentRow}=await prepareWithAttachments([word,staleHash,staleRevision]);
+ assert.ok(attachmentRow(staleHash.name).getByText('不匹配'));
+ assert.ok(attachmentRow(staleHash.name).getByText(/哈希/));
+ assert.ok(attachmentRow(staleRevision.name).getByText('不匹配'));
+ assert.ok(attachmentRow(staleRevision.name).getByText(/修订版本/));
+});
+
+test('缺少转换记录的同名 PDF 显示来源未知，普通附件仍可预览确认',async()=>{
+ const untrackedPdf={...input,name:'项目计划.pdf',parentIds:[output.id]};
+ const textFile={...input,id:'notes',name:'说明.txt',mediaType:'text/plain',extension:'txt'};
+ const {attachmentRow}=await prepareWithAttachments([output,untrackedPdf,textFile]);
+ assert.ok(attachmentRow(untrackedPdf.name).getByText('来源未知'));
+ assert.equal(attachmentRow(textFile.name).queryByText('来源未知'),null);
+});
+
+test('只附有转换记录的 PDF 会提示未附源 Word，依然可手动确认发送',async()=>{
+ const pdf=convertedPdf(output,'plan-pdf','项目计划.pdf');
+ const {ui,attachmentRow}=await prepareWithAttachments([pdf]);
+ assert.ok(attachmentRow(pdf.name).getByText('未附源 Word'));
+ assert.equal(attachmentRow(pdf.name).queryByText('不匹配'),null);
+ assert.ok(ui.getByRole('button',{name:'确认发送这封邮件'}));
+});
+
 test('发送结果不确定时附件选择也锁定，外部加入附件请求不能解锁或改变原发送快照',async()=>{
  setup();window.mailCompose.send=async()=>ok({...receipt,status:'uncertain',attachments:[output],detail:'可能已被接受'});
  const ui=render(<MailComposePanel accounts={[account]} attachmentRequest={{token:'1',id:output.id}}/>);await readyCompose(ui);fillCompose(ui);fireEvent.click(ui.getByRole('button',{name:'预览并准备发送'}));await waitFor(()=>assert.ok(ui.getByRole('button',{name:'确认发送这封邮件'})));fireEvent.click(ui.getByRole('button',{name:'确认发送这封邮件'}));await waitFor(()=>assert.ok(ui.getByText('发送结果不确定')));

@@ -20,6 +20,7 @@ import {SkillReview,SkillLibrary} from './SkillReview';
 import {TaskChangeReview} from './TaskChangeReview';
 import {SecretaryBriefing} from './SecretaryBriefing';
 import {AgentTaskContext} from './AgentTaskContext';
+import {AgentPendingList} from './AgentPendingList';
 
 type Page='chat'|'inbox'|'pending'|'calendar'|'files'|'settings';
 type ComposerDraft={text:string;mailRefs:LocalMail[];fileRefs:FileRecord[]};
@@ -150,7 +151,7 @@ export function AgentApp(){
    </div>:page==='calendar'?<div className="ag-calendar"><App/></div>:<main className="ag-page"><div className="ag-page-heading"><h1>{names[page]}</h1><p>{page==='inbox'?'邮件留在这里，事情可以交给对话来处理。':page==='pending'?'检查内容，决定接下来怎么做。':page==='files'?'把参考资料和工作成果放在一起。':'配置你的模型、邮箱和日常工作方式。'}</p></div>
     {page==='inbox'&&<AgentInbox onRead={mail=>void openSource({kind:'mail',id:mail.localId,title:mail.subject})} onUse={useMail} onManage={()=>setManageMail(true)}/>}
     {page==='files'&&<AgentLibrary onUse={useFile} onAttach={id=>void attachFile(id)}/>}
-    {page==='pending'&&(!pending.length?<div className="ag-empty-page"><CheckCheck size={30}/><h3>暂时没有待确认事项</h3><p>对话产生的待办和邮件草稿会出现在这里。</p></div>:<div className="ag-pending-list">{pending.map(item=><article key={item.kind+item.id}><Artifacts {...artifactActions} items={[item]} onOpen={a=>void openArtifact(a)}/><button className="ag-pending-origin" onClick={()=>void openConversation(item.conversationId)}>回到原对话 <ChevronRight size={13}/></button></article>)}</div>)}
+    {page==='pending'&&<AgentPendingList items={pending} renderItem={item=><Artifacts {...artifactActions} items={[item]} onOpen={a=>void openArtifact(a)}/>} onOpenOrigin={id=>void openConversation(id)}/>}
     {page==='settings'&&<div className="ag-settings-grid">{[{title:'模型与 API',detail:settings?.model||'连接 OpenRouter 或兼容接口',action:()=>setTool('settings'),icon:Settings2},{title:'邮箱账号',detail:'连接邮箱、收取邮件和管理发送设置',action:()=>setManageMail(true),icon:Mail},{title:'定时整理',detail:'设置自动收取和整理邮件的时间',action:()=>setAutomation(true),icon:RefreshCw},{title:'Canvas 日历',detail:'同步课程日历中的截止日期',action:()=>setCanvas(true),icon:CalendarDays},{title:'技能库',detail:'经验证的脚本、文字经验与修订记录',action:()=>setSkillLibrary(true),icon:BookOpen},{title:'学习方法',detail:'已批准的经验、适用范围和处理规则版本',action:()=>setLearningLibrary(true),icon:BookOpen},{title:'回收站',detail:'查看和恢复已删除的任务',action:()=>setTool('trash'),icon:Trash2}].map(({title,detail,action,icon:Icon})=><button key={title} onClick={action}><Icon size={22}/><span><strong>{title}</strong><small>{detail}</small></span><ChevronRight size={16}/></button>)}<p className="ag-settings-footnote">模型处理所需的邮件、资料文字及所查看的文档页面图像会发送到你配置的 API 服务。账号密钥不会进入对话。</p></div>}
    </main>}
   </div>

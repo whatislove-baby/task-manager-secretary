@@ -5,6 +5,8 @@ export interface FileRecord {
  id:string; name:string; mediaType:string; extension:string; byteSize:number; sha256:string;
  createdAt:string; source:'local'|'mail'|'generated'; sourceMailId?:string;
  parentIds?:string[]; warnings:string[];
+ revision?:number;
+ conversion?:{sourceFileId:string;sourceSha256:string;sourceRevision:number;method:string;preservesSourceLayout:boolean;visualReviewed:boolean};
  validation?:FileValidation;
  pageSelection?:{sourceFileId:string;sourceSha256:string;sourcePageCount:number;pages:number[];pageCount:number;method:string};
  archiveOrigin?:{archiveId:string;rootArchiveId:string;archiveSha256:string;memberPath:string;memberSha256:string;depth:number};

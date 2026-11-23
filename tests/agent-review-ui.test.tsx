@@ -7,7 +7,7 @@ import {LearningReview,LearningLibrary} from '../src/renderer/LearningReview';
 import {TaskChangeReview} from '../src/renderer/TaskChangeReview';
 import {AgentApp} from '../src/renderer/AgentApp';
 import {dispatchPython} from '../src/main/python-desktop';
-import type {LearningMethod,LearningAPI,TaskChange,TaskChangesAPI,AgentAPI} from '../src/shared/agent';
+import type {LearningMethod,LearningAPI,TaskChange,TaskChangesAPI,AgentAPI,AgentPendingItem} from '../src/shared/agent';
 const dom=new JSDOM('<!doctype html><html><body></body></html>',{url:'http://localhost'});
 for(const [key,value] of Object.entries({window:dom.window,document:dom.window.document,navigator:dom.window.navigator,HTMLElement:dom.window.HTMLElement}))Object.defineProperty(globalThis,key,{value,configurable:true});
 const {render,fireEvent,waitFor,cleanup,within}=createRequire(process.cwd()+'/package.json')('@testing-library/react') as typeof import('@testing-library/react');
@@ -68,6 +68,107 @@ test('Agent待确认卡打开各自审核器；设置可查看已批准学习方
  const ui=render(<AgentApp/>);await waitFor(()=>assert.ok(ui.getByText('fixture')));fireEvent.click(within(ui.getByRole('navigation',{name:'主导航'})).getByRole('button',{name:/待确认/}));await waitFor(()=>assert.ok(ui.getByRole('button',{name:/海港订单转换/})));fireEvent.click(ui.getByRole('button',{name:/海港订单转换/}));await waitFor(()=>assert.ok(ui.getByLabelText('学习方法审核')));assert.equal(mailDraftReads,0);fireEvent.click(ui.getByRole('button',{name:'关闭学习方法与版本'}));
  fireEvent.click(ui.getByRole('button',{name:/更新：CS5021/}));await waitFor(()=>assert.ok(ui.getByLabelText('待办变更审核')));fireEvent.click(ui.getByRole('button',{name:'关闭核对待办变更'}));fireEvent.click(ui.getByRole('button',{name:'设置'}));fireEvent.click(ui.getByRole('button',{name:/学习方法.*已批准的经验/}));await waitFor(()=>assert.ok(ui.getByLabelText('已保存的学习方法')));
 });
+
+function pendingItem(kind:AgentPendingItem['kind'],id:string,title:string,createdAt=date):AgentPendingItem{
+ return {kind,id,title,createdAt,runId:`run-${id}`,conversationId:`conversation-${id}`};
+}
+
+function openPending(listPending:AgentAPI['listPending'],overrides:Partial<AgentAPI>={}){
+ window.desktop={getSettings:async()=>ok({baseUrl:'https://example.invalid',model:'fixture',hasApiKey:true,dataDirectory:'data'}),listTodos:async()=>ok([])} as any;
+ window.mailWorkspace={getAccounts:async()=>ok([])} as any;
+ window.agent={listConversations:async()=>ok([]),listPending,...overrides} as AgentAPI;
+ const ui=render(<AgentApp/>);
+ const navigation=within(ui.getByRole('navigation',{name:'主导航'}));
+ fireEvent.click(navigation.getByRole('button',{name:/待确认/}));
+ return ui;
+}
+
+test('待确认按类型分组，标题搜索与类型筛选保留全队列计数，清空筛选恢复默认顺序',async()=>{
+ const oldMail=pendingItem('mail_draft','older','Draft Agenda','2026-11-22T00:20:00+08:00');
+ const newMail=pendingItem('mail_draft','newer','Draft Report','2026-11-21T18:20:00Z');
+ const todo=pendingItem('task_draft','todo','Report 截止日');
+ const skill=pendingItem('skill_draft','skill','邮件分类技能');
+ const future={...pendingItem('file','future','新类型的审核项'),kind:'future_review'} as unknown as AgentPendingItem;
+ const ui=openPending(async()=>ok([oldMail,skill,newMail,todo,future]));
+ const filters=within(await ui.findByRole('group',{name:'事项类型'}));
+ const group=()=>within(ui.getByRole('region',{name:'邮件草稿'}));
+ const mailTitles=()=>group().getAllByRole('article').map(article=>article.querySelector('strong')?.textContent);
+
+ assert.ok(filters.getByRole('button',{name:'全部 5',pressed:true}));
+ assert.ok(filters.getByRole('button',{name:'邮件草稿 2',pressed:false}));
+ assert.ok(filters.getByRole('button',{name:'待办草稿 1'}));
+ assert.ok(within(ui.getByRole('region',{name:'其他'})).getByText(future.title));
+ assert.equal(ui.queryByRole('button',{name:new RegExp(future.title)}),null);
+ assert.deepEqual(mailTitles(),[newMail.title,oldMail.title]);
+
+ const sort=ui.getByLabelText('组内排序') as HTMLSelectElement;
+ fireEvent.change(sort,{target:{value:'oldest'}});
+ assert.deepEqual(mailTitles(),[oldMail.title,newMail.title]);
+ fireEvent.click(filters.getByRole('button',{name:'邮件草稿 2'}));
+ assert.equal(ui.queryByText(todo.title),null);
+
+ const search=ui.getByRole('searchbox',{name:'搜索事项标题'}) as HTMLInputElement;
+ fireEvent.change(search,{target:{value:'  rEPOrT  '}});
+ assert.deepEqual(mailTitles(),[newMail.title]);
+ assert.ok(filters.getByRole('button',{name:'邮件草稿 2',pressed:true}));
+ assert.match(ui.getByRole('status').textContent??'',/显示 1 \/ 5 项/);
+ fireEvent.change(search,{target:{value:'邮件分类技能'}});
+ assert.ok(ui.getByText('没有符合筛选条件的待确认事项'));
+ assert.equal(ui.queryByText('暂时没有待确认事项'),null);
+
+ fireEvent.click(ui.getByRole('button',{name:'清空筛选'}));
+ assert.equal(search.value,'');
+ assert.equal(sort.value,'newest');
+ assert.ok(filters.getByRole('button',{name:'全部 5',pressed:true}));
+ assert.deepEqual(mailTitles(),[newMail.title,oldMail.title]);
+});
+
+test('批准待办变更后队列更新并保留当前筛选，原对话可从剩余事项打开',async()=>{
+ const mail=pendingItem('mail_draft','mail','会议回复草稿');
+ let pending=[pendingItem('task_change',change.id,change.title),mail];
+ const approvals:unknown[]=[];
+ tasks({approve:async input=>{
+  approvals.push(input);
+  pending=[mail];
+  return ok({...change,status:'approved',after:{...change.before,...change.patch,revision:4}});
+ }});
+ const opened:string[]=[];
+ const ui=openPending(async()=>ok(pending),{
+  getConversation:async id=>{
+   opened.push(id);
+   return ok({id,title:'会议原对话',createdAt:date,updatedAt:date,turnCount:1,turns:[{id:'origin-turn',role:'assistant',content:'会议回复的来源说明',createdAt:date}]});
+  },
+ });
+ const filters=within(await ui.findByRole('group',{name:'事项类型'}));
+ fireEvent.click(filters.getByRole('button',{name:'待办变更 1'}));
+ fireEvent.change(ui.getByRole('searchbox',{name:'搜索事项标题'}),{target:{value:'CS5021'}});
+ fireEvent.click(ui.getByRole('button',{name:/更新：CS5021/}));
+ const dialog=await ui.findByRole('dialog',{name:'核对待办变更'});
+ fireEvent.click(await within(dialog).findByRole('button',{name:'批准更新此待办'}));
+ await waitFor(()=>assert.ok(within(dialog).getByText('变更已保存。')));
+ assert.deepEqual(approvals,[{id:change.id,expectedHash:change.hash}]);
+ const close=within(dialog).getByRole('button',{name:'关闭核对待办变更'}) as HTMLButtonElement;
+ await waitFor(()=>assert.equal(close.disabled,false));
+ fireEvent.click(close);
+
+ assert.ok(filters.getByRole('button',{name:'全部 1',pressed:false}));
+ assert.ok(filters.getByRole('button',{name:'待办变更 0',pressed:true}));
+ assert.equal((ui.getByRole('searchbox',{name:'搜索事项标题'}) as HTMLInputElement).value,'CS5021');
+ assert.ok(ui.getByText('没有符合筛选条件的待确认事项'));
+ assert.equal(ui.queryByRole('button',{name:/更新：CS5021/}),null);
+
+ fireEvent.click(ui.getByRole('button',{name:'清空筛选'}));
+ fireEvent.click(within(ui.getByRole('region',{name:'邮件草稿'})).getByRole('button',{name:'回到原对话'}));
+ assert.ok(await ui.findByText('会议回复的来源说明'));
+ assert.deepEqual(opened,[mail.conversationId]);
+
+ pending=[];
+ const navigation=within(ui.getByRole('navigation',{name:'主导航'}));
+ fireEvent.click(navigation.getByRole('button',{name:/待确认/}));
+ assert.ok(await ui.findByRole('heading',{name:'暂时没有待确认事项'}));
+ assert.equal(ui.queryByText('没有符合筛选条件的待确认事项'),null);
+});
+
 test('旧待办建议显示过期状态与原始对比，不再提供批准入口',async()=>{
  let writes=0;tasks({get:async()=>ok({...change,status:'stale'}),approve:async()=>{writes++;return ok(change);}});const ui=render(<TaskChangeReview id={change.id}/>);await waitFor(()=>assert.ok(ui.getByText(/待办已变化，请重新提议/)));assert.ok(ui.getByRole('table',{name:'变更前后对比'}));assert.equal(ui.queryByRole('button',{name:'批准更新此待办'}),null);assert.equal(writes,0);assert.ok(ui.getByText(/原待办的内容或状态已改变/));
 });
