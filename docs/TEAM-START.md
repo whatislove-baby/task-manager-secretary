@@ -33,6 +33,27 @@ TM_SOFFICE='/Applications/LibreOffice.app/Contents/MacOS/soffice' npm run dev
 
 此环境变量只配置本地渲染器。源码不自带成品包的渲染资源；基础 CSV 测试可以先做，Word/PDF 完整流程须准备好 LibreOffice。开发启动不需要先打包，也不需要 Docker；只有运行导入的 Python Skill 才需要另配 Docker，见[技能执行说明](skill-execution.md)。
 
+### 已有源码如何更新
+
+2026-11-23 的五项增量功能随 `main` 源码提供，操作入口见[更新使用说明](../output/pdf/TaskManager-使用说明-2026-11-23.pdf)。退出旧应用，在仓库根目录先运行 `git status --short`；有自己的修改时先提交或备份，再更新：
+
+```sh
+git switch main
+git pull --ff-only origin main
+npm ci
+```
+
+Mac 更新 Python 依赖后启动：
+
+```sh
+.venv/bin/python -m pip install -r backend/requirements-mac.txt
+npm run dev
+```
+
+Windows 使用下节的 `.\.venv\Scripts\python.exe` 与 `backend/requirements.txt` 对应命令。若 Git 提示分支分歧，保留本地提交并请组员检查，不要强制覆盖。开发数据仍在原 `data/`，无需复制别人的配置；旧交接 ZIP 只代表生成时的快照，以仓库最新源码为准。
+
+**找不到 Word 渲染器时：** 安装 LibreOffice，或将 `TM_SOFFICE` 指向这台电脑上的实际可执行文件。仅将程序加入 `PATH` 不保证被应用发现；不能复制另一台电脑的绝对路径。本次复核在指定已有组件后通过了实际 Word 转 PDF 和页面检查。该要求原本就存在，并非新增配套提示引入的限制。源码更新不等于发布新安装包；Windows/Mac 成品需重新构建并单独验收。
+
 ### Windows 组员
 
 Windows 成品和源码的启动、配置、打包与原生验收范围见 [Windows 使用与交接](WINDOWS.md)。每个预览发布都附有对应 Windows 构建的测试证据；本页下方的旧 Mac 记录单独保留。若已安装 Python Launcher，可在 PowerShell 中使用以下对应命令：

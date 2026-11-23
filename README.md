@@ -14,7 +14,7 @@ Apple Silicon 构建输出（成品未放入源码仓库）：`release-secretary
 
 **产品说明书与流程图：** [完整图文说明书 PDF](docs/product-kit/user-manual.pdf) · [SVG 流程图](docs/product-kit/workflow-complete.svg) · [整套资料 ZIP](docs/task-manager-product-kit.zip?raw=true)；[资料目录](docs/product-kit/README.md)另有离线 HTML 与两页概览。
 
-**2026-11-23 分支更新：** [更新日志 PDF](output/pdf/TaskManager-更新日志-2026-11-23.pdf) · [增量功能使用说明 PDF](output/pdf/TaskManager-使用说明-2026-11-23.pdf)。涵盖待办重复提醒、Word/PDF 配套检查、待确认筛选、失败恢复和完整对话导出；使用本分支源码启动，旧安装包不包含这些更新。
+**2026-11-23 主分支更新：** [更新日志 PDF](output/pdf/TaskManager-更新日志-2026-11-23.pdf) · [增量功能使用说明 PDF](output/pdf/TaskManager-使用说明-2026-11-23.pdf)。涵盖待办重复提醒、Word/PDF 配套检查、待确认筛选、失败恢复和完整对话导出；拉取最新 `main` 后从源码启动，旧安装包不会自动包含这些更新。已有源码的[更新步骤与 Word/PDF 运行要求](docs/TEAM-START.md#已有源码如何更新)已补充。
 
 ## 配置与运行
 
